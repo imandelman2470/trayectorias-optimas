@@ -51,8 +51,8 @@ P1 y P2 corren en paralelo. P3 no depende del código.
 Herramienta: Cowork + Code. Objetivo: todo en GitHub y el entorno verificado.
 
 - [x] 0.1 Armar el repo con la tesis, el código, `v2/` y este plan (Cowork, 2026-10-30).
-- [ ] 0.2 Subir el repo a GitHub (privado).
-- [ ] 0.3 Sincronizar `D:\ESCRI\trabajofinal` con el repo (comandos en `ESTADO.md`).
+- [x] 0.2 Subir el repo a GitHub (privado). Push desde la notebook (2026-10-30).
+- [x] 0.3 Enlazar `D:\ESCRI\trabajofinal` con el repo (el push salió de esa carpeta).
 - [ ] 0.4 Verificar `git status` limpio en la carpeta local.
 - [ ] 0.5 Guardar papers y libros de terceros en `v2/literatura/pdf/` (ver `REFERENCIAS_LOCALES.md`).
 - [ ] 0.6 Code: verificar MATLAB R2019a, Optimization Toolbox, Curve Fitting Toolbox.

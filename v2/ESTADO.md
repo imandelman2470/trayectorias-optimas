@@ -6,7 +6,7 @@ Fuente única del estado actual. Leer al empezar cada sesión. Actualizar al ter
 
 - Paso actual: **P0 (repo y entorno)** y **P1 (revisar etapa L1)** en paralelo.
 - Herramienta: **Claude Code** para P0.6–P0.10. Lectura propia para P1.
-- Próxima acción: sincronizar la carpeta local con GitHub (P0.3). Después, entorno en Code (P0.6).
+- Próxima acción: entorno en Code (P0.6–P0.10). En paralelo, leer L1 y responder `RESPUESTAS_ETAPA1.md` (P1).
 
 ## Hecho
 
@@ -25,23 +25,11 @@ Fuente única del estado actual. Leer al empezar cada sesión. Actualizar al ter
 - Python / conda: ¿? CasADi para Python: ¿?
 - Git: ¿versión? Repo: `https://github.com/imandelman2470/trayectorias-optimas` (privado).
 
-## Sincronizar la carpeta local con GitHub (una sola vez)
+## Repo
 
-En PowerShell, dentro de la carpeta existente:
-
-```powershell
-cd D:\ESCRI\trabajofinal
-git init -b main
-git config core.autocrlf false
-git remote add origin https://github.com/imandelman2470/trayectorias-optimas.git
-git fetch origin
-git reset origin/main
-git branch --set-upstream-to=origin/main main
-git status
-```
-
-`git reset origin/main` no toca los archivos. Solo alinea el historial.
-`git status` debe decir "nothing to commit". Si lista archivos, avisar en Code.
+- `D:\ESCRI\trabajofinal` está enlazada con `origin/main` desde el 2026-10-30.
+- Claude Code hace commit y push con las credenciales de Windows.
+- Las sesiones de Cowork en la nube no pueden hacer push: el proxy no autoriza el repo. Escriben en la carpeta y Code sube los cambios.
 
 ## Clonar en otra computadora
 
@@ -63,4 +51,5 @@ Una línea por sesión: fecha · herramienta · qué se hizo · qué sigue.
 
 - 2026-09-30 · Cowork · planificación completa · sigue paso 0 en Code.
 - 2026-10-02 · Claude science · etapa L1 (estado del arte) · sigue revisar y responder preguntas.
+- 2026-10-30 · Cowork + notebook · repo GitHub creado y enlazado · sigue P0.6 en Code y P1.
 - 2026-10-30 · Cowork · repo GitHub y plan v2 · sigue P0.3 (sincronizar) y P1.
