@@ -1,0 +1,2482 @@
+\documentclass[a4paper,12pt]{report}
+% % MODIFICADA EL 03/04
+\usepackage{amssymb} %paquete con simbolos no matematicos
+\usepackage{bbm}  %BlackBoard Mathematics, paquete de fuentes
+\usepackage{bm}
+\usepackage{graphicx}
+%\usepackage{textcomp}
+\usepackage[left=3cm,top=3.5cm,right=3cm,bottom=5cm]{geometry}
+\usepackage[spanish]{babel}
+%\usepackage{lineno}
+
+%\usepackage{showkeys}
+
+
+\newcommand{\la}{\langle}
+\newcommand{\ra}{\rangle}
+\newcommand{\lla}{\left\la}
+\newcommand{\rra}{\right\ra}
+\newcommand{\RR}{\mathbbm{R}}
+\newcommand{\NN}{\mathbbm{N}} 
+\newcommand{\Rn}{\RR^n}
+\newcommand{\Rm}{\RR^m}
+\newcommand{\Lf}{L_{f,D}}
+\newcommand{\bx}{\bar{x}}
+\newcommand{\bz}{\bar{z}}
+\newcommand{\vep}{\varepsilon}
+\newcommand{\vfi}{\varphi}
+\newcommand{\vth}{\vartheta}
+\newcommand{\om}{\omega}
+\newcommand{\lam}{\lambda}
+\newcommand{\blam}{\bar{\lam}}
+\newcommand{\bmu}{\bar{\mu}}
+\newcommand{\llam}{\Lambda}
+\newcommand{\mini}{\mathop{\mathrm{minimizar}}_{x\in D}f(x)}
+\newcommand{\proy}{\Pi_D (x)}
+\newcommand{\sdif}{\partial f(x)}
+\newcommand{\sdf}{\partial f(\bx)}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\Pik}{\Pi_K}
+\newcommand{\arr}{\rightarrow}
+\newcommand{\larr}{\longrightarrow}
+\newcommand{\frnr}{f:\Rn\arr\RR}
+
+\newtheorem{teo}{Teorema}[section]
+\newtheorem{lem}[teo]{Lema}
+\newtheorem{cor}[teo]{Corolario}
+\newtheorem{prop}[teo]{Proposici\'on}
+\newtheorem{defi}[teo]{Definici\'on}
+\newenvironment{dem}{\vspace*{-0.1cm}{\it Demostraci\'on:}}{\hfill
+$\blacksquare$\\} 
+\newcounter{ejemplo}
+\newenvironment{ejm}[1][]{\refstepcounter{ejemplo}\par\medskip\noindent%
+       \textbf{Ejemplo~\theejemplo. #1} \rmfamily}{\hfill $\blacksquare$\medskip}
+%\newcounter{ejem}\setcounter{ejem}{1}
+%\newenvironment{ejm}{{\bf Ejemplo:}}{\hfill $\blacksquare$\\}
+\newcounter{obs}
+\newenvironment{obs}[1][]{\refstepcounter{obs}\par\medskip\noindent%
+       \textbf{Observaci\'on~\theobs: #1} \rmfamily}%{\hfill $\blacksquare$\medskip}
+
+%\newenvironment{obs}{\noindent{\bf Observaci\'on:}}{\hfill $\blacksquare$\\}
+%\def \proof{\bn {\bf Proof.} }
+%\def \Box {\vrule height5pt width5pt depth0pt}
+%\def \endproof{\hfill \Box \vskip .5cm}
+
+
+\title{Producci\'on \'Optima de Energ\'ia El\'ectrica}
+
+
+\author{\vspace{5.4cm}\\ \hspace{3.6cm} Autor: Gabriel Eduardo Moyano\\ \hspace{4.6cm} Director: Dami\'an Fern\'andez Ferreyra}
+
+\date{28 de marzo del 2012}
+
+\begin{document}
+
+%\linenumbers
+
+\maketitle
+
+\begin{abstract}
+
+El objetivo de este trabajo es el de analizar y resolver el problema de optimizaci\'on de producci\'on de energ\'ia el\'ectrica satisfaciendo una demanda y minimizando costos, para esto se utilizar\'an t\'ecnicas de optimizaci\'on no diferenciable. En el problema a analizar plantearemos espec\'ificamente el modelo que contempla un conjunto de usinas hidroel\'ectricas y termoel\'ectricas.
+
+En este trabajo se comenzar\'a con una primera parte en la cual se introducir\'an algunos resultados te\'oricos sobre optimizaci\'on, convexidad de conjuntos, funciones convexas, relajaci\'on lagrangiana y dualidad los cuales ser\'an una base para la  resoluci\'on del problema a plantear. Luego se expondr\'an algunos de los m\'etodos computacionales para optimizaci\'on no diferenciable. Finalmente se concluir\'a con el planteo del problema de optimizaci\'on de producci\'on de energ\'ia mediante una adaptaci\'on y simplificaci\'on de modelos utilizados por distintas empresas de energ\'ia el\'ectica para as\'i realizar un an\'alisis y procesamiento de este problema de optimizaci\'on utilizando la teor\'ia ya mencionada.
+
+
+\vspace{4cm}
+
+
+{\bf Clasificaci\'on} (Math. Subject Classification)
+\vspace{.2cm}
+
+\quad 90B30 - Operations research, mathematical programming. Production models.
+
+\quad 90C90 - Operations research, mathematical programming. Applications of ma\-the\-ma\-ti\-cal programming.
+
+\quad 65K05 - Numerical Analysis. Mathematical programming methods.
+
+\quad 49J52 - Calculus of variations and optimal control; optimization. Nonsmooth Analysis.
+
+\vspace{1cm}
+{\bf Palabras Claves}
+\vspace{.2cm}
+
+\qquad  -An\'alisis convexo
+
+\qquad  -Optimizaci\'on no diferenciable
+
+\qquad  -Relajaci\'on lagrangiana y dualidad
+
+\qquad  -M\'etodos de caja negra
+
+\qquad  -Unit commitment problem
+
+
+\end{abstract}
+
+
+\tableofcontents
+
+\chapter*{Introducci\'on}
+\addcontentsline{toc}{chapter}{Introducci\'on}
+
+El objetivo de este trabajo es resolver el problema de optimizaci\'on de producci\'on de energ\'ia, espec\'ificamente queremos resolver el problema de optimizaci\'on en la producci\'on de energ\'ia el\'ectrica satisfaciendo una demanda m\'inima y minimizando los costos de producci\'on. Este problema es ampliamente usado por empresas de Estados Unidos \cite{gollmer2000unit}, Europa \cite{blondel1991} y m\'as recientemente en Brasil \cite{BelSouPinSag:03}, donde mediante distintos modelos fue resuelto. 
+
+En el Cap\'itulo 1 se introducir\'an algunas definiciones y enunciar\'an resultados te\'oricos que nos permitir\'an enfrentar este problema, ya que por bibliograf\'ia existente \cite{BonGilLemSag:NO:06}, una manera efectiva de encarar este problema es mediante la dualidad y relajaci\'on lagrangiana. Entre la teoria expuesta en este cap\'itulo se encuentran principalmente resultados sobre optimizaci\'on, an\'alisis convexo y dualidad. La teor\'ia general de optimizaci\'on presentada en este cap\'itulo usa los conceptos modernos presentados en \cite{IzmSol:Otim1} y \cite{RocWet:VA:97}.
+
+Luego en el Cap\'itulo 2 se introducir\'an algunos m\'etodos computacionales, ya que el problema a resolver resulta ser un problema no diferenciable. Es por esto que es necesaria la implementaci\'on de m\'etodos espec\'ificos para este tipo de problemas \cite{Sag:CIMPA}. Aqu\'i se mostrar\'a la conveniencia de utilizar los m\'etodos tipo caja negra y algunos resultados sobre estos.
+
+Finalmente en el Cap\'itulo 3 se comenzar\'a con la formulaci\'on y planteo del problema de optimizac\'on de producci\'on de energ\'ia, donde matem\'aticamente el modelo resulta (ver \cite{BelSouPinSag:03}):
+\begin{equation}
+\left\{
+ \begin{array}{rc}
+  \mathrm{minimizar}&C(\omega)\\
+  \mathrm{sujeto\;a}&\om\in\mathcal{D}\cap\Omega.\\
+ \end{array}
+\right.
+\end{equation}
+Entonces mediante la teor\'ia ya analizada se plantear\'a el proceso para llegar a obtener una soluci\'on del mismo. Esto lo haremos dualizando el problema y as\'i obtener un problema convexo paralelizable, es decir, es una suma problemas independiente m\'as simples. Finalmente se introducir\'an los casos de las distintas restricciones de las usinas hidroel\'ectricas y termoel\'ectricas para dejar a los mismos expresados de una manera simple para realizar la implementaci\'on de los m\'etodos computacionales.
+
+
+
+
+
+\chapter{Algunos resultados te\'oricos}
+\section{Preliminares}
+
+Sean $D \in \Rn$ y una funci\'on $f: D \arr \RR$, el problema principal a tratar es encontrar un minimizador de $f$ en el conjunto $D$. Este problema lo escribimos como
+
+\begin{equation}\label{minimo}
+ \mbox{minimizar}\,\,f(x)\,\, \mbox{sujeto a}\;x \in D. 
+\end{equation}
+
+Una aclaraci\'on para tener en cuenta es que durante todo este trabajo pensaremos siempre a los vectores $x\in\Rn$ como vectores columnas.
+
+Primero daremos las definiciones de lo que son los minimizadores locales y globales del problema y que es un valor \'optimo del problema.
+
+
+\begin{defi}Diremos que un punto $\bx \in D$ es:
+\begin{enumerate}
+ \item \textbf{minimizador global} de (\ref{minimo}) si
+  $$f(\bx)\leq f(x)\quad\forall\,x \in D.$$
+ \item \textbf{minimizador local} de (\ref{minimo}) si existe un entorno U de $\bx$ tal que
+$$f(\bx)\leq f(x)\quad\forall\,x \in D\cap U.$$
+\end{enumerate}
+\end{defi} 
+
+
+\begin{defi}Diremos que $\bar{v} \in [-\infty , +\infty )$ definido por $\displaystyle \bar{v}=\inf_{x \in D} f(x)$ es el \textbf{valor \'optimo} del problema (\ref{minimo}).
+\end{defi} 
+
+
+Ahora una condici\'on para asegurarnos la existencia de una soluci\'on global es el siguiente Teorema.
+
+
+\begin{teo}[Weierstrass]\label{weier} Sea $D \in \Rn$ un conjunto compacto no vac\'io y \linebreak $f:D \arr \RR$ una funci\'on continua.
+Entonces, el problema \mbox{(\ref{minimo})} tiene soluci\'on global.
+\end{teo}
+
+\begin{dem}
+Como la imagen de un conjunto compacto por una funci\'on continua es compacta, $\{ v \in \RR\mid v = f(x)$ \textrm{para algun} $x \in D \}$, es compacto. En particular, este conjunto es acotado inferiormente, o sea, $$-\infty < \bar{v} = \inf_{x\in D} f(x).$$ 
+Por la definici\'on de \'infimo, para todo $k\in \NN$ existe un $x^k \in D$ tal que $$\bar{v} \leq f(x^k) \leq \bar{v} + \frac{1}{k},$$ pasando al l\'imite cuando $k \arr \infty $, concluimos que 
+\begin{equation}\label{limite1}
+\lim_{k \arr \infty} f(x^k) = \bar{v}.
+\end{equation}
+
+Como $\{ x^k \} \subset D$ y $D$ es compacto, se sigue que $\{ x^k \}$ es una sucesi\'on acotada. Luego existe una subsucesi\'on $\{ x^{k_j} \}$ que converge a un punto de $D$:
+$$\lim_{j \arr \infty}x^{k_j} = \bx\in D.$$
+Por la continuidad de $f$
+$$\lim_{j \arr \infty}f(x^{k_j})=f(\bx),$$
+usando (\ref{limite1}), tenemos que $f(\bx)=\bar{v}$, es decir, $f$ toma un valor m\'inimo en $D$ en el punto $\bx\in D$. En otras palabras, $\bx$ es un minimizador global del problema (\ref{minimo}).
+\end{dem}
+
+%Ahora introduciremos algunas definiciones basicas para enunciar algunos Corolarios que nos permitiran dar algunas equivalencias para cuando el problema posee una soluci\'on global.
+
+La hip\'otesis de que el conjunto $D$ en el Teorema \ref{weier} sea compacto puede ser eliminada en los resultados de la existencia de una soluci\'on a costo del fortalecimiento de las hip\'otesis sobre la funci\'on objetivo. En este sentido, la noci\'on de conjunto de nivel es fundamental.
+
+\begin{defi}El \textbf{conjunto de nivel} de una funci\'on $f:D \arr \RR$ asociado a $c\in \RR$, es el conjunto dado por $$\Lf(c) = \{ x\in D\, | \, f(x)\leq c\}.$$ 
+\end{defi}
+
+Gracias a esta definici\'on es posible enunciar el siguiente Corolario.
+
+\begin{cor}\label{cor:weier} Sean $D\subset \Rn$ y $f:D\arr \RR$ continua en D. Supongamos que existe $c\in \RR$ tal que el conjunto de nivel $\Lf(c)$ sea no vac\'io y compacto.
+Entonces el problema (\ref{minimo}) posee una soluci\'on global.
+\end{cor}
+
+Un importante ejemplo de una aplicaci\'on del Corolario \ref{cor:weier} es el que enunciaremos a continuaci\'on.
+
+\begin{defi} Dados un conjunto $D\subset \Rn$ y un punto $y\in \Rn$, \textbf{una\linebreak  proyecci\'on} de $y$ sobre $D$ es una soluci\'on global del problema $$\mathrm{minimizar}\;\|{x-y}\|\; \mathrm{sujeto\;a}\; x \in D.$$
+\end{defi}
+
+
+\begin{cor} Sea $D\subset \Rn$ un conjunto cerrado no vac\'io. Entonces la proyecci\'on de y sobre D existe para todo $y \in \Rn$.
+\end{cor}
+
+
+%\begin{dem}
+%Fijemos $y\in \Rn$ arbitrario. Sea $$f:\Rn \arr \RR_{+},\quad f(x)=\|x-y\|.$$
+
+%Evidentemente, $f$ es continua en $\Rn$ y $$\Lf(c)=D\cap B(y,c)$$ donde $$B(y,c)=\{ x\in \Rn\mid\|x-y\| \leq c \} = \{ x\in \Rn\mid f(x) \leq c \}$$
+%El conjunto de nivel $\Lf(c)$ es la intersecci\'on del conjuntos cerrado $D$ y el conjunto compacto $B(y,c)$. Por lo tanto $\Lf(c)$ es compacto. Asi mismo, para $c>0$ suficientemente grande, es obvio que la bola $B(y,c)$ contiene a $D$. Luego $\Lf(c)\neq \emptyset$.
+
+
+%As\'i la afirmacion sigue del Cororalio anterior.
+%\end{dem}
+
+A continuaci\'on daremos una definici\'on que nos servira para enunciar m\'as adelante algun resultado de optimizaci\'on si el conjunto $D$ donde estoy minimizando no es acotado.
+
+\begin{defi}\label{coercitiva} Diremos que una sucesi\'on $\{x^k\}\subset\Rn$ es \textbf{cr\'itica} en relaci\'on al conjunto $D$ si $\{x^k\}\subset D$ y $\|x^k\|\arr\infty$ o $\{x^k\}\arr x\in\mathrm{cl}(D)\backslash D\; (k \arr \infty).$
+Diremos que una funci\'on $f:D\arr \RR$ es \textbf{coercitiva} en el conjunto $D$, cuando para toda sucesi\'on $\{ x^k\}$ cr\'itica en relaci\'on a $D$, se tiene que $\displaystyle \sup_{k\arr \infty} f(x^k)=+\infty.$
+\end{defi}
+
+\begin{obs}
+Notemos que en el caso de que $D$ sea cerrado, la definici\'on \ref{coercitiva} puede simplificarse afirmando que si cumple $x^k\in D$ y $\|x^k\|\arr \infty$ implican que \linebreak $\limsup_{k\arr \infty}f(x^k)=+\infty$. Cuando $D$ es acotado, se puede simplificar afirmando que cuando $x^k\in D$ y $\{x^k\}\arr x$ con $x\in\mathrm{cl}(D)\backslash D$ se tiene que $\limsup_{k\arr\infty} f(x^k)=+\infty$. Finalmente, cuando $D$ es compacto, no existen suceciones cr\'iticas (y por lo tanto, cualquier funci\'on $f:D\arr\RR$ es coercitiva en $D$ trivialmente).
+\end{obs}
+
+\begin{cor}\label{cor:coercitiva}
+Sea $D\subset\Rn$ y $f:D\arr\RR$ una funci\'on continua y coercitiva en $D$. Entonces, el problema (\ref{minimo}) posee una soluci\'on global.
+\end{cor}
+
+El Teorema de Weierstrass puede ser ligeramente generalizado en relaci\'on a las propiedades de continuidad de la funci\'on, como nosotros solo nos ocuparemos de funciones continuas, solo enunciaremos la siguiente definici\'on.
+
+\begin{defi} Diremos que una funci\'on $f:D\arr\RR$ es \textbf{semicontinua inferiormente} en el punto $x\in D\subset \Rn$, cuando para cualquier sucesi\'on\linebreak $\{x^k\}\subset D\;\mbox{tal que}\;\{x^k\}\arr x\; (k\arr \infty )$, se tiene que 
+\begin{equation}\label{sci}
+\liminf_{k\arr \infty} f(x^k)\geq f(x).
+\end{equation}  
+
+Diremos que $f$ es \textbf{semicontinua superiormente} cuando, con las mismas condiciones,
+\begin{equation}\label{scs}
+\limsup_{k\arr\infty}f(x^k)\leq f(x).
+\end{equation} 
+
+Una funci\'on $f$ es semicontinua inferiormente (superiormente) en el conjunto $D$, cuando es semicontinua inferiormente (superiormente) en todos los puntos de $D$.
+\end{defi}
+
+Finalmente en esta secci\'on definiremos lo que llamamos funciones direccionalmente diferenciables, G\^ateaux diferenciable y Fr\'echet diferenciable.
+
+\begin{defi} Diremos que $f$ es \textbf{direccionalmente diferenciable} en $\bx$ en la direcci\'on $d$ si $$\exists\;f'(x;d):=\lim_{t\arr 0^+}\frac{f(\bx+td)-f(\bx)}{t}.$$
+
+Diremos que $f$ es \textbf{G\^ateaux diferenciable} en $\bx$ si $$\exists\, f'(\bx;d)\quad\forall d\quad y\quad d\arr f'(\bx;d),$$ es lineal.
+
+Diremos que $f$ es \textbf{Fr\'echet diferenciable} (o simplemente, diferenciable) en $\bx$ si $$f(x)=f(\bx)+\la f'(\bx),x-\bx\ra+o(\| x-\bx\|).$$
+\end{defi}
+
+
+\section{Condiciones de optimalidad sin restricciones}
+Consideremos el problema
+\begin{equation}\label{msr}
+\mini.
+\end{equation}
+
+Ahora veremos algunas condiciones necesarias para cuando el punto $\bx$ es minimizador del problema (\ref{msr}).
+
+\begin{teo}[Condici\'on necesaria de primer orden]
+Supongamos que una funci\'on $f:\Rn \arr \RR$ sea diferenciable en $\bx \in \Rn$ (si no se tiene diferenciabilidad se pide que $f'(\bx;d)\geq 0\; \forall d$). Si $\bx$ es un minimizador local del problema (\ref{msr}), entonces 
+\begin{equation} \label{gradiente0}
+f'(\bx)=0.
+\end{equation} 
+\end{teo}
+
+\begin{dem}
+Sea $d\in \Rn$ arbitrario y fijo y $t_k \arr 0^+$. Entonces como $\bx$ es minimizador $f(\bx)\leq f(\bx+t_k d)$.
+Luego $$0\leq f(\bx+t_k d)-f(\bx)$$
+%arreglar el subindice de longrightrarrow
+$$0\leq \frac{f(\bx+t_k d)-f(\bx)}{t_k}\mathop{-\hspace{-3pt}-\hspace{-6pt}\larr}_{k\arr\infty} \la f'(\bx),d\ra.$$
+
+As\'i queda $$\la f'(\bx),d\ra\geq 0\quad\forall\,d.$$
+Entonces tomando en particular el caso $d=-f' (\bx)$ vale que $-\| f'(\bx)\|^2 \geq 0$.
+
+Por lo tanto $$f'(\bx)=0.$$ 
+\end{dem}
+
+
+\begin{defi}
+Diremos que $\bx$ es un \textbf{punto estacionario (o cr\'itico)} si $$f'(\bx)=0.$$
+\end{defi}
+
+
+\begin{teo}[Condici\'on necesaria de segundo orden]
+Supongamos que \linebreak $f:\Rn\arr\RR$ es dos veces diferenciable en el punto $\bx \in \Rn$. Si $\bx$ es un minimizador local del problema (\ref{msr}), entonces vale (\ref{gradiente0}) y la matriz Hessiana de $f$ en el punto $\bx$ es semidefinida positiva, i.e., 
+\begin{equation} \label{derivada2}
+\la f''(\bx)d,d\ra \geq 0\quad \forall\,d \in \Rn.
+\end{equation}
+\end{teo}
+\begin{dem}
+Sea $d \in \Rn$ arbitrario y fijo y $t_k \arr 0^+$. Entonces por ser $\bx$ un minimizador del problema (\ref{msr}) vale $f(\bx)\leq f(\bx+t_k d)$ y (\ref{gradiente0}).
+Luego $$0\leq f(\bx + t_k d) - f(\bx) -t_k \la f'(\bx),d\ra$$
+$$0\leq \frac{f(\bx + t_k d) - f(\bx) -t_k \la f'(\bx),d\ra}{\frac{1}{2} {t_k}^2}$$
+%arreglar el subindice de longrightrarrow
+$$0\leq \la f''(\bx)d,d\ra + \frac{2o({t_k}^2)}{t_k} \mathop{-\hspace{-3pt}-\hspace{-6pt}\longrightarrow}_{t_k\arr 0} \la f''(\bx)d,d\ra.$$
+\end{dem}
+
+Seguiremos con la definici\'on de direcci\'on de descenso y unas condiciones suficientes relacionando el conjunto de direcciones de descenso con la di\-fe\-ren\-cia\-bi\-li\-dad de $f$.
+
+\begin{defi}\label{def:descenso}
+Diremos que $d$ es una \textbf{direcci\'on de descenso} de $f$ en $\bx$ si $\exists\,\varepsilon >0$ tal que $$f(\bx+td)\leq f(\bx)\quad\forall\, t\in (o,\varepsilon].$$
+
+Denotamos por $D_f (\bx)$ el conjunto de las direcciones de descenso de $f$ en $\bx$.
+\end{defi}
+
+
+\begin{teo}\label{teo:descenso}
+Sea $f$ diferenciable en $\bx$
+\begin{enumerate}
+\item Si $d\in D_f (\bx)$ entonces $\la f'(\bx),d\ra \leq 0$.
+\item Si $\la f'(\bx),d\ra < 0$ entonces $d\in D_f (\bx)$.
+\end{enumerate}
+\end{teo}
+%\begin{dem}
+%\begin{enumerate}
+%\item $$f(\bx+td)-f(\bx)<0$$
+%Dividiendo por $t$ y tomando l\'imite
+%$$\lim_{t\arr 0^+} \frac{f(\bx+td)-f(\bx)}{t}<0$$
+%De aqui obtengo que
+%$$\la f'(\bx),d\ra \leq 0$$ 
+%\item 
+%\begin{eqnarray*}
+%f(\bx +td)&=&f(\bx)+t\la f'(\bx),d\ra + o(t)\\
+%&=&f(\bx)+t\left(\la f'(\bx),d\ra + \frac{o(t)}{t}\right)\\
+%\end{eqnarray*}
+%Ahora para $t$ suficientemente peque\~{n}o vale que
+%$$\frac{o(t)}{t}<-\frac{1}{2} \la f'(\bx),d\ra $$
+%Entonces
+%$$f(\bx+td)<f(\bx)$$
+%\end{enumerate}
+%\end{dem}
+
+\section{Condiciones de optimalidad con restricciones abstractas}
+
+Para esta secci\'on veremos el caso en que el problema 
+\begin{equation}\label{mcr}
+\mini,
+\end{equation}
+tiene como caracter\'istica que el conjunto $D$ es un conjunto en principio acotado, despu\'es analizaremos el caso de cuando es cerrado y/o compacto.
+
+Para ilustrar que los resultados anteriormente vistos no son necesariamente ciertos cuando agregamos la hip\'otesis de que $D$ sea un conjunto distinto de $\Rn$ veremos el siguiente ejemplo.
+
+\begin{ejm}
+Consideremos el problema $$\mini.$$ Cuando tenemos este problema con $D=\Rn$, si $\bx$ es m\'inimo local del problema, entonces vale que $f'(\bx)=0$, por lo ya antes visto. Pero en el caso de optimizaci\'on con restricciones esto puede no ser necesariamente cierto, por ejemplo, si $D=[1,\infty)$ y $f(x)=x^2$, entonces resulta que $\bx =1$ es el minimizador global del problema pero sin embargo tenemos que $f'(\bx)\neq 0$.
+\end{ejm}
+
+
+Para seguir con la teor\'ia sobre optimizaci\'on con restricciones definiremos a continuaci\'on un tipo de conjuntos que llamaremos conos, en algunos de los cuales veremos que tienen ciertas propiedades importantes para el desarrollo de la misma. As\'i comenzamos dando algunas definiciones y un par de observaciones \'utiles para m\'as adelante.
+
+
+\begin{defi}
+Sea $K\subset\Rn$, $K$ es un \textbf{cono} si se cumple que $$\alpha K=\{\alpha x\mid x\in K\}\subset K\quad\forall\,\alpha\geq 0.$$ 
+\end{defi}
+
+Tambi\'en definiremos a continuaci\'on un cono en particular que utilizaremos frecuentemente.
+
+\begin{defi}
+Definimos como el \textbf{ortante positivo} de $\Rn$ a 
+$$\Rn_+=\{x\in\Rn\mid x_i\geq 0,\;i=1,\ldots,n\},$$
+y f\'acilmente se puede ver que este conjunto cumple con las condiciones de ser un cono.
+\end{defi}
+
+
+\begin{defi}
+Definimos el \textbf{cono tangente} a $D$ en $\bx$ como
+$$\cT_{D} (\bx)=\{d\in\Rn\mid\exists\,\{(t_{k},d^k)\}\;\mathrm{tal\; que}\;\bx+t_{k}d^k\in D\;\mathrm{y}\;t_{k}\arr 0^+,\;d^k\arr d\},$$ si $\bx\in D$ y $\cT_{D}(\bx)=\emptyset$ si $\bx\notin D$.
+\end{defi}
+
+
+\begin{obs}
+Sea $\cT_{D}(\bx)$ el cono tangente a $\bx$ en $D$, entonces valen:
+\begin{enumerate}
+\item $\cT_{D}(\bx)\neq\emptyset$ si $\bx\in D$, pues $0\in\cT_{D}(\bx)$.
+\item $\cT_{D}(\bx)$ es cerrado.
+\item $\cT_{D}(\bx)=\left\{ d\in\Rn\,\left|\,\displaystyle{\liminf_{t\arr 0^+}}\; \displaystyle{\frac{1}{t}\mathrm{dist}(\bx+td,D)=0}\right.\right\}$.
+\item Si $\bx\in \mathrm{int}(D)$ entonces $\cT_{D}(\bx)=\Rn$.
+\end{enumerate}
+\end{obs}
+
+En este momento podemos enunciar la condici\'on necesaria de primer orden ahora introduciendo la definici\'on del cono tangente.
+
+\begin{teo}[Condici\'on necesaria de primer orden]\label{condprim}
+Sea $D\subseteq\Rn$ y \linebreak $f:\Rn\arr\RR$ diferenciable en $\bx$. Si $\bx$ es soluci\'on local del problema (\ref{mcr}) entonces 
+$$\la f'(\bx),d\ra\geq 0\quad\forall\,d\in\cT_{D}(\bx).$$
+\end{teo}
+
+
+\begin{dem}
+Si $d=0$ es trivial. Sea $d\in\cT_{D}(\bx)\backslash\{0\}$ entonces existen sucesiones $\{t_k\}$ y $\{d^k\}$ tales que $t_k\arr 0^+$, $d^k\arr d$ y $\bx + t_k d^k\in D$.
+Entonces vale que $\bx + t_k d^k \arr\bx$ y como $\bx$ es mininimizador de $f$, $f(\bx)\leq f(\bx +t_k d^k)$, por lo tanto $$f(\bx)\leq f(\bx +t_k d^k)=f(\bx)+t_k\la\nabla f(\bx),d^k\ra +o(t_k).$$
+Luego resulta que
+$$0\leq\la f'(\bx),d^k\ra+\frac{o(t_k)}{t_k}.$$
+Entonces tomando el l\'imite cuando $t_k$ tiende a $0^+$ tengo que $$\la f'(\bx),d\ra\geq 0.$$
+\end{dem}
+
+
+\begin{defi}
+Definimos el cono dual (o cono polar negativo) de un cono \linebreak $K\subset\Rn$ como
+$$K^*=\{v\in\Rn\mid\la v,d\ra\leq 0\;\forall\,d\in K\}.$$
+\end{defi}
+
+\begin{obs}
+Algunas propiedades f\'aciles de ver del cono $K^*$ son
+\begin{enumerate}
+\item $K^*$ es cerrado.
+\item Si $K_1\subset K_2$ entonces ${K_2}^*\subset{K_1}^*$.
+\item $K\cap(-K)=\{0\}$ si y solo si $\mathrm{int}(K^*)\neq\emptyset$.
+\end{enumerate}
+\end{obs}
+
+\begin{defi}
+Decimos que $\bx$ es un \textbf{punto estacionario} del problema \linebreak $\displaystyle{\mini}$ si $$\bx\in D\mbox{ y }\la f'(\bx),d\ra\geq 0\;\forall\,d\in\cT_{D}(\bx).$$
+\end{defi}
+
+Otra noci\'on \'util principalmente para el an\'alisis convexo en la pr\'oxima secci\'on  es la del cono normal, que utilizaremos frecuentemente por los importantes resultados que nos permitir\'a obtener.
+
+\begin{defi}
+Definimos el \textbf{cono normal} (o normal de Fr\'echet) como 
+$$\cN_{D}(\bx)=\left\{v\in\Rn\;\left|\begin{array}{c}
+\forall\left\{x^k\right\}\subset D\backslash\{\bx\}\mbox{ con } x^k\arr\bx,\\
+\mbox{vale que }\displaystyle\limsup_{k\arr\infty}\frac{\la v,x^k-\bx\ra}{\|x^k-\bx\|}\leq 0\end{array}\right.\right\},$$
+si $\bx\in D$ y $\mathcal{N}_{D}(\bx)=\emptyset$ si $\bx\notin D$.
+\end{defi}
+
+
+\begin{teo}\label{dualct}
+Para todo $\bx\in D$ se cumple que $(\cT_{D}(\bx))^*=\cN_{D}(\bx)$.
+\end{teo}
+\begin{dem}
+$(\supset)$ Tomemos $v\in\cN_{D}(\bx)$ y veamos que $\la v,d\ra\leq 0$ $\forall\; d\in\cT_D(\bx)$. Si $d=0$ es trivial, si $d\in\cT_{D}(\bx)\backslash\{0\}$, $\exists\;t_k\arr 0^+$ y $d^k\arr d$ tales que $\bx + t_kd^k\in D$, entonces definimos $x^k=\bx +t_kd^k$, luego $x^k\arr\bx$ con $\{x^k\}\subset D$ y 
+$$0\geq\limsup_{k\arr\infty}\frac{\la v,x^k-\bx\ra}{\|x^k-\bx\|}=\limsup_{k\arr\infty}\frac{\la v,d^k\ra}{\|d^k\|}=\frac{\la v,d\ra}{\|d\|}.$$
+Por lo tanto $v\in(\cT_{D}(\bx))^*$.
+
+
+$(\subset)$ Tomemos $v\notin\cN_{D}(\bx)$, esto quiere decir que $\exists\, \{x^k\}\subset D$ con $x^k\arr\bx$ y \linebreak $\displaystyle{\lim_{k\arr\infty}\frac{\la v,x^k-\bx\ra}{\|x^k-\bx\|}>0}$. Sea $\displaystyle d^k=\frac{x^k-\bx}{\|x^k-\bx\|}$ y $t_k=\|x^k-\bx\|$, entonces $t_k\arr 0^+$ y $\bx+t_k d^k=x^k\in D$, entonces si $d$ es un punto l\'imite de $\{d^k\}$ se tiene $d\in\cT_{D}(\bx)$ con $\la v,d\ra>0$. Por lo tanto $v\notin(\cT_{D}(\bx))^*$. 
+\end{dem}
+
+Uno de los principales resultados que nos ser\'an de gran utilidad a la hora de resolver nuestro problema es el siguiente Corolario.
+
+\begin{cor}
+ Si $\bx$ es un punto estacionario del problema $\displaystyle\mini$ entonces
+$$-f'(\bx)\in\cN_{D}(\bx).$$
+\end{cor}
+
+
+\section{Elementos de An\'alisis Convexo}
+
+En esta secci\'on veremos algunas definiciones y resultados b\'asicos sobre conjuntos convexos ya que nos servir\'an como herramientas a la hora de plantear nuestro problema.
+
+\begin{defi}
+Un conjunto $D\subset\Rn$ es llamado un \textbf{conjunto convexo} si para cualquier par de puntos $x,y\in D$ y $\alpha\in[0,1]$ se tiene que $$\alpha x + (1-\alpha)y\in D.$$
+\end{defi}
+
+Recordando de la secci\'on anterior la definici\'on del cono dual $K^*$ se puede deducir el siguiente resultado, que muestra que dualizar un cono cualquiera siempre da como resultado un cono convexo y cerrado.
+
+\begin{prop}
+Para todo cono $K\subset\Rn,\;K\neq\emptyset$, el cono dual $K^*$ es siempre convexo y cerrado. 
+\end{prop}
+
+
+\begin{dem}
+Sean $x,y\in K^*$, es decir, $\la x,d\ra\leq 0$ y $\la y,d\ra\leq 0$ para todo $d\in K$. Sea $\alpha\in [0,1]$. Para cualquier $d\in K$ tenemos que $$\la\alpha x+(1-\alpha)y,d\ra=\alpha\la x,d\ra+(1-\alpha)\la y,d\ra\leq 0,$$
+es decir $\alpha x+(1-\alpha)y\in K^*$. Por lo tanto, $K^*$ es convexo.
+Sea $\{y^k\}\subset K^*$, $\{y^k\}\arr y\; (cuando\; k\arr\infty)$. Fijando un $d\in K$ arbitrario, y pasando al l\'imite cuando $k\arr\infty$ en la relaci\'on $\la y^k,d\ra\leq 0$, obtenemos que $\la y,d\ra\leq 0$. Por lo tanto como $d\in K$ era arbitrario, $y\in K^*$. Esto muestra que $K^*$ es cerrado.
+\end{dem}
+
+
+Otros resultados \'utiles sobre conjuntos convexos son los siguientes.
+
+\begin{prop}
+Sea $D$ un conjunto convexo, entonces vale que:
+\begin{enumerate}
+\item $\cT_{D}(\bx)$ es convexo y $\cT_{D}(\bx)=\mathrm{cl}(\{d\mid\exists\, t\geq 0\;\mathrm{con}\;\bx+td\in D\})$.
+\item $\cN_{D}(\bx)$ es convexo y $\mathcal{N}_{D}(\bx)=\{v\mid\la v,x-\bx\ra\leq 0\; \forall\,x\in D\}$.
+\end{enumerate}
+\end{prop}
+
+
+\begin{obs}\label{obse:ortante}
+ De esta Proposici\'on se desprende un resultado importante que utilizaremos a la hora de plantear nuestro problema m\'as adelante, que es una manera de caracterizar el cono normal en el caso de que el conjunto $D$ sea el ortante positivo $\Rn_+$. En este caso tendr\'iamos que $$\cN_{\Rn_+}(\bx)=\{v\mid \la v, x-\bx\ra\leq 0\;\forall\,x\in \Rn_+ \}.$$
+Pero si $x=0$, entonces $\la v,-\bx\ra\leq 0$ y si $x=2\bx$, entonces $\la v,\bx\ra\leq 0$ por lo tanto $\la v,\bx\ra = 0$. Entonces $\la v,x\ra-\la v,\bx\ra\leq 0$ as\'i resulta que $\la v,x\ra\leq 0\;\forall\,x\in\Rn_+$.
+Luego si $x$ es el $i$-\'esimo vector can\'onico, entonces $v_i\leq 0$. Por lo tanto
+\begin{equation}\label{cononormal}
+\cN_{\Rn_+}(\bx)=\{v\mid \la v,\bx\ra=0,\; v_i\leq 0,\;i=1,\ldots,n\}.
+\end{equation}
+\end{obs}
+
+
+\begin{teo}
+Sea $D$ convexo y $f:\Rn\arr\RR$ una funci\'on diferenciable en $\bx\in D$. Si $\bx$ es soluci\'on local del problema $\displaystyle{\mini}$ entonces $$\la f'(\bx),x-\bx\ra\geq 0\quad\forall\,x\in D.$$
+\end{teo}
+
+
+
+Otros resultados importantes sobre algunas propiedades de los conjuntos convexos son los siguientes.
+
+\begin{teo}
+Sean $D_i\subset\Rn\;,\;i\in I$, conjuntos convexos donde $I$ es un conjunto cualquiera (posiblemente infinito).
+Entonces la intersecci\'on $\displaystyle{D=\mathop{\cap}_{i\in I}D_i}$ tambi\'en es un conjunto convexo.
+\end{teo}
+
+
+\begin{prop}
+Sea $D\subset\Rn$ un conjunto convexo. Entonces $\mathrm{cl}(D)\;e\;\mathrm{int}(D)$ son conjuntos convexos.
+\end{prop}
+
+
+\begin{dem}
+Sean $x,y\in\mathrm{cl}(D), \;\alpha\in[0,1]$. Tomemos sucesiones \linebreak $\{x^k\}\subset D\;\mbox{y}\;\{y^k\}\subset D$ tales que $\{x^k\}\arr x$ y $\{y^k\}\arr y$ cuando $k\arr\infty$. Por la convexidad de $D$, $\alpha x^k+(1-\alpha)y^k\in D$ para todo $k$. Por lo tanto,
+$$\alpha x+(1-\alpha)y=\lim_{k\arr\infty}(\alpha x^k+(1-\alpha)y^k)\in\;\mathrm{cl}(D),$$
+es decir, $\mathrm{cl}(D)$ es convexo.
+Sean ahora $x,y\in\mathrm{int}(D)$. Fijamos $\vep>0$ tal que \linebreak $B(x,\vep)\subset D$ y $B(y,\vep)\subset D$. Sea $\alpha\in[0,1]$. Para mostrar que $\alpha x+(1-\alpha)y\in\;\mathrm{int}(D)$, verificamos que $B(\alpha x+(1-\alpha)y,\vep)\subset D$.
+Sea $z\in B(\alpha x+(1-\alpha)y,\vep)$, es decir, existe $q\in\Rn$ tal que
+$$z=\alpha x+(1-\alpha)y+q,\quad\|q\|\leq\vep.$$
+Observemos que
+$$z=\alpha(x+q)+(1-\alpha)(y+q).$$
+Obviamente, $x+q\in B(x,\vep)\subset D$ y $y+q\in B(y,\vep)\subset D$. Por la convexidad del conjunto $D$, concluimos que $z\in D$. Acabamos de mostrar que $B(\alpha x+(1-\alpha)y,\vep)\subset D$. Pero esto significa que $\alpha x+(1-\alpha)y\in\mathrm{int}(D)$.
+\end{dem}
+
+A continuaci\'on introduciremos el concepto de la suma de Minkowski con el fin de enunciar una Proposici\'on respecto a esta.
+
+\begin{defi}
+Sean $D_i\subset\Rn$, $i=1,2$ conjuntos, entonces definimos la \textbf{suma de Minkowski} de conjuntos como un nuevo conjunto $$D_1+D_2=\{x+y\mid x\in D_1\;\mathrm{e}\;y\in D_2\}.$$
+\end{defi}
+
+\begin{prop}
+Sean $D_i\subset\Rn$, $i=1,2$ conjuntos convexos cerrados. Si uno de ellos es tambi\'en acotado (luego, compacto), entonces el conjunto $D_1 + D_2$ es convexo y cerrado.
+\end{prop}
+
+%\begin{dem}
+%Es f\'acil ver que el conjunto $D=D_1+D_2$ es convexo. Mostraremos que $D$ es cerrado, supongamos que $D_2$ es acotado.
+
+%Sea $\{x^k\}\arr x\; (k\arr\infty)$, $x^k\in D$ para todo $k$. Necesitamos ver que $x\in D$.Como $x^k\in D$, para todo k existen entonces $x^{k,i}\in D_i$, $i=1,2$ tales que $x^k=x^{k,1}+x^{k,2}$. Es claro que la sucesi\'on $\{x^{k,2}\}$ es acotada (pues $D_2$ lo es). Como la sucesi\'on $\{x^{k,1}+x^{k,2}\}$ es convergente, se sigue que $\{x^{k,1}\}$ es tambi\'en acotada. Por lo tanto, $\{x^{k,1}\}$ tiene un punto de acumulaci\'on, digamos $\bx^1$. Sean entonces $\{x^{k,1}\}\arr\bx^1\;(i\arr\infty)$. Podemos suponer que $\{x^{k,2}\}\arr\bx^2\;(i\arr\infty)$, tomando una subsucesi\'on de $\{k_i\}$ si fuese necesario. Como $D_1$ y $D_2$ son cerrados, $\bx^1\in D_1$ y $\bx^2\in D_2$. Por lo tanto
+%\begin{eqnarray*}
+%x=\lim_{k\arr\infty}x^k&=&\lim_{i\arr\infty}(x^{k_i,1}+x^{k_i,2})\\
+%&=&\bx^1 + \bx^2 \in D_1 + D_2 = D,
+%\end{eqnarray*}
+%lo que muestra que D es cerrado.
+%\end{dem}
+
+Observemos que para $D_1$ y $D_2$ convexos y cerrados, posiblemente $D_1+D_2$ no sea cerrado, veamos esto en el siguiente ejemplo.
+
+\begin{ejm}
+Consideremos los conjuntos $D_1=\{(x_1,x_2)\in\RR^2\mid x_2=0\}$ y \linebreak $D_2=\{(x_1,x_2)\in\RR^2\mid x_1>0,\;x_2\geq 1/x_1\}$. Los dos conjuntos as\'i definidos son convexos y cerrados pero ninguno es acotado.
+
+Para $x=x_1+x_2$, donde $x_i\in D_i,\;i=1,2$ se tiene que $x_2>0$ y $x_1$ puede asumir cualquier valor. Tenemos entonces que $$D_1+D_2=\{(x_1,x_2)\in\RR^2\mid x_2>0\},$$ es un semi-espacio abierto.
+\end{ejm}
+
+Ahora introduciemos la noci\'on de combinaci\'on convexa, que nos ser\'a de utilidad para dar una caracterizaci\'on de conjunto convexo.
+
+\begin{defi}
+Dados $x^i\in \Rn$, $\alpha_i\in[0,1]$, $i=1,\ldots, p$, tales que $\sum_{i=1}^{p}\alpha_i =1$, el punto $\sum_{i=1}^{p}\alpha_i x^i$ se llama la \textbf{combinaci\'on convexa} de los puntos $x_i\in\Rn$ con par\'ametros $\alpha_i,\;i=1,\ldots,p$.
+\end{defi}
+
+
+\begin{teo}
+%Pagina 75 libro de Solodov
+Un conjunto $D\subset\Rn$ es convexo si y solo si, para cualquier \linebreak $p\in\NN$, $x^i\in D$ y $\alpha_i\in[0,1]$, $i=1,\ldots,p$, tales que $\sum_{i=1}^{p}\alpha_i =1$, la combinaci\'on convexa $\sum_{i=1}^{p}\alpha_i x^i$ pertenece a $D$.
+\end{teo}
+
+El siguiente resultado muestra que cuando un punto dado $x\in\Rn$ es una combinaci\'on convexa de puntos del conjunto $D\subset\Rn$, $x$ puede ser escrito como combinaci\'on convexa de, a lo sumo, $n+1$ puntos de $D$.
+
+\begin{teo}[Teorema de Carath\'eodory]\label{carat}
+Sea $x\in\Rn$ una combinaci\'on convexa de puntos del conjunto $D\subset\Rn$. Entonces existen $x^i\in D$ y $\alpha_i\in\RR_+\; ,\linebreak i=1,\ldots,n+1$, tales que $x=\sum_{i=1}^{n+1}\alpha_i x^i$, con $\sum_{i=1}^{n+1}\alpha_i=1$.
+\end{teo}
+
+
+\begin{defi}
+Sea $D\subset\Rn$ un conjunto cualquiera. Definimos la \textbf{c\'apsula convexa} (o envolvente convexa) de D, denotado $\mathrm{conv}(D)$, como el menor conjunto convexo en $\Rn$ que contiene a $D$ (o, equivalentemente, la intersecci\'on de todos los conjuntos convexos en $\Rn$ que contienen a $D$).
+\end{defi}
+
+A continuaci\'on veremos la definici\'on de c\'apsula convexa de un conjunto y enunciaremos algunos resultados relacionados a esta definici\'on.
+
+\begin{prop}\label{comconv}
+Sea $D\subset\Rn$ un conjunto cualquiera. La c\'apsula convexa de $D$ es el conjunto de todas las combinaciones convexas de puntos de $D$.
+\end{prop}
+
+
+\begin{teo}\label{capsulaconv}
+Sea $D\subset\Rn$ un conjunto compacto. Entonces $\mathrm{conv}(D)$ es compacto.
+\end{teo}
+\begin{dem}
+Primero veamos que $\mathrm{conv}(D)$ es acotado. Tomemos cualquier \linebreak $x\in\mathrm{conv}(D)$. Por la Proposici\'on \ref{comconv}, existen $x^i\in D,\;\alpha_i\in\RR_+,\;i=1,\ldots,p$, tales que $x=\sum_{i=1}^{p}\alpha_i x^i$ donde $\sum_{i=1}^{p}\alpha_i=1$.
+Por la desigualdad triangular,
+\begin{eqnarray*}
+\|x\|&\leq&\sum_{i=1}^{p}|\alpha_i|\|x^i\|\leq\sup_{y\in D}\|y\|\sum_{i=1}^{p}\alpha_i\\
+&=&\sup_{y\in D}\|y\|<+\infty,
+\end{eqnarray*}
+pues $D$ es acotado. Esto muestra que $\textrm{conv}(D)$ es acotado.
+Sea ahora $\{y^k\}\arr y \linebreak (k\arr\infty)$, $y\in\textrm{conv}(D)$ para todo $k$. Para todo $k,\;y^k$ es una combinaci\'on convexa de un n\'umero finito de elementos de $D$ (\ref{comconv}). Por Teorema \ref{carat}, $y^k$ puede ser representado como un combinaci\'on convexa de $n+1$ puntos de $D$:
+$$y^k=\sum_{i=1}^{n+1}\alpha_{k,i}x^{k,i},\quad \sum_{i=1}^{n+1}\alpha_{k,i}=1,$$
+$$x^{k,i}\in D,\;\alpha_{k,i}\in\RR_+,\;i=1,\ldots,n+1.$$
+Por la hip\'otesis que $D$ es acotado, tenemos que todas las sucesiones $\{x^{k,i}\},\linebreak i=1,\ldots,n+1$, son acotadas. Evidentemente, las sucesiones $\{\alpha_{k,i}\},\;i=1,\ldots,n+1$, tambi\'en son acotadas. Sean $x^i$ y $\alpha_i$, $i=1,\ldots,n+1$, cualquier punto de acumulaci\'on de estas sucesiones que corresponden a la misma subsucesi\'on de \'indices $\{k_j\},\linebreak j\arr\infty$. Como $D$ es cerrado, tenemos que $x^i\in D$, $i=1,\ldots,n+1$. Tambi\'en es claro que $\alpha\geq 0,\;i=1,\ldots,n+1,\; \sum_{i=1}^{n+1}\alpha_i =1$. Por lo tanto,
+\begin{eqnarray*}
+y&=&\lim_{j\arr\infty}y^{k_j}=\lim_{j\arr\infty}\left(\sum_{i=1}^{n+1}\alpha_{k_j,i}x^{{k_j},i}\right)\\
+&=&\sum_{i=1}^{n+1}\alpha_i x^i\in\textrm{conv}(D),
+\end{eqnarray*}
+lo que muestra que $\mathrm{conv}(D)$ es cerrado.
+\end{dem}
+
+Observemos que a\'un siendo $D$ un conjunto cerrado, es posible que $\mathrm{conv}(D)$ no lo sea, como se ve en el siguiente ejemplo.
+
+\begin{ejm}
+Sea $D=\{(x_1,x_2)\in\RR^2\mid x_2=0\}\cup\{(0,1)\}$. Claramente $D$ es un conjunto cerrado. Pero si observamos quien es $\mathrm{conv}(D)$, obtenemos
+$$\mathrm{conv}(D)=\{(x_1,x_2)\in\RR^2\mid 0\leq x_2<1\}\cup\{(0,1)\},$$
+que claramente no es cerrado.
+\end{ejm}
+
+Recordando que llam\'abamos proyecci\'on de $x$ en $D$ a la soluci\'on del problema
+\begin{equation}\label{proyeccion}
+\mathop{\mathrm{minimizar}}_{y\in D} \|y-x\|.
+\end{equation}
+\textbf{Notaci\'on:} Si $\bx$ es soluci\'on del problema (\ref{proyeccion}) lo denotamos $\proy$.
+
+
+\begin{teo}[Teorema de Proyecci\'on]\label{teoproy}
+Sea $D\subset\Rn$ un conjunto convexo y cerrado.
+Entonces para todo $x\in\Rn$, la proyecci\'on de $x$ sobre $D$ existe y es \'unica.
+Adem\'as se tiene que, $\bx=\Pi_D(x)$ si y solo si
+\begin{equation}\label{equa1}
+\bx\in D,\quad\la x-\bx,y-\bx\ra\leq 0\quad\forall\,y \in D,
+\end{equation}
+o equivalentemente
+\begin{equation}\label{equa2}
+\bx\in D,\quad x-\bx\in\mathcal{N}_{D}(\bx).
+\end{equation}
+\end{teo}
+\begin{dem}
+Las condiciones (\ref{equa1}) y (\ref{equa2}) son equivalentes por la definici\'on del cono normal.
+Sea $\bx$ una soluci\'on del problema (\ref{proyeccion}) y sea $y\in D$ un punto cualquiera. Como $\bx\in D$ y $D$ es convexo, $(1-\alpha)\bx+\alpha y=x(\alpha)\in D$ para todo $\alpha\in(0,1]$. Tenemos entonces que $\|x-\bx\|\leq\|x-x(\alpha)\|$ y por lo tanto
+\begin{eqnarray*}
+0&\geq&\|x-\bx\|^2-\|x-x(\alpha)\|^2\\
+&=&2\la x-\bx,x(\alpha)-\bx\ra-\|x(\alpha)-\bx\|^2\\
+&=&2\alpha\la x-\bx,y-\bx\ra-\alpha^2\|y-\bx\|^2.
+\end{eqnarray*}
+Dividiendo ambos lados la desigualdad anterior por $2\alpha>0$ y tomando el l\'imite cuando $\alpha\arr 0^+$, obtenemos que
+$$0\geq\la x-\bx,y-\bx\ra,$$
+siendo $y\in D$ arbitrario.
+Supongamos ahora que un cierto $\bx$ satisface (\ref{equa1}). Entonces para todo $y\in D$,
+\begin{eqnarray*}
+0&\geq&\la x-\bx,y-\bx\ra\\
+&=&\frac{1}{2}\left(\|x-\bx\|^2+\|y-\bx\|^2-\|x-y\|^2\right)\\
+&\geq&\frac{1}{2}\left(\|x-\bx\|^2-\|x-y\|^2\right).
+\end{eqnarray*}
+Tenemos entonces que $\|x-\bx\|\leq\|x-y\|$ para todo $y\in D$, es decir, $\bx$ es una proyecci\'on de $x$ sobre $D$.
+Finalmente, mostraremos que la soluci\'on es \'unica. Sea $\hat{x}$ alguna otra soluci\'on de (\ref{proyeccion}). Usando (\ref{equa1}) para $\bx$ con $y=\hat{x}\in D$ y para $\hat{x}$ con $y=\bx\in D$, tenemos que
+$$\la x-\bx,\hat{x}-\bx\ra\leq 0\quad\mbox{y}\quad\la x-\hat{x},\bx-\hat{x}\ra\leq 0.$$
+Restando la segunda desigualdad a la primera, obtenemos que
+$$0\geq\la x-\bx-(x-\hat{x}),\hat{x}-\bx\ra=\|\hat{x}-\bx\|^2.$$
+Luego, $\hat{x}=\bx$.
+\end{dem}
+
+Ahora gracias a este Teorema podemos enunciar una nueva condici\'on necesaria de primer orden, la que ahora relaciona la proyecci\'on sobre $D$.
+
+
+\begin{teo}[Condici\'on necesaria de primer orden]
+Sean $D\subset\Rn$ un conjunto convexo y cerrado, y $f:\Rn\arr\RR$ una funci\'on diferenciable en el punto $\bx\in D$.
+Si $\bx$ es un minimizador local de $f$ en el conjunto $D$, entonces
+\begin{equation}\label{equa3}
+\Pi_{D}(\bx-\alpha f'(\bx))=\bx\quad\forall\,\alpha\in\RR_+.
+\end{equation}
+\end{teo}
+
+
+Otro resultado importante que se deduce del Teorema \ref{teoproy} es el siguiente Corolario donde se ve la no expansividad del operador proyecci\'on.
+
+
+\begin{cor}[El operador proyecci\'on es no expansivo]
+Sea $D\subset\Rn$ un conjunto convexo y cerrado.
+Entonces para cualquier par de puntos $x\in\Rn$ e $y\in\Rn$,
+\begin{equation}\label{noexp}
+\|\Pi_{D}(x)-\Pi_{D}(y)\|\leq\|x-y\|.
+\end{equation} 
+\end{cor}
+
+
+\begin{dem}
+Como $\Pi_D(x)\in D$ y $\Pi_{D}(y)\in D$, usando (\ref{equa1}) dos veces (para $x$ e $y$, respectivamente), obtenemos que
+$$\la x-\Pi_D(x),\Pi_{D}(y)-\Pi_D(x)\ra\leq 0,$$
+$$\la y-\Pi_{D}(y),\Pi_D(x)-\Pi_{D}(y)\ra\leq 0,$$
+restando la primer desigualdad a la segunda, tenemos que
+\begin{eqnarray*}
+0&\geq&\la y-\Pi_{D}(y)-x+\Pi_D(x),\Pi_D(x)-\Pi_{D}(y)\ra\\
+&=&\|\Pi_D(x)-\Pi_{D}(y)\|^2+\la y-x,\Pi_D(x)-\Pi_{D}(y)\ra,
+\end{eqnarray*}
+de donde, usando la desigualdad de Cauchy-Schwarz, obtenemos
+\begin{eqnarray*}
+\|\Pi_D(x)-\Pi_{D}(y)\|\|y-x\|&\geq&\la x-y,\Pi_D(x)-\Pi_{D}(y)\ra\\
+&\geq&\|\Pi_D(x)-\Pi_{D}(y)\|^2.
+\end{eqnarray*}
+Si $\Pi_D(x)=\Pi_{D}(y)$, (\ref{noexp}) vale trivialmente. Caso contrario, obtenemos (\ref{noexp}) dividiendo ambos lados de la desigualdad de arriba por $\|\Pi_D(x)-\Pi_{D}(y)\|>0$.
+\end{dem}
+
+Ahora introduciremos algunas definiciones y teoremas de separaci\'on de conjuntos convexos.
+
+\begin{defi}
+Definimos un \textbf{hiperplano} $H(a,c)$ como el conjunto
+$$H(a,c)=\{x\in\Rn\mid\la a,x\ra=c\},$$
+donde $a\in\Rn\backslash\{0\},\;c\in\RR.$
+\end{defi}
+
+\begin{defi}
+Diremos que un hiperlano $H(a,c)$ separa dos conjuntos $D_1\;\mathrm{y}\;D_2$ si
+$$\la a,x^1\ra\leq c\leq\la a,x^2\ra,\quad\forall\,x^1\in D_1,\;\forall\,x^2\in D_2.$$
+Diremos que $H(a,c)$ separa estrictamente $D_1$ y $D_2$ cuando las desigualdades de arriba son estrictas.
+\end{defi}
+
+Mostraremos primero que un punto que no pertenece a la clausura de un conjunto convexo puede ser separado estrictamente del conjunto.
+
+\begin{lem}[Lema de Minkowski]
+Sea $D\subset\Rn$ un conjunto convexo no vac\'io.
+Si $x\notin\mathrm{cl}(D)$, entonces existen $a\in\Rn\backslash\{0\}$ y $c\in\RR$ tales que 
+$$\la a,x\ra=c,\quad\la a,y\ra>c\quad \forall\,y\in D.$$
+\end{lem}
+
+Ahora mostraremos que un punto en la frontera de un conjunto convexo puede ser separado del conjunto.
+%pagina 101 libro de solodov
+
+\begin{lem}
+Sea $D\subset\Rn$ un conjunto convexo no vac\'io.
+Si $x$ pertenece a la frontera de D, entonces existe $a\in\Rn\backslash\{0\}$ y $c\in\RR$ tales que $$\la a,x\ra=c,\quad\la a,y\ra\geq c\quad\forall y\in D.$$
+\end{lem}
+
+Finalmente el siguiente resultado mostramos que dos conjuntos convexos sin puntos en com\'un son separables.
+
+%pagina 102 libro solodov
+\begin{teo}[Teorema de Separaci\'on]
+Sean $D_1\subset\Rn$ y $D_2\subset\Rn$ conjuntos convexos no vac\'ios tales que $D_1\cap D_2=\emptyset$. Entonces existen $a\in\Rn\backslash\{0\}$ y $c\in\Rn$ tales que
+$$\la a,x^1\ra\leq c\leq \la a,x^2\ra\quad\forall\,x^1\in D_1,\;\forall\,x^2\in D_2.$$
+\end{teo}
+
+%pagina 104 libro solodov
+\begin{teo}[Teorema de Separaci\'on Estricta]\label{teosep}
+Sean $D_1\subset\Rn$ y \linebreak $D_2\subset\Rn$ conjuntos convexos, cerrados y no vac\'ios. Supongamos que uno de estos tambi\'en sea acotado (luego, compacto).
+Entonces $D_1\cap D_2=\emptyset$ si y solo si, existen $a\in\Rn\backslash\{0\}$ y $c\in\RR$ tales que 
+$$\la a,x^1\ra<c<\la a,x^2\ra\quad\forall\, x^1\in D_1,\;\forall\, x^2\in D_2.$$
+\end{teo}
+
+Las t\'ecnicas de separaci\'on son muy importantes y muy \'utiles para la obtenci\'on de varios resultados que son fundamentales para la teor\'ia de optimizaci\'on. A continuaci\'on veremos algunas aplicaciones de los Teoremas de separaci\'on.
+
+%pagina 105 libro solodov
+\begin{prop}\label{clconv}
+Sea $\emptyset\neq K\subset\Rn$ un cono cualquiera. Se tiene que
+$$(K^*)^*=\mathrm{cl}(\mathrm{conv}(K)).$$
+En particular, si $K$ es convexo y cerrado, entonces $K=(K^*)^*$.
+\end{prop}
+\begin{obs}
+Por lo tanto, si $D\subset\Rn$ es un conjunto convexo y no vac\'io, usando el Teorema \ref{dualct} se tiene que
+$$(\cN_{D}(\bx))^*=((\cT_{D}(\bx))^*)^*=\cT_{D}(\bx).$$ 
+\end{obs}
+
+
+\section{Funciones Convexas}
+En esta secci\'on introduciremos el concepto de funci\'on convexa y mostraremos algunas de la propiedades que tienen las funciones convexas que nos servir\'an a la hora de plantear nuestro problema. El problema particular que queremos resolver resultar\'a ser un {\em problema convexo}, m\'as adelante en esta secci\'on daremos la definici\'on formal de este tipo de problemas.
+
+\begin{defi}
+Si $D\subset\Rn$ es un conjunto convexo, se dice que $f:D\arr\RR$ es una \textbf{funci\'on convexa} en D, cuando para cualquier par de puntos $x\, ,\,y\in D$ y para cualquier $\alpha\in [0,1]$, se tiene que $$f(\alpha x+(1-\alpha)y)\leq\alpha f(x)+(1-\alpha)f(y).$$
+Una funci\'on $f$ se dice \textbf{estrictamente convexa} si para cualquier par de puntos $x\, ,\,y\in D$ con $y\neq x$ y para cualquier $\alpha\in (0,1)$, se tiene que $$f(\alpha x+(1-\alpha)y)<\alpha f(x)+(1-\alpha)f(y).$$
+Una funci\'on f es \textbf{fuertemente convexa con modulo} $\bm\gamma \mathbf{>0}$ si para todo par de puntos $x\, ,\,y\in D$ y para cualquier $\alpha\in [0,1]$, se tiene que $$f(\alpha x+(1-\alpha)y)\leq\alpha f(x)+(1-\alpha)f(y)-\gamma\alpha(1-\alpha)\|x-y\|^2.$$
+\end{defi}
+
+\begin{obs}
+Como observaci\'on se puede agregar que $f$ es una funci\'on fuertemente convexa con modulo $\gamma>0$ si y solo si la funci\'on $\tilde{f}(x)=f(x)-\gamma\|x\|^2$ es convexa. De aqu\'i se puede deducir que dado un $\bx$ fijo
+$$f(x)\geq \tilde{f}(\bx)+\la f'(\bx),x-\bx\ra+\gamma\|x\|^2\quad\forall\, x\in\Rn.$$
+Por lo tanto una funci\'on fuertemente convexa es aquella que se puede acotar inferiormente por un paraboloide en cada punto de $\Rn$.
+\end{obs}
+
+\begin{defi}
+El \textbf{epigrafo} de una funci\'on $f:D\arr\RR$ es el conjunto $$E_f=\{(x,c)\in D \times \RR\mid f(x)\leq c\}.$$
+\end{defi}
+
+
+Existe una relaci\'on de convexidad del epigrafo de una funci\'on con la convexidad de la funci\'on, que simplifica en algunos casos determinar si alguna funci\'on es o no convexa, mediante el siguiente resultado.
+
+
+\begin{teo}\label{epigrafo}
+Sea $D\subset\Rn$ un conjunto convexo. Una funci\'on $f:D\arr\Rn$ es convexa en $D$ si y solo si, el epigrafo de $f$ es un conjunto convexo en $\Rn \times \RR.$
+\end{teo}
+
+
+%\begin{dem}
+%Supongamos primero que $E_f$ es un  conjunto convexo. Sean $x,y\in D$ dos puntos cualquiera. Obviamente $(x,f(x))\in E_f$ e $(y,f(y))\in E_f$. Por la convexidad de $E_f$, para todo $\alpha\in [0,1]$ tenemos que
+%$$(\alpha x+(1-\alpha)y,\alpha f(x)+(1-\alpha)f(y))=\alpha(x,f(x))+(1-\alpha)(y,f(y))\in E_f$$
+%Por la definici\'on de epigrafo, esto es equivalente a decir que
+%$$f(\alpha x+(1-\alpha)y)\leq \alpha f(x)+(1-\alpha)f(y)$$
+%es decir, $f$ es convexa.
+%Supongamos ahora que $f$ sea convexa. Sean $(x,c_1)\;\mbox{e}\;(y,c_2)\in E_f$. Como $f(x)\leq c_1$ y $f(y)\leq c_2$, pro la convexidad de $f$, para todo $\alpha\in [0,1]$ se tiene que
+%\begin{eqnarray*}
+%f(\alpha x+(1-\alpha)y)&\leq& \alpha f(x)+(1-\alpha)f(y)\\
+%&\leq& \alpha c_1 +(1-\alpha) c_2
+%\end{eqnarray*}
+%lo que significa que
+%$$\alpha(x,c_1)+(1-\alpha)(y,c_2)=(\alpha x+(1-\alpha)y,\alpha c_1 + (1-\alpha)c_2)\in E_f$$
+%Es decir $E_f$ es convexo.
+%\end{dem}
+
+
+\begin{defi}
+Diremos que el problema 
+\begin{equation}\label{mincon}
+\mathop{\mini}, 
+\end{equation}
+es un \textbf{problema de minimizaci\'on convexo} (o simplemente un problema convexo) cuando $D\subset\Rn$ es un conjunto convexo y $f:D\arr\RR$ es una funci\'on convexa en el conjunto $D$.
+\end{defi}
+
+La importancia de la convexidad en este problema ser\'a vista en el siguiente resultado.
+
+\begin{teo}[Teorema de minimizaci\'on convexa]
+Sean $D\subset\Rn$ un conjunto convexo y $f:D\arr\RR$ una funci\'on convexa en $D$.
+Entonces todo minimizador local del problema (\ref{mincon}) es global. Por otra parte, el conjunto de minimizadores es un conjunto convexo.
+Si $f$ es estrictamente convexa, no puede existir m\'as de un minimizador.
+\end{teo}
+\begin{dem}
+Supongamos que $\bx\in D$ sea un minimizador local que no sea global. Entonces existe $y\in D$ tal que $f(y)< f(\bx)$.
+Definimos entonces $x(\alpha)=\alpha y+(1-\alpha)\bx$. Por la convexidad de $D$, resulta que $x(\alpha)\in D$ para todo $\alpha\in[0,1]$. Ahora, por la convexidad de $f$, para todo $\alpha\in[0,1]$, se tiene que
+\begin{eqnarray*}
+f(x(\alpha))&\leq&\alpha f(y)+(1-\alpha)f(\bx)\\
+&=&f(\bx)+\alpha(f(y)-f(\bx))<f(\bx).
+\end{eqnarray*}
+Tomando $\alpha>0$ suficientemente peque\~no, podemos garantizar que el punto $x(\alpha)$ es arbitrariamente pr\'oximo al punto $\bx$, y de ah\'i se tiene que $f(x(\alpha))<f(\bx)$ y $x(\alpha)\in D$. Esto contradice el hecho de que $\bx$ es minimizador local del problema (\ref{mincon}). Por lo tanto, cualquier soluci\'on local debe ser soluci\'on global. Sean $S\subset D$ el conjunto de minimizadores (globales) y $\bar{v}\in\RR$ el valor \'optimo del problema ($f(x)=\bar{v}$ para cualquier $x\in S$). Para cualquier $x\in S\, , \, \bx\in S$ y $\alpha\in[0,1]$, por la convexidad de $f$ obtenemos que
+\begin{eqnarray*}
+f(\alpha x+(1-\alpha)\bx)&\leq&\alpha f(x)+(1-\alpha)f(\bx)\\
+&=&\alpha\bar{v}+(1-\alpha)\bar{v}=\bar{v},
+\end{eqnarray*}
+lo que implica que $f(\alpha x+(1-\alpha)\bx)=\bar{v}$ y, por lo tanto, $\alpha x+(1-\alpha)\bx\in S$. Acabamos de demostrar entonces que $S$ es convexo.
+
+Supongamos ahora que $f$ es estrictamente convexa y que existen $x\in S$ y $\bx\in S$, $x\neq\bx$. Sea $\alpha\in(0,1)$. Como $x\;\mbox{y}\;\bx$ son minimizadores globales y, por la convexidad de $D$, $\alpha x+(1-\alpha)\bx\in D$, se sigue que
+$$f(\alpha x+(1-\alpha)\bx)\geq f(x)=f(\bx)=\bar{v}.$$
+Sin embargo, por ser $f$ estrictamente convexa,
+\begin{eqnarray*}
+f(\alpha x+(1-\alpha)\bx)&<&\alpha f(x)+(1-\alpha)f(\bx)\\
+&=&\alpha\bar{v}+(1-\alpha)\bar{v}=\bar{v},
+\end{eqnarray*}
+lo que resulta una contradicci\'on. Concluimos entonces que en el caso de que $f$ sea una funci\'on estrictamente convexa, si existe un minimizador este debe ser \'unico.
+\end{dem}
+
+\begin{prop}\label{prop:fuert_conv}
+ Si $f:\Rn\arr\RR$ es fuertemente convexa, entonces el problema de minimizaci\'on de $f$ en $\Rn$ tiene soluci\'on y es \'unica.
+\end{prop}
+
+Adem\'as de las buenas propiedades sobre su minimizaci\'on, las funciones convexas tienen muchas otras propiedades importantes. Aqu\'i describiremos algunas de ellas.
+
+\begin{cor}[Desigualdad de Jensen]
+Sean $D\subset\Rn$ un conjunto convexo y $f:D\arr\RR$ una funci\'on convexa en $D$.
+Entonces para cualquier $p\in\NN$, $x^i\in D$ y $\alpha_i\in\RR_+$, $i=1,\ldots,p$, tales que $\sum_{i=1}^{p}\alpha_i=1$, se tiene que
+\begin{equation}\label{desi1}
+f\left(\sum_{i=1}^{p}\alpha_i x^i\right)\leq\sum_{i=1}^{p}\alpha_i f(x^i).
+\end{equation} 
+\end{cor}
+\begin{dem}
+Por la definici\'on de epigrafo, $(x^i,f(x^i))\in E_f ,\;i=1,\ldots,p$. Por la convexidad de $f$, $E_f$ es un conjunto convexo en $\Rn\times\RR$. Luego, usando el Teorema \ref{epigrafo}, obtenemos que
+$$\left(\sum_{i=1}^{p}\alpha_i x^i,\sum_{i=1}^{p}\alpha_i f(x^i)\right)=\sum_{i=1}^{p}\alpha_i(x^i,f(x^i))\in E_f.$$
+Usando de nuevo la definici\'on de epigrafo, obtenemos la desigualdad (\ref{desi1}).
+\end{dem}
+
+La siguiente Proposici\'on enuncia un resultado sobre la convexidad de la suma de funciones convexas.
+
+\begin{prop}\label{sumfunconv}%[Convexidad de suma de funciones convexas]
+Sean $D\subset\Rn$ un conjunto convexo y $f_i:D\arr\RR$, $i=1,\ldots,p$ funciones convexas en $D$.
+Entonces para cualquier $\mu_i\in\RR_+$, $i=1,\ldots,p$ la funci\'on 
+$$f:D\arr\RR,\quad f(x)=\sum_{i=1}^p\mu_i f_i(x),$$
+es convexa en $D$.
+\end{prop}
+%pagina 130 libro solodov
+\begin{prop}[Convexidad del supremo de funciones convexas]
+Sean \\ $D\subset\Rn$ un conjunto convexo y $f_i:D\arr\RR$, $i\in I$, funciones convexas en $D$, donde $I$ es un conjunto cualquiera (posiblemente infinito). Supongamos que exista $\beta\in\RR$ tal que $f_i(x)\leq\beta$ para todo $x\in D$ e $i\in I$.
+Entonces la funci\'on
+$$f:D\arr\RR,\quad f(x)=\sup_{i\in I}f_i(x),$$
+es convexa en D.
+\end{prop}
+%pagina 131 slibro solodov
+\begin{prop}
+Sean $g:\Rn\arr\RR$ una funci\'on convexa, $\psi:\RR\arr\RR$ una funci\'on convexa no decreciente.
+Entonces la funci\'on
+$$f:\Rn\arr\RR,\quad f(x)=\psi(g(x)),$$
+es convexa.
+\end{prop}
+%pagina 132 libro solodov
+
+El siguiente Teorema trata sobre la convexidad de conjunto de nivel de funciones convexas. 
+\begin{teo}
+Supongamos que un conjunto $D\subset\Rn$ sea convexo y una funci\'on $f:D\arr\RR$ sea convexa en D.
+Entonces el conjunto de nivel
+$$L_{f,D}(c)=\{x\in D\mid f(x)\leq c\},$$
+es convexo para todo $c\in\RR$.
+\end{teo}
+%pagina 133 libro solodov
+
+\begin{defi}
+Sea $D\subset\Rn$ un conjunto convexo. Diremos que $g:D\arr\Rm$ es \textbf{convexa en} $\bm{\mathit{D}}$ si todas las funciones $g_i:D\arr\RR$, $i=1,\ldots,m$, son convexas en $D$. 
+\end{defi}
+
+\begin{cor}
+Sea $\Omega\subset\Rn$ un conjunto convexo. Sean $g:\Rn\arr\Rm$ una funci\'on convexa y $h:\Rn\arr\RR^l$ un funci\'on af\'in. Entonces el conjunto
+$$D=\{x\in\Omega\mid h(x)=0,\;g(x)\leq 0\},$$
+es convexo.
+\end{cor}
+%pagina 135 libro solodov
+
+\begin{teo}[Continuidad de funciones convexas] 
+Sean $D\subset\Rn$ un conjunto convexo y abierto y $f:D\arr\RR$ una funci\'on convexa en D.
+Entonces $f$ es localmente Lipschitz-continua en $D$. En particular, $f$ es continua en $D$.
+\end{teo}
+%pagina 136 libro solodov
+
+A continuaci\'on enunciaremos un Teorema que nos da las condiciones necesarias y suficientes para cuando un punto es soluci\'on del problema de minimizaci\'on convexo.
+\begin{teo}
+Sean $D\subset\Rn$ un conjunto convexo y $f:D\arr\RR$ una funci\'on convexa y diferenciable en $\bx\in D$.
+
+Entonces $\bx$ es un minimizador de $f$ en $D$ si y solo si,
+\begin{equation}\label{condmini}
+\la f'(\bx),x-\bx\ra\geq 0\quad \forall\, x\in D,
+\end{equation}
+o equivalentemente,
+\begin{equation}
+-f'(x)\in\mathcal{N}_{D}(\bx).
+\end{equation}
+
+Si $D$ es cerrado,  (\ref{condmini}) tambi\'en es equivalente a la siguiente condici\'on:
+\begin{equation}
+\bx=\Pi_{D}(\bx-\alpha f'(\bx))\quad \mbox{para alg\'un}\;\alpha>0
+\end{equation}
+\end{teo}
+%pagina 151 libro solodov
+
+\begin{teo}[Derivada direccional de una funci\'on convexa]
+$\mbox{}$ \\ Sea $f:\Rn\arr\RR$ una funci\'on convexa. Entonces para todo $x\in\Rn$, $f$ es direccionalmente diferenciable en cada direcci\'on $d\in\Rn$. Adem\'as, por otra parte,
+\begin{equation}\label{derdir_conv}
+f(x+\alpha d)\geq f(x)+\alpha f'(x;d)\quad\forall\, \alpha\in\RR_+. 
+\end{equation}
+\end{teo}
+%pagina 159 libro solodov
+
+\begin{prop}\label{limisup}
+Sea $f:\Rn\arr\RR$ una funci\'on convexa. Entonces para dos sucesiones cualquiera $\{x^k\}\arr x$, $\{d^k\}\arr d$ $(k\arr\infty)$, se tiene que
+$$\limsup_{k\arr\infty}f'(x^k;d^k)\leq f'(x;d).$$
+
+M\'as a\'un, si $f$ es diferenciable en $\Rn$, entonces la derivada de $f$ es continua en $\Rn$.
+\end{prop}
+%pagina 161 libro solodov
+
+Para describir el comportamiento de una funci\'on cerca de un punto donde no este definido el gradiente, debemos generalizar el concepto de gradiente. En lugar de un \'unico vector, asociaremos un cierto conjunto al punto $x$. Entonces daremos la siguiente definici\'on.
+
+\begin{defi}\label{subgrad}
+Sea $f:\Rn\arr\RR$ una funci\'on convexa. Diremos que $s\in\Rn$ es un \textbf{subgradiente} de $f$ en el punto $x\in\Rn$ si
+$$f(y)\geq f(x)+\la s,y-x\ra \quad\forall\,y\in\Rn.$$
+El conjunto de todos los subgradientes de $f$ en $x$ se llama el \textbf{subdiferencial} de $f$ en $x$ y lo denotamos por $\sdif$.
+\end{defi}
+
+Tambi\'en introduciremos ahora el $\vep$-subdiferencial que por ahora no lo utilizaremos pero lo necesitaremos en los m\'etodos computacionales.
+
+\begin{defi}\label{epssubdif}
+Definimos el \textbf{$\bm\vep$-subdiferencial}, como
+$$\partial_{\vep}f(x)=\{s\mid f(y)\geq f(x)+\la s,y-x\ra - \vep, \forall\,y\in \Rn\}.$$
+\end{defi}
+
+\begin{obs}
+Notemos que por las definiciones (\ref{subgrad}) y (\ref{epssubdif}), resulta que $$\partial f(x)\subset\partial_{\vep}f(x).$$
+\end{obs}
+
+
+
+
+\begin{teo}[El subdiferencial de una funci\'on convexa]
+$\mbox{}$ \\ Sea $f:\Rn\arr\RR$ una funci\'on convexa. Entonces para todo $x\in\Rn$, el conjunto $\sdif$ es convexo, compacto y no vac\'io. Adem\'as, para todo $d\in\Rn$, se tiene que
+\begin{equation}\label{subdifconvexa}
+f'(x;d)=\max_{s\in\sdif}\la s,d\ra.
+\end{equation}
+\end{teo}
+%pagina 164 libro solodov
+\begin{prop}
+Una funci\'on convexa $f:\Rn\arr\RR$ es diferenciable en el punto $x\in\Rn$ si y solo si, el conjunto $\sdif$ contiene un solo elemento. En este caso, $\sdif=\{f'(x)\}$.
+\end{prop}
+%pagina 167 libro solodov
+
+El pr\'oximo Teorema es un resultado muy importante que nos ser\'a de gran utilidad a la hora de plantear el problema que queremos resolver, pues el mismo nos da una nueva caracterizaci\'on de cuando un punto es minimizador de un problema convexo, involucrando el concepto de subdiferencial.
+
+\begin{teo}\label{condminiconv}
+Sean $f:\Rn\arr\RR$ una funci\'on convexa y $D\subset\Rn$ un conjunto convexo. Entonces $\bx\in\Rn$ es un minimizador de $f$ en $D$ si y solo si
+\begin{equation}\label{condicion1}
+\exists\,s\in\partial f(\bx)\;\mbox{ tal que }\;\la s,x-\bx\ra\geq 0\quad \forall\,x\in D,
+\end{equation}
+o equivalentemente,
+\begin{equation}\label{condicion2}
+0\in\partial f(\bx)+\cN_{D}(\bx).
+\end{equation}
+En particular, $\bx$ es un minimizador de $f$ en $\Rn$ si y solo si,
+$$ 0\in\partial f(\bx). $$
+\end{teo}
+\begin{dem}
+Como $\la s,x-\bx\ra\geq 0$ para todo $x\in D$ significa que $-s\in\cN_{D}(\bx)$, es f\'acil ver que (\ref{condicion1}) y (\ref{condicion2}) son equivalentes.
+
+Supongamos que vale (\ref{condicion1}). Por la definici\'on de subgradiente, se sigue que
+$$\forall\,x\in D,\quad f(x)\geq f(\bx)+\la s,x-\bx\ra \geq f(\bx),$$
+es decir, $\bx$ es un minimizador de $f$ en $D$.
+
+Supongamos que ahora $\bx$ es un minimizador de $f$ en $D$. Escogemos cualquier $d\in\cT_{D}(\bx)$, $d\neq 0$. Luego, existen sucesiones $\{t_{k}\}\subset\RR_+\backslash\{0\}$ y $\{d^k\}\subset\Rn$ tales que $\{d^k\}\arr d$, $\{t_k\}\arr 0^+$ $(k\arr\infty)$, $\bx+t_k d^k\in D$ para todo $k$. Como $f$ es direccionalmente diferenciable tenemos que
+$$0\leq f(\bx+t_k d^k)-f(\bx)=t_k f'(\bx;d^k)+o(t_k).$$
+
+
+Dividiendo ambos lados de esta relaci\'on por $t_k\geq 0$, pasando al l\'imite cuando $k\arr\infty$ y utilizando la Proposici\'on \ref{limisup}, concluimos que
+
+\begin{equation}\label{condicion3}
+f'(\bx;d)\geq 0\quad\forall\,d\in\cT_{D}(\bx).
+\end{equation}
+
+Supongamos que no se satisface (\ref{condicion2}), es decir, que no existe $s\in\Rn$ tal que $-s\in\partial f(\bx)$ y $s\in\cN_{D}(\bx)$. O sea,
+$$(-\sdf)\cap\cN_{D}(\bx)=\emptyset.$$
+
+Como $\sdf$ es convexo, compacto y no vac\'io y $\cN_{D}(\bx)$ es convexo, cerrado y no vac\'io, por el Teorema de Separaci\'on Estricta (Teorema \ref{teosep}), existen $a\in\Rn\backslash\{0\}$ y $c\in\RR$ tales que 
+\begin{equation}\label{condicion4}
+-\la a,s\ra >c>\la a,d\ra\quad\forall\,s\in\sdf,\quad\forall\,d\in\cN_{D}(\bx).
+\end{equation}
+Como $0\in\cN_{D}(\bx)$, se tiene que $c>0$. Por lo tanto, $\la a,s\ra<c<0$ para todo $s\in\sdf$. Usando (\ref{subdifconvexa}), obtenemos entonces que
+\begin{equation}\label{condicion5}
+f'(\bx;a)=\max_{s\in\sdf}\la a,s \ra <0.
+\end{equation}
+Supongamos que $\la a,d\ra>0$ para alg\'un $d\in\cN_{D}(\bx)$. Tomando $td\in\cN_{D}(\bx)$, $t>0$, y pasando al l\'imite cuando $t\arr +\infty$, resulta una contradicci\'on en (\ref{condicion4}), porque $c\in\RR$ es fijo. Por lo tanto, $\la a,d\ra \leq 0$ para todo $d\in\cN_{D}(\bx)$. Concluimos entonces que
+\begin{equation}\label{condicion6}
+a\in(\cN_{D}(\bx))^*=((\cT_{D}(\bx))^*)^*=\cT_{D}(\bx),
+\end{equation}
+donde las igualdades siguen de la Proposici\'on \ref{clconv}.
+
+Las relaciones (\ref{condicion5}) y (\ref{condicion6}) contradicen (\ref{condicion3}).
+En particular, si $D=\Rn$ entonces $\cN_D(\bx)=\{0\}$.
+
+Por lo tanto $\bx$ es un minimizador de $f$ si y solo si $0\in\sdf$.
+\end{dem}
+
+\begin{prop}\label{subdif_acotado}
+Sean $\frnr$ una funci\'on convexa y $D\in\Rn$ un conjunto acotado.
+Entonces el conjunto $\displaystyle{\mathop{\cup}_{x\in D}\sdif}$ tambi\'en es acotado.
+\end{prop}
+%pagina 171 libro solodov
+
+\begin{prop}
+Sean $\frnr$ una funci\'on convexa, $\{x^{k}\}\arr x\;(k\arr\infty)$ y $s^{k} \in\partial f(x^k)$ para todo $k$.
+
+Entonces la sucesi\'on $\{s^k\}$ es acotada y todos sus puntos de acumulaci\'on pertenecen a $\sdif$.
+\end{prop}
+%pagina 171 libro solodov
+
+Ahora enunciaremos dos resultados tambien importantes para nuestro problema, ya que los utilizaremos para plantear nuestro problema como una suma de funciones convexas.
+
+\begin{prop}[El subdiferencial de suma de funciones convexas]
+\mbox{}\\Sean $f_{i}:\Rn\arr\RR,\;i=1,\ldots,p$, funciones convexas. Entonces
+$$\partial \left(\sum_{i=1}^p f_{i}(x)\right)=\sum_{i=1}^p \partial f_{i}(x).$$
+\end{prop}
+%pagina 172 libro solodov
+
+El siguiente Teorema nos da una caracterizaci\'on de la derivada direccional y el subdiferencial del m\'aximo de funciones convexas.
+
+\begin{teo}\label{danskin}
+Supongamos que $Z$ sea un conjunto compacto cualquiera. Supongamos que $\psi :\Rn\times Z\arr\RR$ sea una funci\'on continua tal que $\psi(\cdotp,z):\Rn\arr\RR$ sea convexa para todo $z\in Z$. Sea
+$$f:\Rn\arr\RR,\quad f(x)=\max_{z\in Z}\psi(x,z).$$
+Entonces:
+\begin{enumerate}
+\item La funci\'on $f$ es convexa en $\Rn$ y  para todo $x\in\Rn$ se tiene que $$f'(x;d)=\max_{\bar{z}\in Z(x)}\psi '(x,\bar{z};d)\quad\forall d\in\Rn,$$
+donde $$Z(x)=\{\bar{z}\in Z\mid f(x)=\psi(x,\bar{z})=\max_{z\in Z}\psi(x,z)\}.$$
+En particular, si $Z(x)=\{\bar{z}\}$ y $\psi(\cdotp,\bar{z})$ es diferenciable en el punto $x\in\Rn$, entonces $f$ es diferenciable en $x$ y $$f'(x)=\frac{\partial \psi}{\partial x}(x,\bar{z}).$$
+\item Si $\psi(\cdotp,z)$ es diferenciable para todo $z\in Z$ y $\frac{\partial \psi}{\partial x}(x,\cdotp)$ es continua en $Z$ para todo $x\in\Rn$, entonces
+$$\sdif=\mathrm{conv}\left\{\left.\frac{\partial \psi}{\partial x}(x,\bar{z})\right| \bar{z}\in Z(x)\right\},\quad x\in\Rn.$$
+\end{enumerate}
+\end{teo}
+%pagina 174 libro solodov
+\begin{dem}
+1. Para todo $\bz\in Z(x)$ se tiene que $f(x)=\psi(x,\bz)$ y \linebreak $f(x+\alpha d)\geq\psi(x+\alpha d,\bz)$. Entonces
+$$\frac{f(x+\alpha d) -f(x)}{\alpha}\geq\frac{\psi(x+\alpha d,\bz)-\psi(x,\bz)}{\alpha}\larr \psi '(x,\bz;d)\quad\mathrm{cuando}\;\alpha\arr 0^+.$$
+Luego
+\begin{equation}\label{aux1}
+f'(x,d)\geq \sup_{\bz\in Z(x)}\psi '(x,\bz;d).
+\end{equation}
+Sea $d\in\Rn$ y $\alpha_k\arr 0^+$ y definimos $x^k=x+\alpha_{k}d$, entonces $z^k\in Z(x^k)$, como $\{z^k\}\subset Z$ y $Z$ es compacto, luego $\exists\;\bz$ tal que $z^k\arr \bz$ (tomando una subsucesi\'on si fuera necesario). Entonces 
+$$\psi(x^k,z^k)=\max_{z\in Z}\,\psi(x^k,z)\geq\psi(x^k,z)\quad\forall\,z\in Z.$$
+Tomando l\'imite y usando la continuidad de $\psi(\cdotp,\cdotp)$, resulta $\psi(x,\bz)\geq\psi(x,z)\;\forall\,z\in Z$. Por lo tanto $\bz\in Z(x)$. Entonces, usando (\ref{derdir_conv}), se obtiene 
+\begin{eqnarray*}
+f'(x;d)&\leq&\frac{f(x+\alpha_{k} d) -f(x)}{\alpha_{k}}=\frac{\psi(x^k,z^k)-\psi(x,\bz)}{\alpha_{k}}\\
+&\leq &\frac{\psi(x+\alpha_{k} d,z^k)-\psi(x,z^k)}{\alpha_{k}}.
+\end{eqnarray*}
+Tomando l\'imite 
+$$f'(x;d)\leq\psi '(x,\bz;d).$$
+Luego, combinando esto con (\ref{aux1}) se obtiene que
+$$f'(x;d)=\max_{\bz\in Z(x)}\psi '(x,\bz;d).$$
+Ahora si $Z(x)=\{\bz\}$, tenemos que
+$$f'(x;d)=\max_{\bz\in Z(x)}\psi '(x,\bz;d)=\psi '(x,\bz;d)=\left\la \frac{\partial \psi}{\partial x}(x,\bz),d\right\ra.$$
+Y como esto vale para todo $d$, resulta $f'(x)=\frac{\partial\psi}{\partial x}(x,\bz).$
+
+2. Tomamos $x,\;u\;\in\Rn$ y $\bz\in Z(x)$ entonces
+\begin{eqnarray*}
+f(u)&=&\max_{z\in Z}\psi(u,z)\geq\psi(u,\bz)\\
+&\geq &\psi(x,\bz)+\left\la\frac{\partial \psi}{\partial x}(x,\bz),u-x\right\ra\\
+& = & f(x)+\left\la\frac{\partial \psi}{\partial x}(x,\bz),u-x\right\ra. 
+\end{eqnarray*}
+Por lo tanto, $\frac{\partial \psi}{\partial x}(x,\bz)\in\partial f(x)$.
+
+Como $\sdif$ es convexo, entonces 
+$$\mathrm{conv}\left\{\left.\frac{\partial \psi}{\partial x}(x,z)\right|z\in Z(x) \right\}\subset\sdif.$$ 
+Veamos ahora que $\sdif\subset\mathrm{conv}\left\{\frac{\partial \psi}{\partial x}(x,z)\mid f(x)=\psi(x,z)\right\}$. 
+
+Notemos que $Z(x)$ es compacto pues $Z(x)=Z\cap\{z\mid f(x)=\psi(x,z)\}$ con $Z$ compacto y  $\{z\mid f(x)=\psi(x,z)\}$ cerrado.
+
+Entonces $\left\{\frac{\partial \psi}{\partial x}(x,z)\mid f(x)=\psi(x,z)\right\}$ es compacto pues es imagen de un compacto por una funci\'on continua.
+Luego $\mathrm{conv}\left\{\frac{\partial \psi}{\partial x}(x,z)\mid f(x)=\psi(x,z)\right\}$ es compacto, por Teorema \ref{capsulaconv}.
+Supongamos que existe $s\in\sdif$ tal que \linebreak $s\notin \mathrm{conv}\left\{\frac{\partial \psi}{\partial x}(x,z)\mid f(x)=\psi(x,z)\right\}$, entonces por el Teorema de separaci\'on estricta de conjunto convexos, existe $a\in\Rn\backslash\{0\}$ y $c\in\RR$ tal que
+$$\la a,s\ra>c>\left\la a,\frac{\partial \psi}{\partial x}(x,z)\right\ra\quad\forall\,z\in Z(x).$$
+Entonces
+$$\la s,a\ra> c\geq \max_{z\in Z(x)}\left\la\frac{\partial \psi}{\partial x}(x,z),a\right\ra=\max_{z\in Z(x)}\psi'(x,z;a)=f'(x;a).$$
+Absurdo pues $f'(x;a)=\displaystyle\max_{s\in\sdif}\la s,a\ra$.
+
+Por lo tanto
+$$\sdif\subset\mathrm{conv}\left\{\left.\frac{\partial \psi}{\partial x}(x,z)\right| z\in Z(x)\right\}.$$
+\end{dem}
+
+
+A continuaci\'on introduciremos notaci\'on sobre una relaci\'on de orden entre vectores.
+\begin{defi}
+Sean $x,y\in\Rn$, entonces decimos que $x\leq y$ si se cumple que $x_i\leq y_i\;\forall\,i=1,\ldots,n$.
+
+Adem\'as, si $x^1,\ldots,x^m\in\Rn$, decimos que $y=\displaystyle\max_{1\leq k\leq m}\{x^k\}$ si se cumple que $y_i=\displaystyle\max_{1\leq k\leq m}\{x_i^k\}$, para todo $i=1,\ldots,n$.
+
+%Adem\'as, si $x^1,\ldots,x^m\in\Rn$ decimos que $y=\displaystyle\max_{1\leq k\leq m}\{x^k\}$ si $y\geq x^k$ para $1\leq k\leq m$, o sea, $y_i\geq x_i^k$ $\forall\,i=1,\ldots,n$ $\forall\,k=1,\ldots,m$.
+\end{defi}
+
+Por \'ultimo en esta secci\'on enunciaremos una Proposici\'on que utilizaremos en el problema de optimizaci\'on de costos, ya que nos permitir\'a pasar de una funci\'on definida como m\'aximo sobre un conjunto a una nueva funci\'on ahora con una nueva restricci\'on de desigualdad.
+
+\begin{prop}\label{propvar}
+Sean $K\subset\NN$ un conjunto finito, $\Omega\subset\Rn$, $\alpha=(\alpha_1,\ldots,\alpha_r)$, $\beta=(\beta_1,\ldots,\beta_m)$ y $\mu\in\Rm_+$. Para cada $k\in K$ considere las funciones \linebreak $f(\cdot,k):\Rn\arr\RR^r$ y $g(\cdot,k):\Rn\arr\Rm$. Entonces $\bx$ es soluci\'on del problema
+
+
+\begin{equation}\label{P1}
+\left\{ 
+\begin{array}{cl}
+\displaystyle  \mathop{\mathrm{minimizar}}_{x\in\Rn}&\left\{\displaystyle{\sum_{i=1}^r\max_{k\in K}\{f_i(x,k)\}+\sum_{j=1}^m\mu_j\max_{k\in K}\{g_j(x,k)\}}\right\}\\
+  \mathrm{sujeto\;a}& x\in\Omega,
+ \end{array}
+\right.
+\end{equation}
+
+
+si y solo si $(\bx,\bar{\alpha},\bar{\beta})\in\RR^n\times\RR^r\times\RR^m$ es soluci\'on de
+
+
+\begin{equation}\label{P2}
+\left\{
+ \begin{array}{cl}
+ \displaystyle\mathop{\mathrm{minimizar}}_{(x,\alpha,\beta)\in\Rn\times\RR^r\times\Rm} &\left\{\sum_{i=1}^r\alpha_i+\sum_{j=1}^m\mu_j\beta_j\right\}\\
+  \mathrm{sujeto\;a}& f(x,k)\leq\alpha\quad\forall\,k\in K,\\
+  	&	g(x,k)\leq \beta\quad\forall\,k\in K,\\
+	&  x\in\Omega,
+ \end{array}
+\right.
+\end{equation}
+
+
+\end{prop}
+
+\begin{dem}
+($\Rightarrow)$ Si $\bx$ es soluci\'on de (\ref{P1}), definimos 
+$$\bar{\alpha}=\max_{k\in K}f(\bx,k)\quad\mbox{y}\quad \bar{\beta}=\max_{k\in K}g(\bx,k).$$
+Entonces $(\bx,\bar{\alpha},\bar{\beta})$ es factible para el problema (\ref{P2}) pues $\bx\in\Omega$ y para todo \linebreak $k\in K$, $\bar{\alpha}\geq f(x,k)$ y $\bar{\beta}\geq g(x,k)$. Ahora, sea $(x,\alpha,\beta)$ un punto factible para (\ref{P2}), entoces $\alpha\geq \max_{k\in K}\{f(x,k)\}=\bar{\alpha}$ y $\beta\geq\max_{k\in K}\{g(x,k)\}=\bar{\beta}$. Usando que $\mu\geq 0$ obtenemos $$\sum_{i=1}^{r}\alpha_i+\sum_{j=1}^{m}\mu_j\beta_j \geq\sum_{i=1}^r\bar{\alpha}_i+\sum_{j=1}^m\mu_j\bar{\beta}_j.$$
+Como esto vale para todo $(x,\alpha,\beta)$ factible, luego $(\bx,\bar{\alpha},\bar{\beta})$ es soluci\'on de (\ref{P2}).
+
+
+($\Leftarrow)$ Si $(\bx,\bar{\alpha},\bar{\beta})$ es soluci\'on de (\ref{P2}), entonces $\bx$ es factible para (\ref{P1}), \linebreak $\bar{\alpha}\geq\max_{k\in K}f(\bx,k)$ y $\bar{\beta}\geq\max_{k\in K}g(\bx,k)$. Esto implica que
+$$
+ \sum_{i=1}^{r}\max_{k\in K}\{f_i(\bx,k)\} + \sum_{j=1}^m\mu_j\max_{k\in K}\{g_j(\bx,k)\} \leq\sum_{i=1}^r\bar{\alpha}_i+\sum_{j=1}^m\mu_j\bar{\beta}_j.
+$$
+Sea $\tilde{x}$ un punto factible del problema (\ref{P1}) y definimos $\alpha(\tilde{x})=\max_{k\in K}f(\tilde{x},k)$,\linebreak $\beta(\tilde{x})=\max_{k\in K}g(\tilde{x},k)$. Como $(\tilde{x},\alpha(\tilde{x}),\beta(\tilde{x}))$ es un punto factible de (\ref{P2}), obtenemos que
+\begin{eqnarray*}
+\sum_{i=1}^r\bar{\alpha}_i+\sum_{j=1}^m\mu_j\bar{\beta}_j
+&\leq&\sum_{i=1}^r\alpha_i(\tilde{x})+\sum_{j=1}^m\mu_j\beta_j(\tilde{x})\\
+&=&\sum_{i=1}^r\max_{k\in K}\{f_i(\tilde{x},k)\}+\sum_{j=1}^m\mu_j\max_{k\in K}\{g_j(\tilde{x},k)\}.
+\end{eqnarray*}
+Combinando esto con la ecuaci\'on anterior podemos conclu\'ir que $\bx$ es soluci\'on de (\ref{P1}).
+\end{dem}
+
+\section{Relajaci\'on Lagrangiana y Dualidad}
+
+En esta secci\'on definiremos lo que llamamos el problema primal y de ah\'i definiremos la funci\'on Lagrangiana asociada a este problema y el respectivo problema dual. Luego veremos cuando estos problema son equivalentes, en alg\'un sentido, y la importancia de estudiar el problema dual. Al final daremos algunos resultados sobre la relaciones entre las soluciones de los problemas primal y dual.
+
+
+Consideremos el siguiente problema, al que llamaremos {\bf problema primal},
+\begin{equation}\label{probprimal}
+\left\{
+ \begin{array}{rl}
+  \mathrm{minimizar}& f(x)\\
+  \mbox{sujeto a}& h(x)=0,\\
+& g(x)\leq 0,\\
+&x\in X,
+ \end{array}
+\right.
+\end{equation}
+donde $f:X\arr\RR$, $h:\Rn\arr\RR^l$ y $g:\Rn\arr\RR^m$. Generalmente el conjunto $X$ corresponde a restricciones simples desde el punto de vista computacional, como por ejemplo un conjunto finito $\{x^1,\ldots,x^\ell\}$, una bola $\{x\in\Rn\mid \|x-z\|\leq r\}$ o un poliedro $\{x\in\Rn\mid \la a_i,x\ra \leq b_i,\, i=1,\ldots,m\}$.
+Al problema primal (\ref{probprimal}) le asociamos una funci\'on $L:X\times\RR^l\times\RR^m\arr\RR\cup\{+\infty\}$, llamada {\bf funci\'on Lagrangiana}, donde $L(x,\lam,\mu)=+\infty$ si $x\notin X$ y 
+$$L(x,\lam,\mu)=f(x)+\la\lam,h(x)\ra+\la\mu,g(x)\ra\quad\mbox{si}\quad x\in X.$$
+
+
+\begin{prop}\label{dual1}
+Si $x\in X$, entonces se cumple que 
+$$\sup_{(\lam,\mu)\in\RR^l\times\RR^m_+}L(x,\lam,\mu)=f(x),$$
+si $x$ satisface las restricciones de (\ref{probprimal}), es decir, si $h(x)=0$ y $g(x)\leq 0$, y $$\sup_{(\lam,\mu)\in\RR^l\times\RR^m_+}L(x,\lam,\mu)=+\infty,$$
+en caso contrario.
+\end{prop}
+\begin{dem}
+Tomando $\lam,\;\mu\geq 0$, si $h(x)=0$ y $g(x)\leq 0$, entonces
+$$L(x,\lam,\mu)=f(x)+\sum_{i=1}^{m}\mu_{i}g_{i}(x)\leq f(x),$$
+y en particular para $\lam=0$, $\mu=0$
+$$L(x,0,0)=f(x).$$
+Por lo tanto
+$$\sup_{(\lam,\mu)\in\RR^l\times\RR^m_+}L(x,\lam,\mu)=f(x).$$
+
+Por otro lado, si $\exists\,i$ tal que $h_{i}(x)\neq 0$, definimos $\tilde\mu=0$ y $\tilde\lam$ tal que $\tilde\lam_{j}=0$ si $j\neq i$ y $\tilde\lam_{i}=th_{i}(x)$ con $t>0$.
+Por lo tanto
+$$L(x,\tilde\lam,\tilde\mu)=f(x)+th_i(x)^2\larr+\infty\mbox{  si  }t\arr+\infty.$$
+Si $\exists\,i$ tal que $g_i(x)>0$, definimos $\tilde\lam=0$ y $\tilde\mu$ tal que $\tilde\mu_j=0$ si $j\neq i$ y $\tilde\mu_{i}=tg_i(x)$ con $t>0$.
+Por lo tanto
+$$L(x,\tilde\lam,\tilde\mu)=f(x)+tg_i(x)^2\larr+\infty\mbox{  si  }t\arr+\infty.$$
+\end{dem}
+
+
+Consideremos el problema
+\begin{equation}\label{dual2}
+\inf_{x\in X}\sup_{(\lam,\mu)\in\RR^l\times\RR^m_+}L(x,\lam,\mu),
+\end{equation}
+por la Proposici\'on \ref{dual1} se ve que
+$$D=\{x\in X\mid h(x)=0,\;g(x)\leq 0\}=
+\left\{x\in X\left|\sup_{(\lam,\mu)\in\RR^l\times\RR^m_+}\hspace{-0.4cm}L(x,\lam,\mu)<+\infty\right.\right\},$$
+luego, tomando \'infimo obtenemos que
+$$
+\inf_{x\in X}\sup_{(\lam,\mu)\in\RR^l\times\RR^m_+}L(x,\lam,\mu)=\inf_{x\in D}f(x).
+$$
+Entonces el problema (\ref{probprimal}) es equivalente a resolver (\ref{dual2}).
+
+
+Para obtener el problema dual, la idea es invertir el orden del ``sup'' e ``inf'' en (\ref{dual2}). O sea, en lugar de resolver (\ref{dual2}) o (\ref{probprimal}), uno trabaja con su \textit{dual}:
+\begin{equation}\label{dual4}
+\sup_{(\lam,\mu)\in\RR^l\times\RR^m_+}\inf_{x\in X}L(x,\lam,\mu),
+\end{equation}
+el cual puede ser simple de resolver dependiendo de la estructura del problema. Esta inversi\'on es particularmente interesante solo si la \textbf{funci\'on dual}
+\begin{equation}\label{dual3}
+\theta(\lam,\mu):=\inf_{x\in X}L(x,\lam,\mu),
+\end{equation}
+es f\'acil de computar y no es id\'enticamente $-\infty$. Por lo tanto, la funci\'on dual solo tiene sentido sobre el conjunto 
+$$\llam=\left\{(\lam,\mu)\in\RR^l\times\RR^m_+\left|\inf_{x\in X}L(x,\lam,\mu)>-\infty\right.\right\}.$$
+
+
+Entonces se define el \textbf{problema dual} como
+\begin{equation}
+\left\{
+ \begin{array}{rl}
+  \mathop{\mathrm{maximizar}}& \theta(\lam,\mu)\\
+  \mbox{sujeto a}& (\lam,\mu)\in\llam,
+ \end{array}
+\right.
+\end{equation}
+o equivalentemente
+\begin{equation}\label{probdual}
+\left\{
+ \begin{array}{rl}
+  \mathop{\mathrm{minimizar}}& -\theta(\lam,\mu)\\
+  \mbox{sujeto a}& (\lam,\mu)\in\llam,
+ \end{array}
+\right.
+\end{equation}
+El procedimiento de encontrar soluciones de (\ref{probprimal}) mediante la resoluci\'on de (\ref{probdual}) se llama \textbf{Relajaci\'on Lagrangiana}.
+
+Un resultado importante por el cual nos interesa plantear el problema dual es el siguiente.
+
+\begin{prop}
+El problema dual (\ref{probdual}) es un problema convexo.
+\end{prop}
+\begin{dem}
+\underline{$\llam$ es convexo:} Sean $(\lam^0,\mu^0),\,(\lam^1,\mu^1)\in\llam$ y $\alpha\in[0,1]$, entonces definimos 
+$$(\lam^{\alpha},\mu^{\alpha})=(1-\alpha)(\lam^0,\mu^0)+\alpha(\lam^1,\mu^1).$$
+Luego tenemos que 
+$$L(x,\lam^{\alpha},\mu^{\alpha})=(1-\alpha)L(x,\lam^0,\mu^0)+\alpha L(x,\lam^1, \mu^1)>-\infty\quad\forall\;x\in X.$$
+Por lo tanto $\inf_{x\in X}L(x,\lam^{\alpha},\mu^{\alpha})>-\infty$, obteniendo as\'i que $(\lam^{\alpha},\mu^{\alpha})\in\llam$.
+
+\underline{$-\theta$ es convexa:} Como $\theta(\lam^0,\mu^0)\leq L(x,\lam^0,\mu^0)$ y $\theta(\lam^1,\mu^1)\leq L(x,\lam^1,\mu^1)$, obtenemos que
+$$L(x,\lam^{\alpha},\mu^{\alpha})\geq(1-\alpha)\theta(\lam^0,\mu^0)+\alpha\theta(\lam^1,\mu^1),$$ entonces $$\theta(\lam^{\alpha},\mu^{\alpha})\geq(1-\alpha)\theta(\lam^0,\mu^0)+\alpha\theta(\lam^1,\mu^1),$$
+por lo tanto, $-\theta(\lam,\mu)$ es convexa. 
+\end{dem}
+
+
+
+\begin{obs}
+Como veremos en el pr\'oximo cap\'itulo, los m\'etodos computacionales para resolver problemas convexos necesitan la informaci\'on de un subgradiente, o sea, es necesario obtener de manera concreta al menos un elemento del subdiferencial. Si en el problema primal (\ref{probprimal}) las funciones $h$ y $g$ son continuas y $X$ es compacto, podemos obtener de forma expl\'icita el subdiferencial de la funci\'on convexa $\vth=-\theta$. Como
+$$\vth(\lam,\mu)=-\theta(\lam,\mu)=\max_{x\in X}\{-L(x,\lam,\mu)\},$$
+y para cada $x\in X$ la aplicaci\'on $(\lam,\mu)\mapsto -L(x,\lam,\mu)$ es diferenciable con derivada
+$$\left(-\frac{\partial L}{\partial\lam}(x,\lam,\mu),-\frac{\partial L}{\partial \mu}(x,\lam,\mu)\right)=(-h(x),-g(x)),$$
+continua en $x$ para todo $(\lam,\mu)$, por la parte 2 del Teorema \ref{danskin} obtenemos que
+$$\partial\vth(\lam,\mu)=\mathrm{conv}\left\{\left.\left[\begin{array}{c} -h(x)\\-g(x)\end{array} \right]\right| x\in X(\lam,\mu)\right\},$$
+donde $X(\lam,\mu)=\{x\in X\mid \vth(\lam,\mu)=-L(x,\lam,\mu)\}$. Desde el punto de vista pr\'actico, si encontramos $\hat{x}$ soluci\'on del problema de minimizar $L(x,\lam,\mu)$ para $x\in X$, entonces
+$$\left[\begin{array}{c} -h(\hat x)\\-g(\hat x)\end{array} \right]\in\partial\vth(\lam,\mu).$$
+\end{obs}
+
+
+Ahora introduciremos algunos resultados sobre las relaciones entre la soluci\'on del problema primal con la soluci\'on del problema dual.
+
+\begin{teo}
+Para cualquier par de problemas primal y dual, se tiene que
+$$\theta(\lam,\mu)\leq f(x)\quad\forall\,x\in D,\;(\lam,\mu)\in\Lambda.$$
+En particular,
+$$\bar{\om}=\sup_{(\lam,\mu)\in\Lambda}\theta(\lam,\mu)\leq\inf_{x\in D}f(x)=\bar{v}.$$
+\end{teo}
+\begin{dem}
+Tomemos $x\in D$ y $(\lam,\mu)\in \Lambda$, entonces se tiene que 
+\begin{eqnarray*}
+\theta(\lam,\mu)&=&\inf_{z\in X}L(z,\lam,\mu)\leq L(x,\lam,\mu)\\
+&=&f(x)+\la\lam,h(x)\ra+\la\mu,g(x)\ra\leq f(x),
+\end{eqnarray*}
+donde usamos que $x\in X$ en la primera desigualdad, y que $h(x)=0$, $g(x)\leq 0$ y $\mu\geq 0$ en la segunda.
+
+Tomando \'infimo y supremo a derecha e izquierda respectivamente, ob\-te\-ne\-mos la segunda afirmaci\'on del Teorema.
+\end{dem}
+
+
+\begin{cor}
+Sean $\bx\in D$ y $(\blam,\bmu)\in\Lambda.$
+\begin{enumerate}
+\item Si $f(\bx)=\bar{\om}$, entonces $\bx$ es una soluci\'on del problema primal.
+\item Si $\theta(\blam,\bmu)=\bar{v}$, entonces $(\blam,\bmu)$ es una soluci\'on del problema dual.
+\item Si $f(\bx)=\theta(\blam,\bmu),$ entonces $\bx$ es una soluci\'on del problema primal y $(\blam,\bmu)$ es una soluci\'on del problema dual.
+
+\end{enumerate}
+\end{cor}
+
+De este Teorema y Corolario podemos realizar la siguiente observaci\'on respecto a los valores de $\bar{v}$ y $\bar{\om}$ y en que condiciones vamos a poder recuperar la soluci\'on del problema primal desde la soluci\'on del problema dual.\\
+
+\begin{obs}\label{obs:solucion}
+Cuando $\bar{v}>\bar{\om}$ (los valores \'optimos de los problemas primal y dual son diferentes), diremos qu\'e hay una \textit{brecha de dualidad} (en ingl\'es duality gap). En general para garantizar la igualdad de estos valores (por lo tanto la equivalencia entre los problemas primal y dual), precisamos algunas hip\'otesis adicionales, t\'ipicamente de convexidad.
+
+Cuando no hay brecha de dualidad, es decir, $\bar{v}=\bar{\om}$, podemos recuperar la soluci\'on del problema primal usando la soluci\'on del problema dual y la relaci\'on que conocemos
+\begin{equation}\label{solucion}
+\min_{x\in D}f(x)=f(\bx)=\bar{v}=\bar{\om}=\theta(\blam,\bmu)=\min_{x\in X}L(x,\blam,\bmu).
+\end{equation}
+Entonces, conociendo una soluci\'on $(\blam,\bmu)$ del problema dual (\ref{probdual}) uno puede encontrar una soluci\'on $\bx$ del problema primal (\ref{probprimal}) mediante la minimizaci\'on de $L(x,\blam,\bmu)$ sobre restricciones simples $X$.\\
+\end{obs}
+
+Por \'ultimo enunciaremos un resultado que nos garantice que no exista una brecha de dualidad.
+
+\begin{teo}[Teorema de Dualidad]\label{teodualidad}
+Sean $X=\Rn$, $f:\Rn\arr\RR$ y \linebreak $g:\Rn\arr\RR^m$ funciones convexas y $h:\Rn\arr\RR^l$ una funci\'on af\'in. Supongamos que el problema primal (\ref{probprimal}) satisface la condici\'on de Slater:
+$$\exists\,\hat{x}\in\Rn\;\mbox{tal que}\;h(\hat{x})=0,\;g_i(\hat{x})<0\quad i=1,\ldots,m.$$
+Si el valor \'optimo de (\ref{probprimal}) es finito, es decir, $\bar{v}>-\infty$ (por ejemplo, cuando el problema primal tiene una soluci\'on), entonces el problema dual (\ref{dual4}) posee una soluci\'on y no hay brecha de dualidad.
+\end{teo} 
+
+
+\chapter{M\'etodos computacionales}
+Queremos resolver el problema
+$$\mini,$$
+donde $f$ es convexa y $D$ es convexo y cerrado. De acuerdo al Teorema \ref{condminiconv} $\bx$ es soluci\'on si y solo si $0\in\partial f(\bx)+\cN_D(\bx)$. 
+Para simplificar notaci\'on y c\'alculos, consideraremos el caso particular donde $D=\Rn$. Por lo tanto, estamos interesados en hallar $\bx$ tal que $0\in\partial f(\bx)$. 
+
+\section{Introducci\'on a los m\'etodos}
+La filosof\'ia de los m\'etodos de descenso es generar una sucesi\'on $\{x^k\}$ tal que cada iteraci\'on garantice el decrecimiento de $f$. Existen varias caracterizaciones para las direcciones de descenso, pero esencialmente, para todo $x^k$ no \'optimo $(0\notin\partial f(x^k))$ existe una direcci\'on de descenso $d^k$, que corresponde a la separaci\'on estricta de los conjuntos $\{0\}$ y $\partial f(x^k).$\\
+
+
+\textbf{Patr\'on de descenso}\\ Sean $x^1\in\Rn$ y $k=1$
+
+PASO 1 (test de parada formal). Si $0\in\partial f(x^k)$, parar.
+
+PASO 2 (descenso). Encontrar una direcci\'on de descenso $d^k$ de $f$ en $x^k$.
+
+PASO 3 (b\'usqueda lineal). Encontrar un paso $t_k>0$ tal que $$f(x^k+t_k d^k)<f(x^k).$$
+
+PASO 4 (loop). Definir $x^{k+1}:=x^k+t_k d^k$. Cambiar $k$ a $k+1$, volver a 1.\\
+
+Vale aclarar que el test de parada del PASO 1 es puramente formal.
+Ahora consideraremos las opciones de direcciones en el PASO 2, y veremos que la no diferenciabilidad de $f$ limita estas opciones.
+
+Ahora analizaremos algunos m\'etodos para optimizaci\'on no diferenciable que pueden ser aplicados al problema que queremos resolver. Estos ser\'an, m\'etodo de subgradiente, m\'etodo de planos cortantes y m\'etodo de haces.
+
+A primera vista, analizar el caso de optimizaci\'on no diferenciable por separado y utilizar estos m\'etodos puede parecer sin sentido. Sin embargo, la optimizaci\'on no diferenciable tiene algunas ``trampas'' que el lector no familiarizado puede no reconocerlas:
+
+\textbullet  Problema en el test de parada: esto es extremadamente delicado, ya que la condici\'on $$``s\in\partial f(x^k)\;\mbox{con}\;\|s\|\leq\vep ",$$ directamente trasladada desde ``$\|f'(x^k)\|\leq \vep$'', puede no suceder nunca. Esto se puede dar incluso en casos muy simples. Por ejemplo, la funci\'on $f(x)=|x|$ tiene $|s|=1$ para todo $x^k\neq 0$, donde $x=0$ es \'unico minimizador.
+
+\begin{figure}[h]
+  \centering
+    \includegraphics[width=0.5\textwidth]{modulo}
+  \caption{Gr\'afico de $f(x)=|x|$}
+  \label{fig:ejemplo}
+\end{figure}
+
+
+\textbullet Problema de la aproximaci\'on del subgradiente: frecuentemente en situaciones pr\'acticas, el subgradiente (e incluso la funci\'on) no se puede calcular exactamente. En lugar de esto, se lo calcula utilizando diferencias finitas. Esta aproximaci\'on es v\'alida solo en el caso diferenciable, pues $f'(x;d)=\la f'(x),d\ra$ es \textbf{lineal} en $d$ y puede ser aproximada por cocientes de diferencias. Cuando $f$ no es diferenciable, la aplicaci\'on $x\mapsto\partial f(x)$ no es continua. Como resultado, el cociente de diferencias puede no pertenecer al subdiferencial, ni siquiera en el l\'imite. Por ejemplo consideremos en $\RR^3$ la funci\'on $f(x)=\max\{x_1,x_2,x_3\}$. En este caso se cumple que \linebreak $\partial f(x)=\{\alpha\in\RR^3\mid \alpha_i\geq 0,\;\sum_i\alpha_i=1\}$ para todo $x$ de la forma $x=(\xi,\xi,\xi)$. Sin embargo, cuando $x=0$ las aproximaciones de diferencias finitas hacia adelante, hacia atr\'as y centrada son $(1,1,1),\;(0,0,0)\;\mbox{y}\;(1/2,1/2,1/2)$ respectivamente, pero ninguno de estos ``gradientes aproximados'' est\'a en el simplex unitario $\partial f(0)$.
+
+\textbullet Problema de la no diferenciabilidad: ya que la funci\'on $x\mapsto\partial f(x)$ es discontinua, una peque\~na variaci\'on en $x^k$ puede producir una gran variaci\'on en $\partial f(x^k)$. Las direcciones $d^k$ son calculadas con la informaci\'on disponible sobre el subdiferencial, entonces sus resultados pueden variar dr\'asticamente y producir iteraciones $x^{k+1}$ muy diferentes. Este fen\'omeno ocurre incluso cuando se corre el {\em mismo} programa en diferentes procesadores: errores de redondeo como los de las suceciones generadas en diferentes computadoras no son comparables. Este inevitable problema hace extremadamente dif\'icil cualquier comparaci\'on num\'erica.
+
+
+\section{M\'etodos tipo Caja Negra (Black Box)}
+
+
+Llamaremos caja negra a un software o rutina computacional al que se le da cierta informaci\'on de entrada y uno obtiene salidas o respuestas, sin tener en cuenta su funcionamiento interno.
+
+Dado que conocer todo el subdiferencial $\partial f(x)$ usualmente es imposible, deber\'iamos trabajar con un requerimiento mucho m\'as d\'ebil. Por cada punto dado, la caja negra computa el valor de la funci\'on y solo un subgradiente arbitrario, (ver la Figura \ref{cnegra}).
+
+\begin{figure}[h]
+  \centering
+    \includegraphics[width=0.7\textwidth]{cajanegra}
+  \caption{M\'etodo de caja negra}
+  \label{cnegra}
+\end{figure}
+
+\subsection{M\'etodo del Subgradiente}
+Consideremos la minimizaci\'on de $f$, con la ayuda de una {\bf caja negra} capaz de computar $f(x)$ y $s(x)\in\partial f(x)$.
+
+El m\'etodo del subgradiente usa los resultados dados por la caja negra una vez por iteraci\'on, sin un registro de las iteraciones anteriores.
+
+En el caso de que $f$ sea diferenciable, la direcci\'on $-f'(x)$ es una direcci\'on de descenso (ver Definici\'on \ref{def:descenso}), como as\'i tambi\'en cualquier direcci\'on en el semi-espacio opuesto al gradiente, ya que forman un \'angulo obtuso con $f'(x)$ (ver Teorema \ref{teo:descenso}). Partiendo desde aqu\'i, es concebible imitar este comportamiento con la informaci\'on obtenida de la caja negra. Entonces podemos plantear el siguiente algoritmo:\\
+
+%\begin{center}
+%\includegraphics[scale=1]{graficos_trabajo_final}
+%conjunto 0 
+%\end{center}
+
+
+%Ahora si $f$ no es diferenciable, tenemos el M\'etodo del Subgradiente.
+%Genero $\{x^k\}$ tal que $x^{k+1}=x^k+t_k d^k$ donde $f'(x^k;d^k)<0$ y %$f(x^k+t_k d^k)<f(x^k)$, luego fijo $d^k=-\frac{s^k}{\|s^k\|}$ donde %$s^k\in\partial f(x^k)$, para un $s^k$ cualquiera.
+%Paro cuando $0\in\partial f(x^k)$ (un punto de parada teorico){\bf no esta %claro, queda como si $d^k$ se definiera ``luego'' de obtener $x^{k+1}$}
+
+%Entonces busco $\la s^k,d^k\ra\leq\la \bar{s}^k,d^k\ra<0\;\forall\,s^k\in\partial f(x^k)$
+%Sabemos que $\bx=\Pi_C\;\mbox{si y solo si}\;\la x-\bx,y-\bx\ra\;\forall\,y\in C$.{\bf se est\'a usando $\bar{s}^k$ antes de definirlo}
+
+%Luego $\la 0-\bar{s}^k,s^k-\bar{s}^k\ra\leq 0\;\forall\,s^k\in\partial f(x^k)$
+%de ahi $-\la \bar{s}^k,s^k\ra+\|\bar{s}^k\|^2\leq 0$
+%$$\left\la s^k,-\frac{\bar{s}^k}{\|\bar{s}^k\|}\right\ra=-\left\la \frac{\bar{s}^k}{\|\bar{s}^k\|},s^k\right\ra\leq -\|\bar{s}^k\|=\la \bar{s}^k,\bar{d}^k\ra.$$
+%Entonces $$0>-\|\bar{s}^k\|=\la\bar{s}^k,\bar{d}^k\ra=\max_{s\in\partial f(x^k)}\la s,\bar{d}^k\ra=f'(x^k,\bar{d}^k).$${\bf donde se definio $\bar{d}^k$??, queda como si el m\'etodo del subgradiente se definiera usando $\bar{d}^k$, cosa que no es cierta}.
+
+%{\bf antes de enunciar el teorema deberias dejar claro como es el algoritmo:}
+
+\noindent\textbf{M\'etodo del Subgradiente}\\ Dado $x^1\in\Rn$, definir $k=1$.
+
+PASO 1 (test de parada formal). Llamar a la Caja Negra con $x=x^k$. Si \linebreak $0\in\partial f(x^k)$, parar.
+
+PASO 2 (descenso). Definir $d^k:=-\frac{s^k}{\|s^k\|}$.
+
+PASO 3 (b\'usqueda lineal). Encontrar un paso $t_k>0$ tal que $$f(x^k+t_k d^k)<f(x^k).$$
+
+PASO 4 (loop). Definir $x^{k+1}:=x^k+t_k d^k$. Cambiar $k$ a $k+1$, volver a 1.\\
+
+En el caso de que $f$ sea no diferenciable, una direcci\'on opuesta al subgradiente no es necesariamente una direcci\'on de descenso. Para que una direcci\'on sea una direcci\'on de descenso esta debe formar un \'angulo obtuso con {\em todo} el subdiferencial y no solo con un elemento $s(x)\in\partial f(x)$.
+
+A pesar de que el Algoritmo anterior no es un patr\'on de descenso, una elecci\'on adecuada del paso $t_k$ produce un m\'etodo convergente.
+
+\begin{teo}
+En el algoritmo del subgradiente si $\displaystyle{\sum_{k=1}^{\infty}t_k=+\infty}$ y $\displaystyle{\sum_{k=1}^{\infty}t_k^2<+\infty}$, entonces $\{x^k\}$ converge a una soluci\'on del problema de $\displaystyle\mathop{\mathrm{minimizar}}_{x\in\Rn}f(x)$.
+\end{teo}
+
+\begin{dem}
+Sea $y\in\Rn$, $s^k\in\partial f(x^k)$, definimos $x^{k+1}=x^k-t_k\frac{s^k}{\|s^k\|}$.
+Entonces
+\begin{eqnarray*}
+0&\leq&\|x^{k+1}-y\|^2\\
+&=&\left\|x^k-y-t_k\frac{s^k}{\|s^k\|}\right\|^2\\
+&=&\|x^k-y\|^2-2t_k\left\la x^k-y,\frac{s^k}{\|s^k\|}\right\ra+t_k^2\\
+&\leq&\|x^k-y\|^2+t_k^2+2\frac{t_k}{\|s^k\|}(f(y)-f(x^k)).
+\end{eqnarray*}
+Pues $f(y)\geq f(x^k)+\la s^k,y-x^k\ra\;\forall\,y\in\Rn$, pues $s^k\in\partial f(x^k)$.
+Supongamos $\bx$ soluci\'on, es decir, $f(\bx)\leq f(x)\;\forall\,x\in\Rn$, como $f(\bx)-f(x^k)\leq 0$, entonces  $$\|x^{k+1}-\bx\|^2\leq\|x^k-\bx\|^2+t_k^2.$$\\
+Aplicando esto varias veces
+\begin{eqnarray*}
+\|x^{k+1}-\bx\|^2&\leq&\|x^k-\bx\|^2+t_k^2\\
+&\leq&\|x^{k-1}-\bx\|^2+t_{k-1}^2+t_k^2\\
+&\leq&\|x^{k-j}-\bx\|^2+\sum_{i=0}^{j}t_{k-i}^2\\
+&\leq&\|x^0-\bx\|^2+\sum_{i=0}^{k}t_i^2.
+\end{eqnarray*}
+Pero como $\sum_{i=0}^{k}t_i^2\leq\sum_{i=0}^{\infty}t_i^2\leq C<+\infty$, resulta que $\{x^k\}$ est\'a acotada.
+
+Supongamos ahora que $\liminf_{k\arr\infty}f(x^k)>f(\bx)$. Entonces existe $\bar{y}$ tal que \linebreak $f(\bar{y})+\vep<\liminf_{k\arr\infty} f(x^k)$, por lo tanto $f(\bar{y})<f(x^k)-\vep$. Luego resulta
+\begin{eqnarray}
+\|x^{k+1}-\bar{y}\|^2&\leq&\|x^k-\bar{y}\|^2+t_k^2-2\vep\frac{t_k}{\|s^k\|}\\
+&=&\|x^k-\bar{y}\|^2+t_k\left(t_k-\frac{2\vep}{\|s^k\|}\right).\label{estrella}
+\end{eqnarray}
+Como $\{x^k\}$ es acotada, por Proposici\'on \ref{subdif_acotado} obtenemos que existe $M$ tal que $\|s^k\|\leq M$ para todo $k$, de aqu\'i $-\frac{1}{\|s^k\|}\leq-\frac{1}{M}$, entonces de (\ref{estrella}) vale que
+$$\|x^{k+1}-\bar{y}\|^2\leq \|x^k-\bar{y}\|^2+t_k\left(t_k-\frac{2\vep}{M}\right).$$
+Como $\sum_{k=1}^{\infty}t_k^2<+\infty$, entonces $t_k\arr 0$, luego $t_k-2\vep/M<0$ para $k$ suficientemente grande.
+Por lo tanto
+$$\|x^{k+1}-\bar{y}\|^2\leq\|x^k-\bar{y}\|^2-t_k \tilde{C}\quad\mbox{con}\quad\tilde{C}>0,$$
+o sea
+$$t_k\tilde{C}\leq\|x^k-\bar{y}\|^2-\|x^{k+1}-\bar{y}\|^2.$$
+Entonces
+$$\tilde{C}\sum_{k=0}^{l}t_k\leq\|x^0-\bar{y}\|^2-\|x^{l+1}-\bar{y}\|^2.$$
+Luego como $\{x^k\}$ es acotada, sea $\hat{x}$ un punto l\'imite de $\{x^k\}$. Tomando el l\'imite $l\arr\infty$,
+$$+\infty=\tilde{C}\sum_{k=0}^{\infty}t_k\leq\|x^0-\bar{y}\|^2-\|\hat{x}-\bar{y}\|^2<+\infty.$$
+Absurdo.
+Por lo tanto $\liminf_{k\arr\infty}f(x^k)=f(\bx)$.
+Si $\hat{x}$ es punto l\'imite de $\{x^k\}$, entonces $f(\hat{x})=f(\bx)\leq f(x)\;\forall\,x\in\Rn$.
+\end{dem}
+\subsection{M\'etodo de Planos Cortantes}
+
+Como ya mencionamos antes el m\'etodo del subgradiente usa la informaci\'on dada por la caja negra solo una vez por iteraci\'on, sin un registro de las iteraciones anteriores. Mantener un registro de las iteraciones pasadas permite definir un modelo de la funci\'on objetivo. El m\'etodo de plano cortantes usa los valores
+$$f_i:=f(x^i),\,s^i:=s(x^i);\,i=1,\ldots,k,$$
+obtenidos hasta el momento, para construir el siguiente modelo lineal a trozos para $f$:
+\begin{equation}
+\check{f}_k(y)=\max_{i=1,\ldots,k}\{f_i+\la s^i,y-x^i\ra\}.
+\end{equation}
+
+La Figura \ref{planos} muestra diferentes planos cortantes para una funci\'on diferenciable $f$.
+
+\begin{figure}[h]
+  \centering
+    \includegraphics[width=0.9\textwidth]{planoscortantes}
+  \caption{Iteraciones de Planos Cortantes}
+  \label{planos}
+\end{figure}
+
+Al minimizar el modelo $\check{f}_k$ en un conjunto convexo $S$, el cual determinaremos m\'as adelante, nos devuelve la nueva iteraci\'on $x^{k+1}$. Notar que por la definici\'on del modelo,
+\begin{equation}\label{modelo}
+\forall\,k\quad\check{f}_k\leq\check{f}_{k+1}\;\mbox{y}\;\check{f}_k\leq f,
+\end{equation}
+donde la \'ultima relaci\'on sigue de la inecuaci\'on del subgradiente 
+$$s\in\partial f(x)\quad\mathrm{si\;y\;solo\;si}\quad f(y)\geq f(x)+\la s,y-x\ra\;\forall\;y\in\Rn.$$
+Entonces por la convexidad de $f$, el gr\'afico del modelo de planos cortantes $\check{f}_k$ aproxima al gr\'afico de $f$ desde afuera, con un incremento en la exactitud a medida de que $k$ aumenta. Es por esto que este m\'etodo es convergente.
+
+Ahora podemos pensar el algoritmo.\\
+
+
+\noindent\textbf{M\'etodo de Planos Cortantes}\\
+Sea $\mathtt{tol}> 0$ una tolerancia de parada dada y sea $S\neq \emptyset$ un conjunto convexo y compacto que contiene a un punto m\'inimo de $f$. Elegir $x^1\in S$ y sea $k=1$. Definir $\check{f}_0\equiv-\infty$.\\
+
+PASO 1 (Llamar a la caja negra - implementar test de parada). Llamar el m\'etodo de caja negra con $x=x^k$. Calcular
+\begin{equation}\label{delta}
+\delta_k=f(x^k)-\check{f}_{k-1}(x^k).
+\end{equation}
+Si $\delta_k\leq\mathtt{tol}$, parar.
+
+PASO 2 (Candidato a direcci\'on de descenso). Encontrar
+\begin{equation}\label{direccion}
+d^k\in\mathop{\mathrm{Argmin}}_{x^k+d\in S}\check{f}_k(x^k+d).
+\end{equation}
+
+PASO 3 (B\'usqueda lineal - paso constante). Tomar $t_k=1.$
+
+PASO 4 (loop). Definir $x^{k+1}:=x^k+t_k d^k$. Cambiar $k$ por $k+1$, ir a 1. 
+
+\begin{teo}
+Consideremos la sucesi\'on $\{x^k\}$ generada por el algoritmo anterior y sea $\displaystyle\bar{f}_k=\min_{1\leq i\leq k}f_i$.
+\begin{itemize}
+\item[(i)] Si la sucesi\'on es finita, su \'ultimo elemento, $x^{k_{last}}$ es tol-\'optimo, i.e.,
+$$f(x^{k_{last}})\leq\bar{v}+\mathtt{tol}.$$
+\item[(ii)] Si $k\arr\infty$, entonces
+$$\lim\check{f}_{k-1}(x^k)=\bar{v}=\lim\bar{f}_k=\liminf f(x^k).$$
+\end{itemize}
+\end{teo}
+\begin{dem}
+\begin{itemize}
+\item[{\it (i)}] Como la sucesi\'on es finita, $\delta_{k_{last}}\leq\mathtt{tol}$, y 
+\begin{eqnarray}
+f(x^{k_{last}})&\leq&\check{f}_{k_{last}-1}(x^{k_{last}})+\mathtt{tol}\\
+&\leq&\check{f}_{k_{last}-1}(y)+\mathtt{tol}\qquad\, \forall y\in S\\
+&\leq&f(y)+\mathtt{tol}\qquad\qquad\,\,\, \forall y\in S.
+\end{eqnarray}
+Ya que asumimos que $S$ contiene un m\'inimo de $f$, sigue la conclusi\'on.
+\item[{\it (ii)}] Si $k\arr\infty$, por la parte izquierda de la desigualdad en (\ref{modelo}), la sucesi\'on $\check{f}_{k-1}(x^k)$ es no decreciente y acotada por arriba por $\bar{v}$, pues $$\check{f}_{k-1}(x^k)\leq \check{f}_{k-1}(\bx)\leq f(\bx)=\bar{v}.$$ Por lo tanto, es convergente $\check{f}_k(x^{k+1})\nearrow\bar{v}-C$ donce $C\geq 0$ es alguna constante. Entonces se cumple que
+\begin{equation}
+\forall\,k\quad\check{f}_{k-1}(x^k)\leq\bar{v}-C.
+\end{equation}
+Probemos que asumir que $C>0$ implica una contradicci\'on. Sea $\{x^{k_l}\}$ una subsucesi\'on convergente de la sucesi\'on (acotada) $\{x^k\}\subset S$, y sea $M$ una cota superior de $\mathrm{diam}(\partial f(x^{k_{l-1}}))$, para $k_l$ suficientemente grande. Adicionalmente, tomando $k_l$ tan grande para satisfacer $\|x^{k_{l-1}}-x^{k_l}\|\leq C/(2M)$. La contradicci\'on que buscamos resulta de las siguientes desigualdades:
+\begin{eqnarray*}
+\bar{v}-C&\geq&\check{f}_{k_l-1}(x^{k_l})\\
+&\geq&\check{f}_{k_{l-1}}(x^{k_l})\\
+&\geq&f_{k_{l-1}}+\la s_{k_{l-1}},x^{k_l}-x^{k_{l-1}}\ra\\
+&\geq&f_{k_{l-1}}-M\|x^{k_{l-1}}-x^{k_l}\|\\
+&\geq&\bar{v}-MC/(2M)\\
+&=&\bar{v}-\frac{C}{2}.
+\end{eqnarray*}
+Aplicando un razonamiento similar para la sucesi\'on decreciente $\{\bar{f}_k\}$. Supongamos que existe un $C$ positivo tal que $\bar{f}_k\searrow\bar{v}+C$. Por ser $\{x^k\}$ acotada, existe una subsucesi\'on convergente $\{x^{k_l}\}$. Sea $L$ una constante de Lipschitz para $f$ y $\check{f}_k$ y tomando $k_l$ suficientemente grande para satisfacer $\|x^{k_{l+1}}-x^{k_l}\|\leq C/(2L)$. Las siguientes desigualdades dan la contradicci\'on deseada:
+\begin{eqnarray*}
+\bar{v}+C&\leq&\bar{f}_{k_l}\leq f(x^{k_l})\\
+&=&\check{f}_{k_l}(x^{k_l})\\
+&=&\check{f}_{k_l}(x^{k_l})-\check{f}_{k_l}(x^{k_{l+1}})+\check{f}_{k_l}(x^{k_{l+1}})\\
+&\leq&\check{f}_{k_l}(x^{k_l})-\check{f}_{k_l}(x^{k_{l+1}})+\check{f}_{k_{l+1}-1}(x^{k_{l+1}})\\
+&\leq&\check{f}_{k_l}(x^{k_l})-\check{f}_{k_l}(x^{k_{l+1}})+\bar{v}\\
+&\leq&L\|x^{k_{l+1}}-x^{k_l}\|+\bar{v}\\
+&\leq&LC/(2L)+\bar{v}\\
+&=&\bar{v}+\frac{C}{2}.
+\end{eqnarray*}
+
+\end{itemize}
+\end{dem}
+\subsection{M\'etodo de Haces (Bundle Methods)}
+Ahora nos concentraremos en una familia de m\'etodos de caja negra que combina las propiedades de \textit{descenso} y \textit{estabilidad}. \'Estos son los m\'etodos de haces. Estos m\'etodos mantienen registro de las iteraciones anteriores en un \textit{haz} de informaci\'on:
+$$f_i,\,s^i,\,i=1,\ldots ,k\;\mathrm{y}\;x^k,\;\mbox{el punto con el menor valor objetivo}.$$
+
+Con la informaci\'on recolectada a lo largo de las iteraciones, los m\'etodos de haces construyen tanto un modelo para la funci\'on objetivo $(\check{f}_k)$ como una aproximaci\'on poliedral de su subdiferencial $(\partial_{\varepsilon_k}\check{f}_k(x^k))$. Estos m\'etodos son, al mismo tiempo, variantes estabilizadas del m\'etodo de planos cortantes (estabilizaci\'on primal) y del m\'etodo steepest-descent (estabilizaci\'on dual).
+Definimos el modelo como $\varphi_{k+1}(y)=\max\left\{\varphi_k(y), f(y^{k+1})+\la s^{k+1},y-y^{k+1}\ra\right\}$. Note que $\varphi_k=\check{f}_k$.\\
+
+%revisar segundo parrafo de las seccion 9.1, pagina 117
+
+\noindent\textbf{M\'etodo de Haces}\\
+Sea $\mathtt{tol}> 0$, $\mu_1>0$ y $m\in (0,1)$ par\'ametros dados. Elegir $x^1$, llamar a la caja negra con $x=x^1$, construir el modelo $\vfi_1(y)=f(y^1)+\la s^1,y-y^1\ra$ con $y^1=x^1$. Definir $k=1$ y $\delta_1=\infty$.\\
+
+PASO 1 (implementar criterio de parada). Si $\delta_{k}\geq\mathtt{tol}$, parar.
+
+PASO 2 (candidato). Hallar $y^{k+1}$ soluci\'on de
+\begin{equation}
+\mbox{minimizar}\;\vfi_{k}(y)+\frac{\mu_k}{2} \la M_k (y-x^k),y-x^k\ra\;
+\mathrm{sujeto\;a}\; y\in\Rn,
+\end{equation}
+donde $M_k$ es sim\'etrica y definida positiva.
+
+PASO 3 (llamar a la caja negra). Definir $$\delta_{k+1}=f(x^k)-\left(\vfi_k(y^{k+1})+\frac{\mu_k}{2}\la M_k (y^{k+1}-x^k),y^{k+1}-x^k\ra\right).$$
+Si $f(x^k)-f(y^{k+1})\geq m\delta_{k+1}$, tomamos $x^{k+1}=y^{k+1}$ y definimos $M_{k+1}$, sino $x^{k+1}=x^k$.
+
+PASO 4 (mejorar el modelo - loop). Actualizar $\vfi_{k+1}$, $k=k+1$ y volver al PASO 1.\\
+\mbox{}\\
+\begin{obs}
+ \begin{itemize}
+\item El test del PASO 3 decide si el candidato ofrece un descenso suficiente para $f$. Si $f$ decrece al menos una fracci\'on de $m$ del decrecimiento predicho por el modelo, el centro de estabilidad se mover\'a al punto $y^{k+1}$. Cuando $y^{k+1}$ es un buen candidato, decimos que es un paso ``serio'' (conocido en ingles como ``serious'' step, ver \cite{BonGilLemSag:NO:06}).
+\item Si el candidato no ofrece un descenso suficiente para $f$, el centro de estabilidad no cambia ($y^{k+1}$ no es ``suficientemente bueno''). En este caso esperamos conseguir un mejor candidato despu\'es de enriquecer el modelo en el PASO 4. Ya que no se hizo nada en t\'erminos de mejorar centros, este caso se llama paso ``nulo" (en ingles ``null'' step).
+\item T\'ipicamente, $\vfi_k$ es la aproximaci\'on de planos cortantes $\check{f}_k$. Por ``enriquecer'' el modelo nos referimos al hecho de introducir la funci\'on af\'in definida por $y^{k+1}$:
+$$\vfi_{k+1}(y)=\max\{\vfi_k(y),f(y^{k+1})+\la s(y^{k+1}),y-y^{k+1}\ra\}.$$
+\item La matriz $M_k$ solo es actualizada cuando hay un paso de descenso. La actualizaci\'on de la matriz es un tema extremadamente complejo, sin embargo es crucial para un buen resultado num\'erico.
+\end{itemize}
+\end{obs}
+
+Para ver que el m\'etodo de haces converge, definamos los conjuntos de \'indices de pasos serios $K_S$ y pasos nulos $K_N$:
+$$K_S=\{k\mid x^{k+1}=y^{k+1}\}\;,\;K_N=\{k\mid x^{k+1}=x^k\}.$$
+
+\begin{lem}
+Sea $f_{*}=\lim_{k\in K_S}f(x^k)$ y $f_{*}\geq -\infty$, entonces $$\sum_{k\in K_S}\delta_{k}\leq\frac{f(x^1)-f_{*}}{m}.$$
+\end{lem}
+
+\begin{dem}
+Si $k\in K_S$, entonces $$f(x^k)-f(x^{k+1})=f(x^k)-f(y^{k+1})\geq m\delta_{k+1}.$$
+Sea $k'$ el siguiente \'indice a $k$ que est\'a en $K_S$, entonces $x^{k+1}=x^{k+j}$ con \linebreak $j=2,\ldots,k'-k$ y $x^{k'+1}=y^{k'+1}$, luego $$f(x^{k+1})-f(x^{k'+1})\geq m\delta_{k'+1}.$$
+Sumando sobre $K_S$ obtenemos
+$$\sum_{k\in K_S}f(x^k)-f(x^{k+1})=f(x^1)-f_{*}\geq m\sum_{k\in K_S}\delta_{k}.$$
+\end{dem}
+
+Por lo tanto si $|K_S|=+\infty$ entonces $\delta_k\arr 0$.
+Entonces este algoritmo converge en alg\'un momento.
+
+Sea ahora $\check{f}_k(y)=\displaystyle\max_{1\leq i\leq k}\{f(x^i)+\la s^i,y-x^i\ra\}$ con $s^i\in\partial f(x^i)$.
+Entonces
+\begin{eqnarray}
+f(x^i)+\la s^i,y-x^i\ra&=&f(x^k)+f(x^i)-f(x^k)+\la s^i,x^k-x^i\ra+\la s^i,y-x^k\ra\nonumber\\
+&=&f(x^k)+\la s^i,y-x^k\ra-e_i\label{esubdif},
+\end{eqnarray}
+donde $e_i=f(x^k)-f(x^i)-\la s^i,x^k-x^i\ra$. Recordando la definici\'on de $\vep$-subdiferencial (\ref{epssubdif}), como $$f(y)\geq f(x^i)+\la s^i,y-x^i\ra=f(x^k)+\la s^i,y-x^i\ra-e_i,$$  para todo $y\in\Rn$, entonces $s^i\in\partial_{e_i}f(x^k)$.\\
+
+
+\begin{obs}
+\begin{itemize}
+\item[{\it (i)}] Si tomamos $e=\max_{1\leq i\leq k}\{e_i\}$, entonces $s^i\in\partial_{e}f(x^k)\quad\forall\;1\leq i\leq k$.
+\item[{\it (ii)}] Usando (\ref{esubdif}), 
+\begin{eqnarray*}
+ \check{f}_k(y)&=&\max_{1\leq i\leq k}\{f(x^i)+\la s^i,y-x^i\ra\}\\ &=&f(x^k)+\max_{1\leq i\leq k}\{\la s^i,y-x^k\ra-e_i\}.
+\end{eqnarray*}
+\end{itemize}
+\end{obs}
+
+Entonces definimos
+\begin{eqnarray*}
+\vfi_{k}(y):=f(x^k)+\max_{1\leq i\leq np_k}\{\la s^i,y-x^k\ra-e_i\},
+\end{eqnarray*}
+donde $np_k=k$, si $k$ es peque\~{n}o y $np_k=k_0\approx n+1$, si $k$ es grande.
+
+
+\begin{lem}
+Sea $y^{k+1}$ la \'unica soluci\'on del problema
+\begin{equation}\label{problema1}
+\mathop\mathrm{minimizar}_{y\in\Rn}\vfi_k(y)+\frac{\mu_k}{2}\la M_k(y-x^k),y-x^k\ra.
+\end{equation}
+(con $\mu_k>0$ y $M_k$ sim\'etrica definida positiva). Entonces
+$$
+y^{k+1}=x^k-\frac{1}{\mu_k}M_k^{-1}\hat{s}^k,\quad\mbox{donde}\;\hat{s}^k:=\sum_{i=1}^{np_k}\bar{\alpha}_i s^i,
+$$
+y $\bar{\alpha}=(\bar{\alpha}_1,\ldots,\bar{\alpha}_{np_k})\in\RR^{np_k}$ es la \'unica soluci\'on a
+
+\begin{equation}\label{problema2}
+\left\{
+\begin{array}{cc}
+\displaystyle\mathop{\mathrm{minimizar}}_{\alpha_i}&\displaystyle\frac{1}{2}\lla M_k^{-1}\left(\sum_{i=1}^{np_k}\alpha_i s^i\right),\sum_{i=1}^{np_k}\alpha_i s^i \rra+\mu_k\sum_{i=1}^{np_k}\alpha_i e_i\\[1cm]
+\mathrm{sujeto\, a}&\alpha\in\Delta_k:=\left\{z\in[0,1]^{np_k}\;\left|\; \displaystyle{\sum_{i=1}^{np_k}}z_i=1\right\}.\right.
+\end{array}
+\right.
+\end{equation}
+
+Adem\'as
+\begin{enumerate}
+\item $\hat{s}^k\in\partial\vfi_k(y^{k+1})$.
+\item $\delta_{k+1}=\vep_k+\frac{1}{2\mu_k}\la M_k^{-1}\hat{s}^k,\hat{s}^k\ra$, donde $\vep_k=\sum_{i=1}^{np_k}\bar\alpha_i e_i$.
+\item $\hat{s}^k\in\partial_{\vep_k}f(x^k)$.
+\end{enumerate}
+\end{lem}
+\begin{dem}
+De (\ref{problema1}) tenemos que existe $r^{k+1}$ tal que $(y^{k+1},r^{k+1})$ es soluci\'on de
+\begin{equation}\label{problemaO}
+\left\{
+ \begin{array}{rl}
+  \displaystyle{\mathop{\mathrm{minimizar}}_{(y,r)}}& \displaystyle{r+\frac{\mu_k}{2}\la M_k (y-x^k),(y-x^k)\ra}\\
+  \mbox{sujeto a}& r\geq f(x^k)+\la s^i,y-x^k\ra-e_i,\;i=1,\ldots,np_k.\\
+\end{array}
+\right.
+\end{equation}
+Sean 
+\begin{equation}\label{aux1_problemaP}
+ z= \left[\begin{array}{c} y\\r\end{array}\right],\,
+Q = \left[\begin{array}{cc} \mu_k M_k & 0\\ 0 & 0 \end{array}\right],\,
+p= \left[\begin{array}{c} -\mu_k M_kx^k\\ 1\end{array}\right] 
+\mbox{ y }c=\frac{\mu_k}{2}\la M_k x^k,x^k\ra.
+\end{equation}
+
+Entonces tenemos que 
+\begin{eqnarray*}
+\frac{1}{2}\la Qz,z\ra+\la p,z\ra + c &=& r+\frac{\mu_k}{2}\la M_k y,y\ra-\mu_k\la M_k x^k,y\ra+\frac{\mu_k}{2}\la M_k x^k,x^k\ra \\
+&=& r+\frac{\mu_k}{2}\la M_k (y-x^k),(y-x^k)\ra.
+\end{eqnarray*}
+Si definimos
+\begin{equation}\label{aux2_problemaP}
+ A = \left[\begin{array}{cc} (s^1)^\top & -1\\ \vdots & \vdots\\ (s^{np_k})^\top & -1 \end{array} \right]
+\mbox{ y } b_i=e_i-f(x^k)+\la s^i,x^k\ra,
+\end{equation}
+entonces la restricci\'on $Az\leq b$ es equivalente a $r\geq f(x^k)+\la s^i,y-x^k\ra-e_i,\linebreak i=1,\ldots,np_k$.
+Por lo tanto el problema (\ref{problemaO}) es equivalente al problema
+\begin{equation}\label{problemaP}
+\left\{
+ \begin{array}{rl}
+  \displaystyle{\mathop{\mathrm{minimizar}}_{z}} & \frac{1}{2}\la Qz,z\ra+\la p,z\ra +c\\
+  \mbox{sujeto a}& Az\leq b.
+ \end{array}
+\right.
+\end{equation}
+
+Para obtener el problema (\ref{problema2}) debemos encontrar el problema dual asociado al problema (\ref{problemaP}). Como la funci\'on Lagrangiana asociada al problema (\ref{problemaP}) es $$L(z,\alpha)=\frac{1}{2}\la Qz,z\ra+\la p,z\ra +c+\la \alpha,Az-b\ra,$$ entonces el problema dual resulta
+\begin{equation}
+\left\{
+ \begin{array}{rl}
+ \displaystyle{\mathop{\mathrm{maximizar}}_{\alpha}}\quad q(\alpha)\\
+  \mbox{sujeto a }\alpha\in\Lambda,\\
+ \end{array}
+\right.
+\end{equation}
+donde $q(\alpha)=\inf_{z}L(z,\alpha)$ y $\Lambda=\{\alpha\in\RR^{np_k}_+\mid \inf_{z}L(z,\alpha)>-\infty\}$.
+
+Veamos que $\Lambda=\Delta_k$. Note que
+\begin{eqnarray*}
+ L(z,\alpha)&=&\frac{1}{2}\la Qz,z\ra+\la p,z\ra +c+\la A^\top\alpha,z\ra -\la\alpha,b\ra\\
+&=&\frac{\mu_k}{2}\la M_k (y-x^k),y-x^k\ra+{\textstyle\la\sum_{i}\alpha_i s^i,y \ra+ (1-\sum_{i}\alpha_i)r}  -\la\alpha,b\ra.
+\end{eqnarray*}
+Si $\alpha\in\Delta_k$ entonces 
+\begin{equation}\label{aux1_Lem_bundle}
+L(z,\alpha)=\frac{\mu_k}{2}\la M_k (y-x^k),y-x^k\ra+{\textstyle\la\sum_{i}\alpha_i s^i,y \ra} -\la\alpha,b\ra, 
+\end{equation}
+y como $\mu_k>0$ y $M_k$ definida positiva entonces esta funci\'on es fuertemente convexa en relaci\'on a $y$, implicando que $L(z,\alpha)>-\infty$. Por lo tanto $\Delta_k\subset\Lambda$.
+Si $\alpha\in\Lambda$ y $\alpha\notin\Delta_k$, tenemos que $\sum_{i}\alpha_i\neq 1$. Si $z^\ell=\left[\begin{array}{c}x^k\\ -(1-\sum_i\alpha_i)\ell\end{array}\right]$ entonces 
+$$L(z^\ell,\alpha)={\textstyle\la\sum_{i}\alpha_i s^i,x^k \ra- (1-\sum_{i}\alpha_i)^2\ell} -\la\alpha,b\ra \arr-\infty,$$
+ cuando $\ell\arr+\infty$, contradiciendo que $\alpha\in\Lambda$. Por lo tanto $\Lambda\subset\Delta_k$.
+
+Por lo tanto tenemos que si $\alpha\in\Delta_k$ vale que $\inf_{z}L(z,\alpha)>-\infty$, entonces existe $z(\alpha)$ soluci\'on de minimizar $L(z,\alpha)$ para $z\in\RR^{n+1}$, lo cual implica que
+\begin{eqnarray*}
+0&=&\frac{\partial L}{\partial z}(z(\alpha),\alpha)=Qz(\alpha)+p+A^\top\alpha\\
+&=&
+\left[
+\begin{array}{cc}
+\mu_k M_k & 0\\
+0 & 0 
+\end{array}
+\right]
+\left[
+\begin{array}{cc}
+y(\alpha)\\
+r(\alpha)
+\end{array}
+\right]+
+\left[
+\begin{array}{cc}
+-\mu_k M_k x^k\\
+1
+\end{array}
+\right]+
+\left[
+\begin{array}{ccc}
+s^1&\dots&s^{np_k}\\
+-1&\dots&-1
+\end{array}
+\right]\alpha\\
+&=&
+\left[
+\begin{array}{cc}
+\mu_k M_k y(\alpha)-\mu_k M_k x^k+\sum_{i=1}^{np_k}\alpha_i s^i\\
+1-\sum_{i=1}^{np_k}\alpha_i
+\end{array}
+\right].
+\end{eqnarray*}
+Por lo tanto resulta
+\begin{equation}\label{problema3}
+y(\alpha)=x^k-\frac{1}{\mu_k}M_{k}^{-1}\left(\sum_{i=1}^{np_k}\alpha_i s^i\right)\;\mbox{con}\;\sum_{i=1}^{np_k}\alpha_i=1.
+\end{equation}
+Entonces, como
+$$\textstyle-\la\alpha,b\ra=-\sum \alpha_i b_i=-\sum \alpha_i e_i+f(x^k)-\lla\sum\alpha_i s^i,x^k\rra,$$
+usando (\ref{aux1_Lem_bundle}), obtenemos la siguiente equivalencia para la funci\'on dual
+\begin{eqnarray*}
+ q(\alpha)&=&L(z(\alpha),\alpha)\\
+&=&\frac{\mu_k}{2}\la M_k (y(\alpha)-x^k),y(\alpha)-x^k\ra+{\textstyle\la\sum_{i}\alpha_i s^i,y(\alpha) \ra} -\la\alpha,b\ra\\
+&=&\textstyle\frac{1}{2\mu_k}\left\la M_k^{-1}\left(\sum_{i} \alpha_i s^i\right),\sum_{i}\alpha_i s^i\right\ra -\la\alpha,b\ra\\
+&&\textstyle+ \lla \sum_i \alpha_i s^i,x^k\rra-\frac{1}{\mu_k}\lla \sum_i \alpha_i s^i,M_k^{-1}\left(\sum_i \alpha_i s^i\right)\rra\\
+&=&\textstyle-\frac{1}{2\mu_k}\left\la M_k^{-1}\left(\sum_{i} \alpha_i s^i\right),\sum_{i}\alpha_i s^i\right\ra -\sum_i \alpha_i e_i+f(x^k).
+\end{eqnarray*}
+Entonces el problema dual nos queda
+\begin{equation}\label{problemaD}
+\left\{
+ \begin{array}{rl}
+  \mathop{\mathrm{minimizar}}& \frac{1}{2\mu_k}\lla M_k^{-1}\left(\sum \alpha_i s^i\right),\sum \alpha_i s^i\rra+\sum \alpha_i e_i-f(x^k)\\
+  \mbox{sujeto a}& \alpha\in\Delta_k.
+ \end{array}
+\right.
+\end{equation}
+
+Por el Teorema de Dualidad (\ref{teodualidad}), se cumple
+$$q(\alpha)\leq\frac{1}{2}\la Qz,z\ra+\la p,z\ra+c\quad\mbox{si}\;Az\leq b,\;\alpha\in\Delta_k,$$
+y como $\exists\, \hat{z}$ tal que $(A\hat{z})_i<b_i$ (condicion de Slater),
+entonces existe $\bar{z}=z(\bar{\alpha})$ tal que 
+$$q(\bar{\alpha})= \frac{1}{2} \la Q\bar{z},\bar{z}\ra+\la p,\bar{z}\ra + c,$$ y $z(\bar{\alpha})$ es soluci\'on del problema (\ref{problemaP}). Por lo tanto, $[y(\bar{\alpha}),r(\bar{\alpha})]^\top$ es soluci\'on de (\ref{problemaP}), lo que implica que $y(\bar{\alpha})$ es soluci\'on de (\ref{problema1}).
+
+Entonces $y^{k+1}=y(\bar\alpha)$ (por la definici\'on de $y^{k+1}$ en el enunciado) si $\hat{s}^k=\sum \bar{\alpha}_i s^i$, luego resulta $y^{k+1}=x^k-\frac{1}{\mu_k}M_k^{-1}\hat{s}^k.$\\
+
+
+Ahora veamos las propiedades enunciadas al final del teorema:
+
+\begin{enumerate}
+\item Como $y^{k+1}$ es soluci\'on entonces $0\in\partial \vfi_k(y^{k+1})+\mu_k M_k(y^{k+1}-x^k)$, como $\mu_k M_k(y^{k+1}-x^k)=-\hat{s}^k$, entonces $\hat{s}^k\in\partial\vfi_k(y^{k+1})$.
+\item $\delta_{k+1}=f(x^k)-\left(\vfi_k(y^{k+1})+\frac{\mu_k}{2}\la M_k(y^{k+1}-x^k),y^{k+1}-x^k\ra\right)$, y como
+\begin{equation}\label{aux2_Lem_bundle}
+\hspace{-1cm}\vfi_k(y^{k+1})+\frac{\mu_k}{2}\la M_k(y^{k+1}-x^k),y^{k+1}-x^k\ra=-\left[ \frac{1}{2\mu_k}\la M_k^{-1}\hat{s}^k,\hat{s}^k\ra +\vep_k-f(x^k)\right], 
+\end{equation}
+entonces $\delta_{k+1}=\vep_{k}+\frac{1}{2\mu_k}\la M_k^{-1}\hat{s}^k,\hat{s}^k\ra$.
+\item Reemplazando $y^{k+1}=x^k-\frac{1}{\mu_k}M_k^{-1}\hat{s}^k$ en (\ref{aux2_Lem_bundle}) obtenemos que 
+$$\vfi_k(y^{k+1})+\frac{1}{2\mu_k}\la \hat{s}^k,M_k^{-1}\hat{s}^k\ra+\frac{1}{2\mu_k}\la M_k^{-1}\hat{s}^k,\hat{s}^k\ra +\vep_k - f(x^k)=0,$$
+entonces
+$$\vep_k=f(x^k)-\vfi_k(y^{k+1})-\frac{1}{\mu_k}\la M_k^{-1}\hat{s}^k,\hat{s}^k\ra.$$
+Ahora, usando que $\vfi_k$ es convexa y $\hat{s}^k\in\partial\vfi_k(y^{k+1})$ concluimos que
+\begin{eqnarray*}
+f(y)&\geq&\vfi_k(y)\geq\vfi_k(y^{k+1})+\la \hat{s}^k,y-y^{k+1}\ra\\
+&\geq&\vfi_k(y^{k+1})+\la \hat{s}^k,y-x^k\ra-\la \hat{s}^k,y^{k+1}-x^k\ra +f(x^k)-f(x^k)\\
+&=&f(x^k)+\la \hat{s}^k,y-x^k\ra-\left(f(x^k)+\la \hat{s}^k,y^{k+1}-x^k\ra - \vfi_k(y^{k+1})\right)\\
+&=&f(x^k)+\la\hat{s}^k,y-x^k \ra-\left(f(x^k)-\vfi_k(y^{k+1})-\frac{1}{\mu_k}\la M_k^{-1} \hat{s}^k,\hat{s}^k\ra\right)\\
+&=&f(x^k)+\la\hat{s}^k,y-x^k \ra-\vep_k.
+\end{eqnarray*}
+Por lo tanto $\hat{s}^k\in\partial_{\vep_k} f(x^k)$.
+\end{enumerate}
+\end{dem}
+
+
+En el caso de un problema con restricciones, o sea, si el problema a resolver es
+\[
+ \mathop{\mathrm{minimizar}}_{x\in C} f(x),
+\]
+donde $C$ es convexo y cerrado, el m\'etodo de haces va a generar una sucesi\'on contenida en $C$ y el subproblema que se debe resolver en cada iteraci\'on es
+\begin{equation}
+\mathop\mathrm{minimizar}_{y\in C}\vfi_k(y)+\frac{\mu_k}{2}\la M_k(y-x^k),y-x^k\ra.
+\end{equation}
+
+Para resolver computacionalmente este problema, uno resuelve el problema equivalente
+\begin{equation}
+\left\{
+ \begin{array}{rl}
+  \displaystyle{\mathop{\mathrm{minimizar}}_{z}} & \frac{1}{2}\la Qz,z\ra+\la p,z\ra\\
+  \mbox{sujeto a}& Az\leq b,\\
+&z\in C\times\RR,
+ \end{array}
+\right.
+\end{equation}
+donde las matrices $Q, A$, los vectores $p,b$ se definen como en (\ref{aux1_problemaP}) y (\ref{aux2_problemaP}). 
+En el caso en que $C$ sea poliedral, este problema es llamado {\em problema cuadr\'atico} y se puede resolver computacionalmente de manera eficiente ya que para este tipo de problemas existen implementaciones muy bien documentadas las cuales encuentran una soluci\'on en pocas iteraciones, como por ejemplo la funci\'on \texttt{quadprog} para Matlab.
+
+
+\chapter{El Problema de Optimizaci\'on en Producci\'on de Energ\'ia}
+
+El objetivo de este problema es optimizar la producci\'on de energ\'ia, sa\-tis\-fa\-ci\-en\-do una demanda de electricidad y minimizando los costos utilizando un conjunto de usinas termoel\'ectricas e hidroel\'ectricas.
+
+Matem\'aticamente deseamos resolver el problema
+\begin{equation}
+\left\{
+ \begin{array}{rc}
+  \mathrm{minimizar}&C(\omega)\\
+  \mathrm{sujeto\;a}&\om\in\mathcal{D}\cap\Omega,\\
+ \end{array}
+\right.
+\end{equation}
+donde $\om$ son los par\'ametros de producci\'on, que depender\'an del tipo de usina, $C$ es la funci\'on de costo operacional, $\cD$ son restricciones de demanda y $\Omega$ representa restricciones operacionales de las usinas.
+
+Sobre las variables tenemos $\{1,\ldots,T\}$ el horizonte de tiempo del problema y $N$ la cantidad de usinas el\'ectricas. Para distinguir usinas hidroel\'ectricas de termoel\'ectricas, consideraremos la siguiente uni\'on, $N_{\cT} \cup N_{\cH} = \{1,\ldots,N\}$, donde $N_{\cT}$ es el conjunto de \'indices de usinas termoel\'ectricas y $N_{\cH}$ el conjunto de \'indices de usinas hidroel\'ectricas.
+
+Sobre las restricciones, sea $d=(d_1,\ldots,d_T)$ la demanda esperada por unidad de tiempo. Adem\'as, para la usina $i\in\{1,\ldots,N\}$ tenemos $\om^i\in\Omega_i\subset\RR^{n_i}$ par\'ametros de producci\'on, $p^i:\RR^{n_i}\arr\RR^T$ la producci\'on de la usina $i$ y $C_i:\RR^{n_i}\arr\RR$ el costo de producci\'on de la usina $i$. La restricci\'on de demanda es 
+$$\cD=\left\{\om\in\Rn\;\left|\;\sum_{i=1}^{N}(p^i(\om^i))_t\geq d_t,\;t=1,\ldots,T\right\}\right.,$$
+donde $n=n_1+\cdots+n_N$.
+
+Entonces podemos escribir nuestro problema como
+\begin{equation}\label{problemaprimal}
+\left\{
+ \begin{array}{rl}
+  \mathrm{minimizar}&\sum_{i=1}^{N}C_i(\om^i)\\
+  \mathrm{sujeto\;a}&\sum_{i=1}^N(p^i(\om^i))_t\geq d_t\qquad t=1,\ldots,T,\;i=1,\ldots,N,\\
+&  \om^i\in\Omega_i.	
+ \end{array}
+\right.
+\end{equation}
+Los par\'ametros de producci\'on $\om^i$ dependen del tipo de generaci\'on de la $i$-\'esima usina y por lo general poseen algunas componentes discretas y otras continuas. En las Secciones \ref{sec:termo} y \ref{sec:hidro} detallaremos como son los $\om^i$ para cierto tipo de usinas termoel\'ectricas e hidroel\'ectricas, respectivamente.
+
+Como las variables del problema (\ref{problemaprimal}) son heterog\'eneas, este problema es complejo de resolver computacionalmente. A continuaci\'on veremos que el problema dual asociado posee una estructura que lo hace m\'as atractivo desde el punto de vista computacional. Por lo tanto procederemos a deducir el problema dual asociado a (\ref{problemaprimal}).
+
+Podemos ver a $\om\in\Omega:=\Omega_1\times\dots\times\Omega_N$ y sea $\mu\in\RR_{+}^T$, luego
+\begin{eqnarray*}
+L(\om,\mu)&=&\sum_{i=1}^N C_i(\om^i)+\sum_{i=1}^{T}\mu_t\left[ d_t-\sum_{i=1}^N(p^i(\om^i))_t\right]\\
+&=&\sum_{i=1}^N C_i(\om^i)+\la \mu,d\ra - \sum_{i=1}^N\la\mu,p^i(\om^i)\ra\\
+&=&\sum_{i=1}^N C_i(\om^i)+\sum_{i=1}^{N}\lla \mu,\frac{1}{N}d-p^i(\om^i)\rra.
+\end{eqnarray*}
+Entonces el dual es
+\begin{equation}\label{problemadual1}
+\left\{
+ \begin{array}{rl}
+ \mathop\mathrm{minimizar} & \vth(\mu)\\
+  \mbox{sujeto a}& \mu\in\Lambda.
+ \end{array}
+\right.
+\end{equation}
+donde $\vth(\mu)=-\inf_{\omega\in \Omega}L(\omega,\mu)$ si $\mu\in\Lambda=\{\mu\in\RR_+^T \mid\inf_{\omega \in \Omega}L(\omega,\mu)>-\infty\}$.
+Ahora, si $\Omega_i$ $i=1,\ldots,N$ son compactos entonces $\inf_{\om\in\Omega}L(\om,\mu)=\min_{\om\in\Omega}L(\om,\mu)>-\infty$ y por lo tanto $\Lambda=\RR_+^T$. Adem\'as
+\begin{eqnarray}
+\vth(\mu)=-\min_{\om\in\Omega}L(\om,\mu)&=&\max_{\om\in\Omega}\left\{\sum_{i=1}^{N}\left(\lla \mu,p^i(\om^i)-\frac{1}{N}d\rra - C_i(\om^i)\right)\right\}\nonumber\\
+&=&\sum_{i=1}^{N}\max_{\om^i\in\Omega_i}\left\{\lla \mu,p^i(\om^i)-\frac{1}{N}d\rra - C_i(\om^i)\right\}\nonumber\\
+&=&\sum_{i=1}^{N}\vth_i(\mu)-\la \mu,d\ra. \label{vthetai}
+\end{eqnarray}
+donde $\vartheta_i(\mu)=\max_{\om^i\in\Omega_i}\{\la p^i(\om^i),\mu\ra-C_i(\om^i)\}$. Por Teorema \ref{danskin}, obtenemos que $\vartheta_i$ son funciones convexas. Por lo tanto $\vartheta$ tambi\'en es convexa por ser suma de funciones convexas, como establece el Teorema \ref{sumfunconv}.
+
+Entonces el problema dual resulta:
+
+\begin{equation}\label{problemadual2}
+\left\{
+ \begin{array}{rl}
+\mathop\mathrm{minimizar} & \vth(\mu)\\
+  \mbox{sujeto a}& \mu\geq 0
+ \end{array}
+\right.
+\end{equation}
+y $\bar{\mu}$ es soluci\'on si y solo si $0\in\partial\vth(\bar{\mu})+\cN_{\RR_{+}^T}(\bar{\mu})$, o sea, si existe $\bar{s}\in\partial\vth(\bar{\mu})$ tal que $-\bar{s}\in\cN_{\RR_{+}^T}(\bmu)$.
+
+Usando los Teoremas \ref{sumfunconv} y \ref{danskin} obtenemos que $s\in\partial\vth(\mu)$ si y solo si \linebreak $s=s^1+\ldots+s^N-d$ con 
+$$s^i\in\partial\vth_i(\mu)=\mathrm{conv}\left\{p^i(\om^i)\mid \vth_i(\mu)=\la p^i(\om^i),\mu\ra-C_i(\om^i)\right\},$$
+en particular si en $\om^i$ se alcanza el m\'aximo de $\la p^i(\om^i),\mu\ra-C_i(\om^i)$, entonces \linebreak $p^i(\om^i)\in\partial\vth_i(\mu)$.
+Adem\'as, por la caracterizaci\'on que obtuvimos en la ecuaci\'on (\ref{cononormal}) de la Observaci\'on \ref{obse:ortante}, obtenemos que
+$$\cN_{\RR^T_+}(\bmu)=\{s\mid \la s,\bmu\ra=0,\;s_t\leq 0\; t=1,\ldots,T\}.$$
+
+
+
+% As\'i existe $\bar{s}\in\partial\vth(\bar{\mu})$ tal que $-\bar{s}\in\cN_{\RR_{+}^T}(\bmu)$, $\la \bar{s},\bmu\ra=0$ y $\bar{s}_t\geq 0\;\forall\,t$ y si $\bar{s}\in\partial\vth(\bmu)$ tal que $\la \bar{s},\bar{\bmu}\ra=0$ y $\bar{s}_t\geq 0\;\forall\,t$, entonces $0\in\partial\vth(\bmu)+\cN_{\RR_{+}^T}(\bmu)$, por lo tanto $\bmu$ es soluci\'on.
+
+
+Por lo tanto $\bmu$ es soluci\'on si y solo si existe $\bar{s}=\bar{s}^1+\ldots+\bar{s}^N-d$ con $\bar{s}^i\in\partial\vth_i(\bmu)$ tal que $\la \bar{s},\bmu\ra=0$, $\bar{s}_t\geq 0\;\forall\,t$.
+
+
+Entonces para poder resolver el problema (\ref{problemadual2}) tengo que resolver los problemas independientes $\max_{\om^i\in\Omega_i}\{\la p^i(\om^i),\mu\ra-C_i(\om^i)\}$ para as\'i encontrar las funciones $\vartheta_i(\mu)$, y luego encontrar la soluci\'on $\bmu$, mediante la minimizaci\'on de la funci\'on $\vartheta(\mu)$, que en nuestro problema en particular lo resolveremos utilizando el m\'etodo de haces.
+
+Finalmente queda obtener la soluci\'on para nuestro problema primal (\ref{problemaprimal}), en el que las restricciones vienen dadas por las propiedades de las usinas. Una vez que encuentre $\bmu$ soluci\'on del problema 
+$$ \mathop{\mathrm{minimizar}}_{\mu\in\RR^T_+}\;\vartheta (\mu),$$
+recobramos $\bar{\om}\in\Omega$ resolviendo
+$$\displaystyle{\mathop{\mathrm{minimizar}}_{\om\in\Omega}}\;L(\om,\bmu),$$ 
+tal como se detall\'o en la Observaci\'on \ref{obs:solucion}.
+
+Resumiendo, para resolver el problema (\ref{problemaprimal}) usaremos la relajaci\'on Lagrangiana, o sea, basta resolver el problema (\ref{problemadual2}). Por (\ref{vthetai}) sabemos que $\vth$ es una suma de funciones independientes, entonces podemos calcular independientemente cada uno de estos $\vth_i$.
+
+Dado $\mu$, la caja negra de $\vth_i$ nos retornar\'a $\vth_i(\mu)=\la p^i(\bar\om^i),\mu\ra-C_i(\bar\om^i)$ y \linebreak $s^i(\mu)=p^i(\bar\om^i)$ donde $\bar\om^i$ es soluci\'on de 
+\begin{equation}\label{problema_vth_i}
+\left\{
+ \begin{array}{rl}
+\mathop\mathrm{minimizar} & C_i(\om^i)-\la p^i(\om^i),\mu\ra\\
+  \mbox{sujeto a}& \omega^i\in\Omega_i.
+ \end{array}
+\right.
+\end{equation}
+Por lo tanto, dado $\mu$, la caja negra para $\vth$ debe llamar a las cajas negras de los $\vth_i$ y retornar\'a
+$$\vth(\mu)=\sum_{i=1}^{N}\vth_i(\mu)-\la \mu,d\ra,\quad s(\mu)=\sum_{i=1}^{N}s^i(\mu)-d.$$
+
+Ahora en las 2 pr\'oximas secciones desarrollaremos el problema (\ref{problema_vth_i}) para usinas termoel\'ectricas e hidroel\'ectricas.
+
+\section{Usinas Termoel\'ectricas}\label{sec:termo}
+
+En este problema para usinas termoel\'ectricas, o sea $i\in N_\cT$, tenemos las restricciones $u_{i,t}=1$ si la usina $i$ est\'a funcionando en el tiempo $t$ y $u_{i,t}=0$ si est\'a apagada. Una funci\'on del costo de producci\'on $f_i(\cdot)$, que crece en relaci\'on de la energ\'ia generada $p_{i,t}$, tambi\'en estas usinas tienen un costo de encendido, digamos $h_i$, por lo tanto definiremos $q_{i,t}$ una variable que nos indique el cambio de apagado a encendido de la usina y que valga $q_{i,t}=1$ si $u_{i,t-1}=0$ y $u_{i,t}=1$, siendo $q_{i,t}=0$ en los otros casos. Adem\'as la producci\'on $p_{t}^i$ tiene que estar entre ciertos valores $p_{min}$ y $p_{max}$.
+Escribiendo esto matem\'aticamente resulta
+\begin{equation}\label{rt1}
+u_{i,t}\in\{0,1\},
+\end{equation}
+\begin{equation}\label{rt2}
+q_{i,t}\geq u_{i,t}-u_{i,t-1},\mbox{ y } q_{i,t}\in\{0,1\},
+\end{equation}
+\begin{equation}\label{rt3}
+p_{min}u_{i,t}\leq p_{t}^i\leq p_{max}u_{i,t}.
+\end{equation}
+
+Tomando $\om^i=(p_1^i,\ldots,p_T^i,u_{i,1},\ldots,u_{i,T},q_{i,1},\ldots,q_{i,T})$, la funci\'on de costo queda
+\begin{equation}\label{costot}
+C_i(\om^i)=\sum_{t=1}^{T} f_i(p_{t}^i)-f_i(0)+u_{i,t}f_i(0)+h_i q_{i,t},
+\end{equation}
+donde $f_i$ es una funci\'on de costo af\'in por partes, o sea
+$$f_i(y)=\max_{1\leq k\leq K_i}\{c_k^i y+\delta_k^i\}\quad\mbox{para } y\in\RR,$$
+donde $K_i\in\mathbbm{N}$, $c_k^i, \delta_k^i\in\RR$.
+
+Notemos que las restricci\'ones $u_{i,t}$ y $q_{i,t}$, es decir, el estado (encendido o apagado) de la usina $i$ en el tiempo $t$ y el cambio de estado, son restricciones que est\'an en el conjunto discreto $\{0,1\}$ y los m\'etodos matem\'aticos para resolver este tipo de problema no son simples. Para simplificar el problema escribimos las restricciones (\ref{rt1}) y (\ref{rt2}) en el continuo $[0,1]$ (para esto ver nota al final de la secci\'on). Luego estas restricciones quedar\'ian de la siguiente manera,
+
+\begin{equation}\label{rt4}
+u_{i,t}\in[0,1].
+\end{equation}
+
+\begin{equation}\label{rt5}
+ q_{i,t}\geq u_{i,t} - u_{i,t-1},\quad q_{i,t}\in[0,1].
+\end{equation}
+
+
+Entonces el problema queda
+
+\begin{equation}\label{problematermo}
+\displaystyle{\mathop{\mathrm{minimizar}}_{\om^i\in\Omega_i}\left\{\sum_{t=1}^T f_i(p_t^i)-f_i(0)+u_{i,t}f_i(0)+h_iq_{i,t}-\mu_t p_t^i\right\}},
+\end{equation}
+donde
+$$\Omega_i=\{(p_1^i,\ldots,p_T^i,u_{i,1},\ldots,u_{i,T},q_{i,1},\ldots,q_{i,T})\mid \mbox{vale (\ref{rt3}), (\ref{rt4}), (\ref{rt5})}\}$$
+donde cada uno de estos $\Omega_i$ resulta ser un conjunto compacto, ya que las variables $u_{i,t}$ y $q_{i,t}$ se encuentran en el compacto $[0,1]$ y las variables de producci\'on $p_{i,t}$ est\'an en el compacto $[0,p_{max}]$ para todo $t=1,\ldots,T$.
+
+
+Por lo tanto usando las definiciones particulares de $\Omega_i$ y $f_i(y)$ en (\ref{problematermo}), obtenemos que el problema es
+
+$$\mathop{\mathrm{minimizar}}_{\om^i\in\Omega_i}\left\{\sum_{t=1}^T\left(\max_{1\leq k\leq K_i}\{c_k^i p_t^i+\delta_k^i\} -f_i(0)+u_{i,t}f_i(0)+h_i q_{i,t}-\mu_t p_t^i\right)\right\}.$$
+
+
+Ahora usando la Proposici\'on \ref{propvar}, podemos pasar el m\'aximo que se encuentra dentro de la sumatoria como una restricci\'on del problema y entonces (\ref{problema_vth_i}) es equivalente a resolver
+
+\begin{equation}\label{problematermo2}
+\left\{
+ \begin{array}{rl}
+  \displaystyle{\mathop{\mathrm{minimizar}}_{(\om^i,\alpha_1^i,\ldots,\alpha_T^i)}}&\left\{\sum_{t=1}^T\left(\alpha_t^i+u_{i,t}f_i(0)+h_i q_{i,t}-\mu_t p_t^i\right)-Tf_i(0)\right\}\\
+  \mathrm{sujeto\;a}&c_k^i p_t^i+\delta_k^i\leq\alpha_t^i, \quad k=1,\ldots,K_i,\\
+&  \om^i\in\Omega_i.
+ \end{array}
+\right.
+\end{equation}
+
+Finalmente para poder resolver computacionalmente este problema, queda planteado de la si\-guien\-te manera:
+
+\begin{equation}\label{problematermo3}
+\left\{
+ \begin{array}{rl}
+  \displaystyle\mathop{\mathrm{minimizar}}_{x\in\RR^{4T}}&F(x)\\
+  \mathrm{sujeto\;a}& Ax\leq b,\\
+  & lb\leq x\leq ub.
+ \end{array}
+\right.
+\end{equation}
+
+
+%\begin{equation}\label{problematermo3}
+%\left\{
+% \begin{array}{rl}
+%  \displaystyle\mathop{\mathrm{minimizar}}_{\tilde{\om}^i\in\RR^{4T}}& \{\la %v,\tilde{\om}^i\ra-Tf_i(0)\}\\
+%  \mathrm{s.\;a}& A\tilde{\om}^i\leq b\\
+%  & lb\leq\tilde{\om}^i\leq ub	
+% \end{array}
+%\right.
+%\end{equation}
+
+donde 
+$$x=(p_1^i,\ldots,p_T^i,u_{i,1},\ldots,u_{i,T},q_{i,1},\ldots,q_{i,T},\alpha_1^i,\ldots,\alpha_T^i)^\top\in\RR^{4T},$$
+
+$$F(x)=\la v, x\ra-Tf_i(0),$$
+
+$$v=(-\mu_1,\ldots,-\mu_T,\underbrace{f_i(0),\ldots,f_i(0)}_{T},\underbrace{h_i,\ldots,h_i}_{T},\underbrace{1,\ldots,1}_{T})\in\RR^{4T},$$
+
+$$A=\left[
+\begin{array}{cccc}
+0&Z&-I&0\\
+I&p_{min} I&0&0\\
+I&-p_{max} I&0&0\\
+c^i_1 I&0&0&-I\\
+\vdots&\vdots&\vdots&\vdots\\
+c^i_{K_i} I&0&0&-I
+\end{array}
+\right]\in\RR^{(3+K_i)T\times 4T},$$
+
+con 
+$$Z=\left[
+\begin{array}{rrllr}
+ 1 &  & &  & 0\\
+  -1 & 1 &  & & \\
+   &  \ddots & \ddots &    &\\
+&&\ddots&\ddots&\\
+0 &  &  & -1 & 1
+\end{array}
+\right]
+\in\RR^{T\times T},$$
+ 
+
+$$b=( \underbrace{u_{i,0},0,\ldots,0}_T, \underbrace{0,\ldots,0}_T, \underbrace{0,\ldots,0}_T, \underbrace{-\bar{\delta}_1,-\bar{\delta}_2,\ldots,-\bar{\delta}_k}_{K\times T})^\top,$$
+
+con $\bar{\delta}_j=(\delta_j^i,\ldots,\delta_j^j)^\top\in\RR^T,$
+
+$$lb=( \underbrace{-\infty,\ldots,-\infty}_T, \underbrace{0,\ldots,0}_T, \underbrace{0,\ldots,0}_T, \underbrace{-\infty,\ldots,-\infty}_T)^\top,$$
+
+$$ub=( \underbrace{\infty,\ldots,\infty}_{T}, \underbrace{1,\ldots,1}_{T}, \underbrace{1,\ldots,1}_T, \underbrace{\infty,\ldots,\infty}_T)^\top.$$
+
+En esta secci\'on cuando ten\'iamos restricciones en el discreto $\{0,1\}$ pudimos tomarlas como restricciones en el continuo $[0,1]$ ya que existen algoritmos que nos permiten realizar la optimizaci\'on en el continuo $[0,1]$ y recuperar un elemento en el disctreto $\{0,1\}$, como por ejemplo el M\'etodo Branch and Cut. La idea de este m\'etodo es que si se tiene el problema 
+\begin{equation}\label{prodis}
+\mathop{\mathrm{minimizar}}_{x\in\{0,1\}^n} f(x),
+\end{equation}
+resolvemos el problema asociado
+\begin{equation}\label{procont}
+\mathop{\mathrm{minimizar}}_{x\in[0,1]^n} f(x),
+\end{equation}
+Una vez que se obtiene $x^0$ soluci\'on de (\ref{procont}) definimos $$\mathcal{J}=\{i_1,\ldots,i_\ell\}=\{i\in\{1,\ldots,n\}\mid x^0_i\notin\{0,1\}\}.$$ Entonces definimos $\tilde{x}^1$ soluci\'on del problema 
+
+\begin{equation}
+\left\{
+ \begin{array}{rl}
+  \displaystyle\mathop{\mathrm{minimizar}} & f(x)\\
+  \mathrm{sujeto\;a}& x_i=x_i^0 \mbox{ si } i\notin\mathcal{J},\\
+						  & x_{i_1}=0,\\
+						  & x_i\in[0,1]\mbox{ si } i\in\mathcal{J}\mbox{ y } i\neq i_1, 
+ \end{array}
+\right.
+\end{equation}
+y $\hat{x}^1$ soluci\'on del problema 
+\begin{equation}
+\left\{
+ \begin{array}{rl}
+  \displaystyle\mathop{\mathrm{minimizar}} & f(x)\\
+  \mathrm{sujeto\;a}& x_i=x_i^0 \mbox{ si } i\notin\mathcal{J},\\
+						  & x_{i_1}=1,\\
+						  & x_i\in[0,1]\mbox{ si } i\in\mathcal{J}\mbox{ y } i\neq i_1, 
+ \end{array}
+\right.
+\end{equation}
+luego tomamos $x^1=\tilde{x}^1$ si $f(\tilde{x}^1)<f(\hat{x}^1)$ o $x^1=\hat{x}^1$ si $f(\hat{x}^1)<f(\tilde{x}^1)$.
+Despues de esto volvemos a realizar el proceso reemplazando $x^0$ por $x^1$, $i_1$ por $i_2$ y $\mathcal{J}$ por $\mathcal{J}\backslash\{i_1\}$, obteniendo as\'i $x^2$. De esta forma se corrigen todas las coordenadas con $i_k\in\mathcal{J}$ y por lo tanto se obtiene $x^\ell\in\{0,1\}^n$.
+
+
+\section{Usina Hidroel\'ectrica}\label{sec:hidro}
+
+Para las usinas hidroel\'ectricas, o sea $i\in N_\cH$, la restricci\'on m\'as importante es la ecuaci\'on de balance de la reserva:
+\begin{equation}\label{rh1}
+v_{i,t+1}=v_{i,t}+a_{i,t}-q_{i,t}-s_{i,t}(v_{i,t})-e_{i,t}(v_{i,t}),\quad t=1,\ldots,T,
+\end{equation}
+donde para el dique $i$ en el tiempo $t$, denotamos por $v_{i,t}$ al volumen de agua, $a_{i,t}$ el ingreso natural de agua (por lluvias, afluentes, etc.), $q_{i,t}$ al agua que fluye por la(s) turbina(s), $s_{i,t}$ al agua que es desalojada del dique que no pasa por la(s) turbina(s) y $e_{i,t}$ al agua evaporada. Y tambi\'en existe una restricci\'on respecto al volumen de agua
+\begin{equation}\label{rh2}
+v_{min}\leq v_{i,t},
+\end{equation}
+donde $v_{min}$ es el volumen m\'inimo de agua con el que se permite hacer funcionar las turbinas.
+
+Entonces denotamos $$v_i=(v_{i,1},\ldots,v_{i,T})^\top,$$ $$q_i=(q_{i,1},\ldots,q_{i,T})^\top,$$ $$a_i=(a_{i,1},\ldots,a_{i,T})^\top,$$ $$s_i(v_i)=(s_{i,1}(v_{i,1}),\ldots,s_{i,T}(v_{i,T}))^\top,$$ $$e_i=(e_{i,1}(v_{i,1}),\ldots,e_{i,T}(v_{i,T}))^\top.$$
+Por lo tanto podemos decir que las restricciones quedan
+$$\Omega_i=\{\om^i=(v_i,v_{T+1},q_i)^\top\mid \mbox{vale (\ref{rh1}), (\ref{rh2})}\}.$$
+Para simplificar el modelo, supongamos que $$s_{i,t}(v_{i,t})=\max\{0,v_{i,t}-v_{max}\},$$
+donde $v_{max}$ es el volumen m\'aximo de agua en el dique antes de dejar salir agua sin turbinar. Tambi\'en supondremos
+que la variable de evaporaci\'on es una funci\'on lineal, i.e., $e_{i,t}(v_{i,t})=\epsilon_t v_{i,t}$ o matricialmente,
+ $$e_i=E v_i\; \mbox{con}\; E=
+\left[
+\begin{array}{ccccc}
+  \epsilon_1 & 0 & 0 & \cdots & 0 \\
+  0   & \epsilon_2 & 0 & \cdots & 0\\ 
+  \vdots & \vdots & \vdots & \ddots &  \vdots \\
+  0 & 0 & 0 & \cdots & \epsilon_T
+\end{array}\right]\in\RR^{T\times T},
+$$
+donde $\epsilon_t\;\mbox{para}\;t=1,\ldots,T$ es un coeficiente de evaporaci\'on.
+
+
+Para nuestro modelo supondremos que las funciones de costo y producci\'on son  
+$$C_i(\om^i)=\max_{1\leq k\leq K_i}\{\la c_i^k,\om^i\ra+\delta_i^k\},$$
+$$p^i(\om^i)=\min_{1\leq k\leq K_i}\{P_i^k\om^i+r_i^k\},$$
+donde $K_i\in\mathbbm{N}$, $P_i^k\in\RR^{T\times (2T+1)}$, $c_i^k\in\RR^{2T+1}$, $r_i^k\in\RR^{T}$ y $\delta_i^k\in\RR$.
+Entonces puedo reescribir la restricci\'on (\ref{rh1}) como
+\begin{equation}\label{rh3}
+\tilde{A}v_i+\zeta_T v_{T+1}+q_i+s_i(v_i)+Ev_i-a_i=0,
+\end{equation}
+con
+$$\tilde{A}=\left[
+\begin{array}{rrllr}
+-1 & 1 &  &  & 0\\
+  &-1 & 1 &  &  \\
+   &   & \ddots &  \ddots  &\\
+&&&-1&1\\
+0&&&&-1
+\end{array}
+\right]\in\RR^{T\times T},\quad
+\zeta_T=\left[\begin{array}{c} 0\\ \vdots\\0\\1\end{array}\right]\in\RR^T.$$
+
+Por lo tanto el problema (\ref{problema_vth_i}) queda como 
+$$\mathop{\mathrm{minimizar}}_{\om^i\in\Omega_i}\left\{\max_{1\leq k\leq  K_i}\{\la c_i^k,\om^i\ra+\delta_i^k\}-\sum_{t=1}^T\mu_t\min_{1\leq k\leq  K_i}(\{P_i^k\om^i+r_i^k\})_t\right\},$$
+cambiando el signo del segundo t\'ermino para obtener un m\'aximo dentro del m\'inimo, obtenemos
+$$\mathop{\mathrm{minimizar}}_{\om^i\in\Omega_i}\left\{\max_{1\leq k\leq  K_i}\{\la c_i^k,\om^i\ra+\delta_i^k\}+\sum_{t=1}^T\mu_t\max_{1\leq k\leq  K_i}(\{-P_i^k\om^i-r_i^k\})_t\right\}.$$
+
+Usando la Proposici\'on \ref{propvar} para pasar los m\'aximos como restricciones del problema, este resulta ser equivalente a 
+\begin{equation}\label{problemahidro1}
+\left\{
+\begin{array}{cl}
+\displaystyle\mathop{\mathrm{minimizar}}_{({\om}^i,\nu,\rho)\in\RR^{2T+1+1+T}}&\left\{\nu+\sum_{t=1}^T\mu_t\rho_t\right\}\\
+  \mathrm{sujeto\,\;a}& \la c_i^k,\om^i\ra+\delta_i^k\leq\nu\quad k=1,\ldots,K_i,\\
+  	&	-(P_i^k\om^i+r_i^k)\leq\rho\quad k=1,\ldots,K_i,\\
+  	&	\tilde{A}v_i+\zeta_T v_{T+1}+q_i+s_i(v_i)+Ev_i-a_i=0,\\
+  	&	v_{min}\leq v_{i,t}\quad t=1,\ldots,T+1, 	
+ \end{array}
+\right.
+\end{equation}
+ahora nos queda el incoveniente de que $s_i(v_i)$ no es una funci\'on diferenciable, lo cual no permitir\'ia ser resuelto mediante la aplicaci\'on de un m\'etodo computacional simple, por lo tanto podemos pensar en una aproximaci\'on $h_i$ de $s_i$ tal que en un entorno de $v_i=v_{max}$, que es donde falla la diferenciabilidad de $s_i$, sea diferenciable y se pegue suavemente a $s_i$.
+
+Por lo tanto definimos
+
+\begin{equation}
+h_i(v_i)=\left\{
+\begin{array}{ccc}
+0 & \mbox{si} & v_i\leq v_{max}-\vep,\\
+\frac{1}{4\vep}(v_i-v_{max}+\vep)^2 & \mbox{si} & v_{max}-\vep\leq v_i\leq v_{max}+\vep,\\
+v_i - v_{max} & \mbox{si} & v_{max}+\vep \leq v_i,
+\end{array}\right.
+\end{equation}
+donde $\vep$ es un valor peque\~no a elegir m\'as adelante, este valor lo elegimos de tal forma que sea un porcentaje peque\~no de la capacidad m\'axima del dique, pero tambi\'en este valor depender\'ia de la capacidad de paso de agua de las v\'alvulas. Para simplificar el modelo en nuestros problema lo fijaremos en un $5\%$ del valor $v_{max}$.
+
+Entonces podemos reescribir otra vez el problema, ahora agregando una nueva restricci\'on
+
+
+\begin{equation}\label{problemahidro2}
+\left\{  
+\begin{array}{cl}
+\displaystyle\mathop{\mathrm{minimizar}}_{(\om^i,\nu,\rho,s_i)\in\RR^{2T+1+1+T+T}}&\nu+\la\mu,\rho\ra\\
+  \mathrm{sujeto\, \;a}& \la c_i^k,\om^i\ra-\nu\leq -\delta_i^k \quad k=1,\ldots,K_i,\\
+  	&	-P_i^k\om^i-\rho\leq r_i^k\quad k=1,\ldots,K_i,\\
+  	&	\tilde{A}v_i+\zeta_T v_{T+1}+q_i+s_i+Ev_i-a_i=0,\\
+	&	h_i(v_i)-s_i=0,\\
+	&	v_{min}\leq v_{i,t}\quad t=1,\ldots,T+1.
+ \end{array}
+\right.
+\end{equation}
+
+Finalmente podemos reescribir este problema de la siguiente forma
+
+\begin{equation}\label{problemahidro3}
+\left\{
+\begin{array}{rl}
+\displaystyle\mathop{\mathrm{minimizar}}_{x}&F(x)\\
+  \mathrm{sujetos\;a}& c_{eq}(x)=0,\\
+  	&	Ax\leq b,\\
+  	&	A_{eq} x= b_{eq},\\
+	&  lb\leq x,
+ \end{array}
+\right.
+\end{equation}
+
+donde
+$$x=(v_i,v_{T+1},q_i,\nu,\rho,s_i)^\top\in\RR^T\times\RR\times\RR^T\times\RR\times\RR^T\times\RR^T,$$
+$$F(x)=\nu+\la\mu,\rho\ra,$$
+$$c_{eq}(x)=h_i(v_i)-s_i,$$
+
+%\[
+%\begin{array}{cl}
+% A=\left[\begin{array}{c|c|c|c}
+%          (c_i^1)^\top& -1 & 0\cdots 0& 0\cdots 0 \\
+%     \vdots& \vdots& \vdots& \vdots \\
+%    (c_i^K)^\top& -1 & 0\cdots 0& 0\cdots 0 \\
+%\hline    -P_i^1 & 0 & -I & \\
+%      \vdots& \vdots& \vdots& 0 \\
+%    -P_i^K & 0 & -I & 
+%         \end{array}
+%\right] & \begin{array}{c}
+% \left.\vphantom{\begin{array}{c} (c_i^1)^\top\\ \vdots\\ %(c_i^1)^T\end{array}}\right\}K\\
+% \left.\vphantom{-P_i^1}\right\}T\\
+%       \vphantom{\vdots}\\
+% \left.\vphantom{-P_i^1}\right\}T \end{array} \\[-0.3cm]
+%\qquad\underbrace{\phantom{-P_i^K}}_{2T}\quad\underbrace{\phantom{0}}_{1}\quad\underbrace{\phantom{-I}}_{T}\quad\underbrace{\phantom{0\cdots %0}}_{T}&
+%\end{array}\]
+
+
+
+\[
+\begin{array}{cl}
+ A=\left[\begin{array}{c|c|c|c}
+          & & & \\
+	  A_{11}& A_{12}& A_{13}& A_{14} \\
+    & & & \\
+\hline    &  &  & \\
+      A_{21}& A_{22}& A_{23}& A_{24} \\
+    &  &  & 
+         \end{array}
+\right] & \begin{array}{l}
+ \left. \vphantom{\begin{array}{c} c\\ A_1\\ c\end{array}} \right\} K_i\\
+ \left. \vphantom{\begin{array}{c} c\\ A_1\\ c\end{array}} \right\} K_iT
+ \end{array} \\[-0.3cm]
+\hspace{.9cm}\underbrace{\phantom{A_{11}}}_{2T+1}\;\,\underbrace{\phantom{A_{12}}}_{1}\;\,\underbrace{\phantom{A_{13}}}_{T}\;\underbrace{\phantom{A_{14}}}_{T}&
+\end{array}\]
+
+$$A\in \RR^{K_i(T+1)\times(4T+2)},$$
+
+donde
+
+$$A_{11}=\left[
+\begin{array}{c}
+(c_i^1)^\top\\
+ \vdots\\
+(c_i^{K_i})^\top\\
+\end{array}
+\right]\in\RR^{K_i\times(2T+1)},
+\qquad
+A_{12}=\left[
+\begin{array}{c}
+-1\\
+ \vdots\\
+-1\\
+\end{array}
+\right]\in\RR^{K_i\times1},$$
+
+$$A_{13}=A_{14}=\left[
+\begin{array}{lcr}
+0&\cdots &0\\
+\vdots& \ddots &\vdots\\
+0&\cdots & 0\\
+\end{array}
+\right]\in\RR^{K_i\times T},$$
+
+
+$$A_{21}=\left[
+\begin{array}{c}
+-P_i^1\\
+ \vdots\\
+-P_i^{K_i}\\
+\end{array}
+\right]\in\RR^{K_i T\times (2T+1)},
+\qquad
+A_{22}=\left[
+\begin{array}{c}
+0\\
+ \vdots\\
+0\\
+\end{array}
+\right]\in\RR^{K_i T\times 1},$$
+
+$$A_{23}=\left[
+\begin{array}{c}
+-I\\
+ \vdots\\
+-I\\
+\end{array}
+\right]\in\RR^{K_i T\times T},
+\quad
+A_{24}=\left[
+\begin{array}{lcr}
+0&\cdots &0\\
+\vdots& \ddots &\vdots\\
+0&\cdots & 0\\
+\end{array}
+\right]\in\RR^{K_iT\times T}.$$
+
+
+%$$A=\left[
+%\begin{array}{rccl}
+%-c_i^1-&-1&0,\cdots,0&0,\cdots,0\\
+%\vdots&\vdots&\vdots&\vdots \\
+%-c_i^K-&-1&0,\cdots,0&0,\cdots,0\\
+%-P_i^1&0&-I&0\\
+%\vdots&\vdots&\vdots&\vdots\\
+%-P_i^K&0&-I&0
+%\end{array}
+%\right]$$
+
+$$b=\left[\begin{array}{c} -\delta_i^1\\ \vdots\\-\delta_i^{K_i} \\r_i^1 \\ \vdots\\ r_i^{K_i}\end{array}\right]\in\RR^{K_i(T+1)},$$
+
+$$A_{eq}=\left[
+\begin{array}{cccccc}
+& & & 0 & & \\
+\tilde{A}+E&\zeta_T&I&\vdots&0&-I\\
+& & & 0 & & 
+\end{array}
+\right]\in\RR^{T\times (4T+2)},$$
+
+
+$$b_{eq}=a_i\in\RR^T,$$
+ y $$lb=(\underbrace{v_{min},\ldots,v_{min}}_{T+1},\underbrace{-\infty,\ldots,-\infty}_{3T+1})^\top\in\RR^{4T+2}.$$
+
+\chapter*{Conclusi\'on}
+\addcontentsline{toc}{chapter}{Conclusi\'on}
+
+Como conclusi\'on final de este trabajo podemos decir que se logr\'o el primer objetivo del mismo que era plantear y resolver el problema de optimizaci\'on de producci\'on de energ\'ia para un modelo que consista de usinas hidroel\'ectricas y termoel\'ectricas. Tambi\'en en este trabajo se realiz\'o una introducci\'on a la teor\'ia de optimizaci\'on convexa no diferenciable y a los m\'etodos computacionales del tipo caja negra, necesarios para la resoluci\'on de este tipo de problemas. Respecto al problema planteado, se lleg\'o  a este modelo en particular con el objetivo de utilizarlo con datos reales obtenidos de las usinas el\'ectricas de la provincia de C\'ordoba y se consigui\'o crear un m\'etodo y un algoritmo funcional que ser\'ia aplicable, previa una adaptaci\'on de los datos existentes, para alg\'un sistema de producci\'on de energ\'ia el\'ectrica que consista de este tipo de usinas. Luego mediante este m\'etodo se obtendr\'ia como resultado las restricciones \'optimas para minimizar los costos. El modelo que se logr\'o construir es una simplificaci\'on de los modelos utilizados por distintas empresas en varios pa\'ises para la minimizaci\'on de costos con datos reales (ver \cite{BelSouPinSag:03}, \cite{blondel1991} y \cite{gollmer2000unit}) en los cuales se logr\'o obtener soluciones a estos problemas.
+
+
+
+%\appendix
+%\chapter{C\'odigos en MATLAB}
+%
+%\begin{verbatim}
+%
+%
+%\end{verbatim}
+
+\begin{thebibliography}{10}
+\addcontentsline{toc}{chapter}{Bibliograf\'ia}
+
+\bibitem{BelSouPinSag:03}
+Alexandre Belloni, Andre L. Diniz~Souto Lima, M.~Elvira~Pi{\~n}eiro Maceira,
+  and Claudia~A. Sagastiz{\'a}bal.
+\newblock {\em Bundle relaxation and primal recovery in unit commitment problems.}
+  {T}he {B}razilian case.
+\newblock Annals OR, 120(1-4):21--44, 2003.
+
+\bibitem{blondel1991}
+H.~Blondel and A.~Renaud.
+\newblock {\em D{\'e}composition par les prix et lagrangien augment{\'e}: Une
+  association efficace pour le traitement des probl{\`e}mes de production.}
+\newblock Bulletin EDF, S{\'e}rie C, 4:23--43, 1991.
+
+\bibitem{BonGilLemSag:NO:06}
+J.~F. Bonnans, J.~C. Gilbert, C.~Lemar{\'e}chal, and C.~A. Sagastiz{\'a}bal.
+\newblock {\em Numerical optimization}.
+\newblock Universitext. Springer-Verlag, Berlin, second edition, 2006.
+\newblock Theoretical and practical aspects.
+
+\bibitem{gollmer2000unit}
+R.~Gollmer, M.P. Nowak, W.~R{\"o}misch, and R.~Schultz.
+\newblock {\em Unit commitment in power generation--a basic model and some  extensions.}
+\newblock Annals of Operations	 Research, 96(1):167--189, 2000.
+
+\bibitem{haarala2004new}
+M.~Haarala, K.~Miettinen, and MM~M{\"a}kel{\"a}.
+\newblock {\em New limited memory bundle method for large-scale nonsmooth
+  optimization.}
+\newblock Optimization Methods and Software, 19(6):673--692, 2004.
+
+\bibitem{helmberg2002spectral}
+C.~Helmberg and KC~Kiwiel.
+\newblock {\em A spectral bundle method with bounds.}
+\newblock Mathematical Programming, 93(2):173--194, 2002.
+
+\bibitem{IzmSol:Otim1}
+A.~Izmailov and M.~Solodov.
+\newblock {\em Otimiza\c{c}\~ao--Condi\c{c}\~oes de Otimalidade, Elementos de An\'alise Convexa e de Dualidade}.
+\newblock Volume 1 
+IMPA, Rio de Janeiro, 2005.
+
+\bibitem{merlin1983new}
+A.~Merlin and P.~Sandrin.
+\newblock {\em A new method for unit commitment at electricite de france.}
+\newblock Power Apparatus and Systems, IEEE Transactions on,
+  (5):1218--1225, 1983.
+
+\bibitem{padhy2004unit}
+N.P. Padhy.
+\newblock {\em Unit commitment-a bibliographical survey.}
+\newblock Power Systems, IEEE Transactions on, 19(2):1196--1205, 2004.
+
+\bibitem{RocWet:VA:97}
+R.~T. Rockafellar and R.~J.~B. Wets.
+\newblock {\em Variational Analysis}.
+\newblock Springer-Verlag, New York, 1997.
+
+\bibitem{Sag:CIMPA}
+C.~A.~Sagastiz\'abal.
+\newblock {\em Algorithms for Nonsmooth Optimization. Application to energy problems}.
+\newblock Mini-course, CIMPA School, Lima, 2004.
+
+\bibitem{sheble1994unit}
+G.B. Sheble and G.N. Fahd.
+\newblock {\em Unit commitment literature synopsis.}
+\newblock Power Systems, IEEE Transactions on, 9(1):128--135, 1994.
+
+\end{thebibliography}
+
+
+
+\end{document}          

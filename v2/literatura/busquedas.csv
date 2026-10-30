@@ -1,0 +1,354 @@
+﻿id,fecha,base,consulta,n,nota,tema
+1,2026-10-01,CrossRef,Bobrow Dubowsky Gibson 1985 Time-optimal control of robotic manipulators along specified paths,3,,semilla S01
+2,2026-10-01,CrossRef,Shin McKay 1985 Minimum-time control of robotic manipulators with geometric path constraints,3,,semilla S02
+3,2026-10-01,CrossRef,Verscheure Demeulenaere Swevers De Schutter Diehl 2009 Time-optimal path tracking for robots convex optimization approach,3,,semilla S03
+4,2026-10-01,CrossRef,Lipp Boyd 2014 Minimum-time speed optimisation over a fixed path,3,,semilla S04
+5,2026-10-01,CrossRef,Velenis Tsiotras 2005 optimal velocity profile generation given acceleration limits,3,,semilla S05
+6,2026-10-01,CrossRef,Velenis Tsiotras 2008 Minimum-time travel for a vehicle with acceleration limits theoretical analysis receding-horizon,3,,semilla S06
+7,2026-10-01,CrossRef,Casanova Sharp Symonds 2000 Minimum time manoeuvring significance of yaw inertia,3,,semilla S07
+8,2026-10-01,CrossRef,Kelly Sharp 2010 Time-optimal control of the race car numerical method to emulate the ideal driver,3,,semilla S08
+9,2026-10-01,CrossRef,Theodosis Gerdes 2012 Nonlinear optimization of a racing line for an autonomous racecar using professional driving techniques,3,,semilla S09
+10,2026-10-01,CrossRef,Kapania Subosits Gerdes 2016 sequential two-step algorithm for fast generation of vehicle racing trajectories,3,,semilla S10
+11,2026-10-01,CrossRef,Heilmeier Wischnewski Hermansdorfer Betz Lienkamp Lohmann 2020 Minimum curvature trajectory planning and control for an autonomous race car,3,,semilla S11
+12,2026-10-01,CrossRef,Christ Wischnewski Heilmeier Lohmann 2021 Time-optimal trajectory planning race car variable tyre-road friction coefficients,3,,semilla S12
+13,2026-10-01,CrossRef,Rucco Notarstefano Hauser 2012 Computing minimum lap-time trajectories for a single-track car with load transfer,3,,semilla S13
+14,2026-10-01,CrossRef,Perantoni Limebeer 2014 Optimal control for a Formula One car with variable parameters,3,,semilla S14
+15,2026-10-01,CrossRef,Limebeer Perantoni Optimal control of a Formula One car on a three-dimensional track,3,,semilla S15
+16,2026-10-01,CrossRef,Lot Biral 2014 curvilinear abscissa approach for the lap time optimization of racing vehicles,3,,semilla S16
+17,2026-10-01,CrossRef,Lot Dal Bianco 2016 Lap time optimisation of a racing go-kart,3,,semilla S17
+18,2026-10-01,CrossRef,Dal Bianco Bertolazzi Biral Massaro 2019 Comparison of direct and indirect methods for minimum lap time optimal control problems,3,,semilla S18
+19,2026-10-01,CrossRef,Limebeer Rao 2015 Faster higher and greener vehicular optimal control,3,,semilla S19
+20,2026-10-01,CrossRef,Filippov 1962 On certain questions in the theory of optimal control,3,,semilla S20
+21,2026-10-01,CrossRef,Cesari 1983 Optimization theory and applications problems with ordinary differential equations,3,,semilla S21
+22,2026-10-01,CrossRef,Vinter 2000 Optimal Control Birkhauser,3,,semilla S22
+23,2026-10-01,CrossRef,Clarke 2013 Functional Analysis Calculus of Variations and Optimal Control,3,,semilla S23
+24,2026-10-01,CrossRef,Ioffe 1977 On lower semicontinuity of integral functionals,3,,semilla S24
+25,2026-10-01,CrossRef,Hartl Sethi Vickson 1995 survey of the maximum principles for optimal control problems with state constraints,3,,semilla S25
+26,2026-10-01,CrossRef,Maurer 1977 On optimal control problems with bounded state variables and control appearing linearly,3,,semilla S26
+27,2026-10-01,CrossRef,Bonnans Hermant 2009 second-order analysis optimal control pure state constraints mixed control-state constraints,3,,semilla S27
+28,2026-10-01,CrossRef,Gilbert 1977 Optimal periodic control a general theory of necessary conditions,3,,semilla S28
+29,2026-10-01,CrossRef,Bittanti Fronza Guardabassi 1973 Periodic control a frequency domain approach,3,,semilla S29
+30,2026-10-01,CrossRef,Hager 2000 Runge-Kutta methods in optimal control and the transformed adjoint system,3,,semilla S30
+31,2026-10-01,CrossRef,Dontchev Hager 1993 Lipschitzian stability in nonlinear control and optimization,3,,semilla S31
+32,2026-10-01,CrossRef,Dontchev Hager Veliov 2000 Second-order Runge-Kutta approximations in control constrained optimal control,3,,semilla S32
+33,2026-10-01,CrossRef,Malanowski Buskens Maurer 1998 Convergence of approximations to nonlinear optimal control problems,3,,semilla S33
+34,2026-10-01,CrossRef,Gong Ross Kang Fahroo 2008 Connections between the covector mapping theorem and convergence of pseudospectral methods,3,,semilla S34
+35,2026-10-01,CrossRef,Betts 2010 Practical methods for optimal control and estimation using nonlinear programming,3,,semilla S35
+36,2026-10-01,CrossRef,Braides 2002 Gamma-convergence for beginners,3,,semilla S36
+37,2026-10-01,CrossRef,Dal Maso 1993 An introduction to Gamma-convergence,3,,semilla S37
+38,2026-10-01,CrossRef,Dubins 1957 On curves of minimal length with a constraint on average curvature,3,,semilla S38
+39,2026-10-01,CrossRef,Reeds Shepp 1990 Optimal paths for a car that goes both forwards and backwards,3,,semilla S39
+40,2026-10-01,CrossRef,Boissonnat Cerezo Leblond 1994 Shortest paths of bounded curvature in the plane,3,,semilla S40
+41,2026-10-01,CrossRef,Andersson Gillis Horn Rawlings Diehl 2019 CasADi a software framework for nonlinear optimization and optimal control,3,,semilla S41
+42,2026-10-01,CrossRef,Wachter Biegler 2006 On the implementation of an interior-point filter line-search algorithm for large-scale nonlinear programming,3,,semilla S42
+43,2026-10-01,OpenAlex,Limebeer three-dimensional track minimum lap time,78,,semilla S15 (año 2019)
+44,2026-10-01,OpenAlex,Filippov existence theorem optimal control [title_and_abstract.search],50,25 devueltos; sin orden por relevancia (ruido alto); repetida con orden por relevancia,N0.1 existencia (Filippov–Cesari)
+45,2026-10-01,OpenAlex,existence of optimal controls state constraints [title_and_abstract.search],1275,25 devueltos; sin orden por relevancia (ruido alto); repetida con orden por relevancia,N0.1 existencia (Filippov–Cesari)
+46,2026-10-01,OpenAlex,existence minimum time optimal control problem [title_and_abstract.search],423,25 devueltos; sin orden por relevancia (ruido alto); repetida con orden por relevancia,N0.1 existencia (Filippov–Cesari)
+47,2026-10-01,OpenAlex,Filippov Cesari existence theorem convexity [title_and_abstract.search],4,4 devueltos; sin orden por relevancia (ruido alto); repetida con orden por relevancia,N0.1 existencia (Filippov–Cesari)
+48,2026-10-01,OpenAlex,existence optimal control differential inclusion compactness trajectories [title_and_abstract.search],9,9 devueltos; sin orden por relevancia (ruido alto); repetida con orden por relevancia,N0.1 existencia (Filippov–Cesari)
+49,2026-10-01,OpenAlex,lower semicontinuity integral functionals existence optimal control [title_and_abstract.search],15,15 devueltos; sin orden por relevancia (ruido alto); repetida con orden por relevancia,N0.1 existencia (Filippov–Cesari)
+50,2026-10-01,OpenAlex,mixed state control constraints maximum principle [title_and_abstract.search],79,25 devueltos; sin orden por relevancia (ruido alto); repetida con orden por relevancia,N0.2 restricciones mixtas y de estado
+51,2026-10-01,OpenAlex,optimal control mixed constraints necessary conditions [title_and_abstract.search],293,25 devueltos; sin orden por relevancia (ruido alto); repetida con orden por relevancia,N0.2 restricciones mixtas y de estado
+52,2026-10-01,OpenAlex,pure state constraints maximum principle regularity multiplier [title_and_abstract.search],1,1 devueltos; sin orden por relevancia (ruido alto); repetida con orden por relevancia,N0.2 restricciones mixtas y de estado
+53,2026-10-01,OpenAlex,state constrained optimal control junction conditions [title_and_abstract.search],19,19 devueltos; sin orden por relevancia (ruido alto); repetida con orden por relevancia,N0.2 restricciones mixtas y de estado
+54,2026-10-01,OpenAlex,nonsmooth maximum principle state constraints [title_and_abstract.search],71,25 devueltos; sin orden por relevancia (ruido alto); repetida con orden por relevancia,N0.2 restricciones mixtas y de estado
+55,2026-10-01,OpenAlex,optimal periodic control free period [title_and_abstract.search],180,25 devueltos; sin orden por relevancia (ruido alto); repetida con orden por relevancia,N0.3 periódico con tiempo libre
+56,2026-10-01,OpenAlex,periodic optimal control necessary conditions period [title_and_abstract.search],123,25 devueltos; sin orden por relevancia (ruido alto); repetida con orden por relevancia,N0.3 periódico con tiempo libre
+57,2026-10-01,OpenAlex,optimal periodic control existence [title_and_abstract.search],589,25 devueltos; sin orden por relevancia (ruido alto); repetida con orden por relevancia,N0.3 periódico con tiempo libre
+58,2026-10-01,OpenAlex,minimum time periodic orbit optimal control [title_and_abstract.search],31,25 devueltos; sin orden por relevancia (ruido alto); repetida con orden por relevancia,N0.3 periódico con tiempo libre
+59,2026-10-01,OpenAlex,optimal control periodic boundary conditions free final time [title_and_abstract.search],5,5 devueltos; sin orden por relevancia (ruido alto); repetida con orden por relevancia,N0.3 periódico con tiempo libre
+60,2026-10-01,OpenAlex,Dubins curves bounded curvature [title_and_abstract.search],34,25 devueltos; sin orden por relevancia (ruido alto); repetida con orden por relevancia,N0.4 Dubins y curvatura acotada
+61,2026-10-01,OpenAlex,closed curves bounded curvature [title_and_abstract.search],596,25 devueltos; sin orden por relevancia (ruido alto); repetida con orden por relevancia,N0.4 Dubins y curvatura acotada
+62,2026-10-01,OpenAlex,bounded curvature paths homotopy [title_and_abstract.search],25,25 devueltos; sin orden por relevancia (ruido alto); repetida con orden por relevancia,N0.4 Dubins y curvatura acotada
+63,2026-10-01,OpenAlex,Markov Dubins problem optimal control [title_and_abstract.search],31,25 devueltos; sin orden por relevancia (ruido alto); repetida con orden por relevancia,N0.4 Dubins y curvatura acotada
+64,2026-10-01,OpenAlex,curvature constrained shortest path corridor [title_and_abstract.search],3,3 devueltos; sin orden por relevancia (ruido alto); repetida con orden por relevancia,N0.4 Dubins y curvatura acotada
+65,2026-10-01,OpenAlex,Pestov Ionin curvature [title_and_abstract.search],3,3 devueltos; sin orden por relevancia (ruido alto); repetida con orden por relevancia,N0.4 Dubins y curvatura acotada
+66,2026-10-01,OpenAlex,"""existence theorem"" ""optimal control"" Filippov",254,25 devueltos (orden relevancia),N0.1 existencia (Filippov–Cesari)
+67,2026-10-01,OpenAlex,"""existence of optimal controls"" ""state constraints""",286,25 devueltos (orden relevancia),N0.1 existencia (Filippov–Cesari)
+68,2026-10-01,OpenAlex,"""existence"" ""minimum time"" ""optimal control"" ""state constraint""",402,25 devueltos (orden relevancia),N0.1 existencia (Filippov–Cesari)
+69,2026-10-01,OpenAlex,"""Filippov"" ""Cesari"" existence optimal solutions",171,25 devueltos (orden relevancia),N0.1 existencia (Filippov–Cesari)
+70,2026-10-01,OpenAlex,"""existence of optimal"" ""differential inclusions"" compactness",348,25 devueltos (orden relevancia),N0.1 existencia (Filippov–Cesari)
+71,2026-10-01,OpenAlex,"""lower semicontinuity"" ""integral functionals"" ""optimal control"" existence",365,25 devueltos (orden relevancia),N0.1 existencia (Filippov–Cesari)
+72,2026-10-01,OpenAlex,"""mixed constraints"" ""maximum principle"" ""optimal control""",267,25 devueltos (orden relevancia),N0.2 restricciones mixtas y de estado
+73,2026-10-01,OpenAlex,"""mixed state-control constraints"" ""necessary conditions""",84,25 devueltos (orden relevancia),N0.2 restricciones mixtas y de estado
+74,2026-10-01,OpenAlex,"""state constraints"" ""maximum principle"" survey",837,25 devueltos (orden relevancia),N0.2 restricciones mixtas y de estado
+75,2026-10-01,OpenAlex,"""state constrained"" ""optimal control"" ""junction""",144,25 devueltos (orden relevancia),N0.2 restricciones mixtas y de estado
+76,2026-10-01,OpenAlex,"""nonsmooth maximum principle"" ""state constraints""",48,25 devueltos (orden relevancia),N0.2 restricciones mixtas y de estado
+77,2026-10-01,OpenAlex,"""optimal periodic control""",359,25 devueltos (orden relevancia),N0.3 periódico con tiempo libre
+78,2026-10-01,OpenAlex,"""periodic optimal control"" period free",64,25 devueltos (orden relevancia),N0.3 periódico con tiempo libre
+79,2026-10-01,OpenAlex,"""optimal periodic control"" existence",109,25 devueltos (orden relevancia),N0.3 periódico con tiempo libre
+80,2026-10-01,OpenAlex,"""periodic"" ""minimum time"" ""optimal control"" ""free final time""",31,25 devueltos (orden relevancia),N0.3 periódico con tiempo libre
+81,2026-10-01,OpenAlex,"""optimal periodic"" trajectories ""unknown period""",1,1 devueltos (orden relevancia),N0.3 periódico con tiempo libre
+82,2026-10-01,OpenAlex,"""Dubins"" ""bounded curvature"" paths",332,25 devueltos (orden relevancia),N0.4 Dubins y curvatura acotada
+83,2026-10-01,OpenAlex,"""closed curves"" ""bounded curvature""",318,25 devueltos (orden relevancia),N0.4 Dubins y curvatura acotada
+84,2026-10-01,OpenAlex,"""bounded curvature"" paths ""homotopy""",246,25 devueltos (orden relevancia),N0.4 Dubins y curvatura acotada
+85,2026-10-01,OpenAlex,"""Markov-Dubins"" ""optimal control""",95,25 devueltos (orden relevancia),N0.4 Dubins y curvatura acotada
+86,2026-10-01,OpenAlex,"""curvature-constrained"" paths corridor",101,25 devueltos (orden relevancia),N0.4 Dubins y curvatura acotada
+87,2026-10-01,OpenAlex,"""bounded curvature"" ""turning number""",12,12 devueltos (orden relevancia),N0.4 Dubins y curvatura acotada
+88,2026-10-01,OpenAlex,"""optimal control problems with mixed constraints"" Clarke",56,25 devueltos (orden relevancia),"N0.2b mixtas (Clarke–de Pinho, revisiones)"
+89,2026-10-01,OpenAlex,"""mixed constraints"" ""Euler-Lagrange inclusion""",16,16 devueltos (orden relevancia),"N0.2b mixtas (Clarke–de Pinho, revisiones)"
+90,2026-10-01,OpenAlex,"""maximum principle"" ""state constraints"" revisited survey Arutyunov",9,9 devueltos (orden relevancia),"N0.2b mixtas (Clarke–de Pinho, revisiones)"
+91,2026-10-01,OpenAlex,"""time optimal"" ""mixed constraints"" ""state constraints"" vehicle",33,25 devueltos (orden relevancia),"N0.2b mixtas (Clarke–de Pinho, revisiones)"
+92,2026-10-01,OpenAlex,"""nondegenerate"" ""maximum principle"" ""state constraints""",132,25 devueltos (orden relevancia),"N0.2b mixtas (Clarke–de Pinho, revisiones)"
+93,2026-10-01,OpenAlex,"""periodic optimal control"" ""free"" period necessary conditions",50,25 devueltos (orden relevancia),N0.3b periódico tiempo libre
+94,2026-10-01,OpenAlex,"""optimal periodic"" ""free period""",12,12 devueltos (orden relevancia),N0.3b periódico tiempo libre
+95,2026-10-01,OpenAlex,"""period"" ""optimal control"" ""periodic trajectory"" ""minimum time"" lap",1,1 devueltos (orden relevancia),N0.3b periódico tiempo libre
+96,2026-10-01,OpenAlex,"""optimal cyclic"" trajectories ""period"" optimization",82,25 devueltos (orden relevancia),N0.3b periódico tiempo libre
+97,2026-10-01,OpenAlex,"""periodic boundary conditions"" ""free final time"" ""optimal control""",5,5 devueltos (orden relevancia),N0.3b periódico tiempo libre
+98,2026-10-01,OpenAlex,"""Pestov"" ""Ionin""",42,25 devueltos (orden relevancia),N0.4b curvas cerradas curvatura acotada
+99,2026-10-01,OpenAlex,"""curvature bounded"" ""closed curve"" ""contains a disk""",11,11 devueltos (orden relevancia),N0.4b curvas cerradas curvatura acotada
+100,2026-10-01,OpenAlex,"""reverse isoperimetric"" ""bounded curvature""",37,25 devueltos (orden relevancia),N0.4b curvas cerradas curvatura acotada
+101,2026-10-01,OpenAlex,"""convex curves"" ""bounded curvature"" ""area""",72,25 devueltos (orden relevancia),N0.4b curvas cerradas curvatura acotada
+102,2026-10-01,OpenAlex,"""closed curve"" ""curvature"" ""rotation index"" inequality",46,25 devueltos (orden relevancia),N0.4b curvas cerradas curvatura acotada
+103,2026-10-01,arXiv,"all:""bounded curvature"" AND all:""closed curves""",0,0 devueltos,N0 arXiv
+104,2026-10-01,arXiv,"all:""existence"" AND all:""minimum time"" AND all:""state constraints""",1,1 devueltos,N0 arXiv
+105,2026-10-01,arXiv,"all:""optimal periodic control""",8,8 devueltos,N0 arXiv
+106,2026-10-01,arXiv,"all:""Markov-Dubins""",5,5 devueltos,N0 arXiv
+107,2026-10-01,arXiv,"all:""mixed constraints"" AND all:""maximum principle""",4,4 devueltos,N0 arXiv
+108,2026-10-01,OpenAlex,"""velocity profile"" ""fixed path"" ""minimum time""",47,25 devueltos (orden relevancia),N1.1 perfil de velocidad camino fijo
+109,2026-10-01,OpenAlex,"""time-optimal path parameterization""",251,25 devueltos (orden relevancia),N1.1 perfil de velocidad camino fijo
+110,2026-10-01,OpenAlex,"""speed planning"" ""acceleration constraints"" ""optimal"" path",81,25 devueltos (orden relevancia),N1.1 perfil de velocidad camino fijo
+111,2026-10-01,OpenAlex,"""forward-backward"" ""velocity profile"" vehicle",202,25 devueltos (orden relevancia),N1.1 perfil de velocidad camino fijo
+112,2026-10-01,OpenAlex,"""minimum-time"" ""speed profile"" ""specified path"" vehicle",26,25 devueltos (orden relevancia),N1.1 perfil de velocidad camino fijo
+113,2026-10-01,OpenAlex,"""time-optimal path following"" robot ""phase plane""",20,20 devueltos (orden relevancia),N1.1 perfil de velocidad camino fijo
+114,2026-10-01,OpenAlex,"""convex optimization"" ""speed"" ""fixed path"" minimum time",126,25 devueltos (orden relevancia),N1.2 convexo / abscisa curvilínea
+115,2026-10-01,OpenAlex,"""second-order cone"" ""lap time""",16,16 devueltos (orden relevancia),N1.2 convexo / abscisa curvilínea
+116,2026-10-01,OpenAlex,"""convex"" ""minimum lap time""",127,25 devueltos (orden relevancia),N1.2 convexo / abscisa curvilínea
+117,2026-10-01,OpenAlex,"""change of variables"" ""time-optimal"" ""path tracking"" convex",40,25 devueltos (orden relevancia),N1.2 convexo / abscisa curvilínea
+118,2026-10-01,OpenAlex,"""minimum-time"" ""velocity planning"" ""linear time"" algorithm",29,25 devueltos (orden relevancia),N1.2 convexo / abscisa curvilínea
+119,2026-10-01,OpenAlex,"""g-g diagram"" ""lap time""",45,25 devueltos (orden relevancia),N1.3 elipse de fricción y g-g
+120,2026-10-01,OpenAlex,"""friction ellipse"" ""minimum time"" vehicle",34,25 devueltos (orden relevancia),N1.3 elipse de fricción y g-g
+121,2026-10-01,OpenAlex,"""quasi-steady-state"" ""lap time simulation""",65,25 devueltos (orden relevancia),N1.3 elipse de fricción y g-g
+122,2026-10-01,OpenAlex,"""g-g-v"" diagram race car",40,25 devueltos (orden relevancia),N1.3 elipse de fricción y g-g
+123,2026-10-01,OpenAlex,"""performance envelope"" ""lap time"" ""point mass""",15,15 devueltos (orden relevancia),N1.3 elipse de fricción y g-g
+124,2026-10-01,OpenAlex,"""lap time simulation"" ""point mass""",26,25 devueltos (orden relevancia),N1.3 elipse de fricción y g-g
+125,2026-10-01,OpenAlex,"""existence"" ""uniqueness"" ""velocity profile"" ""minimum time""",267,25 devueltos (orden relevancia),"N1.4 existencia, unicidad, estructura"
+126,2026-10-01,OpenAlex,"""optimal velocity profile"" ""acceleration limits"" ""optimal control"" proof",13,13 devueltos (orden relevancia),"N1.4 existencia, unicidad, estructura"
+127,2026-10-01,OpenAlex,"""speed planning"" ""optimal complexity""",15,15 devueltos (orden relevancia),"N1.4 existencia, unicidad, estructura"
+128,2026-10-01,OpenAlex,"""bang-bang"" ""velocity profile"" ""friction"" ""minimum time""",60,25 devueltos (orden relevancia),"N1.4 existencia, unicidad, estructura"
+129,2026-10-01,OpenAlex,"""minimum time"" ""speed"" ""path"" ""Pontryagin"" vehicle ""acceleration limits""",23,23 devueltos (orden relevancia),"N1.4 existencia, unicidad, estructura"
+130,2026-10-01,OpenAlex,"""minimum curvature"" ""racing line""",77,25 devueltos (orden relevancia),N2.1 tiempo mínimo vs curvatura mínima vs longitud mínima
+131,2026-10-01,OpenAlex,"""racing line"" optimization ""shortest path"" ""minimum curvature""",11,11 devueltos (orden relevancia),N2.1 tiempo mínimo vs curvatura mínima vs longitud mínima
+132,2026-10-01,OpenAlex,"""racing line"" ""point mass"" ""minimum time""",24,24 devueltos (orden relevancia),N2.1 tiempo mínimo vs curvatura mínima vs longitud mínima
+133,2026-10-01,OpenAlex,"""optimal racing line""",114,25 devueltos (orden relevancia),N2.1 tiempo mínimo vs curvatura mínima vs longitud mínima
+134,2026-10-01,OpenAlex,"""race line"" optimization track",97,25 devueltos (orden relevancia),N2.1 tiempo mínimo vs curvatura mínima vs longitud mínima
+135,2026-10-01,OpenAlex,"""minimum lap time"" ""free trajectory"" ""point mass""",17,17 devueltos (orden relevancia),N2.1 tiempo mínimo vs curvatura mínima vs longitud mínima
+136,2026-10-01,OpenAlex,"""curvilinear coordinates"" ""minimum lap time""",22,22 devueltos (orden relevancia),N2.2 formulación en tiempo vs en abscisa
+137,2026-10-01,OpenAlex,"""spatial reformulation"" vehicle ""optimal control"" track",21,21 devueltos (orden relevancia),N2.2 formulación en tiempo vs en abscisa
+138,2026-10-01,OpenAlex,"""time-to-space"" transformation vehicle trajectory optimization",5366,25 devueltos (orden relevancia),N2.2 formulación en tiempo vs en abscisa
+139,2026-10-01,OpenAlex,"""Frenet"" ""racing line"" optimization",40,25 devueltos (orden relevancia),N2.2 formulación en tiempo vs en abscisa
+140,2026-10-01,OpenAlex,"""track distance"" ""independent variable"" ""lap time"" optimal control",3,3 devueltos (orden relevancia),N2.2 formulación en tiempo vs en abscisa
+141,2026-10-01,OpenAlex,"""curvilinear abscissa"" vehicle optimal control",199,25 devueltos (orden relevancia),N2.2 formulación en tiempo vs en abscisa
+142,2026-10-01,OpenAlex,"""two-step"" ""racing"" trajectory ""minimum curvature"" ""velocity profile""",17,17 devueltos (orden relevancia),N2.3 dos pasos y relación curvatura–tiempo
+143,2026-10-01,OpenAlex,"""minimum curvature"" ""minimum time"" comparison race trajectory",45,25 devueltos (orden relevancia),N2.3 dos pasos y relación curvatura–tiempo
+144,2026-10-01,OpenAlex,"""iterative"" ""minimum curvature"" lap time",101,25 devueltos (orden relevancia),N2.3 dos pasos y relación curvatura–tiempo
+145,2026-10-01,OpenAlex,"""bilevel"" ""racing line"" optimization",3,3 devueltos (orden relevancia),N2.3 dos pasos y relación curvatura–tiempo
+146,2026-10-01,OpenAlex,"""Euler spiral"" OR clothoid ""racing line""",528,25 devueltos (orden relevancia),N2.3 dos pasos y relación curvatura–tiempo
+147,2026-10-01,OpenAlex,"""autonomous racing"" survey",1137,25 devueltos (orden relevancia),N2.4 carreras autónomas
+148,2026-10-01,OpenAlex,"""autonomous race car"" ""trajectory planning"" ""global""",143,25 devueltos (orden relevancia),N2.4 carreras autónomas
+149,2026-10-01,OpenAlex,"""Formula Student"" driverless ""trajectory optimization""",12,12 devueltos (orden relevancia),N2.4 carreras autónomas
+150,2026-10-01,OpenAlex,"""Indy Autonomous Challenge"" planning",152,25 devueltos (orden relevancia),N2.4 carreras autónomas
+151,2026-10-01,OpenAlex,"""Roborace"" trajectory",95,25 devueltos (orden relevancia),N2.4 carreras autónomas
+152,2026-10-01,OpenAlex,"""model predictive contouring control"" racing",189,25 devueltos (orden relevancia),N2.4 carreras autónomas
+153,2026-10-01,OpenAlex,"""existence"" ""minimum lap time""",26,25 devueltos (orden relevancia),"N3.1 existencia del minimizante (circuito, masa puntual)"
+154,2026-10-01,OpenAlex,"""racing line"" ""existence""",52,25 devueltos (orden relevancia),"N3.1 existencia del minimizante (circuito, masa puntual)"
+155,2026-10-01,OpenAlex,"""minimum time"" ""point mass"" ""friction"" existence optimal",72,25 devueltos (orden relevancia),"N3.1 existencia del minimizante (circuito, masa puntual)"
+156,2026-10-01,OpenAlex,"""time-optimal"" ""race track"" ""existence of solutions""",1,1 devueltos (orden relevancia),"N3.1 existencia del minimizante (circuito, masa puntual)"
+157,2026-10-01,OpenAlex,"""minimum-time"" trajectory ""bounded acceleration"" ""corridor"" existence",2,2 devueltos (orden relevancia),"N3.1 existencia del minimizante (circuito, masa puntual)"
+158,2026-10-01,OpenAlex,"""friction circle"" ""minimum time"" ""optimal control"" particle",3,3 devueltos (orden relevancia),"N3.1 existencia del minimizante (circuito, masa puntual)"
+159,2026-10-01,OpenAlex,"""bounded curvature"" curves compactness ""Arzela""",70,25 devueltos (orden relevancia),N3.2 espacio natural y regularidad de curvas
+160,2026-10-01,OpenAlex,"""curvature"" ""measure"" curves ""BV"" minimization tangent",1393,25 devueltos (orden relevancia),N3.2 espacio natural y regularidad de curvas
+161,2026-10-01,OpenAlex,"""W^{2,infty}"" curves optimal",8,8 devueltos (orden relevancia),N3.2 espacio natural y regularidad de curvas
+162,2026-10-01,OpenAlex,"""Lipschitz"" tangent curves ""curvature bounded"" variational",959,25 devueltos (orden relevancia),N3.2 espacio natural y regularidad de curvas
+163,2026-10-01,OpenAlex,"""regularity"" ""optimal trajectories"" ""minimum time"" ""state constraints""",118,25 devueltos (orden relevancia),N3.2 espacio natural y regularidad de curvas
+164,2026-10-01,OpenAlex,"""maximum principle"" ""minimum lap time""",15,15 devueltos (orden relevancia),N3.3 principio del máximo en carreras
+165,2026-10-01,OpenAlex,"""Pontryagin"" ""racing line""",6,6 devueltos (orden relevancia),N3.3 principio del máximo en carreras
+166,2026-10-01,OpenAlex,"""necessary conditions"" ""minimum time"" vehicle ""track boundaries""",5,5 devueltos (orden relevancia),N3.3 principio del máximo en carreras
+167,2026-10-01,OpenAlex,"""indirect method"" ""minimum lap time"" ""boundary arcs""",0,0 devueltos (orden relevancia),N3.3 principio del máximo en carreras
+168,2026-10-01,OpenAlex,"""state constraint"" ""track limits"" ""optimal control"" race car",3,3 devueltos (orden relevancia),N3.3 principio del máximo en carreras
+169,2026-10-01,OpenAlex,"""Dubins"" ""variable speed"" ""time-optimal""",38,25 devueltos (orden relevancia),"N3.4 v -> 0, paradas y pérdida de coercitividad"
+170,2026-10-01,OpenAlex,"""Markov-Dubins"" ""acceleration"" control speed",37,25 devueltos (orden relevancia),"N3.4 v -> 0, paradas y pérdida de coercitividad"
+171,2026-10-01,OpenAlex,"""brachistochrone"" ""friction"" curve ""optimal""",221,25 devueltos (orden relevancia),"N3.4 v -> 0, paradas y pérdida de coercitividad"
+172,2026-10-01,OpenAlex,"""zero velocity"" ""minimum time"" path singular curvature",36,25 devueltos (orden relevancia),"N3.4 v -> 0, paradas y pérdida de coercitividad"
+173,2026-10-01,OpenAlex,"""cusp"" ""minimum time"" ""bounded acceleration"" path",0,0 devueltos (orden relevancia),"N3.4 v -> 0, paradas y pérdida de coercitividad"
+174,2026-10-01,OpenAlex,"""time-optimal"" ""bounded acceleration"" planar ""double integrator"" path",7,7 devueltos (orden relevancia),"N3.4 v -> 0, paradas y pérdida de coercitividad"
+175,2026-10-01,OpenAlex,"""winding number"" ""uniform convergence"" curves",237,25 devueltos (orden relevancia),N3.5 número de vueltas bajo convergencia
+176,2026-10-01,OpenAlex,"""turning number"" constraint ""optimal control""",2,2 devueltos (orden relevancia),N3.5 número de vueltas bajo convergencia
+177,2026-10-01,OpenAlex,"""rotation index"" closed curve optimization constraint",41,25 devueltos (orden relevancia),N3.5 número de vueltas bajo convergencia
+178,2026-10-01,OpenAlex,"""winding number"" ""optimal control"" closed trajectory",70,25 devueltos (orden relevancia),N3.5 número de vueltas bajo convergencia
+179,2026-10-01,OpenAlex,"""homotopy class"" constraint ""trajectory optimization""",151,25 devueltos (orden relevancia),N3.5 número de vueltas bajo convergencia
+180,2026-10-01,arXiv,"all:""racing line""",29,29 devueltos,N3 arXiv
+181,2026-10-01,arXiv,"all:""minimum lap time""",22,22 devueltos,N3 arXiv
+182,2026-10-01,arXiv,"all:""minimum-lap-time""",22,22 devueltos,N3 arXiv
+183,2026-10-01,arXiv,"all:""time-optimal"" AND all:""race track""",12,12 devueltos,N3 arXiv
+184,2026-10-01,arXiv,"all:""Dubins"" AND all:""variable speed""",3,3 devueltos,N3 arXiv
+185,2026-10-01,arXiv,"all:""winding number"" AND all:""optimal control""",1,1 devueltos,N3 arXiv
+186,2026-10-01,CrossRef,Clarke de Pinho 2010 Optimal control problems with mixed constraints SIAM Journal on Control and Optimization,2,,autor clave C01
+187,2026-10-01,CrossRef,Colonius 1988 Optimal periodic control Lecture Notes in Mathematics 1313,2,,autor clave C02
+188,2026-10-01,CrossRef,Kaya 2019 Markov-Dubins interpolating curves Computational Optimization and Applications,2,,autor clave C03
+189,2026-10-01,CrossRef,Kaya Noakes 2013 Finding interpolating curves minimizing L infinity acceleration in the Euclidean space via optimal control theory,2,,autor clave C04
+190,2026-10-01,CrossRef,Frego Bertolazzi Biral Fontanelli Palopoli 2017 Semi-analytical minimum time solutions with velocity constraints for trajectory following of vehicles Automatica,2,,autor clave C05
+191,2026-10-01,CrossRef,Metz Williams 1989 Near time-optimal control of racing vehicles Automatica,2,,autor clave C06
+192,2026-10-01,CrossRef,Hendrikx Meijlink Kriens 1996 Application of optimal control theory to inverse simulation of car handling Vehicle System Dynamics,2,,autor clave C07
+193,2026-10-01,CrossRef,Brayshaw Harrison 2005 quasi steady state approach to race car lap simulation racing line centre of gravity,2,,autor clave C08
+194,2026-10-01,CrossRef,Veneri Massaro 2020 A free-trajectory quasi-steady-state optimal-control method for minimum lap-time of race vehicles,2,,autor clave C09
+195,2026-10-01,CrossRef,Lovato Massaro 2022 three-dimensional free-trajectory quasi-steady-state optimal-control method minimum-lap-time race vehicles,2,,autor clave C10
+196,2026-10-01,CrossRef,Massaro Limebeer 2021 Minimum-lap-time optimisation and simulation Vehicle System Dynamics,2,,autor clave C11
+197,2026-10-01,CrossRef,Sharp Peng 2011 Vehicle dynamics applications of optimal control theory Vehicle System Dynamics,2,,autor clave C12
+198,2026-10-01,CrossRef,Braghin Cheli Melzi Sabbioni 2008 Race driver model Computers and Structures,2,,autor clave C13
+199,2026-10-01,CrossRef,Timings Cole 2013 Minimum maneuver time calculation using convex optimization,2,,autor clave C14
+200,2026-10-01,CrossRef,Velenis Tsiotras Lu 2008 Optimality properties and driver input parameterization for trail-braking cornering European Journal of Control,2,,autor clave C15
+201,2026-10-01,CrossRef,Cardamone Loiacono Lanzi Bardelli 2010 Searching for the optimal racing line using genetic algorithms,2,,autor clave C16
+202,2026-10-01,CrossRef,Limebeer Massaro 2018 Dynamics and optimal control of road vehicles Oxford University Press,2,,autor clave C17
+203,2026-10-01,CrossRef,Bertolazzi Biral Da Lio 2005 Symbolic-numeric indirect method for solving optimal control problems for large multibody systems time-optimal racing vehicle,2,,autor clave C18
+204,2026-10-01,CrossRef,Soner 1986 Optimal control with state-space constraint I SIAM Journal on Control and Optimization,2,,autor clave C19
+205,2026-10-01,CrossRef,Sanfelice Frazzoli 2013 On minimum-time paths of bounded curvature with position-dependent constraints Automatica,2,,autor clave C20
+206,2026-10-01,CrossRef,Benham Brower Fisher Crane 2019 Brachistochrone on a velodrome,2,,autor clave C21
+207,2026-10-01,CrossRef,Galbraith Vinter 2003 Lipschitz continuity of optimal controls for state constrained problems,2,,autor clave C22
+208,2026-10-01,CrossRef,Howard Treibergs 1995 A reverse isoperimetric inequality stability and extremal theorems for plane curves with bounded curvature,2,,autor clave C23
+209,2026-10-01,CrossRef,Liniger Domahidi Morari 2015 Optimization-based autonomous racing of 1:43 scale RC cars,2,,autor clave C24
+210,2026-10-01,CrossRef,Betz et al 2022 Autonomous vehicles on the edge a survey on autonomous vehicle racing,2,,autor clave C25
+211,2026-10-01,CrossRef,Pham Pham 2018 A new approach to time-optimal path parameterization based on reachability analysis,2,,autor clave C26
+212,2026-10-01,CrossRef,Consolini Locatelli Minari Piazzi 2017 An optimal complexity algorithm for minimum-time velocity planning Systems Control Letters,2,,autor clave C27
+213,2026-10-01,CrossRef,Jain Morari 2020 Computing the racing line using Bayesian optimization,2,,autor clave C28
+214,2026-10-01,CrossRef,Cesari 1966 Existence theorems for weak and usual optimal solutions in Lagrange problems with unilateral constraints,2,,autor clave C29
+215,2026-10-01,CrossRef,Arutyunov Karamzin Pereira 2011 The maximum principle for optimal control problems with state constraints by R.V. Gamkrelidze revisited,2,,autor clave C30
+216,2026-10-01,arXiv,"ti:""optimal complexity algorithm"" AND ti:""velocity planning""",0,0 devueltos,versión arXiv C27
+217,2026-10-01,arXiv,"ti:""semi-analytical"" AND ti:""minimum time"" AND ti:""velocity constraints""",0,0 devueltos,versión arXiv C05
+218,2026-10-01,arXiv,"ti:""minimum-time paths of bounded curvature""",1,1 devueltos,versión arXiv C20
+219,2026-10-01,arXiv,"ti:""reverse isoperimetric"" AND ti:""bounded curvature""",0,0 devueltos,versión arXiv C23
+220,2026-10-01,arXiv,"ti:""curvilinear abscissa"" AND ti:""lap time""",0,0 devueltos,versión arXiv S16
+221,2026-10-01,arXiv,"ti:""optimal periodic control"" AND au:Colonius",0,0 devueltos,versión arXiv C02
+222,2026-10-01,web,"""An optimal complexity algorithm for minimum-time velocity planning"" Consolini abstract",9,resumen leído (ScienceDirect); hallado arXiv 1809.01959 (lattice) y JOTA 2020 (convergencia),verificación C27
+223,2026-10-01,web,"""Semi-analytical minimum time solutions with velocity constraints for trajectory following of vehicles""",8,resumen leído (ResearchGate); Automatica 86:18-28,verificación C05
+224,2026-10-01,web,"""curvilinear abscissa approach for the lap time optimization of racing vehicles"" Lot Biral",10,resumen leído (Semantic Scholar); IFAC PV 47(3):7559-7565,verificación S16
+225,2026-10-01,OpenAlex (citantes),cites:W2088363568,87,50 devueltos (orden por citas),citantes Velenis–Tsiotras 2008
+226,2026-10-01,OpenAlex (citantes),cites:W2136209220,141,50 devueltos (orden por citas),citantes Lipp–Boyd 2014
+227,2026-10-01,OpenAlex (citantes),cites:W2606677490,28,28 devueltos (orden por citas),citantes Kaya 2017
+228,2026-10-01,OpenAlex (citantes),cites:W2604921123,46,46 devueltos (orden por citas),citantes Consolini 2017
+229,2026-10-01,OpenAlex (citantes),cites:W2951357333 + 'minimum time',54,50 devueltos (orden por citas),citantes Heilmeier 2020
+230,2026-10-01,OpenAlex (citantes),cites:W2805397692,98,50 devueltos (orden por citas),citantes Dal Bianco 2019
+231,2026-10-01,OpenAlex (citantes),cites:W2088363568 + 'convergence',18,18 devueltos,citantes Velenis–Tsiotras 2008 + convergence
+232,2026-10-01,OpenAlex (citantes),cites:W2088363568 + 'existence',8,8 devueltos,citantes Velenis–Tsiotras 2008 + existence
+233,2026-10-01,OpenAlex (citantes),cites:W2088363568 + 'Pontryagin',1,1 devueltos,citantes Velenis–Tsiotras 2008 + Pontryagin
+234,2026-10-01,OpenAlex (citantes),cites:W2136209220 + 'convergence',32,25 devueltos,citantes Lipp–Boyd 2014 + convergence
+235,2026-10-01,OpenAlex (citantes),cites:W2136209220 + 'existence',9,9 devueltos,citantes Lipp–Boyd 2014 + existence
+236,2026-10-01,OpenAlex (citantes),cites:W2136209220 + 'Pontryagin',6,6 devueltos,citantes Lipp–Boyd 2014 + Pontryagin
+237,2026-10-01,OpenAlex (citantes),cites:W2604921123 + 'convergence',10,10 devueltos,citantes Consolini 2017 + convergence
+238,2026-10-01,OpenAlex (citantes),cites:W2604921123 + 'existence',2,2 devueltos,citantes Consolini 2017 + existence
+239,2026-10-01,OpenAlex (citantes),cites:W2604921123 + 'Pontryagin',4,4 devueltos,citantes Consolini 2017 + Pontryagin
+240,2026-10-01,OpenAlex (citantes),cites:W3142183352 + 'convergence',12,12 devueltos,citantes Massaro–Limebeer 2021 + convergence
+241,2026-10-01,OpenAlex (citantes),cites:W3142183352 + 'existence',1,1 devueltos,citantes Massaro–Limebeer 2021 + existence
+242,2026-10-01,OpenAlex (citantes),cites:W3142183352 + 'Pontryagin',0,0 devueltos,citantes Massaro–Limebeer 2021 + Pontryagin
+243,2026-10-01,OpenAlex (citantes),cites:W2805397692 + 'convergence',15,15 devueltos,citantes Dal Bianco 2019 + convergence
+244,2026-10-01,OpenAlex (citantes),cites:W2805397692 + 'existence',4,4 devueltos,citantes Dal Bianco 2019 + existence
+245,2026-10-01,OpenAlex (citantes),cites:W2805397692 + 'Pontryagin',7,7 devueltos,citantes Dal Bianco 2019 + Pontryagin
+246,2026-10-01,OpenAlex (referencias),referenced_works de Massaro–Limebeer 2021,108,108 referencias recuperadas,hacia atrás
+247,2026-10-01,OpenAlex,"""discretize-then-optimize"" ""optimize-then-discretize"" ""optimal control""",426,25 devueltos (orden relevancia),"N4.1 DTO vs OTD, covectores, adjuntos"
+248,2026-10-01,OpenAlex,"""covector mapping theorem""",94,25 devueltos (orden relevancia),"N4.1 DTO vs OTD, covectores, adjuntos"
+249,2026-10-01,OpenAlex,"""adjoint"" consistency discretization ""optimal control"" ""Runge-Kutta""",484,25 devueltos (orden relevancia),"N4.1 DTO vs OTD, covectores, adjuntos"
+250,2026-10-01,OpenAlex,"""symplectic"" ""partitioned Runge-Kutta"" ""optimal control""",151,25 devueltos (orden relevancia),"N4.1 DTO vs OTD, covectores, adjuntos"
+251,2026-10-01,OpenAlex,"""direct and indirect methods"" ""optimal control"" comparison convergence",396,25 devueltos (orden relevancia),"N4.1 DTO vs OTD, covectores, adjuntos"
+252,2026-10-01,OpenAlex,"""convergence"" ""pseudospectral"" ""optimal control""",2186,25 devueltos (orden relevancia),N4.2 convergencia de colocación / pseudoespectral / RK
+253,2026-10-01,OpenAlex,"""Gauss collocation"" ""optimal control"" ""convergence rate""",71,25 devueltos (orden relevancia),N4.2 convergencia de colocación / pseudoespectral / RK
+254,2026-10-01,OpenAlex,"""Euler discretization"" ""state constraints"" ""optimal control"" error estimates",147,25 devueltos (orden relevancia),N4.2 convergencia de colocación / pseudoespectral / RK
+255,2026-10-01,OpenAlex,"""consistent approximations"" ""optimal control""",497,25 devueltos (orden relevancia),N4.2 convergencia de colocación / pseudoespectral / RK
+256,2026-10-01,OpenAlex,"""bang-bang"" ""discretization"" ""optimal control"" error",2476,25 devueltos (orden relevancia),N4.2 convergencia de colocación / pseudoespectral / RK
+257,2026-10-01,OpenAlex,"""Runge-Kutta"" ""optimal control"" ""state constraints"" convergence",660,25 devueltos (orden relevancia),N4.2 convergencia de colocación / pseudoespectral / RK
+258,2026-10-01,OpenAlex,"""mesh independence"" ""optimal control""",395,25 devueltos (orden relevancia),N4.3 independencia de malla
+259,2026-10-01,OpenAlex,"""mesh-independence principle""",140,25 devueltos (orden relevancia),N4.3 independencia de malla
+260,2026-10-01,OpenAlex,"""mesh independence"" Newton ""discretized"" control",802,25 devueltos (orden relevancia),N4.3 independencia de malla
+261,2026-10-01,OpenAlex,"""mesh-independent"" SQP ""optimal control""",48,25 devueltos (orden relevancia),N4.3 independencia de malla
+262,2026-10-01,OpenAlex,"""mesh independence"" ""semismooth Newton""",109,25 devueltos (orden relevancia),N4.3 independencia de malla
+263,2026-10-01,OpenAlex,"""Gamma-convergence"" ""optimal control"" discretization",247,25 devueltos (orden relevancia),N4.4 Gamma-convergencia de discretizaciones
+264,2026-10-01,OpenAlex,"""Gamma-convergence"" ""finite element"" ""optimal control""",45,25 devueltos (orden relevancia),N4.4 Gamma-convergencia de discretizaciones
+265,2026-10-01,OpenAlex,"""Γ-convergence"" ""discrete"" curves ""curvature""",837,25 devueltos (orden relevancia),N4.4 Gamma-convergencia de discretizaciones
+266,2026-10-01,OpenAlex,"""Gamma-convergence"" ""control problems""",192,25 devueltos (orden relevancia),N4.4 Gamma-convergencia de discretizaciones
+267,2026-10-01,OpenAlex,"""Gamma-convergence"" ""numerical approximation"" ""variational problems""",76,25 devueltos (orden relevancia),N4.4 Gamma-convergencia de discretizaciones
+268,2026-10-01,OpenAlex,"""constraint violation"" ""between collocation points""",11,11 devueltos (orden relevancia),N4.5 restricciones solo en nodos / semi-infinitas
+269,2026-10-01,OpenAlex,"""semi-infinite programming"" ""optimal control"" ""path constraints""",38,25 devueltos (orden relevancia),N4.5 restricciones solo en nodos / semi-infinitas
+270,2026-10-01,OpenAlex,"""continuous-time constraint"" satisfaction ""direct transcription""",3,3 devueltos (orden relevancia),N4.5 restricciones solo en nodos / semi-infinitas
+271,2026-10-01,OpenAlex,"""integrated residual"" ""optimal control""",33,25 devueltos (orden relevancia),N4.5 restricciones solo en nodos / semi-infinitas
+272,2026-10-01,OpenAlex,"""inter-sample"" constraint violation ""trajectory optimization""",55,25 devueltos (orden relevancia),N4.5 restricciones solo en nodos / semi-infinitas
+273,2026-10-01,OpenAlex,"""semi-infinite"" constraints ""trajectory optimization"" guaranteed",104,25 devueltos (orden relevancia),N4.5 restricciones solo en nodos / semi-infinitas
+274,2026-10-01,OpenAlex,"""Fourier"" ""pseudospectral"" ""optimal control"" periodic",299,25 devueltos (orden relevancia),N4.6 Fourier en problemas periódicos
+275,2026-10-01,OpenAlex,"""trigonometric"" collocation ""periodic"" ""optimal control""",230,25 devueltos (orden relevancia),N4.6 Fourier en problemas periódicos
+276,2026-10-01,OpenAlex,"""Fourier series"" ""trajectory optimization"" periodic",196,25 devueltos (orden relevancia),N4.6 Fourier en problemas periódicos
+277,2026-10-01,OpenAlex,"""harmonic balance"" ""optimal control"" periodic",289,25 devueltos (orden relevancia),N4.6 Fourier en problemas periódicos
+278,2026-10-01,OpenAlex,"""spectral method"" ""periodic optimal control""",18,18 devueltos (orden relevancia),N4.6 Fourier en problemas periódicos
+279,2026-10-01,OpenAlex,"""Fourier"" ""collocation"" ""periodic orbits"" optimization",189,25 devueltos (orden relevancia),N4.6 Fourier en problemas periódicos
+280,2026-10-01,CrossRef,Schwartz Polak 1996 Consistent approximations for optimal control problems based on Runge-Kutta integration SIAM J Control Optim,2,,autor clave D01
+281,2026-10-01,CrossRef,Buttazzo Dal Maso 1982 Gamma-convergence and optimal control problems Journal of Optimization Theory and Applications,2,,autor clave D02
+282,2026-10-01,CrossRef,Allgower Bohmer Potra Rheinboldt 1986 A mesh-independence principle for operator equations and their discretizations,2,,autor clave D03
+283,2026-10-01,CrossRef,Hettich Kortanek 1993 Semi-infinite programming theory methods and applications SIAM Review,2,,autor clave D04
+284,2026-10-01,CrossRef,Bonnans Festa 2017 Error estimates for the Euler discretization of an optimal control problem with first-order state constraints,2,,autor clave D05
+285,2026-10-01,CrossRef,Garg Patterson Hager Rao Benson Huntington 2010 A unified framework for the numerical solution of optimal control problems using pseudospectral methods Automatica,2,,autor clave D06
+286,2026-10-01,CrossRef,Ross Karpenko 2012 A review of pseudospectral optimal control from theory to flight Annual Reviews in Control,2,,autor clave D07
+287,2026-10-01,CrossRef,Gerdts 2012 Optimal control of ODEs and DAEs De Gruyter,2,,autor clave D08
+288,2026-10-01,CrossRef,Veliov 1997 On the time-discretization of control systems SIAM J Control Optim,2,,autor clave D09
+289,2026-10-01,CrossRef,Alt Baier Gerdts Lempio 2012 Error bounds for Euler approximation of linear-quadratic control problems with bang-bang solutions,2,,autor clave D10
+290,2026-10-01,CrossRef,Spasojevic Murali Karaman 2019 Asymptotic optimality of a time optimal path parametrization algorithm IEEE Control Systems Letters,2,,autor clave D11
+291,2026-10-01,CrossRef,Consolini Laurini Locatelli Cabassi 2020 Convergence analysis of spatial-sampling-based algorithms for time-optimal smooth velocity planning,2,,autor clave D12
+292,2026-10-01,CrossRef,Elgindy 2023 Optimal periodic control of unmanned aerial vehicles based on Fourier integral pseudospectral and edge-detection methods,2,,autor clave D13
+293,2026-10-01,CrossRef,Dontchev Hager 2001 The Euler approximation in state constrained optimal control Mathematics of Computation,2,,autor clave D14
+294,2026-10-01,CrossRef,Dontchev Hager Veliov 2000 Uniform convergence and mesh independence of Newton's method for discretized variational problems,2,,autor clave D15
+295,2026-10-01,CrossRef,Kang Gong Ross 2008 On the convergence of nonlinear optimal control using pseudospectral methods for feedback linearizable systems,2,,autor clave D16
+296,2026-10-01,CrossRef,Neuenhofen Kerrigan 2020 An integral penalty-barrier direct transcription method for optimal control,2,,autor clave D17
+297,2026-10-01,CrossRef,Caillau Ferretti Trelat Zidani 2022 An algorithmic guide for finite-dimensional optimal control problems,2,,autor clave D18
+298,2026-10-01,CrossRef,Ober-Blobaum Junge Marsden 2011 Discrete mechanics and optimal control: an analysis ESAIM,2,,autor clave D19
+299,2026-10-01,CrossRef,Polak 1997 Optimization algorithms and consistent approximations Springer,2,,autor clave D20
+300,2026-10-01,OpenAlex,"""single-track"" ""minimum lap time"" ""load transfer""",36,25 devueltos (orden relevancia),"N5a bicicleta (guiñada, dirección, transferencia)"
+301,2026-10-01,OpenAlex,"""bicycle model"" ""minimum time"" ""trail braking""",12,12 devueltos (orden relevancia),"N5a bicicleta (guiñada, dirección, transferencia)"
+302,2026-10-01,OpenAlex,"""yaw inertia"" ""minimum time"" manoeuvre",43,25 devueltos (orden relevancia),"N5a bicicleta (guiñada, dirección, transferencia)"
+303,2026-10-01,OpenAlex,"""single track"" vehicle ""time-optimal"" cornering",117,25 devueltos (orden relevancia),"N5a bicicleta (guiñada, dirección, transferencia)"
+304,2026-10-01,OpenAlex,"""minimum-time cornering"" vehicle model",47,25 devueltos (orden relevancia),"N5a bicicleta (guiñada, dirección, transferencia)"
+305,2026-10-01,OpenAlex,"""double-track"" ""minimum lap time""",31,25 devueltos (orden relevancia),"N5b cuatro ruedas, neumáticos, diferencial"
+306,2026-10-01,OpenAlex,"""Formula One"" ""minimum lap time"" ""optimal control""",79,25 devueltos (orden relevancia),"N5b cuatro ruedas, neumáticos, diferencial"
+307,2026-10-01,OpenAlex,"""two-track"" ""minimum-time"" trajectory vehicle",92,25 devueltos (orden relevancia),"N5b cuatro ruedas, neumáticos, diferencial"
+308,2026-10-01,OpenAlex,"""tyre"" ""combined slip"" ""minimum lap time""",8,8 devueltos (orden relevancia),"N5b cuatro ruedas, neumáticos, diferencial"
+309,2026-10-01,OpenAlex,"""differential"" ""minimum lap time"" ""optimal control""",95,25 devueltos (orden relevancia),"N5b cuatro ruedas, neumáticos, diferencial"
+310,2026-10-01,OpenAlex,"""three-dimensional"" track ""minimum lap time""",73,25 devueltos (orden relevancia),"N5c pista 3D, motocicleta, multicuerpo"
+311,2026-10-01,OpenAlex,"""motorcycle"" ""minimum lap time"" ""optimal control""",53,25 devueltos (orden relevancia),"N5c pista 3D, motocicleta, multicuerpo"
+312,2026-10-01,OpenAlex,"""multibody"" ""minimum lap time""",53,25 devueltos (orden relevancia),"N5c pista 3D, motocicleta, multicuerpo"
+313,2026-10-01,OpenAlex,"""road racing motorcycle"" ""optimal control"" track",9,9 devueltos (orden relevancia),"N5c pista 3D, motocicleta, multicuerpo"
+314,2026-10-01,OpenAlex,"""3D"" ""race track"" ""optimal control"" vehicle",116,25 devueltos (orden relevancia),"N5c pista 3D, motocicleta, multicuerpo"
+315,2026-10-01,OpenAlex,"""relaxed controls"" vehicle ""optimal control"" existence",96,25 devueltos (orden relevancia),N5 teoría: convexidad y relajación
+316,2026-10-01,OpenAlex,"""nonconvex"" ""velocity set"" relaxation ""optimal control"" existence",24,24 devueltos (orden relevancia),N5 teoría: convexidad y relajación
+317,2026-10-01,OpenAlex,"""chattering"" ""minimum time"" vehicle",386,25 devueltos (orden relevancia),N5 teoría: convexidad y relajación
+318,2026-10-01,OpenAlex,"""existence of optimal solutions"" ""vehicle dynamics""",6,6 devueltos (orden relevancia),N5 teoría: convexidad y relajación
+319,2026-10-01,OpenAlex,"""convexification"" ""tire forces"" ""optimal control""",13,13 devueltos (orden relevancia),N5 teoría: convexidad y relajación
+320,2026-10-01,OpenAlex,"""Young measures"" ""optimal control"" relaxation existence",232,25 devueltos (orden relevancia),N5 teoría: convexidad y relajación
+321,2026-10-01,arXiv,"ti:""algorithmic guide"" AND ti:""optimal control""",1,1 devueltos,N4 arXiv
+322,2026-10-01,arXiv,"ti:""dynamic optimization"" AND ti:""convergence guarantees""",1,1 devueltos,N4 arXiv
+323,2026-10-01,arXiv,"all:""Gamma-convergence"" AND all:""discrete"" AND all:""elastica""",0,0 devueltos,N4 arXiv
+324,2026-10-01,GitHub,"racing line optimization (repositorios, orden estrellas)",45,,N6 software
+325,2026-10-01,GitHub,lap time simulation (orden estrellas),122,8 devueltos,N6 software
+326,2026-10-01,GitHub,minimum lap time (orden estrellas),16,8 devueltos,N6 software
+327,2026-10-01,GitHub,raceline optimization (orden estrellas),24,8 devueltos,N6 software
+328,2026-10-01,GitHub,race trajectory optimization (orden estrellas),5,5 devueltos,N6 software
+329,2026-10-01,GitHub,minimum curvature trajectory race (orden estrellas),2,2 devueltos,N6 software
+330,2026-10-01,GitHub,racing line web app (orden estrellas),2,2 devueltos,N6 software
+331,2026-10-01,GitHub,repos/TUMFTM/global_racetrajectory_optimization,1,existe,N6 software
+332,2026-10-01,GitHub,repos/TUMFTM/laptime-simulation,1,existe,N6 software
+333,2026-10-01,GitHub,repos/TUMFTM/trajectory_planning_helpers,1,existe,N6 software
+334,2026-10-01,GitHub,repos/TUMFTM/racetrack-database,1,existe,N6 software
+335,2026-10-01,GitHub,repos/mc12027/OpenLAP-Lap-Time-Simulator,1,existe,N6 software
+336,2026-10-01,GitHub,repos/alexliniger/MPCC,1,existe,N6 software
+337,2026-10-01,GitHub,repos/ebertolazzi/Clothoids,1,existe,N6 software
+338,2026-10-01,GitHub,repos/ForzaETH/race_stack,1,existe,N6 software
+339,2026-10-01,OpenAlex,"""OptimumLap""",47,10 devueltos,N6 software (literatura)
+340,2026-10-01,OpenAlex,"""ChassisSim""",11,10 devueltos,N6 software (literatura)
+341,2026-10-01,OpenAlex,"""Canopy Simulations""",393,10 devueltos,N6 software (literatura)
+342,2026-10-01,OpenAlex,"""lap time simulation"" software commercial comparison",43,10 devueltos,N6 software (literatura)
+343,2026-10-01,OpenAlex,"""lap time simulator"" ""open source""",7,7 devueltos,N6 software (literatura)
+344,2026-10-01,PyPI,trajectory-planning-helpers,1,HTTP 200 0.79,N6 software
+345,2026-10-01,PyPI,casadi,1,HTTP 200 3.8.1,N6 software
+346,2026-10-01,PyPI,laptimesim,0,HTTP 404 ,N6 software
+347,2026-10-01,arXiv,"ti:""minimum-time velocity planning"" AND ti:""lattice""",1,,metadatos arXiv 1809.01959
+348,2026-10-01,CrossRef,Saba Schneider Hormann Scateni Curvature-based blending of closed planar curves,1,,metadatos Saba 2014
+349,2026-10-01,CrossRef,Consolini Laurini Locatelli Minari solution of the minimum-time velocity planning problem based on lattice theory,2,,versión publicada arXiv 1809.01959
+350,2026-10-01,arXiv,all:2208.12135,1,,metadatos arXiv 2208.12135
+351,2026-10-01,arXiv,all:2404.16826,1,,metadatos arXiv 2404.16826
+352,2026-10-01,arXiv,all:2208.04305,1,,metadatos arXiv 2208.04305
+353,2026-10-01,OpenAlex (autorías),instituciones de 40 trabajos clave,37,afiliaciones según metadatos OpenAlex,grupos activos

@@ -1,0 +1,2244 @@
+\documentclass[10pt]{beamer}
+
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,activeacute]{babel}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{graphicx}
+%\usepackage[latin1]{inputec}
+%\usetheme{Warsaw}
+%\usecolortheme{crane}
+%\useoutertheme{shadow}
+%\useinnertheme{rectangles}
+\mode<presentation>{\usetheme{Madrid}}
+
+\renewcommand{\F}{\mathbb{F}}
+\renewcommand{\T}{\mathbb{T}^n}
+\renewcommand{\A}{\textbb{A}_{k}^n}
+\renewcommand{\K}{\mathbb{K}}
+\renewcommand{\Q}{\mathbb{Q}}
+\renewcommand{\C}{\mathbb{C}}
+\renewcommand{\Z}{\mathbb{Z}}
+\renewcommand{\N}{\mathbb{N}}
+\renewcommand{\a}{\alpha}
+\renewcommand{\ri}{\textit{R}}
+\renewcommand{\Hom}{\text{Hom}}
+\renewcommand{\Sp}{\text{Spec}}
+\renewcommand{\lp}{\text{lp}}
+\renewcommand{\lt}{\text{lt}}
+\renewcommand{\lc}{\text{lc}}
+\renewcommand{\Lt}{\text{Lt}}
+
+\title{Ideales de polinomios asociados a estructuras algebraicas de dimensi\'on finita} 
+\author{Autor: Emiliano Campagnolo\\
+Director: Leandro Roberto Cagliero}
+\begin{document}
+\frame{\titlepage} 
+$\,$\\
+%\tableofcontents{}
+\\
+\\
+\begin{frame}
+\frametitle{Introducci'on (un poco de spoilers)}
+\begin{block}{}
+Fijados un espacio vectorial $V$ de dimensi'on finita (sobre un cuerpo algebraicamente cerrado y de caracter'istica 0) y $B$ una base, podemos adicionarle un producto bilineal $\cdot : V \times V \longrightarrow V$ resultando as'i un 'algebra. Si adem'as requerimos que se satisfaga alguna propiedad (alg'un invariante sobre la categor'ia de 'algebras, por ejemplo asociatividad) podemos encontrar condiciones suficientes y necesarias sobre los coeficientes de estructura asociados a $B$ para que nuestra 'algebra satisfaga esta propiedad. Estas condiciones son ``relaciones algebraicas'' entre los coeficientes de estrucutra, es decir existen polinomios en varias variables que se anulan al evaluarlos en estos coeficientes. Consideremos el ideal generado por estos polinomios, 'este es el ideal asociado a la propiedad que deseamos para $V$. El objetivo principal de este trabajo es estudiar estos ideales.
+\end{block}
+\vspace{5cm}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{1.Preliminares.}\\
+\end{frame}
+
+\begin{frame}
+%\frametitle{4.8.Resumen de resultados.}
+\begin{center}
+\includegraphics[width=1\textwidth]
+{anillo}
+\end{center}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{1.1.Categor'ia de anillos conmutativos con identidad.}\\
+\begin{block}{Definici'on 1.1.1}
+Un anillo conmutativo con identidad es una terna $(\ri,+,\cdot)$ tal que $\ri$ es un conjunto no vac'io, $(\ri,+)$ es un grupo abeliano, $(\ri, \cdot)$ es un monoide conmutativo cuya identidad es $1_{\ri}$ y que $a \cdot (b+c)= a \cdot b + a \cdot c$ para todos $a,b,c \in \ri$. A todo anillo $(\ri,+,\cdot)$ lo denotamos sencillamente por $\ri$ y reemplazaremos $a \cdot b$ por $ab$. De ahora en m'as los anillos considerados en este trabajo son conmutativos con identidad.
+\end{block}
+\begin{block}{Definici'on 1.1.2}
+ Sean $R$ y $S$ dos anillos. Decimos que una funci'on\\
+ $f:R\rightarrow S$ es homomorfismo de anillos si:\\
+(a) $f(xy)=f(x)f(y)$ para todos $x,y \in R$.\\
+(b) $f(x+y)=f(x)+f(y)$ para todos $x,y \in R$.\\
+(c) $f(1_{R})=1_{S}$ y $R \not = {0}$.\\
+Definimos $\text{Hom} (R,S)=\{ f:R \rightarrow S: f\text{ es homomorfismo de anillos}$ \}. De esto, resulta que los anillos constituyen una categor'ia con sus respectivos morfismos.\\
+\end{block}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{1.1.Categor'ia de anillos conmutativos con identidad.}\\
+\begin{block}{Notaci'on:}
+ Si $S$ es un subconjunto de un anillo $\ri$, denotaremos por $(S)$ al ideal de $\ri$ generado por $S$. En el caso que $S=\{x\}$, denotaremos $(x)=(\{x\})$.
+\end{block}
+\begin{block}{Definici'on 1.1.3:}
+Sea $R$ un anillo. Un ideal $p$ de $R$ se dice primo si $p \not = R$ y si $xy \in p$, implica que $x \in p$ o $y \in p$. Definimos $\Sp (R)=\{p\subseteq R :p \text{ es ideal primo de }$\ri$\}$.\\
+\end{block}
+\begin{block}{Definici'on 1.1.4:}
+Sea $R$ un anillo. Un ideal $m$ de $R$ se dice maximal si $m \not = R$ y si no existe $I$ ideal de $R$ tal que $ m \subset I \subset R$.
+\end{block}
+\begin{block}{Teorema 1.1.5:} 
+Sea $R$ un anillo. Si $I \not = R$ es un ideal de $R$, entonces $I$ es primo si, y s'olo si, $R/I$ es un dominio de integridad.\\
+\end{block}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{1.1.Categor'ia de anillos conmutativos con identidad.}\\
+\\
+\begin{block}{Teorema 1.1.6:} 
+Sea $R$ un anillo. Si $I \not = R$ es un ideal de $R$, entonces $I$ es maximal si, y s'olo si, $R/I$ es un cuerpo.\\
+\end{block}
+\begin{block}{Corolario 1.1.7:}
+ Sea $R$ un anillo. Si $m$ es un ideal maximal de $R$ entonces $m$ es primo.\\
+\end{block}
+\begin{block}{Proposici'on 1.1.8:}
+ Sean $R$, $S$ dos anillos y $f \in \Hom (R,S)$. Si $p$ es un ideal primo de $S$, entonces $f^{-1}(p)$ es un ideal primo de $R$\\
+\end{block}
+\begin{block}{Teorema 1.1.9:} 
+Sea $R$ un anillo. Entonces $R$ tiene al menos un ideal maximal.\\
+\end{block}
+\begin{block}{Corolario 1.1.10:} 
+Sea $R$ un anillo. Si $I \not = R$ es un ideal de $R$. Entonces existe $J$ ideal maximal de $R$ tal que $I\subseteq J$.\\
+\end{block}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{1.1.Categor'ia de anillos conmutativos con identidad.}\\
+\begin{block}{Notaci'on:}
+ Denotaremos por $\N$ al conjunto de los n'umeros enteros positivos y tambi'en $\N_{0}=\N \cup \{0\}$.
+\end{block}
+\begin{block}{Definici'on 1.1.11:}
+ Sea $R$ un anillo. Decimos que $x \in R$ es nilpotente si existe $n \in \N$ tal que $x^n=0$.
+\end{block}
+\begin{block}{Proposici'on 1.1.12:}
+Sea $R$ un anillo. Entonces el conjunto $N(R)=\{x\in R:x \in R\text{ es nilpotente}\}$ es ideal de $R$. Adem'as $R/N(R)$ no tiene elementos nilpotentes no nulos.\\
+\end{block}
+\begin{block}{Definici'on 1.1.13:} 
+Sea $R$ un anillo. Al ideal $N(R)$ lo llamamos nilradical de $R$.\\
+\end{block}
+\vspace{4cm}
+\end{frame}
+
+
+
+\\
+\begin{frame}
+\frametitle{1.1.Categor'ia de anillos conmutativos con identidad.}\\
+\begin{block}{Proposici'on 1.1.14:}
+Sea $R$ un anillo. Entonces:\\ 
+ \begin{center}
+ $\displaystyle N(R)= \bigcap _{p \in \Sp(R)}{p}$.\\
+ \end{center}
+\end{block}
+%\end{frame}
+
+
+
+
+%\begin{frame}
+%\frametitle{1.1.Categor'ia de anillos conmutativos con identidad.}\\
+\begin{block}{Definici'on 1.1.15:}
+Sea $R$ un anillo y $a$ un ideal de $R$. Definimos el radical de $a$ por $\sqrt{a}=\{x \in R:\exists n \in \N :x^n \in a \}$.\\
+\end{block}
+\\
+\begin{block}{Definici'on 1.1.16:} 
+Sea $R$ un anillo. Decimos que $a$ un ideal de $R$ es radical si $\sqrt{a}=a$.\\
+\end{block}
+\\
+\begin{block}{Proposici'on 1.1.17:}
+ Sea $R$ un anillo y $p$ un ideal primo de $R$. Entonces $p$ es radical.\\
+\end{block}
+\vspace{4cm}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{1.1.Categor'ia de anillos conmutativos con identidad.}\\
+\begin{block}{Proposici'on 1.1.18:} 
+Sean $R$ un anillo y $a,b$ ideales de $R$. Entonces:\\
+(a) $\sqrt{a}$ es un ideal.\\
+(b) $a \subseteq \sqrt{a}$.\\
+(c) $\sqrt{\sqrt{a}}=\sqrt{a}$.\\
+(d) $\sqrt{ab}=\sqrt{a\cap b}= \sqrt{a}\cap \sqrt{b}$.\\
+(e) $\sqrt{a}=R$ si, y s'olo si, $a=R$.\\
+(f) $\sqrt{a+b}=\sqrt{\sqrt{a}+\sqrt{b}}$.\\
+(g) Si $p$ es un ideal primo de $R$ y $n \in \N$, entonces $\sqrt{p^n}=p$.\\
+\end{block}
+\begin{block}{Proposici'on 1.1.19:}
+Sean $R$ un anillo y $a$ un ideal de $R$. Entonces $\sqrt{a}$ es la intersecci'on de todos los ideales primos de $R$ que contienen a $a$.\\
+\end{block}
+\vspace{5cm}
+\end{frame}
+
+
+
+
+
+
+
+\begin{frame}
+\frametitle{1.2.Las categor'ias de m'odulos y 'algebras sobre un anillo.}\\
+En esta secci'on desarrollaremos algunos conceptos b'asicos de la categor'ia de m'odulos y 'algebras sobre anillos. Dado que m'as adelante solo usaremos los resultados b'asicos sobre estas categor'ias, no daremos mucho detalle. $\ri$ es un anillo fijo.\\
+\begin{block}{Definici'on 1.2.1:}
+Un $\ri$-m'odulo (unitario) es una terna $(M,+,\cdot)$ tal que $M$ es un conjunto no vac'io, $(M,+)$ es un grupo abeliano, y $\cdot : \ri \times M \longrightarrow M$ satisface:\\
+(a) $a \cdot (x+y)= a \cdot x + a \cdot y$ para todos $a \in \ri$, $x,y \in M$.\\
+(b) $(a+b) \cdot x= a \cdot x + b \cdot x$ para todos $a,b \in \ri$, $x \in M$.\\
+(c) $(ab) \cdot x = a \cdot (b \cdot x)$ para todos $a,b \in \ri$, $x \in M$.\\
+(d) $1 \cdot x = x$ para todo $x \in M$.\\
+ A todo $\ri$-m'odulo $(M,+,\cdot)$ lo denotamos sencillamente por $M$ y reemplazaremos $a \cdot x$ por $ax$.\\
+\end{block}
+\begin{block}{Definici'on 1.2.2:} 
+Sean $M$ y $N$ dos $\ri$-m'odulos. Decimos que una funci'on $f:M\rightarrow N$ es homomorfismo de $\ri$-m'odulos si:\\
+\end{block}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{1.2.Las categor'ias de m'odulos y 'algebras sobre un anillo.}\\
+\begin{block}{}
+(a) $f(x+y)=f(x)+f(y)$ para todos $x,y \in M$.\\
+(b) $f(ax)=af(x)$ para todos $a \in \ri$, $x \in M$.\\
+Definimos:
+\begin{center}
+$\text{Hom}_{\ri} (M,N)=\{ f:M \rightarrow N: f\text{ es homomorfismo de }\ri\text{-m'odulos}$ \}
+\end{center}
+\\
+De esto, resulta que los $\ri$-m'odulos (unitarios) constituyen una categor'ia con sus respectivos morfismos.\\
+\end{block}
+\begin{block}{Definici'on 1.2.3:}
+Sea $M$ un $\ri$-m'odulo. Decimos que $N\subseteq M$ es un $\ri$-subm'odulo de $M$, si $N$ es un subgrupo abeliano de $M$ y $N$ es un $R$-m'odulo con la acci'on heredada de $M$.\\
+\end{block}
+\begin{block}{Definici'on 1.2.4:} 
+Sean $M_1,...,M_n$ $R$-m'odulos y sea $\displaystyle \Idots M_1 {\overset{f_1}\longrightarrow} M_2 {\overset{f_2}{\longrightarrow}} \cdots {\overset{f_{n-1}}{\longrightarrow}} M_n$ una sucesi'on de homomorfismos de $R$-m'odulos. Decimos que esta sucesi'on es exacta si $\text{Im}f_{i}=\text{Ker} f_{i+1}$ para todo $1 \leq i \leq n-1$.\\
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{1.2.Las categor'ias de m'odulos y 'algebras sobre un anillo.}\\
+\begin{block}{Definici'on 1.2.5:}
+Una $\ri$-'algebra es una dupla $(A,\cdot)$, donde $A$ es un $\ri$-m'odulo y $\cdot:A \times A \rightarrow A$ es un producto bilineal de $A$. Toda $\ri$-'algebra $(A,\cdot)$ la denotamos sencillamente por $A$ y reemplazaremos $a \cdot b$ por $ab$.\\
+\end{block}
+Notar que si el producto de una $\ri$-'algebra $A$ es conmutativo, asociativo y con identidad, entonces $A$ es un anillo olvidando la acci'on de $R$ en $A$ que le determina su estructura como $R$-m'odulo.\\
+\begin{block}{Definici'on 1.2.6:}
+Sean $A$ y $B$ dos $\ri$-'algebras. Decimos que una funci'on $T:A\rightarrow B$ es homomorfismo de $\ri$-'algebras si:\\
+(a) $T$ es homomorfismo de $\ri$-m'odulos.\\
+(b) $T(ab)=T(a)T(b)$ para todos $a,b \in A$.\\
+Definimos:
+\begin{center}
+$\text{Hom}_{\ri} (A,B)=\{ T:A \rightarrow B: T\text{ es homomorfismo de }R\text{-'algebras}$ \}\\
+\end{center}
+De esto, las $\ri$-'algebras constituyen una categor'ia con sus respectivos morfismos.\\
+\end{block}
+\begin{block}{Definici'on 1.2.7:}
+Sea $A$ una $\ri$-'algebra. Decimos que $B\subseteq A$ es una $\ri$-sub'algebra de $A$, si $B$ es un $\ri$-subm'odulo de $A$ y $B$ es una $\ri$-'algebra con el producto heredado de $A$.\\
+\end{block}
+\end{frame}
+\\
+\begin{frame}
+\frametitle{1.3.Introducci'on a la Geometr'ia Algebraica.}
+El objetivo de esta secci'on es introducir los conceptos b'asicos de la geometr'ia algebraica. Principalmente nos interesa la relaci'on entre los ideales radicales de un anillo de polinomios con objetos geom'etricos. Dado que posteriormente usaremos esta notaci'on y los resultados de esta secci'on incluiremos todas las pruebas correspondientes. Para esta secci'on $k$ es un cuerpo algebraicamente cerrado.\\ 
+\end{frame}
+
+\begin{frame}
+\frametitle{1.3.Introducci'on a la Geometr'ia Algebraica.}
+\begin{block}{Definici'on 1.3.1:} 
+Definimos el espacio af'in sobre $k$ de dimensi'on $n$ por $\textbb{A}_{k}^n =k^n$.\\
+\end{block}
+\begin{block}{Definici'on 1.3.2:}
+Dado $f \in k[X_1,...,X_n]$, definimos los ceros de $f$ por $Z(f)=\{p \in \textbb{A}_{k}^n:f(p)=0\}$. Dado $T \subseteq k[X_1,...,X_n]$, definimos los ceros de $T$ por $Z(T)=\{p \in \textbb{A}_{k}^n:f(p)=0  \forall f \in T \}$.\\
+\end{block}
+\begin{block}{Proposici'on 1.3.3:}
+Sean $T_1,T_2 \subseteq k[X_1,...,X_n]$ tales que $T_1 \subseteq T_2$. Entonces $Z(T_2)\subseteq Z(T_1)$.\\
+\end{block}
+\begin{block}{Definici'on 1.3.4:}
+Decimos que $Y \subseteq \textbb{A}_{k}^n$ es algebraico si existe $T \subseteq$\\ 
+$k[X_1,...,X_n]$ tal que $Y=Z(T)$.\\
+\end{block}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{1.3.Introducci'on a la Geometr'ia Algebraica.}
+\begin{block}{Proposici'on 1.3.5:}
+$\textbb{A}_{k}^n$ y $\emptyset$ son algebraicos. Adem'as, la uni'on de dos subconjuntos algebraicos es un subconjunto algebraico y la intersecci'on de una familia de subconjuntos algebraicos es un subconjunto algebraico. As'i, los subconjuntos algebraicos son los cerrados de una topolog'ia en $\textbb{A}_{k}^n$, que se denomina topolog'ia de Zariski. M'as a'un, si $\{T_{\a} \}_{\a \in I}$ es una familia en $k[X_1,...,X_n]$, entonces $Z(\bigcup _{\a \in I}{T_{\a}})=\bigcap _{\a \in I}{Z(T_{\a})}$.\\
+\textbf{Demostraci'on:}\\
+Sean $Y_1,Y_2 \subseteq \A$ algebraicos, y sean $T_1,T_2 \subseteq k[X_1,...,X_n]$ tales que $Y_1=Z(T_1)$ y $Y_2=Z(T_2)$. Veamos que $Z(T_1 \cdot T2)=Y_1 \cup Y_2$. Sea $p \in Y_1 \cup Y_2$, entonces $p \in Y_1$ y $p \in Y_2$. Dado $h \in T_1 \cdot T_2$, existen $f \in T_1$, $g \in T_2$ tales que $h=fg$, entonces $f(p)=0$ o $g(p)=0$, luego $(fg)(p)=0$, as'i $p \in Z(T_1 \cdot T_2)$ y $Y_1 \cup Y_2 \subseteq Z(T_1 \cdot T_2)$. Sea $p \in Z(T_1 \cdot T_2)$, entonces para todos $f \in T_1$, $g \in T_2$, tenemos $(fg)(p)=0$. Si existe $f \in T_1$ tal que $f(p) \not = 0$, como $(fg)(p)=0$ para todo $g \in T_2$, luego $g(p)=0$ para todo $g \in T_2$, as'i $p \in Z(T_1)=Y_1$, entonces $Z(T_1 \cdot T_2)\subseteq Z(T_1) \cup Z(T_2)=Y_1 \cup Y_2$. As'i $Z(T_1 \cdot T_2)=Z(T_1) \cup Z(T_2)=Y_1 \cup Y_2$.\\ 
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{1.3.Introducci'on a la Geometr'ia Algebraica.}
+\begin{block}{}
+Sea $\{Y_{\a}\}_{\a \in I} \subseteq \A$ familia de subconjuntos algebraicos, y sean $\{T_{\a}\}_{\a \in I} \subseteq k[X_1,...,X_n]$ tales que $Y_{\a}=Z(T_{\a})$ para todo $\a \in I$. Tenemos que\\
+
+$Z(\bigcup _{\a \in I}{T_{\a}}) = \{p\in \A:f(p)=0\forallf\in\bigcup _{\a\in I} {T_{\a}}\}=$\\
+$ \bigcap _{\a \in I} {\{ p \in \A : f(p)=0 \forall f \in T_{\a} \}}= \bigcap _{\a \in I}{Z(T_{\a})}$.\
+Por 'ultimo $Z(1)=\emptyset$ y $Z(0)=\A$.\hfill $\square$\\
+\end{block}
+\begin{block}{Proposici'on 1.3.6:} 
+Sean $T\subseteq k[X_1,...,X_n]$ y $(T)$ el ideal de $k[X_1,...,X_n]$ generado por $T$. Entonces $Z(T)=Z((T))$.\\
+\end{block}
+\begin{block}{Definici'on 1.3.7:} 
+Sea $Y \subseteq \A$, definimos $I(Y)=\{f \in k[X_1,...,X_n]:f(y)=0\text{ } \forall y \in Y \}$.\\
+\end{block}
+\begin{block}{Proposici'on 1.3.8:}
+Sea $Y \subseteq \A$, entonces $I(Y)$ es ideal de $k[X_1,...,X_n]$.\\
+\end{block}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{1.3.Introducci'on a la Geometr'ia Algebraica.}
+\\
+Ya estamos en condiciones de enunciar uno de los teoremas objetivos de este trabajo, su prueba la daremos en la secci'on 2.3:\\
+\\
+\begin{block}{Teorema (Teorema de los ceros de Hilbert):} 
+Sean $k$ un cuerpo algebraicamente cerrado y $a$ un ideal de $k[X_1,...,X_n]$. Si $f \in k[X_1,..,X_n]$ es tal que $f(x)=0$ para todo $x \in Z(a)$, entonces existe $r \in \N$ tal que $f^{r} \in a$.\\
+\end{block}
+Daremos por cierto a este teorema para el 'ultimo resultado de la secci'on, el cual s'olo es ilustrativo para entender las relaciones entre ideales radicales y subconjuntos de $\A$ que son cerrados Zariski:\\
+\begin{block}{Proposici'on 1.3.9:} 
+Sean $X,Y \subseteq \A$ y $a$ un ideal de $k[X_1,...,X_n]$.\\
+(a) Si $X \subseteq Y$. Entonces $I(Y)\supseteq I(X)$.\\
+(b) $I(X\cup Y)=I(X)\cap I(Y)$.\\
+(c) $I(Z(a))=\sqrt{a}$.\\
+(d) $Z(I(Y))=\overline{Y}$.\\
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{1.3.Introducci'on a la Geometr'ia Algebraica.}
+\begin{block}{Corolario 1.3.10:} 
+Existe una biyecci'on entre los subconjuntos cerrados Zariski de $\A$ con los ideales radicales de $k[X_1,...,X_n]$ mediante a $a \mapsto Z(a)$ y $Y\mapsto I(Y)$.\end{block}
+\vspace{6cm}
+\end{frame}
+
+\begin{frame}
+%\frametitle{}
+\begin{center}
+\includegraphics[width=1\textwidth]
+{dormir1}
+\end{center}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{2.Los Teoremas de la base y de los ceros de Hilbert.}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{2.1.M'odulos y anillos Noetherianos.}
+\begin{block}{Proposici'on 2.1.1:}
+Sea $\Sigma$ un conjunto parcialmente ordenado, cuyo orden lo denotamos por $\leq$. Son equivalentes:\\
+(a) Toda sucesi'on creciente $\{\a_j\}_{j \in \N}$ se estaciona (es decir existe $m \in \N$ tal que $\a_{j}=\a_m$ para todo $j>m$).\\
+(b) Todo subconjunto no vac'io de $\Sigma$ tiene un elemento maximal.\\
+En cualquiera de estos casos decimos que $\Sigma$ satisface la condici'on de cadena ascendente.\\
+\end{block}
+\begin{block}{Observaci'on:}
+Sea $M$ un $R$-m'odulo, entonces $\Sigma = \{N:N\text{ es } R\text{-subm'odulo de }M \}$ es parcialmente ordenado por la inclusi'on.\\
+\end{block}
+\begin{block}{Definici'on 2.1.2:}
+Sea $M$ un $R$-m'odulo. Decimos que $M$ es Noetheriano si $\Sigma = \{N:N\text{ es } R\text{-subm'odulo de }M \}$ satisface la condici'on de cadena ascendente.\\
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{2.1.M'odulos y anillos Noetherianos.}
+\begin{block}{Proposici'on 2.1.3:}
+Sea $M$ un $R$-m'odulo. Entonces $M$ es Noetheriano si, y s'olo si, todo $R$-subm'odulo de $M$ es finitamente generado.\\
+\end{block}
+\begin{block}{Proposici'on 2.1.4:}
+Sea ${\displaystyle \Idots 0 {\longrightarrow} M' {\overset{\alpha}{\longrightarrow}} M {\overset{\beta}{\longrightarrow}} M'' {\longrightarrow} 0}$ una sucesi'on exacta de $R$-m'odulos. Entonces $M$ es Noetheriano si, y s'olo si, $M'$ y $M''$ son Noetherianos.\\
+\end{block}
+\begin{block}{Corolario 2.1.5:}
+Si $\{ M_i\}_{1\leq i \leq n}$ son $R$-m'odulos Noetherianos, entonces\\
+$\bigoplus ^{n}_{i=1}{M_i}$ es Noetheriano.\\
+\end{block}
+\begin{block}{Observaci'on:}
+Sean $R$ un anillo y $I$ un ideal de $R$. Entonces $I$ con la acci'on multiplicar a izquierda tiene estructura de $R$-m'odulo.\\ 
+\end{block}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{2.1.M'odulos y anillos Noetherianos.}
+\begin{block}{Definici'on 2.1.6:}
+Un anillo $R$ se dice Noetheriano si (con la acci'on natural) es un $R$-m'odulo Noetheriano.\\
+\end{block}
+Como los $R$-subm'odulos de $R$ son sus ideales, entonces $R$ es un anillo Noetheriano si, y s'olo si, satisface alguna de las siguientes afirmaciones:\\
+\\
+(a) Todo conjunto no vac'io de ideales de $R$ tiene al menos un elemento maximal.\\
+(b) Toda cadena ascendente de ideales en $R$ se estaciona.\\
+(c) Todo ideal de $R$ es finitamente generado.\\
+\\
+\begin{block}{Proposici'on 2.1.7:}
+Sean $R$ un anillo Noetheriano y $M$ un $R$-m'odulo finitamente generado. Entonces $M$ es Noetheriano.\\
+\end{block}
+\begin{block}{Proposici'on 2.1.8:}
+Sean $R$ un anillo Noetheriano y $a$ un ideal de $R$. Entonces $R/a$ es un anillo Noetheriano.\\
+\end{block}
+\end{frame}
+
+
+
+
+\begin{frame}
+\frametitle{2.2.Teorema de la base de Hilbert.}\\
+\begin{block}{Proposici'on 2.2.1:}
+Sean $R$ y $S$ dos anillos. Si $R$ es un anillo Noetheriano y $\phi \in \Hom (R,S)$ es sobreyectivo, entonces $S$ es un anillo Noetheriano.\\
+\end{block}
+\begin{block}{Proposici'on 2.2.2:}
+ Sean $R$ un anillo y $S$ un subanillo de $R$. Si $S$ es Noetheriano y $R$ es un $S$-m'odulo finitamente generado, entonces $R$ es Noetheriano.\\
+\end{block}
+\begin{block}{Teorema 2.2.3 (Teorema de la Base de Hilbert):}
+Si $R$ es un anillo Noetheriano, entonces $R[X]$ es Noetheriano.\\
+\end{block}
+\begin{block}{Corolario 2.2.4:}
+Sea $R$ un anillo Noetheriano, entonces $R[X_1,...,X_n]$ es Noetheriano.\\
+\textbf{Demostraci'on:}\\
+Como $R[X_1,...,X_r][X_{r+1},...,X_m] \cong R[X_1,...,X_m]$ para todos $1 \leq r\leq m$, entonces el corolario resulta de realizar inducci'on en $n$ y usar 2.2.3.\hfill $\square$\\
+\end{block}
+
+\vspace{5cm}
+\end{frame}
+
+\begin{frame}
+\frametitle{2.2.Teorema de la base de Hilbert.}\\
+\begin{block}{Corolario 2.2.5:}
+Sean $R$ un anillo Noetheriano y $A$ una $R$-'algebra finitamente generada. Entonces $A$ es Noetheriano.\\
+\textbf{Demostraci'on:}\\
+Es inmediato de 2.2.4, pues $A$ es alg'un cociente de $R[X_1,...,X_n]$ para alg'un $n \in \N$.\hfill $\square$\\
+\end{block}
+\vspace{6cm}
+\end{frame}
+
+\begin{frame}
+\frametitle{2.3.Teorema de los ceros de Hilbert.}\\
+
+En esta secci'on toda $R$-'algebra ser'a conmutativa, asociativa y con identidad, teniendo as'i estructura de anillo.\\
+\begin{block}{Proposici'on 2.3.1:}
+Sean $R$, $S$ y $T$ tres anillos tales que $R \subseteq S \subseteq T$. Supongamos que $R$ es Noetheriano, que $T$ es finitamente generada como $R$-'algebra y finitamente generado como $S$-m'odulo. Entonces $S$ es finitamente generada como $R$-'algebra.\\
+\end{block}
+\begin{block}{Proposici'on 2.3.2:}
+Sean $k$ un cuerpo y $E$ una $k$-'algebra finitamente generada. Si $E$ es un cuerpo, entonces es una extensi'on finita de $k$.\\
+\end{block}
+\vspace{6cm}
+\end{frame}
+
+
+
+
+
+\begin{frame}
+\frametitle{2.3.Teorema de los ceros de Hilbert.}\\
+\begin{block}{Corolario 2.3.3 (Teorema de los ceros de Hilbert forma d'ebil):}
+Sean $k$ un cuerpo algebraicamente cerrado y $A$ una $k$-'algebra de dimensi'on finita. Sea $m$ un ideal maximal de $A$. Entonces $A/m \cong k$ (como $k$-'algebras).\\
+\textbf{Demostraci'on:}\\
+Como $A/m$ es un cuerpo que tiene estructura de $k$-'algebra, existe $\phi : k \to A/m$ morfismo de $k$-'algebras inducido por la acci'on de $k$ sobre $A/m$. En particular $\phi$ es morfismo de cuerpos y por lo tanto inyectivo, as'i $\phi (k)$ es algebraicamente cerrado. Por la proposici'on anterior $A/m$ es una subextensi'on algebraica y finita de $\phi (k)$. Como $\phi (k)$ es algebraicamente cerrado, entonces $\phi(k) = A/m $, de donde $A/m \cong k$.\hfill $\square$\\
+\end{block}
+\vspace{6cm}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{2.3.Teorema de los ceros de Hilbert.}\\
+\begin{block}{Teorema 2.3.4 (Teorema de los ceros de Hilbert forma fuerte):}
+Sean $k$ un cuerpo algebraicamente cerrado y $a$ un ideal de $k[X_1,...,X_n]$. Entonces $I(Z(a))\subseteq \sqrt{a}$.\\
+\textbf{Demostraci'on:}\\
+Denotamos $A=k[X_1,...,X_n]$. Sea $f \not \in \sqrt{a}$, entonces existe $p$ ideal primo de $A$ que contiene a $a$ tal que $f \not \in p$. Consideremos $\phi _1: A \rightarrow A/p$ la proyecci'on can'onica y denotemos $B=A/p$.\\
+Sea $\overline{f}=\phi _1(f)$, como $B$ es dominio 'integro, admite un cuerpo de fracciones $\F$ y $\phi _2 :B \rightarrow \F$ morfismo de anillos inyectivo. Sea $C=B[1/\overline{f}]$ la $B$-'algebra generada por $\overline{f}^{-1}$ en $\F$, as'i, podemos considerar a $\phi _2$ con imagen en $C$. Notemos que $\overline{f}$ es unidad en $C$.\\
+ Sea $m$ un ideal maximal de $C$, entonces $\overline{f} \not \in m$. Como $C$ es una $k$-'algebra finitamente generada, por 2.3.3 tenemos que $C/m \cong k$. Sean $\phi _3 :C \rightarrow C/m$ la proyecci'on can'onica y $\phi _4 :C/m \rightarrow k$ un isomorfismo de $k$-'algebras. Como $\overline{f} \not \in m$, entonces $\phi_3 (\overline{f}) \not = 0$ y $\phi_4 (\phi_3 (\overline{f}))\not = 0$.\
+
+Sea $\psi = \phi_4 \circ \phi_3 \circ \phi_2 \circ \phi_1$. Como $\psi : A \rightarrow k$ que es morfismo de $k$-'algebras, entonces:\\
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{2.3.Teorema de los ceros de Hilbert.}\\
+\begin{block}{}
+\begin{center}
+ $f(\psi(X_1),...,\psi(X_n)) =\psi(f(X_1,...,X_n))=\psi(f)= (\phi_4 \circ \phi_3 \circ \phi_2 \circ \phi_1)(f)=(\phi_4 \circ \phi_3 )(\overline{f}) \not = 0$
+\end{center}
+Veamos que $(\psi(X_1),...,\psi(X_n)) \in Z(a)$. Dado $g \in a \subseteq p$, luego $\phi_1 (g)=0$ y $\psi(g)=(\phi_4 \circ \phi_3 \circ \phi_2)( \phi_1(g))=0$ de donde:\\
+\begin{center}
+ $g(\psi(X_1),...,\psi(X_n)) =\psi(g(X_1,...,X_n))=\psi(g) = 0$\\
+\end{center}
+As'i $(\psi(X_1),...,\psi(X_n)) \in Z(a)$. Como $(\psi(X_1),...,\psi(X_n)) \in Z(a)$ y \\
+$f(\psi(X_1),...,\psi(X_n))\not = 0$, entonces $f \not \in I(Z(a))$.\hfill $\square$\\
+\end{block}
+\vspace{4cm}
+\end{frame}
+
+
+\begin{frame}
+%\frametitle{4.8.Resumen de resultados.}
+\begin{center}
+\includegraphics[width=1\textwidth]
+{dormir2}
+\end{center}
+\end{frame}
+
+
+
+
+
+\begin{frame}
+\frametitle{3.Introducci'on a las bases de Gr\"oebner.}\\
+
+En este cap'itulo fijaremos un cuerpo $k$ de caracter'istica 0 y $n \in \N$. Nuestros objetivos son:\\
+\\
+1. Generalizar el algoritmo de la divisi'on de $k[X]$ en $k[X_1,...,X_n]$.\\
+2. Introducir las bases de Gr\"obner y entender sus propiedades m'as b'asicas.\\
+3. Encontrar un algoritmo para calcular bases de Gr\"obner de un ideal de $k[X_1,...,X_n]$.\\ 
+4. Dados $f \in k[X_1,...X_n]$ e $I$ un ideal de $k[X_1,...,X_n]$, encontrar un algoritmo para determinar si $f \in I$.\\
+5. Dados $f \in k[X_1,...X_n]$ e $I$ un ideal de $k[X_1,...,X_n]$, encontrar un algoritmo para determinar si $f \in \sqrt{I}$.\\
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{3.1.'Ordenes Monomiales en $k[X_1,...,X_n]$.}\\
+Uno de nuestros objetivos es generalizar el algoritmo de la divisi'on de $k[X]$ en $k[X_1,...,X_n]$. Recordemos:\\ 
+\begin{block}{Teorema (Algoritmo de la divisi'on en $k[X]$):}
+Dados $f,g\in k[X]$ con $g \not = 0$, entonces existen 'unicos $r,q \in k[X]$ tales que $f=gq+r$ y $\deg(r)<\deg(g)$ o bien $r=0$.\\
+\end{block}
+A $r$ se lo conoce como el resto de la divisi'on y se caracteriza por ser de alguna manera m'as peque\~no que $g$. En este caso ser mas peque\~no esta vinculado con el grado del polinomio. Notemos que en $k[X]$ puede establecer un orden total entre los monomios m'onicos a trav'es del grado el cual satisface una gran cantidad de propiedades. 'Esto no es posible en $k[X_1,...,X_n]$, pues por ejemplo los monomios $X_1,...,X_n$ tienen grado 1 y son distintos. Por este inconveniente es por lo cual recurrimos a los ordenes monomiales que introduciremos en esta secci'on.\\
+\begin{block}{Definici'on 3.1.1:}
+Definimos $\mathbb{T}^n=\{X_1^{\beta _1}\cdots X_n^{\beta _n} \in k[X_1,...,X_n]:\beta =(\beta _1,...,\beta _n )\in \N_{0}^n\}$. Si $\alpha =(\alpha _1,...,\alpha _n) \in \N_0^n$, denotamos $X^{\alpha}=\prod_{i=1}^{n}{X^{\alpha_i}_i}\in \T$, as'i $\T=\{X^{\beta}:\beta \in \N ^n_0\}$.\\
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{3.1.'Ordenes Monomiales en $k[X_1,...,X_n]$.}\\
+\begin{block}{Definici'on 3.1.2:}
+Un orden monomial en $k[X_1,...,X_n]$ es un orden total $<$ en $\T$ que satisface:\\
+(a) $1<X^{\beta}$ para todo $\beta \in \N_0^n$, $\beta \not = 0$.\\
+(b) Si $X^{\alpha}<X^{\beta}$, entonces $X^{\alpha}X^{\gamma}<X^{\beta}X^{\gamma}$ para todo $\gamma \in \N_0^n$.\\
+\end{block}
+\begin{block}{Definici'on 3.1.3:}
+Definimos el orden lexicogr'afico en $\T$ por $X_1>X_2>...>X_n$ y si $\alpha \not = \beta$ en $\N _0^n$, entonces $X^{\alpha}<X^{\beta}$ si, y s'olo si, $\alpha _{r_0} < \beta _{r_0}$ donde $r_0=\text{min}\{ j \in \{ 1,...,n\}:\alpha _j \not = \beta _j\}$.\\
+\end{block}
+\begin{block}{Teorema 3.1.4:}
+Todo orden monomial de $\T$ es bien ordenado, esto es, para todo $A \subseteq \T$ existe $X^{\alpha} \in A$ tal que $X^{\alpha} \leq X^{\beta}$ para todo $X^{\beta} \in A$.\\
+\end{block}
+\vspace{4cm}
+\end{frame}
+
+
+
+
+
+\begin{frame}
+\frametitle{3.2.Algoritmo de la divisi'on en $k[X_1,...,X_n]$.}\\
+Consideremos $>$ un orden monomial fijo en $\T$.\\
+\begin{block}{Definici'on 3.2.1:}
+Sea $f \in k[X_1,...,X_n]$ no nulo, entonces existen $\alpha_1,...,\alpha_r \in \N_0^n$ distintos y  $a_1,...,a_r \in k$ no nulos tales que $f = \sum _{i=1}^{r}{a_iX^{\alpha_i}}$. Si $X^{\alpha_1}>X^{\alpha_2}>...>X^{\alpha_r}$, definimos:\\
+(a) $\text{lp}(f)=X^{\alpha_1}$, la potencia principal de $f$.\\
+(b) $\text{lc}(f)=a_1$, el coeficiente principal de $f$.\\
+(c) $\text{lt}(f)=a_1X^{\alpha_1}$, el t'ermino principal de $f$.\\
+\end{block}
+\begin{block}{Definici'on 3.2.2:}
+Sean $f,g,h \in k[X_1,...,X_n]$, con $g \not = 0$. Decimos que $f$ es reducido a $h$ m'odulo $g$, y lo denotamos $\displaystyle \Idots f {\overset{g}{\longrightarrow}} h$ si $\lp(g)$ divide un t'ermino no nulo $T$ de $f$ y $h=f-\frac{T}{\lt(g)}g$.\\
+\end{block}
+\vspace{5cm}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{3.2.Algoritmo de la divisi'on en $k[X_1,...,X_n]$.}\\
+\begin{block}{Definici'on 3.2.3:}
+Sean $f,h,f_1,...,f_s \in k[X_1,...,X_n]$ con $f_i \not = 0$ para todo $1 \leq i \leq s$ y $F=\{f_1,...,f_s\}$. Decimos que $f$ es reducido a $h$ m'odulo $F$, y lo denotamos $\displaystyle \Idots f {\overset{F}{\longrightarrow}}_{+} h$ si existe una sucesi'on $h_1,...,h_{t-1} \in k[X_1,...,X_n]$ tal que ${\displaystyle \Idots f {\overset{f_{i_1}}{\longrightarrow}} h_1 {\overset{f_{i_2}}{\longrightarrow}} h_2 {\overset{f_{i_3}}{\longrightarrow}} \cdots {\overset{f_{i_{t-1}}}{\longrightarrow}} h_{t-1} {\overset{f_{i_t}}{\longrightarrow}} h}$, donde $1 \leq i_1,...,i_n \leq s$.\\
+\end{block}
+\begin{block}{Definici'on 3.2.4:}
+Sean $r,f_1,...,f_s \in k[X_1,...,X_n]$ con $f_i \not = 0$ para todo $1 \leq i \leq s$ y $F=\{f_1,...,f_s\}$. Decimos que $r$ es reducido sobre $F$ si $r=0$ o ning'un t'ermino de $r$ es divisible por alg'un $\lp(f_i)$, $1 \leq i \leq s$. En otras palabras, $r$ no puede ser reducido m'odulo $F$. Si $\displaystyle \Idots f {\overset{F}{\longrightarrow}}_{+} r$ y $r$ es reducido sobre $F$, decimos que $r$ es un resto de $f$ respecto de $F$.\\
+\end{block}
+\begin{block}{Proposici'on 3.2.5:}
+Sean $f,r,f_1,...,f_s \in k[X_1,...,X_n]$ con $f_i \not = 0$ para todo $1 \leq i \leq s$ y $F=\{f_1,...,f_s\}$. Si $\displaystyle \Idots f {\overset{F}{\longrightarrow}}_{+} r$, entonces existen $u_1,...,u_s \in k[X_1,...,X_n]$ tales que $f= \sum^{s}_{i=1}{u_if_i}+r$.\\
+\end{block}
+\vspace{5cm}
+\end{frame}
+
+
+
+
+\begin{frame}
+\frametitle{3.2.Algoritmo de la divisi'on en $k[X_1,...,X_n]$.}\\
+\begin{block}{Teorema 3.2.6 (Algoritmo de la divisi'on en $k[X_1,...,X_n]$):}
+Sean $f,f_1,...,f_s \in k[X_1,...,X_n]$ no nulos y $F=\{f_1,...,f_s\}$. Definimos recursivamente:\\
+(a) $h_0=f$, $u_{i,0}=0$ ($1 \leq i \leq s$), $r_0=0$.\\
+(b) Si $h_j=0$, entonces $u_{i,j}=u_i$ ($1 \leq i \leq s$), $r=r_j$.\\
+(c) Si $h_j \not = 0$, en el caso que existe $1 \leq d \leq s$ tal que $\lp(f_d)$ divide a $\lp(h)$, entonces elegimos un $d$ que satisfaga esto y definimos $u_{d,j+1}=u_{d,j}+\frac{\lt(h)}{\lt(f_d)}$, $h_{j+1}=h_{j}-\frac{\lt(h)}{\lt(f_d)}f$, $r_{j+1}=r_j$ y $u_{i,j+1}=u_{i,j}$ ($1\leq i \leq s$, $i \not = d$), en el caso contrario, definimos $r_{j+1}=r_j+\lt(h_j)$, $h_{j+1}=h_j-\lt(h_j)$ y $u_{i,j+1}=u_{i,j}$ ($1 \leq i \leq s$).\\
+Entonces $r,u_1,...,u_s$ satisfacen que $f= \sum^{s}_{i=1}{u_if_i} +r$, $r$ es reducido sobre $F$ y 
+$\lp (f)= \text{max}\{\lp(r),\lp(u_1f_1),...,\lp(u_sf_s)\}$. En este caso, a $r$ lo llamaremos resto de $f$ en $F$.\\
+\end{block}
+\vspace{5cm}
+\end{frame}
+
+
+
+
+
+
+
+
+\begin{frame}
+\frametitle{3.3.Bases de Gr\"obner.}\\
+Consideremos $>$ un orden monomial fijo en $\T$.\\
+\begin{block}{Definici'on 3.3.1:}
+Sean $I$ un ideal propio de $k[X_1,...,X_n]$, $g_1,...,g_t \in I$ no nulos y $G=\{ g_1,...,g_t\}$. Decimos que $G$ es una base de Gr\"obner de $I$ si para todo $f \in I$ no nulo, existe $1 \leq i \leq t$ tal que $\lp(g_i)$ divide a $\lp(f)$.\\
+\end{block}
+\begin{block}{Definici'on 3.3.2:}
+Sea $S \subseteq k[X_1,...,X_n]$ con $0 \not \in S$, definimos $\Lt(S)=(\{\lt(s):s \in S \})$.\\
+\end{block}
+\begin{block}{Teorema 3.3.3:}
+Sean $I$ un ideal propio de $k[X_1,...,X_n]$, $g_1,...,g_t \in I$ no nulos y $G=\{g_1,...,g_t\}$. Las siguientes afirmaciones son equivalentes:\\
+(a) $G$ es una base de Gr\"obner de $I$.\\
+(b) $f \in I$ si, y s'olo si, $\displaystyle \Idots f {\overset{G}{\longrightarrow}}_{+} 0$.\\
+(c) $f \in I$ si, y s'olo si, existen $h_1,...,h_t \in k[X_1,...,X_n]$ tales que $f = \sum^{t}_{i=1}{h_ig_i}$ y $\lp(f)=\text{max}\{\lp(h_1)\lp(g_1),...,\lp(h_n)\lp(g_n)\}$.\\
+(d) $\Lt(G)=\Lt(I)$.\\
+\end{block}
+\end{frame}
+
+
+
+
+
+
+\begin{frame}
+\frametitle{3.3.Bases de Gr\"obner.}\\
+\begin{block}{Corolario 3.3.4:}
+Sean $I$ un ideal propio de $k[X_1,...,X_n]$, $>$ un orden monomial de $\T$ y sea $G=\{g_1,...,g_t\}$ una base de Gr\"obner de $I$. Entonces $I=(g_1,...,g_t)$.\\
+\end{block}
+\begin{block}{Corolario 3.3.5:}
+Sea $I$ un ideal propio de $k[X_1,...,X_n]$ generado por $S\subseteq k[X_1,...,X_n]$, donde $S$ contiene  solo monomios. Entonces existe $G$ base de Gr\"obner de $I$.\\
+\end{block}
+\begin{block}{Definici'on 3.3.6:}
+Decimos que $G=\{g_1,...,g_t\} \subseteq k[X_1,...,X_n]$ es una base de Gr\"obner, si $G$ es una base de Gr\"obner de $(G)=(g_1,...,g_t)$.\\
+\end{block}
+\begin{block}{Teorema 3.3.7:}
+Sea $G=\{g_1,...,g_t\}\subset k[X_1,...,X_n]$ una base de Gr\"obner. Entonces para todo $f \in k[X_1,...,X_n]$ el resto de $f$ en la divisi'on por $G$ es 'unico.\\
+\end{block}
+\end{frame}
+
+
+
+
+
+\begin{frame}
+\frametitle{3.3.Bases de Gr\"obner.}\\
+Sean $f \in k[X_1,...,X_n]$ y $I$ un ideal de $k[X_1,...,X_n]$. Si ya conocemos una base de Gr\"obner $G$ de $I$, 3.3.7 nos brinda un algoritmo para determinar si $f \in I$. En efecto, basta aplicar el algoritmo de la divisi'on de $f$ sobre $G$ y chequear si el resto es $0$.\\
+\vspace{8cm}
+\end{frame}
+
+
+
+
+\begin{frame}
+\frametitle{3.4.Algoritmo de Buchberger.}\\
+Consideremos $>$ un orden monomial fijo en $\T$.\\
+\\
+\begin{block}{Definici'on 3.4.1:}
+Sean $f,g \in k[X_1,...,X_n]$ no nulos y $L=\text{mcm}(\lp (f),\lp (g))$. Definimos el $S$-polinomio de $f$ y $g$ por $S(f,g)=\frac{L}{\lt{f}}f- \frac{L}{\lt{g}}g$.\\
+\end{block}
+\begin{block}{Teorema 3.4.2:}
+Sea $G=\{g_1,...,g_t\}$ un conjunto de polinomios no nulos en $k[X_1,...,X_n]$. Entonces $G$ es base de Gr\"obner si, y s'olo si, $S(g_i,g_j) {\overset{G}{\longrightarrow}}_{+} 0$ para todo $i \not = j$.\\
+\end{block}
+\vspace{5cm}
+\end{frame}
+
+
+
+
+
+
+\begin{frame}
+\frametitle{3.4.Algoritmo de Buchberger.}\\
+\begin{block}{Teorema 3.4.3 (Algoritmo de Buchberger):}
+Sea $F=\{f_1,...,f_t\}$ un conjunto de polinomios no nulos en $k[X_1,...,X_n]$. Definimos recursivamente:\\
+(a) $G_0=\{f_1,...,f_t\}$ y $\emph{H}_{0}=\{\{f_i,f_j \}:f_i \not = f_j:f_i,f_j \in G_0\}$.\\
+(b) Si $\emph{H}_{i} = \emptyset$, entonces $G=G_i$.\\
+(c) Si $\emph{H}_{i} \not = \emptyset$, elegimos cualquier $\{f,g\} \in \emph{H}_{i}$ y sea $h \in k[X_1,...,X_n]$ tal que $S(f,g) \overset{G_i}{\longrightarrow}_{+}h$, si $h=0$, entonces $G_{i+1}=G_i$ y $\emph{H}_{i+1}=\emph{H}_{i}\setminus \{\{f,g\}\}$, si $h \not = 0$, entonces $G_{i+1}=G_i \cup \{h\}$ y $\emph{H}_{i+1}=\emph{H}_i\cup \{\{h,p\}:p \in G_i\} \setminus \{\{f,g\}\}$.\\
+ Entonces $G$ es una base de Gr\"obner del ideal $I=(f_1,...,f_t)$.\\ 
+\end{block}
+\vspace{6cm}
+\end{frame}
+
+
+
+
+\subsection{Bases de Gr\"obner minimales y reducidas.}\\
+
+\begin{frame}
+\frametitle{3.5.Bases de Gr\"obner minimales y reducidas.}\\
+Consideremos $>$ un orden monomial fijo en $\T$.\\
+\\
+\begin{block}{Definici'on 3.5.1:}
+Una base de Gr\"obner $G=\{g_1,...,g_t\} \subseteq k[X_1,...,X_n]$ es llamada minimal si $\lc(g_i)=1$ para todo $1 \leq i \leq t$ y $\lp (g_i)$ no divide a $\lp (g_j)$ para todo $i \not = j$.\\
+\end{block}
+\begin{block}{Lema 3.5.2:}
+Sea $G=\{g_1,...,g_t \}$ una base de Gr\"obner del ideal $I$. Si $\lp (g_2)$ divide a $\lp(g_1)$, entonces $\{g_2,...,g_t\}$ es una base de Gr\"obner de $I$.\\
+\end{block}
+\begin{block}{Corolario 3.5.3:}
+Sea $G=\{g_1,...,g_t\}$ una base de Gr\"obner del ideal $I$. Entonces se puede obtener una base de Gr\"obner minimal de $I$ eliminando recursivamente los $g_i$ tales que existe $j \not = i$ que satisface que $\lp (g_j)$ divide a $\lp(g_i)$ y $g_j$ no fue eliminado en ese momento de la recursi'on y dividiendo cada $g_i$ restante por $\lc (g_i)$.\\
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{3.5.Bases de Gr\"obner minimales y reducidas.}\\
+\begin{block}{Proposici'on 3.5.4:}
+Si $G=\{g_1,...,g_t\}$ y $F=\{f_1,...,f_s\}$ son bases de Gr\"obner minimales de un ideal $I$ de $k[X_1,...,X_n]$. Entonces $s=t$ y existe $\sigma \in \mathbb{S}_t$ tal que $\lt(g_i)=\lt(f_{\sigma(i)})$ para todo $1 \leq i \leq t$.\\
+\end{block}
+\begin{block}{Definici'on 3.5.5:}
+Una base de Gr\"obner $G=\{g_1,...,g_t\}$ se dice reducida si $\lc (g_i)=1$ para todo $1 \leq i \leq t$ y si $g_i$ es reducido respecto $G \setminus \{g_i\}$ para todo $1 \leq i \leq t$.\\
+\end{block}
+\vspace{6cm}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{3.5.Bases de Gr\"obner minimales y reducidas.}\\
+\begin{block}{Corolario 3.5.6:}
+Sea $G=\{g_1,...,g_t\}$ una base de Gr\"obner minimal de un ideal $I$ de $k[X_1,...,X_n]$. Consideremos el siguiente algoritmo:\\
+$\bullet$ $g_1 \overset{H_1}{\longrightarrow}_{+}h_1$ con $h_1$ reducido respecto a $H_1=\{g_2,...,g_t\}$.\\
+$\bullet$ $g_2 \overset{H_2}{\longrightarrow}_{+}h_1$ con $h_2$ reducido respecto a $H_2=\{h_1,g_3,...,g_t\}$.\\
+$\,$\vdots\\
+$\bullet$ $g_t \overset{H_t}{\longrightarrow}_{+}h_t$ con $h_t$ reducido respecto a $H_t=\{h_1,h_2,...,h_{t-1}\}$.\\
+Entonces $H=\{h_1,...,h_t\}$ es una base de Gr\"obner reducida de $I$.\\
+\end{block}
+\begin{block}{Teorema 3.5.7:}
+Dado un orden monomial fijo en $k[X_1,...,X_n]$, las bases de Gr\"obner reducidas son 'unicas en cualquier ideal de $k[X_1,...,X_n]$.\\
+\end{block}
+\vspace{5cm}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{3.6.Un 'ultimo algoritmo.}\\
+Sean $f \in k[X_1,...,X_n]$ y $I$ un ideal de $k[X_1,...,X_n]$. Nos falta un algoritmo para determinar si $f \in \sqrt{I}$. En esta secci'on daremos un resultado que nos da este algoritmo. Dado que vamos a usar el Teorema de los ceros de Hilbert, impondremos la hip'otesis de que $k$ es algebraicamente cerrado.\\
+\\ 
+\begin{block}{Teorema 3.6.1:}
+Sean $f \in k[X_1,...,X_n]$, y $I$ un ideal de $k[X_1,...,X_n]$. Si $f_1,...,f_s \in k[X_1,...,X_n]$ son no nulos tales que $I=(f_1,...,f_s)$, entonces $f \in \sqrt{I}$ si, y s'olo si, $1 \in (f_1,...,f_s,1-\omega f)\subseteq k[X_1,...,X_n,\omega]$; donde $\omega$ es otra variable polin'omica.\\
+\textbf{Demostraci'on:}\\
+Por el Teorema de los ceros de Hilbert, $I(Z(I))=\sqrt{I}$, luego $f \in \sqrt{I}$ si, y s'olo si, $f(a_1,...,a_n)=0$ para todo $(a_1,...,a_n) \in Z(I)$.\\
+Supongamos que $f \in \sqrt{I}$. Si $(a_1,...,a_n,b) \in Z((f_1,...,f_s,1-\omega f))$, entonces $f_i(a_1,...,a_n)=0$ para todo $1 \leq i \leq s$ y $1-bf(a_1,...,a_n)=0$. Pero entonces $(a_1,...,a_n)\in Z(I)$, luego $f(a_1,...,a_n)=0$ y as'i $0=1-bf(a_1,...,a_n)=1$, absurdo. De esta forma $Z((f_1,...,f_s,1-\omega f))= \emptyset$ y finalmente $1 \in k[X_1,...,X_n]=(f_1,...,f_s,1-\omega f)$.\
+
+Rec'iprocamente ahora supongamos que $1 \in (f_1,...,f_s,1-\omega f)$. Entonces existen $h_1,...,h_s,h \in k[X_1,...,X_n, \omega]$ tales que $1= \sum_{i=1}^{s}{h_if_i}+h(1-\omega f)$. Entonces, para
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{3.6.Un 'ultimo algoritmo.}\\
+\begin{block}{}
+todo $(a_1,...,a_n) \in Z(I)$ tenemos que $1=h(a_1,...,a_n, \omega)(1-\omega f(a_1,...,a_n))$; notar que el lado derecho es un polinomio en $\omega$. Si existe $(a_1,...,a_n) \in Z(I)$ tal que $f(a_1,...,a_n) \not = 0$, entonces evaluando $\omega = \frac{1}{f(a_1,...,a_n)}$ obtenemos:\\
+ \begin{center}
+$\displaystyle 1=h\left(a_1,...,a_n, \frac{1}{f(a_1,...,a_n)}\right)\left(1-\frac{1}{f(a_1,...,a_n)} f(a_1,...,a_n)\right)=0$\\ 
+\end{center}
+absurdo. As'i $f(a_1,...,a_n)=0$ para todo $(a_1,...,a_n) \in Z(I)$ y finalmente $f \in \sqrt{I}$.\hfill $\square$\\
+\end{block}
+\vspace{5cm}
+\end{frame}
+
+
+
+
+
+
+\begin{frame}
+\frametitle{4.Ideales de polinomios asociados a estructuras algebraicas de dimensi'on finita.}\\
+En este cap'itulo $k$ es un cuerpo algebraicamente cerrado y de caracter'istica 0.\\
+\end{frame}
+
+
+\begin{frame}
+\frametitle{4.1.Introducci'on.}\\
+Sean $V$ un $k$-espacio vectorial de dimensi'on $n$ y $B=\{e_1,...,e_n\}$ una base de $V$. Denotamos por $\textbf{F}$ a la familia de todas las 'algebras cuyo espacio vectorial subyacente es $V$. Toda 'algebra en $\textbf{F}$ esta un'ivocamente determinada por sus coeficientes de estructura asociados a $B$, 'estos son $\{\mu_{i,j,r}\}_{1\leq i,j,r \leq n}$ que est'an en $k$ y satisfacen:\\
+\begin{center}
+$\displaystyle e_ie_j= \sum^{n}_{r=1}{\mu_{i,j,r}e_r}$\\
+\end{center}
+\\
+$\,$\\
+
+Sea $\textbf{A}$ una subfamilia de 'algebras de $\textbf{F}$ que est'a caracterizada por satisfacer ciertos invariantes en la categor'ia de 'algebras (por ejemplo $\textbf{A}$ podr'ia ser la subfamilia de 'algebras de Lie 3 pasos nilpotente). As'i podemos ver a $\textbf{F}$ como $k^{n\times n \times n}$ (v'ia los coeficientes de estructura) y a $\textbf{A}$ como un subconjunto de 'este. Supongamos adem'as que para todo invariante inv que caracterize a $\textbf{A}$ existen $\{p_u\}_{u \in I}$ en $k[X_{a,b,c}]_{1\leq a,b,c \leq n}$ tales que $A$ en $\textbf{F}$ satisface inv si, y s'olo si, los coeficientes de estructura $\{\mu_{i,j,r}\}_{1\leq i,j,r \leq n}$ cumplen $p_u(\mu_{i,j,r})_{1 \leq i,j,r \leq n}=0$ para todo $u \in I$. En este caso decimos $\{p_u\}_{u \in I}$ determina inv y denotamos $C_{\text{inv,}n}=\{p_u:u \in I\}$.\\
+\end{frame}
+
+
+\begin{frame}
+%\frametitle{4.8.Resumen de resultados.}
+\begin{center}
+\includegraphics[width=1\textwidth]
+{ejemplo}
+\end{center}
+\end{frame}
+
+\\
+\begin{frame}
+\frametitle{4.1.Introducci'on.}\\
+\begin{block}{Ejemplo 4.1.1:}
+Supongamos que uno de los invariantes que satisface $\textbf{A}$ es la asociatividad. Por la bilinealidad del producto tenemos que $A\in \textbf{F}$ es asociativa si, y s'olo si, $e_a(e_be_c)=(e_ae_b)e_c$ para todos $1 \leq a,b,c \leq n$, lo cual v'ia los coeficientes de estructura se traduce a:\\
+$\,$\\
+\begin{center}
+$\displaystyle e_a \left(\sum^{n}_{i=1}{\mu_{b,c,i}e_i} \right)= \left(\sum^{n}_{i=1}{\mu_{a,b,i}e_i} \right)e_c$,\\
+\end{center}
+$\,$\\
+\begin{center}
+$\displaystyle \sum^{n}_{i=1}{\mu_{b,c,i}(e_ae_i)}=\sum^{n}_{i=1}{\mu_{a,b,i}(e_ie_c)}$,\\
+\end{center}
+$\,$\\
+\begin{center}
+$\displaystyle \sum^{n}_{i=1}{\mu_{b,c,i}\left(\sum^{n}_{j=1}{\mu_{a,i,j}e_j }}\right)=\sum^{n}_{i=1}{\mu_{a,b,i}\left( \sum^{n}_{j=1}{\mu_{i,c,j}e_j} \right)}$,\\
+\end{center}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{4.1.Introducci'on.}\\
+\begin{block}{}
+\begin{center}
+$\displaystyle \sum^{n}_{j=1}{\left( \sum^{n}_{i=1}{\mu_{b,c,i}\mu_{a,i,j}} \right)e_j}= \sum^{n}_{j=1}{\left(\sum^{n}_{i=1}{\mu_{a,b,i}\mu_{i,c,j} \right) e_j }}$,\\
+\end{center}
+$\,$\\
+\begin{center}
+$\displaystyle \sum^{n}_{j=1}{\left( \sum^{n}_{i=1}{\mu_{b,c,i}\mu_{a,i,j}-\mu_{a,b,i}\mu_{i,c,j}\right)e_j}}= 0$,\\
+\end{center}
+$\,$\\
+\\
+y esto ocurre si, y s'olo si, $\sum^{n}_{i=1}{\mu_{b,c,i}\mu_{a,i,j}-\mu_{a,b,i}\mu_{i,c,j}}=0$ para todos $1 \leq a,b,c,j \leq n$. De esta manera obtenemos que:\\
+\\
+\begin{center}
+$C_{\text{asoc,}n}= \displaystyle \left \{ p_{a,b,c,d}= \sum_{i=1}^{n}{ X_{a,b,i} X_{i,c,d} -  X_{a,i,d} X_{b,c,i}}:1\leq a,b,c,d \leq n \right \}$,\\
+\end{center}
+\end{block}
+\begin{block}{Ejemplo 4.1.2:}
+Si uno de los invariantes de $\textbf{A}$ es la identidad de Jacobi (que en el fondo es otra forma de asociar distinta a la usual) de manera an'aloga al ejemplo anterior\\
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{4.1.Introducci'on.}\\
+\begin{block}{}
+obtenemos:
+\begin{center}
+$C_{\text{Jac,}n}= \displaystyle \left \{ p_{a,b,c,d}= \sum_{i=1}^{n} X_{b,c,i} X_{a,i,d}+ X_{c,a,i} X_{b,i,d}+X_{a,b,i} X_{c,i,d} :1\leq a,b,c,d\leq n \right\}$.\\
+\end{center}
+\end{block}
+\begin{block}{Definici'on 4.1.3:}
+Si $\textbf{A}$ est'a caracterizada por los invariantes inv$1$, inv$2$,..., inv$m$, definimos el ideal asociado a $\textbf{A}$ por:\\
+\\
+\begin{center}
+$\displaystyle I_{\text{inv1,inv2,...,inv}m,n}=\left(\bigcup\limits_{i=1}^{m} C_{\text{inv}i,n}\right)$.
+\end{center}
+\end{block}
+\\
+
+Hasta ahora, nos dedicamos a convertir todas las ``propiedades algebraicas comunes'' de las 'algebras en $\textbf{A}$ en un ideal de polinomios v'ia los coeficientes de estructura. Pero este ideal que definimos, ?`contiene a todos los polinomios de $k[X_{i,j,r}]_{1 \leq i,j,r \leq n}$ que anulan a los coeficientes de estructura de toda 'algebra en $\textbf{A}$?, primero definamos los polinomios de los que estamos hablando:\\
+\end{frame}
+\\
+\begin{frame}
+\frametitle{4.1.Introducci'on.}\\
+\begin{block}{Definici'on 4.1.4:}
+Decimos que un polinomio $p \in k[X_{i,j,r}]_{1 \leq i,j,r \leq n}$ es una propiedad algebraica de $\textbf{A}$ si $p(\mu_{i,j,r})_{1 \leq i,j,r \leq n}=0$ todos los coeficientes de estructura $\{\mu_{i,j,r}\}_{1 \leq i,j,r \leq n}$ de todas las 'algebras de $\textbf{A}$. Est'a claro que $I_{\textbf{A}}=\left\{ p \in k[X_{i,j,r}]_{1 \leq i,j,r \leq n}:p\text{ es una propiedad algebraica de }\textbf{A} \right\}$ es un ideal de $k[X_{i,j,r}]_{1 \leq i,j,r \leq n}$.\\
+\end{block}
+
+As'i, $I_{\textbf{A}}$ es el ideal que contiene todas las propiedades algebraicas de las 'algebras de $\textbf{A}$. Identifiquemos a $\textbf{F}$ por $k^{n \times n \times n}$ y a $\textbf{A}$ por el correspondiente subconjunto $S \subseteq k^{n \times n \times n}$. Notemos que la definici'on de $I_{\textbf{A}}$ coincide con la definici'on de $I(S)$ (Definici'on 1.3.7), pero adem'as $S=Z(J)$, donde $J$ es el ideal asociado a $\textbf{A}$. Por el Teorema de los ceros de Hilbert, $I_{\textbf{A}}=I(Z(J))=\sqrt{J}$, entonces la respuesta a nuestra pregunta se reduce a decidir si el ideal asociado a $\textbf{A}$ es radical. Esto nos motiva a entender lo m'aximo posible el ideal $\sqrt{J}$.\\
+\begin{block}{Ejemplo 4.1.5:}
+?`Todas las 'algebras de asociativas de dimensi'on $7$ y nilpotentes de 'indice $4$ son conmutativas?. Una posible soluci'on a esta pregunta es determinar si todos los\\   
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{4.1.Introducci'on.}\\
+\begin{block}{}
+polinomios asociados a la conmutatividad est'an en el radical del ideal asociado a esta familia.
+\end{block}
+
+En las siguientes secciones de este cap'itulo estudiaremos los ideales algunas estructuras algebraicas, para eso utilizaremos los algoritmos que fuimos desarrollando durante el trabajo implementados en SINGULAR. El algoritmo para calcular el radical un ideal que usaremos se lo puede ver en [7] y [8]. El orden monomial que usaremos es el lexicogr'afico en $k[X_{i,j,r}]_{1 \leq i,j,r \leq n}$, donde $X_{a,b,c}>X_{d,e,f}$ si, y s'olo si, $a10^{2n}+b10^n+c<d10^{2n}+e10^n+f$.\\
+\vspace{4cm}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{4.2.Ejemplos de conjuntos de polinomios asociados a invariantes.}\\
+En esta secci'on dejaremos una lista de los conjuntos de polinomios asociados a los invariantes que vamos a estudiar.\\
+\\
+\begin{block}{Asociatividad:}
+\begin{center}
+$C_{\text{asoc,}n}= \displaystyle \left \{ \sum_{i=1}^{n} X_{a,b,i} X_{i,c,d} -  X_{a,i,d} X_{b,c,i}:1\leq a,b,c,d \leq n \right \}$\\
+\end{center}
+\end{block}
+\begin{block}{Identidad de Jacobi:}\\
+\begin{center}
+$C_{\text{Jac,}n}= \displaystyle \left \{\sum_{i=1}^{n} X_{b,c,i} X_{a,i,d}+ X_{c,a,i} X_{b,i,d}+X_{a,b,i} X_{c,i,d} :1\leq a,b,c,d\leq n \right\}$\\
+\end{center}
+\end{block}
+\begin{block}{Conmutatividad:}\\
+\begin{center}
+$C_{\text{con,}n}= \displaystyle \left \{ X_{a,b,c} - X_{b,a,c}:1\leq a,b,c\leq n \text{ y } a \leq b \right\}$\\
+\end{center}
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{4.2.Ejemplos de conjuntos de polinomios asociados a invariantes.}\\
+\begin{block}{Anticonmutatividad:}\\
+\begin{center}
+$C_{\text{antcon,}n}= \displaystyle \left \{X_{a,b,c} + X_{b,a,c}:1\leq a,b,c\leq n \right\}$\\
+\end{center}
+\end{block}
+\begin{block}{$e_1$ es identidad:}\\
+\begin{center}
+$C_{\text{iden,}n}= \displaystyle \left \{X_{1,a,b}:1\leq a,b,\leq n, a \not = b \right\}\cup \left \{X_{a,1,b}:1\leq a,b,\leq n, a \not = b \right\}\cup\left \{X_{1,a,a}-1:1\leq a\leq n\right\}\cup\left \{X_{a,1,a}-1:1\leq a\leq n\right\}$\\
+\end{center}
+\end{block}
+\begin{block}{Nilpotente de 'indice a lo sumo $3$ (una vez que ya es asociativa):}\\
+\begin{center}
+$C_{\text{3nil,}n}= \displaystyle \left \{ \sum_{i=1}^{n} X_{a,b,i} X_{i,c,d}:1\leq a,b,c,d \leq n \right \}$\\
+\end{center}
+\end{block}
+\vspace{4cm}
+\end{frame}
+
+\begin{frame}
+\frametitle{4.2.Ejemplos de conjuntos de polinomios asociados a invariantes.}\\
+\begin{block}{Nilpotente de 'indice a lo sumo $4$ (una vez que ya es asociativa):}\\
+\begin{center}
+$C_{\text{4nil,}n}= \displaystyle \left \{\sum_{i=1}^{n}\sum_{j=1}^n X_{a,b,i} X_{i,c,j} X_{j,d,e}=0:1\leq a,b,c,d,e \leq n \right \}$\\
+\end{center}
+\end{block}
+
+\begin{block}{de Lie:}\\
+\begin{center}
+$C_{\text{Lie,}n}= C_{\text{Jac,}n} \cup C_{\text{antcon,}n}$\\
+\end{center}
+\end{block}
+
+Para considerar el ideal de 'algebras de Lie nilpotentes, vamos a usar el siguiente resultado que es corolario del Teorema de Engel:\\
+
+\begin{block}{Teorema:}
+Sea $\mathfrak{g}$ un 'algebra de Lie de dimensi'on finita. Si $\mathfrak{g}$ es nilpotente, entonces existe $B_0$, base de $\mathfrak{g}$ tal que la matriz de $\text{ad}(X)$ es triangular superior estricta para todo $X \in \mathfrak{g}$.\\
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{4.2.Ejemplos de conjuntos de polinomios asociados a invariantes.}\\
+Adem'as tenemos que:\\
+\begin{block}{Teorema:}
+Sea $\mathfrak{g}$ un 'algebra de Lie de dimensi'on finita. Si $\text{ad}(X)$ es nilpotente para todo $X \in \mathfrak{g}$, entonces $\mathfrak{g}$ es nilpotente.
+\end{block}
+
+Juntando estos dos resultados:\\
+
+\begin{block}{Teorema:}
+Sea $\mathfrak{g}$ un 'algebra de Lie de dimensi'on finita. Entonces $\mathfrak{g}$ es nilpotente, si, y s'olo si, existe $B_0$, base de $\mathfrak{g}$ tal que la matriz de $\text{ad}(X)$ es triangular superior estricta para todo $X \in \mathfrak{g}$.\\
+\end{block}
+
+Entonces podemos considerar que nuestra base $B$ (que la fijamos ya en 4.1) es una que satisface el 'ultimo teorema. De esta manera obtenemos que para todos $1 \leq i,j \leq n$, $e_i\cdot e_j=\sum_{l=1}^{j-1}{\mu _{i,j,l}e_l}$ (en otras palabras, si $l \geq j$, entonces $\mu _{i,j,l}=0$).\\
+\end{frame}
+
+\begin{frame}
+\frametitle{4.2.Ejemplos de conjuntos de polinomios asociados a invariantes.}\\
+De esta forma consideremos los siguientes conjuntos:\\
+\begin{block}{Nilpotente (una vez que ya es de Lie):}\\
+\begin{center}
+$C_{\text{nil,}n}= \displaystyle \{ X _{i,j,l}:1 \leq i, j , l \leq n \text{ y } j \leq l\}$\\
+\end{center}
+\end{block}
+
+\begin{block}{A lo sumo 2 pasos nilpotente (una vez que ya es de Lie):}\\
+\begin{center}
+$C_{\text{2pnil,}n}= \displaystyle \left \{ \sum_{i=1}^{n} X_{a,b,i} X_{i,c,d}:1\leq a,b,c,d \leq n \right \} \cup C_{\text{nil,}n}$\\
+\end{center}
+\end{block}
+
+\begin{block}{A lo sumo 3 pasos nilpotente (una vez que ya es de Lie):}\\
+\begin{center}
+$C_{\text{3pnil,}n}= \displaystyle \left \{\sum_{i=1}^{n}\sum_{j=1}^{n} X_{a,b,i} X_{i,c,j} X_{j,d,e}:1\leq a,b,c,d,e \leq n \right \}\cup C_{\text{nil,}n}$\\
+\end{center}
+\end{block}
+\vspace{4cm}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{4.2.Ejemplos de conjuntos de polinomios asociados a invariantes.}\\
+\begin{block}{A lo sumo $m$ pasos nilpotente (una vez que ya es de Lie):}\\
+\begin{center}
+$C_{m\text{pnil,}n}= \displaystyle \text{\Huge{\{}}\sum_{j_1,j_2,...,j_{m-1}=1}^n X_{a_1,a_2,j_1}\left ( \prod_{u=1}^{m-2}{X_{j_{u},a_{u+2},j_{u+1}}} \right )X_{j_{m-1},a_{m+1},a_{m+2}}:
+
+1 \leq a_1,a_2,...,a_{m+2} \leq n \text{\Huge{\}}} \cup C_{\text{nil,}n}$\\
+\end{center}
+\end{block}
+\vspace{7cm}
+\end{frame}
+
+
+
+
+\begin{frame}
+\frametitle{4.3.Condiciones suficientes para que un ideal sea radical.}\\
+Como antes $V$ es un $k$-espacio vectorial de dimensi'on $n$ fija y $B=\{e_1,...,e_n\}$ una base de $V$. En esta secci'on probaremos algunos resultados que nos dicen que bajo ciertas circunstancias un ideal es radical. \\
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{4.3.Condiciones suficientes para que un ideal sea radical.}\\
+\begin{block}{Definici'on 4.3.1:}
+Decimos que un invariante inv es de grado $m$ si $m= \text{max}\{\deg(f):f \in C_{\text{inv,}n}\}$.\\
+\end{block}
+\begin{block}{Teorema 4.3.2:}
+Sean inv1, inv2,..., inv$s$ invariantes de grado 1, consideremos $J=I_{\text{inv1,...,inv}s\text{,}n}$. Entonces $J$ es radical.\\
+\end{block}
+En realidad el resultado lo podemos probar m'as en general:\\
+\begin{block}{Teorema 4.3.3:}
+Sea $J$ un ideal propio de $k[X_1,...,X_l]$. Si $J$ admite un sistema de generadores finito, donde cada uno es de grado menor o igual a 1, entonces $J$ es radical.\\
+\textbf{Demostraci'on:}\\
+Sean $g_1,...,g_t \in k[X_1,...,X_l]$ todos de grado $1$ tales que $J=(g_1,...,g_t)$. Como $g_1,...,g_t$ son ecuaciones lineales usando la eliminaci'on Gaussiana obtenemos f'acilmente $f_1,...,f_s \in k[X_1,...,X_l]$ no nulos ($s \leq t$) tales que $\{f_1,...,f_s\}$ es una base de Gr\"obner de $J$ . Basta probar que probar que $\sqrt{J}\subseteq J$. Sean $g \in \sqrt{J}$ y $m \in \N$ tal que $g^m \in J$. Consideremos $F=\{f_1,...,f_s\}$, entonces existe
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{4.3.Condiciones suficientes para que un ideal sea radical.}\\
+\begin{block}{}
+ $r\in k[X_1,...,X_l]$ reducido sobre $F$ tal que $g \overset{F}{\longrightarrow}_{+}r$. Supongamos que $r \not = 0$. Sean $u_1,...,u_s \in k[X_1,...,X_l]$ tales que $g=\sum_{i=1}^{s}{u_if_i}+r$, notar que $g^m= \left(\sum_{i=1}^{s}{u_if_i}+r\right)^m$, entonces existen $v_1,...,v_n \in k[X_1,...,X_n]$ tales que $g^m=\sum_{i=1}^{s}{v_if_i}+r^m$, luego $r^m \in J$. Como $r^m \in J$ existe $1 \leq j \leq s$ tal que $\lp(f_j)$ divide a $\lp(r^m)$, pero $\lp(r^m)=\lp(r)^m$ y $\lp(f_j)$ es un monomio de grado $1$, entonces $\lp(f_j)$ divide a $\lp(r)$, pero esto contadice que $r$ sea reducido sobre $F$. As'i $r=0$ y $g \in J$.\hfill $\square$\\
+\end{block}
+Adaptando esto a los invariantes que estamos estudiando podemos decir:\\
+\begin{block}{Corolario 4.3.4:}
+Los ideales $I_{\text{con,}n}$,$I_{\text{antcon,}n}$, $I_{\text{iden,}n}$, $I_{\text{con,iden,}n}$ son radicales.\\
+\textbf{Demostraci'on:}\\
+Es inmediato de 4.3.2.\hfill $\square$\\
+\end{block}
+La idea de la prueba de 4.3.3 se puede generalizar con una condici'on en la base de Gr\"obner del ideal:\\
+\end{frame}
+
+\begin{frame}
+\frametitle{4.3.Condiciones suficientes para que un ideal sea radical.}\\
+\begin{block}{Teorema 4.3.5:}
+Sea $J$ un ideal propio de $k[X_1,...,X_l]$. Si $J$ admite una base de Gr\"obner $G$, tal que $\lp(f)$ es libre de cuadrados para todo $f \in G$, entonces $J$ es radical.\\
+\textbf{Demostraci'on:}\\
+Queremos probar que probar que $\sqrt{J}\subseteq J$. Sean $g \in \sqrt{J}$ y $m \in \N$ tal que $g^m \in J$. Sea $r$ reducido sobre $G$ tal que $g \overset{G}{\longrightarrow}_{+}r$. Supongamos que $r \not = 0$. Sean $\{u_f\}_{f \in G}$ en $k[X_1,...,X_l]$ tales que $g=\sum_{f \in G}{u_ff}+r$, notar que $g^m= \left(\sum_{f \in G}{u_ff}+r\right)^m$, entonces existen $\{v_f\}_{f\in G}$ en $k[X_1,...,X_l]$ tales que $g^m=\sum_{f \in G}{v_ff}+r^m$, luego $r^m \in J$. Como $r^m \in J$ existe $f \in G$ tal que $\lp(f)$ divide a $\lp(r^m)$, pero $\lp(r^m)=\lp(r)^m$, as'i $\lp(f)$ divide a $\lp(r)^m$ pero esto 'ultimo es imposible, pues $\lp(f)$ es libre de cuadrados y $r$ es reducido sobre $G$.\hfill $\square$\\
+\end{block}
+\vspace{6cm}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{4.4.Algunos resultados a trav'es de los ideales.}\\
+En esta secci'on mostraremos unos resultados obtenidos observando contenciones de algunos ideales. Si bien los resultados ya son conocidos, el objetivo es mostrar qu'e clase de resultados se puede obtener a trav'es de este m'etodo.\\ 
+\\
+\begin{block}{Teorema 4.4.1:}
+Toda 'algebra de Lie nilpotente de dimensi'on $n$ es a lo sumo $n-1$ pasos nilpotente.\\ 
+\textbf{Demostraci'on:}\\
+Sean:\\
+\begin{center}
+$\displaystyle p_{a_1,...,a_{n+1}} = \displaystyle\sum_{j_1,j_2,...,j_{n-2}=1}^n X_{a_1,a_2,j_1}\left ( \prod_{u=1}^{n-1}{X_{j_{u},a_{u+2},j_{u+1}}} \right )X_{j_{n-2},a_{n},a_{n+1}}$\\ 
+\end{center}
+\\
+para todos $1 \leq a_1,...,a_{n+1} \leq n$. Notemos que $C_{n-1{\text{pnil,}n}}=\{p_{a_1,...,a_{n+1}}: 1 \leq a_1,...,a_{n+1} \leq n\}$. 
+%Veamos que todo monomio de los polinomios $p_{a_1,...,a_{n+1}}$ pertenecen a $I=I_{\text{Lie,}n-1\text{pnil,}n}$. 
+Como $C_{\text{antcon,}n}$ y $\{ X _{i,j,l}:1 \leq j \leq l \leq n\}$ est'an contenidos en $II_{\text{Lie,nil,}n}$, entonces $\{ X _{i,j,l}:1 \leq i \leq l \leq n\}$ esta contenido en $I$.\\
+
+Supongamos que un t'ermino $X_{a_1,a_2,j_1}\left ( \prod_{u=1}^{n-1}{X_{j_{u},a_{u+2},j_{u+1}}}\right )X_{j_{n-2},a_{n},a_{n+1}}$ de $p_{a_1,...,a_{n+1}}\in C_{m\text{pnil,}n}$ no est'a en $I$, entonces ninguno de sus factores pertenecen a $\{ X _{i,j,l}:1 \leq j \leq l \leq n\} \cup \{ X _{i,j,l}:1 \leq i \leq l \leq n\}$, as'i obtenemos\\
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{4.4.Algunos resultados a trav'es de los ideales.}\\
+\begin{block}{}
+las siguientes desigualdades:\\
+$\bullet$ $a_{n+1}<j_{n-2},a_{n}$.\\
+$\bullet$ $j_{u+1}<j_u,a_{u+2}$ para todo $1 \leq u \leq n+1$.\\
+$\bullet$ $j_1 < a_1,a_2$.\\
+\\
+De esta forma $1 \leq a_{n+1} < j_{n-2} < j_{n-1} < ... < j_1 < a_1,a_2 \leq n$, entonces $a_{n+1}=1$, $j_u=n+1-u$ y $a_1=a_2=n$, pero entonces $X_{a_1,a_2,j_1} \in C_{\text{antcon,}n}$, luego $X_{a_1,a_2,j_1}\left ( \prod_{u=1}^{n-1}{X_{j_{u},a_{u+2},j_{u+1}}}\right )X_{j_{n-2},a_{n},a_{n+1}} \in I$, absurdo. Finalmente, todos los t'erminos de los polinomios en $C_{n-1\text{pnil,}n}$ estan en $I$, entonces $C_{n-1{\text{pnil,}n}} \subseteq I$.\hfill $\square$\\
+\end{block}
+\begin{block}{Observaci'on:}
+Lo obtenido en 4.4.1 es muy conocido  y se prueba f'acilmente sin la necesidad del uso de ideales. Se dice que $n-1$ es el 'indice de nilpotencia m'aximo de las 'algebras de Lie nilpotentes de dimensi'on $n$.\\
+\end{block}
+\\
+\begin{block}{Teorema 4.4.2:}
+Toda 'algebra de Lie nilpotente de dimensi'on $5$ es a lo sumo $2$ pasos soluble.\\ 
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{4.4.Algunos resultados a trav'es de los ideales.}\\
+\begin{block}{}
+\textbf{Demostraci'on:}\\
+El conjunto de polinomios asociado a la propiedad ``a lo sumo 2 pasos soluble'' en dimensi'on $n$ es:\\
+\begin{center}
+$C_{\text{2psol,}n}= \displaystyle \left \{\sum_{i=1}^{n}\sum_{j=1}^n X_{a,b,i} X_{c,d,j} X_{i,j,e}:1\leq a,b,c,d,e \leq n \right \}$\\\\
+\end{center}
+\\
+Aplicando el algoritmo correspondiente obtenemos que $C_{\text{2psol,}5} \subseteq I_{\text{Lie,nil,}5}$.\hfill $\square$\\
+\end{block}
+\begin{block}{Observaci'on:}
+Este resultado ya es conocido, pues las 'algebras de Lie nilpotentes de dimensi'on $5$ est'an clasificadas.\\
+\end{block}
+\begin{block}{Teorema 4.4.3:}
+Toda 'algebra asociativa y anticonmutativa de dimensi'on $3$ es nilpotente de 'indice a lo sumo $4$.\\ 
+\end{block}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{4.4.Algunos resultados a trav'es de los ideales.}\\
+\begin{block}{}
+\textbf{Demostraci'on:}\\
+Aplicando el algoritmo correspondiente obtenemos que $C_{\text{nil4,}3} \subseteq I_{\text{asoc,antcon,}3}$.\hfill $\square$\\
+\end{block}
+\begin{block}{Observaci'on:}
+Este resultado ya es conocido, pues las 'algebras asociativas de dimensi'on $3$ est'an clasificadas.\\
+\end{block}
+\vspace{6cm}
+\end{frame}
+
+
+
+
+
+\begin{frame}
+\frametitle{4.5.Ideales de 'algebras asociativas.}\\
+En esta secci'on estudiaremos ideales asociados a estructuras algebraicas que tengan el invariante de la asociatividad.\\
+\begin{block}{Teorema 4.5.1:}
+$I_{\text{asoc,}2}$, $I_{\text{asoc,con}2}$ y $I_{\text{asoc,con,iden,}2}$ son radicales.\\
+\textbf{Demostraci'on:}\\
+Aplicando los algoritmos correspondientes en los $3$ casos obtenemos que las bases de Gr\"obner reducidas de los ideales y de sus respectivos radicales coinciden.\hfill $\square$\\
+\end{block}
+\begin{block}{Teorema 4.5.2:}
+$I_{\text{asoc,antcon,}2}$ no es radical. M'as a'un $Q_{3}=X_{2,1,2}$ no pertenece al ideal pero si a su radical.\\
+\textbf{Demostraci'on:}\\
+Aplicando los algoritmos correspondientes obtenemos las bases de Gr\"obner reducidas del ideal y de su radical, y resulta que 'estas no coinciden.\hfill $\square$
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{4.5.Ideales de 'algebras asociativas.}\\
+\begin{block}{Observaci'on:}
+SINGULAR no termina de procesar el algoritmo para calcular una base de Gr\"obner reducida de $I_{\text{asoc,}3}$ y tampoco termina de procesar el algoritmo para calcular el radical de $I_{\text{asoc,con,}3}$, incluso realizando eliminaci'on de variables v'ia $C_{\text{con,}3}$.\\ 
+\end{block}
+
+A pesar del inconveniente de la observaci'on tenemos:\\
+
+\begin{block}{Teorema 4.5.3:}
+$I_{\text{asoc,con,}3}$ es radical.\\
+\\
+\textbf{Demostraci'on:}\\
+Aplicando el algoritmo correspondiente obtenemos la base Gr\"obner reducida del ideal. Adem'as notamos que satisface las hip'otesis de 4.3.5, entonces $I_{\text{asoc,con,}3}$ es radical.\hfill $\square$\\
+\end{block}
+\begin{block}{Teorema 4.5.4:}
+$I_{\text{asoc,antcon,}3}$ no es radical. M'as a'un $Q_{7}=X_{3,1,1}+X_{3,2,2}$ no pertenece al ideal pero si a su radical.\\
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{4.5.Ideales de 'algebras asociativas.}\\
+\begin{block}{}
+\textbf{Demostraci'on:}\\
+Aplicando los algoritmos correspondientes obtenemos las bases de Gr\"obner reducidas del ideal y de su radical, y resulta que 'estas no coinciden.\hfill $\square$\end{block}
+\begin{block}{Teorema 4.5.5:}
+$I_{\text{asoc,iden,}3}$ y $I_{\text{asoc,con,iden,}3}$ son radicales.\\
+\textbf{Demostraci'on:}\\
+Aplicando los algoritmos correspondientes en los 2 casos obtenemos que las bases de Gr\"obner reducidas de los ideales y de sus respectivos radicales coinciden.\hfill $\square$\\
+\end{block}
+\begin{block}{Observaci'on:}
+SINGULAR no termina de procesar el algoritmo para calcular una base de Gr\"obner reducida de $I_{\text{asoc,con,}4}$ incluso realizando eliminaci'on de variables v'ia $C_{\text{con,}4}$ y tampoco termina de procesar el algoritmo para calcular el radical de $I_{\text{asoc,nil,}4}$.\\
+\end{block}
+\begin{block}{Teorema 4.5.6:}
+$I_{\text{asoc,con,iden,}4}$ es radical.\\
+\end{block}
+\vspace{4cm}
+\end{frame}
+
+\begin{frame}
+\frametitle{4.5.Ideales de 'algebras asociativas.}\\
+\begin{block}{}
+\textbf{Demostraci'on:}\\
+Aplicando los algoritmo correspondientes obtenemos que  $I=I_{\text{asoc,con,iden,}4}$ y $\sqrt{I}$ tienen por base de Gr\"obner a la uni'on entre $C_{\text{con,}4}$, $C_{\text{iden,}4}$ y $69$ elementos m'as. Luego, $I$ es radical.\hfill $\square$\\
+\end{block}
+\begin{block}{Teorema 4.5.7:}
+$I_{\text{asoc,nil4,}3}$ tiene una base de Gr\"obner reducida de 4872 elementos.\\
+\textbf{Demostraci'on:}\\
+Resulta de aplicar el algoritmo correspondiente.\hfill $\square$\\
+\end{block}
+\vspace{5cm}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{4.6.Ideales de 'algebras de Lie.}\\
+En esta secci'on estudiaremos ideales asociados a estructuras algebraicas que tengan estructura de 'algebra de Lie.\\
+\begin{block}{Teorema 4.6.1:}
+$I_{\text{Lie,}3}$ es radical.\\
+\textbf{Demostraci'on:}\\
+Aplicando los algoritmos correspondientes obtenemos que las bases de Gr\"obner reducidas del ideal y de su radical coinciden.\hfill $\square$\\
+\end{block}
+\begin{block}{Observaci'on:}
+SINGULAR no termina de procesar el algoritmo para calcular una base de Gr\"obner de $I_{\text{Lie,}4}$ incluso realizando eliminaci'on de variables v'ia $C_{\text{antcon,}4}$.\\
+\end{block}
+\vspace{4cm}
+\end{frame}
+\\
+\begin{frame}
+\frametitle{4.6.Ideales de 'algebras de Lie.}\\
+\begin{block}{Teorema 4.6.2:}
+$I_{\text{Lie,nil,}3}$, $I_{\text{Lie,2pnil,}4}$ y $I_{\text{Lie,nil,}4}$ son radicales.\\
+\textbf{Demostraci'on:}\\
+En el primer caso se puede ver f'acilmente que $C_{\text{antcon,}3}\cup C_{\text{nil,}3}$ es un sistema de generadores de $I=I_{\text{Lie,nil,}3}$. Luego por 4.3.2, $I$ es radical.\\
+\\
+En el segundo caso se puede ver f'acilmente que\\
+$C_{\text{antcon,}3}\cup C_{\text{nil,}3} \cup \{X_{2,4,1}X_{3,4,2},X_{2,3,1}X_{3,4,2}\}$ es una base Gr\"obner de $I=I_{\text{Lie,2pnil,}4}$. Luego por 4.3.5, $I$ es radical.\\
+\\
+En el tercer caso se puede ver f'acilmente que $C_{\text{antcon,}4}\cup C_{\text{nil,}4}$ es un sistema de generadores de $I=I_{\text{Lie,nil,}4}$, luego por 4.3.2, $I$ es radical.\hfill $\square$\\
+\end{block}
+\begin{block}{Teorema 4.6.3:}
+$I_{\text{Lie,2pnil,}5}$, $I_{\text{Lie,3pnil,}5}$, $I_{\text{Lie,nil,}5}$, $I_{\text{Lie,2pnil,}6}$ y $I_{\text{Lie,nil,}6}$ son radicales.\\
+\\
+\textbf{Demostraci'on:}\\
+Aplicando los algoritmos correspondiente en los 5 casos obtenemos un conjunto de generadores de cada ideal que tambi'en genera su respectivo radical.\hfill $\square$\\
+\end{block}
+\vspace{5cm}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{4.6.Ideales de 'algebras de Lie.}\\
+\begin{block}{Teorema 4.6.4:}
+$I_{\text{Lie,3pnil,}6}$ no es radical. M'as a'un $Q_{6}=$\\
+$X_{3,5,1}X_{4,5,2}X_{4,6,3}X_{5,6,4}-X_{3,5,1}X_{4,5,3}X_{4,6,2}X_{5,6,4}$ no pertenece al ideal pero si a su radical.\\
+\textbf{Demostraci'on:}\\
+Aplicando los algoritmos correspondientes obtenemos un conjunto de generadores para $I=I_{\text{Lie,3pnil,}6}$ y otro para $\sqrt{I}$ (ver anexo). Observando que $Q_6 \not \in I$, obtenemos que $I$ no es radical. \hfill $\square$\\
+\end{block}
+\begin{block}{Teorema 4.6.5:}
+$I_{\text{Lie,4pnil,}6}$ no es radical. M'as a'un $Q_{6}=X_{3,4,1}X_{4,6,3}X_{5,6,4}$ no pertenece al ideal pero si a su radical.\\
+\textbf{Demostraci'on:}\\
+Aplicando los algoritmos correspondientes obtenemos un conjunto de generadores para $I=I_{\text{Lie,4pnil,}6}$ y otro para $\sqrt{I}$ (ver anexo). Observando que $Q_6 \not \in I$, obtenemos que $I$ no es radical. \hfill $\square$\\
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{4.6.Ideales de 'algebras de Lie.}\\
+\begin{block}{Teorema 4.6.6:}
+$I_{\text{Lie,2pnil,}7}$ no es radical. M'as a'un $P=X_{3,4,1}X_{5,6,3}X_{5,7,4}-X_{3,4,1}X_{5,6,4}X_{5,7,3}$ no pertenece al ideal pero si a su radical.\\
+\textbf{Demostraci'on:}\\
+Aplicando los algoritmos correspondiente obtenemos que\\
+$P=X_{3,4,1}X_{5,6,3}X_{5,7,4}-X_{3,4,1}X_{5,6,4}X_{5,7,3}$ satisface $P \not \in I=I_{\text{Lie,2pnil,}7}$ y $P \in \sqrt{I}$.\hfill $\square$\\
+\end{block}
+\begin{block}{Observaci'on:}
+A SINGULAR le tom'o bastante tiempo calcular el radical de $I_{\text{Lie,2pnil,}7}$ con la eliminaci'on de variables correspondiente. Adem'as no termina de procesar el algoritmo para calcular una base de Gr\"obner de $I_{\text{Lie,3pnil,}7}$ y $I_{\text{Lie,4pnil,}7}$ ni el de calcular los radicales de $I_{\text{Lie,5pnil,}7}$ y $I_{\text{Lie,nil,}7}$ incluso realizando eliminaci'on de variables v'ia $C_{\text{antcon,}4}$ y $C_{\text{nil,}4}$.\\
+\end{block}
+\begin{block}{Teorema 4.6.7:}
+$I_{\text{Lie,5pnil,}7}$ tiene una base de Gr\"obner compuesta por $C_{\text{antcon,}7} \cup C_{\text{nil,}7}$ y $781$ elementos m'as.\\
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{4.6.Ideales de 'algebras de Lie.}\\
+\begin{block}{}
+\textbf{Demostraci'on:}\\
+Resulta de realizar una eliminaci'on de variables v'ia $C_{\text{antcon,}7} \cup C_{\text{nil,}7}$ y aplicar el algoritmo correspondiente.\hfill $\square$\\
+\end{block}
+\begin{block}{Teorema 4.6.8:}
+$I_{\text{Lie,nil,}7}$ tiene una base de Gr\"obner compuesta por $C_{\text{antcon,}7} \cup C_{\text{nil,}7}$ y $509$ elementos m'as.\\
+
+\textbf{Demostraci'on:}\\
+Resulta de realizar una eliminaci'on de variables v'ia $C_{\text{antcon,}7} \cup C_{\text{nil,}7}$ y aplicar el algoritmo correspondiente.\hfill $\square$\\
+\end{block}
+\vspace{5cm}
+\end{frame}
+
+\begin{frame}
+\frametitle{4.7.Anexo.}\\
+
+\textbf{'Algebras asociativas}\\
+\\
+\textbf{Dimensi'on 2:}\\
+\\
+\textbf{Base de Gr\"obner reducida de $I_{\text{asoc,}2}$ y de su radical:}\\
+\\
+$P_1=X_{1,2,2}X_{2,2,1}-X_{2,1,2}X_{2,2,1},$\\
+$P_2=X_{1,2,2}X_{2,1,1}X_{2,1,2}-X_{2,1,1}X_{212}^2,$\\
+$P_3=X_{1,2,2}X_{2,1,1}^2-X_{1,2,2}X_{2,1,1}X_{2,2,2}-X_{2,1,1}^2X_{2,1,2}+X_{2,1,1}X_{2,1,2}X_{2,2,2},$\\
+$P_4=X_{1,2,2}^2X_{2,1,2}-X_{1,2,2}X_{2,1,2}^2,$\\
+$P_{5}=X_{1,2,2}^2X_{2,1,1}-X_{1,2,2}^2X_{2,2,2}+X_{1,2,2}X_{2,1,2}X_{2,2,2}-X_{2,1,1}X_{2,1,2}^2,$\\
+$P_{6}=X_{1,2,1}X_{2,2,1}-X_{2,1,1}X_{2,2,1},$\\
+$P_{7}=X_{1,2,1}X_{2,1,2}-X_{1,2,2}X_{2,1,1}+X_{1,2,2}X_{2,2,2}-X_{2,1,2}X_{2,2,2},$\\
+$P_{8}=X_{1,2,1}X_{2,1,1}^2-X_{1,2,1}X_{2,1,1}X_{2,2,2}+X_{1,2,1}X_{2,1,2}X_{2,2,1}-X_{2,1,1}^3+X_{2,1,1}^2X_{2,2,2}-X_{2,1,1}X_{2,1,2}X_{2,2,1},$\\
+$P_{9}=X_{1,2,1}X_{1,2,2}-X_{2,1,1}X_{2,1,2},$\\
+$P_{10}=X_{1,2,1}^2-X_{1,2,1}X_{2,2,2}-X_{2,1,1}^2+X_{2,1,1}X_{2,2,2},$\\
+$P_{11}=X_{1,1,2}X_{2,2,1}-X_{1,2,1}X_{1,2,2}$\\
+$P_{12}=X_{1,1,2}X_{1,2,2}-X_{1,1,2}X_{2,1,2},$\\
+$P_{13}=X_{1,1,2}X_{1,2,1}-X_{1,1,2}X_{2,1,1},$\\
+$P_{14}=X_{1,1,1}X_{2,2,1}-X_{1,2,1}^2+X_{1,2,1}X_{2,2,2}-X_{2,1,2}X_{2,2,1},$\\
+$P_{15}=X_{1,1,1}X_{2,1,2}-X_{1,1,2}X_{1,2,1}+X_{1,1,2}X_{2,2,2}-X_{2,1,2}^2,$\\
+$P_{16}=X_{1,1,1}X_{1,2,2}-X_{1,1,1}X_{2,1,2}-X_{1,2,2}^2+X_{2,1,2}^2,$\\
+$P_{17}=X_{1,1,1}X_{1,2,1}-X_{1,1,1}X_{2,1,1}+X_{1,2,2}X_{2,2,2}-X_{2,1,2}X_{2,2,2}$\\
+\\
+\textbf{Base de Gr\"obner reducida de $I_{\text{asoc,con}2}$ y de su radical:}\\
+\\
+$P_{1}=X_{1,2,2}-X_{2,1,2},$\\
+$P_{2}=X_{1,2,1}-X_{2,1,1},$\\
+$P_{3}=X_{1,1,2}X_{2,2,1}-X_{2,1,1}X_{2,1,2},$\\
+$P_{4}=X_{1,1,1}X_{2,2,1}-X_{2,1,1}^2+X_{2,1,1}X_{2,2,2}-X_{2,1,2}X_{2,2,1},$\\
+$P_{5}=X_{1,1,1}X_{2,1,2}-X_{1,1,2}X_{2,1,1}+X_{112}X_{2,2,2}-X_{2,1,2}^2$\\
+\\
+\textbf{Base de Gr\"obner reducida de $I_{\text{asoc,con,iden,}2}$ y de su radical:}\\
+\\
+$P_{1}= X_{2,1,2}-1,$\\
+$P_{2}= X_{2,1,1},$\\
+$P_{3}= X_{1,2,2}-1,$\\
+$P_{4}= X_{1,2,1},$\\
+$P_{5}= X_{1,1,2},$\\
+$P_{6}= X_{1,1,1}-1$\\
+\\
+\end{frame}
+\\
+\textbf{Base de Gr\"obner reducida de $I_{\text{asoc,antcon,}2}$:}\\
+\\
+$P_{1}=X_{2,2,2},$\\
+$P_{2}=X_{2,2,1},$\\
+$P_{3}=X_{2,1,2}^2,$\\
+$P_{4}=X_{2,1,1}X_{2,1,2},$\\
+$P_{5}=X_{2,1,1}^2-X_{2,1,1}X_{2,2,2}+X_{2,1,2}X_{2,2,1},$\\
+$P_{6}=X_{1,2,2}+X_{2,1,2},$\\
+$P_{7}=X_{1,2,1}+X_{2,1,1},$\\
+$P_{8}=X_{1,1,2},$\\
+$P_{9}=X_{1,1,1}$\\
+\\
+Base de Gr\"obner reducida de su radical:\\
+\\
+$Q_{1}=X_{2,2,2},$\\
+$Q_{2}=X_{2,2,1},$\\
+$Q_{3}=X_{2,1,2},$\\
+$Q_{4}=X_{2,1,1},$\\
+$Q_{5}=X_{1,2,2},$\\
+$Q_{6}=X_{1,2,1},$\\
+$Q_{7}=X_{1,1,2},$\\
+$Q_{8}=X_{1,1,1}$\\
+\\
+\textbf{Dimensi'on 3:}\\
+\\
+\textbf{Base de Gr\"obner reducida de $I_{\text{asoc,con,}3}$ y de su radical:}\\
+\\
+$P_{1}=X_{2,3,3}-X_{3,2,3},$\\
+$P_{2}=X_{2,3,2}-X_{3,2,2},$\\
+$P_{3}=X_{2,3,1}-X_{3,2,1},$\\
+$P_{4}=X_{2,2,3}X_{3,1,1}X_{3,3,1}X_{3,3,2}-X_{2,2,3}X_{3,1,2}X_{3,3,1}^2+X_{2,2,3}X_{3,2,1}X_{3,3,2}^2-$\\
+$X_{2,2,3}X_{3,2,2}X_{3,3,1}X_{3,3,2}-X_{3,1,1}X_{3,2,2}X_{3,2,3}X_{3,3,1}+$\\
+$X_{3,1,2}X_{3,2,1}X_{3,2,3}X_{3,3,1}-X_{3,1,3}X_{3,2,1}^2X_{3,3,2}+X_{3,1,3}X_{3,2,1}X_{3,2,2}X_{3,3,1}-$\\
+$X_{3,2,1}X_{3,2,2}X_{3,2,3}X_{3,3,2}+X_{3,2,2}^2X_{3,2,3}X_{3,3,1},$\\
+$P_{5}=X_{2,2,2}X_{3,1,2}X_{3,2,3}X_{3,3,1}-X_{2,2,2}X_{3,1,3}X_{3,2,1}X_{3,3,2}+$\\
+$X_{2,2,3}X_{3,1,2}X_{3,2,1}X_{3,3,2}-X_{2,2,3}X_{3,1,2}X_{3,2,2}X_{3,3,1}+$\\
+$X_{2,2,3}X_{3,1,2}X_{3,3,1}X_{3,3,3}-X_{2,2,3}X_{3,1,3}X_{3,3,1}X_{3,3,2}-$\\
+$X_{3,1,2}X_{3,2,1}X_{3,2,2}X_{3,2,3}-X_{3,1,2}X_{3,2,3}^2X_{3,3,1}+X_{3,1,3}X_{3,2,1}X_{3,2,2}^2-$\\
+$X_{3,1,3}X_{3,2,1}X_{3,2,2}X_{3,3,3}+X_{3,1,3}X_{3,2,1}X_{3,2,3}X_{3,3,2}+$\\
+$X_{3,1,3}X_{3,2,2}X_{3,2,3}X_{3,3,1},$\\
+$P_{6}=X_{2,2,2}X_{3,1,1}X_{3,3,1}X_{3,3,2}-X_{2,2,2}X_{3,1,2}X_{3,3,1}^2+X_{2,2,2}X_{3,2,1}X_{3,3,2}^2-$\\
+$X_{2,2,2}X_{3,2,2}X_{3,3,1}X_{3,3,2}-X_{3,1,1}X_{3,2,2}^2X_{3,3,1}+$\\
+$X_{3,1,1}X_{3,2,2}X_{3,3,1}X_{3,3,3}-X_{3,1,1}X_{3,2,3}X_{3,3,1}X_{3,3,2}-$\\
+$X_{3,1,2}X_{3,2,1}^2X_{3,3,2}+2X_{3,1,2}X_{3,2,1}X_{3,2,2}X_{3,3,1}-$\\
+$X_{3,1,2}X_{3,2,1}X_{3,3,1}X_{3,3,3}+X_{3,1,2}X_{3,2,3}X_{3,3,1}^2+$\\
+$X_{3,1,3}X_{3,2,1}X_{3,3,1}X_{3,3,2}-X_{3,1,3}X_{3,2,2}X_{3,3,1}^2-X_{3,2,1}X_{3,2,2}^2X_{3,3,2}+$\\
+$X_{3,2,1}X_{3,2,2}X_{3,3,2}X_{3,3,3}-X_{3,2,1}X_{3,2,3}X_{3,3,2}^2+X_{3,2,2}^3X_{3,3,1}-$\\
+$X_{3,2,2}^2X_{3,3,1}X_{3,3,3}+X_{3,2,2}X_{3,2,3}X_{3,3,1}X_{3,3,2},$\\
+$P_{7}=X_{2,2,2}X_{3,1,1}X_{3,2,3}X_{3,3,1}-X_{2,2,2}X_{3,1,3}X_{3,2,1}X_{3,3,1}+$\\
+$X_{2,2,2}X_{3,2,1}X_{3,2,3}X_{3,3,2}-X_{2,2,2}X_{3,2,2}X_{3,2,3}X_{3,3,1}-$\\
+$X_{2,2,3}X_{3,1,1}X_{3,2,2}X_{3,3,1}+X_{2,2,3}X_{3,1,1}X_{3,3,1}X_{3,3,3}+$\\
+$X_{2,2,3}X_{3,1,2}X_{3,2,1}X_{3,3,1}-X_{2,2,3}X_{3,1,3}X_{3,3,1}^2-$\\
+$X_{2,2,3}X_{3,2,1}X_{3,2,2}X_{3,3,2}+X_{2,2,3}X_{3,2,1}X_{3,3,2}X_{3,3,3}+X_{2,2,3}X_{3,2,2}^2X_{3,3,1}-$\\
+$X_{2,2,3}X_{3,2,2}X_{3,3,1}X_{3,3,3}-X_{3,1,1}X_{3,2,3}^2X_{3,3,1}-X_{3,1,2}X_{3,2,1}^2X_{3,2,3}+$\\
+$X_{3,1,3}X_{3,2,1}^2X_{3,2,2}-X_{3,1,3}X_{3,2,1}^2X_{3,3,3}+2X_{3,1,3}X_{3,2,1}X_{3,2,3}X_{3,3,1}-$\\
+$X_{3,2,1}X_{3,2,3}^2X_{3,3,2}+X_{3,2,2}X_{3,2,3}^2X_{3,3,1},$\\
+$P_{8}=X_{2,2,2}X_{3,1,1}X_{3,1,3}X_{3,3,2}-X_{2,2,2}X_{3,1,2}X_{3,1,3}X_{3,3,1}+$\\
+$X_{2,2,2}X_{3,1,2}X_{3,2,3}X_{3,3,2}-X_{2,2,2}X_{3,1,3}X_{3,2,2}X_{3,3,2}-$\\
+$X_{2,2,3}X_{3,1,1}X_{3,1,2}X_{3,3,2}+X_{2,2,3}X_{3,1,2}^2X_{3,3,1}+X_{2,2,3}X_{3,1,2}X_{3,3,2}X_{3,3,3}-$\\
+$X_{2,2,3}X_{3,1,3}X_{3,3,2}^2+X_{3,1,1}X_{3,1,2}X_{3,2,2}X_{3,2,3}-X_{3,1,1}X_{3,1,3}X_{3,2,2}^2+$\\
+$X_{3,1,1}X_{3,1,3}X_{3,2,2}X_{3,3,3}-X_{3,1,1}X_{3,1,3}X_{3,2,3}X_{3,3,2}-X_{3,1,2}^2X_{3,2,1}X_{3,2,3}+$\\
+$X_{3,1,2}X_{3,1,3}X_{3,2,1}X_{3,2,2}-X_{3,1,2}X_{3,1,3}X_{3,2,1}X_{3,3,3}+$\\
+$X_{3,1,2}X_{3,1,3}X_{3,2,3}X_{3,3,1}-X_{3,1,2}X_{3,2,2}^2X_{3,2,3}-X_{3,1,2}X_{3,2,3}^2X_{3,3,2}+$\\
+$X_{3,1,3}^2X_{3,2,1}X_{3,3,2}-X_{3,1,3}^2X_{3,2,2}X_{3,3,1}+X_{3,1,3}X_{3,2,2}^3-$\\
+$X_{3,1,3}X_{3,2,2}^2X_{3,3,3}+2X_{3,1,3}X_{3,2,2}X_{3,2,3}X_{3,3,2},$\\
+$P_{9}=X_{2,2,1}X_{3,1,3}X_{3,3,2}+X_{2,2,2}X_{3,2,3}X_{3,3,2}-X_{2,2,3}X_{3,1,1}X_{3,3,2}+$\\
+$X_{2,2,3}X_{3,1,2}X_{3,3,1}+X_{2,2,3}X_{3,3,2}X_{3,3,3}+X_{3,1,1}X_{3,2,2}X_{3,2,3}-$\\
+$X_{3,1,2}X_{3,2,1}X_{3,2,3}-X_{3,1,3}X_{3,2,1}X_{3,2,2}-X_{3,2,2}^2X_{3,2,3}-X_{3,2,3}^2X_{3,3,2},$\\
+$P_{10}=X_{2,2,1}X_{3,1,3}X_{3,3,1}+X_{2,2,2}X_{3,2,3}X_{3,3,1}+X_{2,2,3}X_{3,2,1}X_{3,3,2}-$\\
+$X_{2,2,3}X_{3,2,2}X_{3,3,1}+X_{2,2,3}X_{3,3,1}X_{3,3,3}-X_{3,1,3}X_{3,2,1}^2-$\\
+$X_{3,2,1}X_{3,2,2}X_{3,2,3}-X_{3,2,3}^2X_{3,3,1},$\\
+$P_{11}=X_{2,2,1}X_{3,1,2}X_{3,3,2}-X_{2,2,2}X_{3,1,1}X_{3,3,2}+X_{2,2,2}X_{3,1,2}X_{3,3,1}+$\\
+$X_{2,2,2}X_{3,2,2}X_{3,3,2}+X_{2,2,3}X_{3,3,2}^2+X_{3,1,1}X_{3,2,2}^2-$\\
+$X_{3,1,1}X_{3,2,2}X_{3,3,3}+X_{3,1,1}X_{3,2,3}X_{3,3,2}-2X_{3,1,2}X_{3,2,1}X_{3,2,2}+$\\
+$X_{3,1,2}X_{3,2,1}X_{3,3,3}-X_{3,1,2}X_{3,2,3}X_{3,3,1}-X_{3,1,3}X_{3,2,1}X_{3,3,2}+$\\
+$X_{3,1,3}X_{3,2,2}X_{3,3,1}-X_{3,2,2}^3+X_{3,2,2}^2X_{3,3,3}-2}X_{3,2,2}X_{3,2,3}X_{3,3,2},$\\
+$P_{12}=X_{2,2,1}X_{3,1,2}X_{3,3,1}+X_{2,2,2}X_{3,2,1}X_{3,3,2}+X_{2,2,3}X_{3,3,1}X_{3,3,2}-$\\
+$X_{3,1,2}X_{3,2,1}^2-X_{3,2,1}X_{3,2,2}^2+X_{3,2,1}X_{3,2,2}X_{3,3,3}-X_{3,2,1}X_{3,2,3}X_{3,3,2}-$\\
+$X_{3,2,2}X_{3,2,3}X_{3,3,1},$\\
+$P_{13}=X_{2,2,1}X_{3,1,2}X_{3,2,3}-X_{2,2,1}X_{3,1,3}X_{3,2,2}+X_{2,2,1}X_{3,1,3}X_{3,3,3}-$\\
+$X_{2,2,2}X_{3,1,1}X_{3,2,3}+X_{2,2,2}X_{3,1,3}X_{3,2,1}+X_{2,2,2}X_{3,2,3}X_{3,3,3}+$\\
+$X_{2,2,3}X_{3,1,1}X_{3,2,2}-X_{2,2,3}X_{3,1,1}X_{3,3,3}-X_{2,2,3}X_{3,1,2}X_{3,2,1}+$\\
+$X_{2,2,3}X_{3,1,3}X_{3,3,1}-X_{2,2,3}X_{3,2,2}X_{3,3,3}+X_{2,2,3}X_{3,2,3}X_{3,3,2}+$\\
+$X_{2,2,3}X_{3,3,3}^2+X_{3,1,1}X_{3,2,3}^2-2}X_{3,1,3}X_{3,2,1}X_{3,2,3}-X_{3,2,2}X_{3,2,3}^2-$\\
+$X_{3,2,3}^2X_{3,3,3},$\\
+$P_{14}=X_{2,2,1}X_{3,1,1}X_{3,3,1}+X_{2,2,1}X_{3,2,1}X_{3,3,2}-X_{2,2,1}X_{3,2,2}X_{3,3,1}+$\\
+$X_{2,2,2}X_{3,2,1}X_{3,3,1}+X_{2,2,3}X_{3,3,1}^2-X_{3,1,1}X_{3,2,1}^2-X_{3,2,1}^2X_{3,2,2}+$\\
+$X_{3,2,1}^2X_{3,3,3}-2X_{3,2,1}X_{3,2,3}X_{3,3,1},$\\
+$P_{15}=X_{2,1,3}X_{3,3,1}+X_{2,2,3}X_{3,3,2}-X_{3,1,3}X_{3,2,1}-X_{3,2,2}X_{3,2,3},$\\
+$P_{16}=X_{2,1,3}X_{3,2,1}-X_{2,2,1}X_{3,1,3}-X_{2,2,2}X_{3,2,3}+X_{2,2,3}X_{3,2,2}-$\\
+$X_{2,2,3}X_{3,3,3}+X_{3,2,3}^2,$\\
+$P_{17}=X_{2,1,2}X_{3,3,1}+X_{2,2,2}X_{3,3,2}-X_{3,1,2}X_{3,2,1}-X_{3,2,2}^2+X_{3,2,2}X_{3,3,3}-$\\
+$X_{3,2,3}X_{3,3,2},$\\
+$P_{18}=X_{2,1,2}X_{3,2,1}-X_{2,2,1}X_{3,1,2}-X_{2,2,3}X_{3,3,2}+X_{3,2,2}X_{3,2,3},$\\
+$P_{19}=X_{2,1,2}X_{3,1,1}X_{3,1,3}+X_{2,1,2}X_{3,1,2}X_{3,2,3}-X_{2,1,2}X_{3,1,3}X_{3,2,2}-$\\
+$X_{2,1,3}X_{3,1,1}X_{3,1,2}+X_{2,1,3}X_{3,1,2}X_{3,3,3}-X_{2,1,3}X_{3,1,3}X_{3,3,2}+$\\
+$X_{2,2,2}X_{3,1,2}X_{3,1,3}-X_{2,2,3}X_{3,1,2}^2-X_{3,1,2}X_{3,1,3}X_{3,2,3}+X_{3,1,3}^2X_{3,2,2},$\\
+$P_{20}=X_{2,1,2}X_{2,2,3}X_{3,3,2}-X_{2,1,2}X_{3,1,3}X_{3,2,1}-X_{2,1,2}X_{3,2,2}X_{3,2,3}-$\\
+$X_{2,1,3}X_{2,2,2}X_{3,3,2}+X_{2,1,3}X_{3,1,2}X_{3,2,1}+X_{2,1,3}X_{3,2,2}^2-$\\
+$X_{2,1,3}X_{3,2,2}X_{3,3,3}+X_{2,1,3}X_{3,2,3}X_{3,3,2},$\\
+$P_{21}=X_{2,1,2}X_{2,2,1}X_{3,1,3}+X_{2,1,2}X_{2,2,2}X_{3,2,3}-X_{2,1,2}X_{2,2,3}X_{3,2,2}+$\\
+$X_{2,1,2}X_{2,2,3}X_{3,3,3}-X_{2,1,2}X_{3,2,3}^2-X_{2,1,3}X_{2,2,1}X_{3,1,2}-X_{2,1,3}X_{2,2,3}X_{3,3,2}+$\\
+$X_{2,1,3}X_{3,2,2}X_{3,2,3},$\\
+$P_{22}=X_{2,1,1}X_{3,3,1}+X_{2,2,1}X_{3,3,2}-X_{3,1,1}X_{3,2,1}-X_{3,2,1}X_{3,2,2}+X_{3,2,1}X_{3,3,3}-X_{3,2,3}X_{3,3,1},$\\
+$P_{23}=X_{2,1,1}X_{3,2,1}-X_{2,2,1}X_{3,1,1}+X_{2,2,1}X_{3,2,2}-X_{2,2,2}X_{3,2,1}-X_{2,2,3}X_{3,3,1}+X_{3,2,1}X_{3,2,3},$\\
+$P_{24}=X_{2,1,1}X_{3,1,3}+X_{2,1,2}X_{3,2,3}-X_{2,1,3}X_{3,1,1}+X_{2,1,3}X_{3,3,3}-X_{2,2,3}X_{3,1,2}-X_{3,1,3}X_{3,2,3},$\\
+$P_{25}=X_{2,1,1}X_{3,1,2}-X_{2,1,2}X_{3,1,1}+X_{2,1,2}X_{3,2,2}+X_{2,1,3}X_{3,3,2}-X_{2,2,2}X_{3,1,2}-X_{3,1,3}X_{3,2,2},$\\
+$P_{26}=X_{2,1,1}X_{2,2,3}X_{3,3,2}-X_{2,1,1}X_{3,1,3}X_{3,2,1}-X_{2,1,1}X_{3,2,2}X_{3,2,3}-$\\
+$X_{2,1,3}X_{2,2,1}X_{3,3,2}+X_{2,1,3}X_{3,1,1}X_{3,2,1}+X_{2,1,3}X_{3,2,1}X_{3,2,2}-X_{2,1,3}X_{3,2,1}X_{3,3,3}+$\\
+$X_{2,1,3}X_{3,2,3}X_{3,3,1},$\\
+$P_{27}=X_{2,1,1}X_{2,2,2}X_{3,3,2}-X_{2,1,1}X_{3,1,2}X_{3,2,1}-X_{2,1,1}X_{3,2,2}^2+X_{2,1,1}X_{3,2,2}X_{3,3,3}-$\\
+$X_{2,1,1}X_{3,2,3}X_{3,3,2}-X_{2,1,2}X_{2,2,1}X_{3,3,2}+X_{2,1,2}X_{3,1,1}X_{3,2,1}+X_{2,1,2}X_{3,2,1}X_{3,2,2}-$\\
+$X_{2,1,2}X_{3,2,1}X_{3,3,3}+X_{2,1,2}X_{3,2,3}X_{3,3,1},$\\
+$P_{28}=X_{2,1,1}X_{2,2,2}X_{3,2,3}-X_{2,1,1}X_{2,2,3}X_{3,2,2}+X_{2,1,1}X_{2,2,3}X_{3,3,3}-X_{2,1,1}X_{3,2,3}^2-$\\
+$X_{2,1,2}X_{2,2,1}X_{3,2,3}+X_{2,1,3}X_{2,2,1}X_{3,2,2}-X_{2,1,3}X_{2,2,1}X_{3,3,3}-X_{2,1,3}X_{2,2,2}X_{3,2,1}-$\\
+$X_{2,1,3}X_{2,2,3}X_{3,3,1}+X_{2,1,3}X_{3,2,1}X_{3,2,3}+X_{2,2,1}X_{2,2,3}X_{3,1,2}+X_{2,2,1}X_{3,1,3}X_{3,2,3},$\\
+$P_{29}=X_{1,3,3}-X_{3,1,3},$\\
+$P_{30}=X_{1,3,2}-X_{3,1,2},$\\
+$P_{31}=X_{1,3,1}-X_{3,1,1},$\\
+$P_{32}=X_{1,2,3}-X_{2,1,3},$\\
+$P_{33}=X_{1,2,2}-X_{2,1,2},$\\
+$P_{34}=X_{1,2,1}-X_{2,1,1},$\\
+$P_{35}=X_{1,1,3}X_{3,3,1}+X_{2,1,3}X_{3,3,2}-X_{3,1,1}X_{3,1,3}-X_{3,1,2}X_{3,2,3},$\\
+$P_{36}=X_{1,1,3}X_{3,2,1}-X_{2,1,3}X_{3,1,1}+X_{2,1,3}X_{3,2,2}-X_{2,2,3}X_{3,1,2},$\\
+$P_{37}=X_{1,1,3}X_{2,2,3}X_{3,3,2}-X_{1,1,3}X_{3,1,3}X_{3,2,1}-X_{1,1,3}X_{3,2,2}X_{3,2,3}-X_{2,1,3}^2X_{3,3,2}+$\\
+$X_{2,1,3}X_{3,1,1}X_{3,1,3}+X_{2,1,3}X_{3,1,2}X_{3,2,3},$\\
+$P_{38}=X_{1,1,3}X_{2,2,2}X_{3,3,2}-X_{1,1,3}X_{3,1,2}X_{3,2,1}-X_{1,1,3}X_{3,2,2}^2+X_{1,1,3}X_{3,2,2}X_{3,3,3}-$\\
+$X_{1,1,3}X_{3,2,3}X_{3,3,2}-X_{2,1,2}X_{2,1,3}X_{3,3,2}+X_{2,1,2}X_{3,1,1}X_{3,1,3}+X_{2,1,2}X_{3,1,2}X_{3,2,3},$\\
+$P_{39}=X_{1,1,3}X_{2,2,2}X_{3,2,3}-X_{1,1,3}X_{2,2,3}X_{3,2,2}+X_{1,1,3}X_{2,2,3}X_{3,3,3}-X_{1,1,3}X_{3,2,3}^2+$\\
+$X_{2,1,1}X_{2,1,3}X_{3,1,3}+X_{2,1,2}X_{2,2,3}X_{3,1,3}-X_{2,1,3}^2X_{3,1,1}+X_{2,1,3^2}X_{3,2,2}-$\\
+$X_{2,1,3}X_{2,2,2}X_{3,1,3}-X_{2,1,3}X_{2,2,3}X_{3,1,2}+X_{2,1,3}X_{3,1,3}X_{3,2,3}-X_{2,2,3}X_{3,1,3}^2,$\\
+$P_{40}=X_{1,1,3}X_{2,2,1}-X_{2,1,1}X_{2,1,3}-X_{2,1,2}X_{2,2,3}+X_{2,1,3}X_{2,2,2}-X_{2,1,3}X_{3,2,3}+X_{2,2,3}X_{3,1,3},$\\
+$P_{41}=X_{1,1,2}X_{3,3,1}+X_{2,1,2}X_{3,3,2}-X_{3,1,1}X_{3,1,2}-X_{3,1,2}X_{3,2,2}+X_{3,1,2}X_{3,3,3}-X_{3,1,3}X_{3,3,2},$\\
+$P_{42}=X_{1,1,2}X_{3,2,1}-X_{2,1,1}X_{3,1,2}-X_{2,1,3}X_{3,3,2}+X_{3,1,2}X_{3,2,3},$\\
+$P_{43}=X_{1,1,2}X_{3,1,1}X_{3,1,3}+X_{1,1,2}X_{3,1,2}X_{3,2,3}-X_{1,1,2}X_{3,1,3}X_{3,2,2}-$\\
+$X_{1,1,3}X_{3,1,1}X_{3,1,2}+X_{1,1,3}X_{3,1,2}X_{3,3,3}-X_{1,1,3}X_{3,1,3}X_{3,3,2}+X_{2,1,2}X_{3,1,2}X_{3,1,3}-$\\
+$X_{2,1,3}X_{3,1,2}^2,$\\
+$P_{44}=X_{1,1,2}X_{2,2,3}X_{3,3,2}-X_{1,1,2}X_{3,1,3}X_{3,2,1}-X_{1,1,2}X_{3,2,2}X_{3,2,3}-$\\
+$X_{2,1,2}X_{2,1,3}X_{3,3,2}+X_{2,1,3}X_{3,1,1}X_{3,1,2}+X_{2,1,3}X_{3,1,2}X_{3,2,2}-X_{2,1,3}X_{3,1,2}X_{3,3,3}+$\\
+$X_{2,1,3}X_{3,1,3}X_{3,3,2},$\\
+$P_{45}=X_{1,1,2}X_{2,2,2}X_{3,3,2}-X_{1,1,2}X_{3,1,2}X_{3,2,1}-X_{1,1,2}X_{3,2,2}^2+X_{1,1,2}X_{3,2,2}X_{3,3,3}-$\\
+$X_{1,1,2}X_{3,2,3}X_{3,3,2}-X_{2,1,2}^2X_{3,3,2}+X_{2,1,2}X_{3,1,1}X_{3,1,2}+X_{2,1,2}X_{3,1,2}X_{3,2,2}-$\\
+$X_{2,1,2}X_{3,1,2}X_{3,3,3}+X_{2,1,2}X_{3,1,3}X_{3,3,2},$\\
+$P_{46}=X_{1,1,2}X_{2,2,2}X_{3,2,3}-X_{1,1,2}X_{2,2,3}X_{3,2,2}+X_{1,1,2}X_{2,2,3}X_{3,3,3}-X_{1,1,2}X_{3,2,3}^2+$\\
+$X_{2,1,1}X_{2,1,2}X_{3,1,3}-X_{2,1,1}X_{2,1,3}X_{3,1,2}-X_{2,1,3}^2X_{3,3,2}+X_{2,1,3}X_{3,1,2}X_{3,2,3}+$\\
+$X_{2,1,3}X_{3,1,3}X_{3,2,2}-X_{2,2,3}X_{3,1,2}X_{3,1,3},$\\
+$P_{47}=X_{1,1,2}X_{2,2,1}-X_{2,1,1}X_{2,1,2}-X_{2,1,3}X_{3,2,2}+X_{2,2,3}X_{3,1,2},$\\
+$P_{48}=X_{1,1,2}X_{2,1,3}X_{3,3,2}-X_{1,1,2}X_{3,1,1}X_{3,1,3}-X_{1,1,2}X_{3,1,2}X_{3,2,3}-$\\
+$X_{1,1,3}X_{2,1,2}X_{3,3,2}+X_{1,1,3}X_{3,1,1}X_{3,1,2}+X_{1,1,3}X_{3,1,2}X_{3,2,2}-X_{1,1,3}X_{3,1,2}X_{3,3,3}+$\\
+$X_{1,1,3}X_{3,1,3}X_{3,3,2},$\\
+$P_{49}=X_{1,1,2}X_{2,1,3}X_{3,2,3}-X_{1,1,2}X_{2,2,3}X_{3,1,3}+X_{1,1,3}X_{2,1,1}X_{3,1,3}-$\\
+$X_{1,1,3}X_{2,1,3}X_{3,1,1}+X_{1,1,3}X_{2,1,3}X_{3,3,3}-X_{1,1,3}X_{3,1,3}X_{3,2,3}+X_{2,1,2}X_{2,1,3}X_{3,1,3}-$\\
+$X_{2,1,3}^2X_{3,1,2},$\\
+$P_{50}=X_{1,1,2}X_{2,1,3}X_{3,2,2}-X_{1,1,2}X_{2,1,3}X_{3,3,3}-X_{1,1,2}X_{2,2,2}X_{3,1,3}+$\\
+$X_{1,1,2}X_{3,1,3}X_{3,2,3}+X_{1,1,3}X_{2,1,1}X_{3,1,2}-X_{1,1,3}X_{2,1,2}X_{3,1,1}+X_{1,1,3}X_{2,1,2}X_{3,3,3}+$\\
+$X_{1,1,3}X_{2,1,3}X_{3,3,2}-X_{1,1,3}X_{3,1,2}X_{3,2,3}-X_{1,1,3}X_{3,1,3}X_{3,2,2}+X_{2,1,2}^2X_{3,1,3}-$\\
+$X_{2,1,2}X_{2,1,3}X_{3,1,2}-X_{2,1,2}X_{3,1,3}^2+X_{2,1,3}X_{3,1,2}X_{3,1,3},$\\
+$P_{51}=X_{1,1,2}X_{2,1,3}X_{3,1,1}-X_{1,1,2}X_{2,1,3}X_{3,2,2}+X_{1,1,2}X_{2,2,3}X_{3,1,2}-$\\
+$X_{1,1,3}X_{2,1,1}X_{3,1,2}-X_{1,1,3}X_{2,1,3}X_{3,3,2}+X_{1,1,3}X_{3,1,2}X_{3,2,3},$\\
+$P_{52}=X_{1,1,2}X_{2,1,1}X_{2,1,3}+X_{1,1,2}X_{2,1,2}X_{2,2,3}-X_{1,1,2}X_{2,1,3}X_{2,2,2}-$\\
+$X_{1,1,3}X_{2,1,1}X_{2,1,2}+X_{1,1,3}X_{2,1,2}X_{3,2,3}-X_{1,1,3}X_{2,1,3}X_{3,2,2}-X_{2,1,2}X_{2,1,3}X_{3,1,3}+$\\
+$X_{2,1,3}^2X_{3,1,2},$\\
+$P_{53}=X_{1,1,1}X_{3,3,1}+X_{2,1,1}X_{3,3,2}-X_{2,1,2}X_{3,3,1}-X_{2,2,2}X_{3,3,2}-X_{3,1,1}^2+$\\
+$X_{3,1,1}X_{3,3,3}-X_{3,1,3}X_{3,3,1}+X_{3,2,2}^2-X_{3,2,2}X_{3,3,3}+X_{3,2,3}X_{3,3,2},$\\
+$P_{54}=X_{1,1,1}X_{3,2,1}-X_{2,1,1}X_{3,1,1}+X_{2,1,1}X_{3,2,2}-X_{2,1,2}X_{3,2,1}-X_{2,1,3}X_{3,3,1}+$\\
+$X_{3,1,1}X_{3,2,3},$\\
+$P_{55}=X_{1,1,1}X_{3,1,3}+X_{1,1,2}X_{3,2,3}-X_{1,1,3}X_{3,1,1}+X_{1,1,3}X_{3,3,3}-X_{2,1,3}X_{3,1,2}-$\\
+$X_{3,1,3}^2,$\\
+$P_{56}=X_{1,1,1}X_{3,1,2}-X_{1,1,2}X_{3,1,1}+X_{1,1,2}X_{3,2,2}+X_{1,1,3}X_{3,3,2}-X_{2,1,2}X_{3,1,2}-$\\
+$X_{3,1,2}X_{3,1,3},$\\
+$P_{57}=X_{1,1,1}X_{2,2,3}X_{3,3,2}-X_{1,1,1}X_{3,1,3}X_{3,2,1}-X_{1,1,1}X_{3,2,2}X_{3,2,3}-$\\
+$X_{1,1,2}X_{2,2,3}X_{3,3,1}+X_{1,1,3}X_{2,1,1}X_{3,3,1}-X_{1,1,3}X_{3,2,3}X_{3,3,1}+$\\
+$X_{2,1,2}X_{2,1,3}X_{3,3,1}+X_{2,1,3}X_{3,1,3}X_{3,3,1},$\\
+$P_{58}=X_{1,1,1}X_{2,2,2}X_{3,3,2}-X_{1,1,1}X_{3,1,2}X_{3,2,1}-X_{1,1,1}X_{3,2,2}^2+$\\
+$X_{1,1,1}X_{3,2,2}X_{3,3,3}-X_{1,1,1}X_{3,2,3}X_{3,3,2}+X_{1,1,2}X_{2,1,1}X_{3,3,1}-$\\
+$X_{1,1,2}X_{2,2,2}X_{3,3,1}-X_{1,1,3}X_{3,2,2}X_{3,3,1}+X_{2,1,2}^2X_{3,3,1}+X_{2,1,3}X_{3,1,2}X_{3,3,1},$\\
+$P_{59}=X_{1,1,1}X_{2,2,2}X_{3,2,3}-X_{1,1,1}X_{2,2,3}X_{3,2,2}+X_{1,1,1}X_{2,2,3}X_{3,3,3}-X_{1,1,1}X_{3,2,3}^2-$\\
+$X_{1,1,2}X_{2,2,1}X_{3,2,3}+X_{1,1,3}X_{2,2,1}X_{3,1,1}-X_{1,1,3}X_{2,2,1}X_{3,3,3}-X_{2,1,1}X_{2,1,3}X_{3,1,1}+$\\
+$X_{2,1,1}X_{2,1,3}X_{3,2,2}-X_{2,1,2}X_{2,1,3}X_{3,2,1}-X_{2,1,3}^2X_{3,3,1}+X_{2,1,3}X_{2,2,1}X_{3,1,2}+$\\
+$X_{2,1,3}X_{3,1,1}X_{3,2,3}+X_{2,2,1}X_{3,1,3}^2,$\\
+$P_{60}=X_{1,1,1}X_{2,2,1}-X_{2,1,1}^2+X_{2,1,1}X_{2,2,2}-X_{2,1,2}X_{2,2,1}-X_{2,1,3}X_{3,2,1}+X_{2,2,3}X_{3,1,1},$\\
+$P_{61}=X_{1,1,1}X_{2,1,3}+X_{1,1,2}X_{2,2,3}-X_{1,1,3}X_{2,1,1}+X_{1,1,3}X_{3,2,3}-X_{2,1,2}X_{2,1,3}-X_{2,1,3}X_{3,1,3},$\\
+$P_{62}=X_{1,1,1}X_{2,1,2}-X_{1,1,2}X_{2,1,1}+X_{1,1,2}X_{2,2,2}+X_{1,1,3}X_{3,2,2}-X_{2,1,2}^2-X_{2,1,3}X_{3,1,2}$\\
+\\
+\textbf{Base de Gr\"obner reducida de $I_{\text{asoc,antcon,}3}$:}\\
+\\
+$P_{1}=X_{3,3,3},$\\
+$P_{2}=X_{3,3,2},$\\
+$P_{3}=X_{3,3,1},$\\
+$P_{4}=X_{3,1,3}X_{3,2,1}+X_{3,2,2}X_{3,2,3},$\\
+$P_{5}=X_{3,1,2}X_{3,2,3}^2+X_{3,1,3}^2X_{3,2,1},$\\
+$P_{6}=X_{3,1,2}X_{3,2,2}X_{3,2,3}-X_{3,1,3}X_{3,2,2}^2,$\\
+$P_{7}=X_{3,1,2}X_{3,2,1}+X_{3,2,2}^2,$\\
+$P_{8}=X_{3,1,2}X_{3,1,3}X_{3,2,3}-X_{3,1,3}^2X_{3,2,2},$\\
+$P_{9}=X_{3,1,2}^2X_{3,2,3}-X_{3,1,2}X_{3,1,3}X_{3,2,2},$\\
+$P_{10}=X_{3,1,1}X_{3,2,3}^2-X_{3,1,3}X_{3,2,1}X_{3,2,3},$\\
+$P_{11}=X_{3,1,1}X_{3,2,2}X_{3,2,3}-X_{3,1,3}X_{3,2,1}X_{3,2,2},$\\
+$P_{12}=X_{3,1,1}X_{3,2,2}^2-X_{3,1,2}X_{3,2,1}X_{3,2,2},$\\
+$P_{13}=X_{3,1,1}X_{3,2,1}+X_{3,2,1}X_{3,2,2},$\\
+$P_{14}=X_{3,1,1}X_{3,1,3}+X_{3,1,2}X_{3,2,3},$\\
+$P_{15}=X_{3,1,1}X_{3,1,2}+X_{3,1,2}X_{3,2,2},$\\
+$P_{16}=X_{3,1,1}^2-X_{3,2,2}^2,$\\
+$P_{17}=X_{2,3,3}+X_{3,2,3},$\\
+$P_{18}=X_{2,3,2}+X_{3,2,2},$\\
+$P_{19}=X_{2,3,1}+X_{3,2,1},$\\
+$P_{20}=X_{2,2,3},$\\
+$P_{21}=X_{2,2,2},$\\
+$P_{22}=X_{2,2,1},$\\
+$P_{23}=X_{2,1,3}X_{3,2,2}+X_{3,1,3}X_{3,2,3},$\\
+$P_{24}=X_{2,1,3}X_{3,2,1}-X_{3,2,3}^2,$\\
+$P_{25}=X_{2,1,3}X_{3,1,2}+X_{3,1,3}^2,$\\
+$P_{26}=X_{2,1,3}X_{3,1,1}-X_{3,1,3}X_{3,2,3},$\\
+$P_{27}=X_{2,1,2}X_{3,2,3}^2-X_{2,1,3}X_{3,2,2}X_{3,2,3},$\\
+$P_{28}=X_{2,1,2}X_{3,2,2}+X_{3,1,2}X_{3,2,3},$\\
+$P_{29}=X_{2,1,2}X_{3,2,1}-X_{3,2,2}X_{3,2,3},$\\
+$P_{30}=X_{2,1,2}X_{3,1,3}X_{3,2,3}-X_{2,1,3}X_{3,1,3}X_{3,2,2},$\\
+$P_{31}=X_{2,1,2}X_{3,1,3}^2-X_{2,1,3}X_{3,1,2}X_{3,1,3},$\\
+$P_{32}=X_{2,1,2}X_{3,1,2}+X_{3,1,2}X_{3,1,3},$\\
+$P_{33}=X_{2,1,2}X_{3,1,1}-X_{3,1,3}X_{3,2,2},$\\
+$P_{34}=X_{2,1,2}X_{2,1,3}+X_{2,1,3}X_{3,1,3},$\\
+$P_{35}=X_{2,1,2}^2-X_{3,1,3}^2,$\\
+$P_{36}=X_{2,1,1}X_{3,2,3}^2-X_{2,1,3}X_{3,2,1}X_{3,2,3},$\\
+$P_{37}=X_{2,1,1}X_{3,2,2}+X_{3,1,1}X_{3,2,3},$\\
+$P_{38}=X_{2,1,1}X_{3,2,1}-X_{3,2,1}X_{3,2,3},$\\
+$P_{39}=X_{2,1,1}X_{3,1,3}+X_{2,1,2}X_{3,2,3},$\\
+$P_{40}=X_{2,1,1}X_{3,1,2}-X_{3,1,2}X_{3,2,3},$\\
+$P_{41}=X_{2,1,1}X_{3,1,1}+X_{3,2,2}X_{3,2,3},$\\
+$P_{42}=X_{2,1,1}X_{2,1,3}-X_{2,1,3}X_{3,2,3},$\\
+$P_{43}=X_{2,1,1}X_{2,1,2}+X_{3,1,3}X_{3,2,3},$\\
+$P_{44}=X_{2,1,1}^2-X_{3,2,3}^2,$\\
+$P_{45}=X_{1,3,3}+X_{3,1,3},$\\
+$P_{46}=X_{1,3,2}+X_{3,1,2},$\\
+$P_{47}=X_{1,3,1}+X_{3,1,1},$\\
+$P_{48}=X_{1,2,3}+X_{2,1,3},$\\
+$P_{49}=X_{1,2,2}+X_{2,1,2},$\\
+$P_{50}=X_{1,2,1}+X_{2,1,1},$\\
+$P_{51}=X_{1,1,3},$\\
+$P_{52}=X_{1,1,2},$\\
+$P_{53}=X_{1,1,1}$\\
+\\
+Base de Gr\"obner reducida de su radical:\\
+\\
+$Q_{1}=X_{3,3,3},$\\
+$Q_{2}=X_{3,3,2},$\\
+$Q_{3}=X_{3,3,1},$\\
+$Q_{4}=X_{3,1,3}X_{3,2,1}+X_{3,2,2}X_{3,2,3},$\\
+$Q_{5}=X_{3,1,2}X_{3,2,3}-X_{3,1,3}X_{3,2,2},$\\
+$Q_{6}=X_{3,1,2}X_{3,2,1}+X_{3,2,2}^2,$\\
+$Q_{7}=X_{3,1,1}+X_{3,2,2},$\\
+$Q_{8}=X_{2,3,3}+X_{3,2,3},$\\
+$Q_{9}=X_{2,3,2}+X_{3,2,2},$\\
+$Q_{10}=X_{2,3,1}+X_{3,2,1},$\\
+$Q_{11}=X_{2,2,3},$\\
+$Q_{12}=X_{2,2,2},$\\
+$Q_{13}=X_{2,2,1},$\\
+$Q_{14}=X_{2,1,3}X_{3,2,2}+X_{3,1,3}X_{3,2,3},$\\
+$Q_{15}=X_{2,1,3}X_{3,2,1}-X_{3,2,3}^2,$\\
+$Q_{16}=X_{2,1,3}X_{3,1,2}+X_{3,1,3}^2,$\\
+$Q_{17}=X_{2,1,2}+X_{3,1,3},$\\
+$Q_{18}=X_{2,1,1}-X_{3,2,3},$\\
+$Q_{19}=X_{1,3,3}+X_{3,1,3},$\\
+$Q_{20}=X_{1,3,2}+X_{3,1,2},$\\
+$Q_{21}=X_{1,3,1}+X_{3,1,1},$\\
+$Q_{22}=X_{1,2,3}+X_{2,1,3},$\\
+$Q_{23}=X_{1,2,2}+X_{2,1,2},$\\
+$Q_{24}=X_{1,2,1}+X_{2,1,1},$\\
+$Q_{25}=X_{1,1,3},$\\
+$Q_{26}=X_{1,1,2},$\\
+$Q_{27}=X_{1,1,1}$\\
+\\
+\textbf{Base de Gr\"obner reducida de $I_{\text{asoc,iden,}3}$ y de su radical:}\\
+\\
+$P_{1}=X_{3,1,3}-1,$\\
+$P_{2}=X_{3,1,2},$\\
+$P_{3}=X_{3,1,1},$\\
+$P_{4}=X_{2,3,3}X_{3,3,2}-X_{3,2,3}X_{3,3,2},$\\
+$P_{5}=X_{2,3,3}X_{3,2,2}^2-X_{2,3,3}X_{3,2,2}X_{3,3,3}-X_{2,3,3}X_{3,3,1}-X_{3,2,2^2}X_{3,2,3}+$\\
+$X_{3,2,2}X_{3,2,3}X_{3,3,3}+X_{3,2,3}X_{3,3,1},$\\
+$P_{6}=X_{2,3,3}X_{3,2,1}+X_{2,3,3}X_{3,2,2}X_{3,2,3}-X_{3,2,1}X_{3,2,3}-X_{3,2,2}X_{3,2,3}^2,$\\
+$P_{7}=X_{2,3,2}X_{3,3,2}-X_{3,2,2}X_{3,3,2},$\\
+$P_{8}=X_{2,3,2}X_{3,2,2}^2-X_{2,3,2}X_{3,2,2}X_{3,3,3}+X_{2,3,2}X_{3,2,3}X_{3,3,2}-X_{2,3,2}X_{3,3,1}-$\\
+$X_{2,3,3}X_{3,2,2}X_{3,3,2}-X_{3,2,2}^3+X_{3,2,2}^2X_{3,3,3}+X_{3,2,2}X_{3,3,1},$\\
+$P_{9}=X_{2,3,2}X_{3,2,1}+X_{2,3,2}X_{3,2,2}X_{3,2,3}-X_{3,2,1}X_{3,2,2}-X_{3,2,2}^2X_{3,2,3},$\\
+$P_{10}=X_{2,3,2}X_{2,3,3}-X_{2,3,2}X_{3,2,3}+X_{2,3,3}X_{3,2,2}-X_{2,3,3}X_{3,3,3}-X_{3,2,2}X_{3,2,3}+$\\
+$X_{3,2,3}X_{3,3,3},$\\
+$P_{11}=X_{2,3,2}^2-X_{2,3,2}X_{3,3,3}-X_{3,2,2}^2+X_{3,2,2}X_{3,3,3},$\\
+$P_{12}=X_{2,3,1}+X_{2,3,2}X_{3,2,3}-X_{2,3,3}X_{3,2,2}+X_{2,3,3}X_{3,3,3}-X_{3,2,1}-X_{3,2,3}X_{3,3,3},$\\
+$P_{13}=X_{2,2,3}X_{3,3,2}-X_{2,3,2}X_{2,3,3}+X_{2,3,2}X_{3,2,3}-X_{2,3,3}X_{3,2,2}+X_{2,3,3}X_{3,3,3}-$\\
+$X_{3,2,1}-X_{3,2,3}X_{3,3,3},$\\
+$P_{14}=X_{2,2,3}X_{2,3,3}-X_{2,2,3}X_{3,2,3},$\\
+$P_{15}=X_{2,2,3}X_{2,3,2}-X_{2,2,3}X_{3,2,2},$\\
+$P_{16}=X_{2,2,2}X_{3,3,2}-X_{2,3,2}^2+X_{2,3,2}X_{3,3,3}-X_{2,3,3}X_{3,3,2}+X_{3,3,1,$\\
+$P_{17}=X_{2,2,2}X_{3,2,1}+X_{2,2,2}X_{3,2,2}X_{3,2,3}-X_{2,2,3}X_{2,3,2}^2+X_{2,2,3}X_{2,3,2}X_{3,3,3}-$\\
+$X_{2,2,3}X_{2,3,3}X_{3,3,2}+X_{2,2,3}X_{3,3,1}+X_{2,3,2}X_{2,3,3}^2-X_{2,3,2}X_{3,2,3}^2+$\\
+$X_{2,3,3}^2X_{3,2,2}-X_{2,3,3}^2X_{3,3,3}-X_{3,2,2}X_{3,2,3}^2+X_{3,2,3}^2X_{3,3,3},$\\
+$P_{18}=X_{2,2,2}X_{2,3,3}-X_{2,2,2}X_{3,2,3}-X_{2,3,3}^2+X_{3,2,3}^2,$\\
+$P_{19}=X_{2,2,2}X_{2,3,2}-X_{2,2,2}X_{3,2,2}-2X_{2,3,2}X_{3,2,3}+2X_{2,3,3}X_{3,2,2}-X_{2,3,3}X_{3,3,3}+$\\
+$X_{3,2,3}X_{3,3,3},$\\
+$P_{20}=X_{2,2,1}+X_{2,2,2}X_{2,3,3}-X_{2,2,3}X_{2,3,2}+X_{2,2,3}X_{3,3,3}-X_{2,3,3}^2,$\\
+$P_{21}=X_{2,1,3},$\\
+$P_{22}=X_{2,1,2}-1,$\\
+$P_{23}=X_{2,1,1},$\\
+$P_{24}=X_{1,3,3}-1,$\\
+$P_{25}=X_{1,3,2},$\\
+$P_{26}=X_{1,3,1},$\\
+$P_{27}=X_{1,2,3},$\\
+$P_{28}=X_{1,2,2}-1,$\\
+$P_{29}=X_{1,2,1},$\\
+$P_{30}=X_{1,1,3},$\\
+$P_{31}=X_{1,1,2},$\\
+$P_{32}=X_{1,1,1}-1$\\
+\\
+\textbf{Base de Gr\"obner reducida de  $I_{\text{asoc,con,iden,}3}$ y de su radical:}\\
+\\
+$P_{1}=X_{3,1,3}-1,$\\
+$P_{2}=X_{3,1,2},$\\
+$P_{3}=X_{3,1,1},$\\
+$P_{4}=X_{2,3,3}-X_{3,2,3},$\\
+$P_{5}=X_{2,3,2}-X_{3,2,2},$\\
+$P_{6}=X_{2,3,1}-X_{3,2,1},$\\
+$P_{7}=X_{2,2,3}X_{3,3,2}-X_{3,2,1}-X_{3,2,2}X_{3,2,3},$\\
+$P_{8}=X_{2,2,2}X_{3,3,2}-X_{3,2,2}^2+X_{3,2,2}X_{3,3,3}-X_{3,2,3}X_{3,3,2}+X_{3,3,1},$\\
+$P_{9}=X_{2,2,2}X_{3,2,1}+X_{2,2,2}X_{3,2,2}X_{3,2,3}-X_{2,2,3}X_{3,2,2}^2+X_{2,2,3}X_{3,2,2}X_{3,3,3}-$\\
+$X_{2,2,3}X_{3,2,3}X_{3,3,2}+X_{2,2,3}X_{3,3,1},$\\
+$P_{10}=X_{2,2,1}+X_{2,2,2}X_{3,2,3}-X_{2,2,3}X_{3,2,2}+X_{2,2,3}X_{3,3,3}-X_{3,2,3}^2,$\\
+$P_{11}=X_{2,1,3},$\\
+$P_{12}=X_{2,1,2}-1,$\\
+$P_{13}=X_{2,1,1},$\\
+$P_{14}=X_{1,3,3}-1,$\\
+$P_{15}=X_{1,3,2},$\\
+$P_{16}=X_{1,3,1},$\\
+$P_{17}=X_{1,2,3},$\\
+$P_{18}=X_{1,2,2}-1,$\\
+$P_{19}=X_{1,2,1},$\\
+$P_{20}=X_{1,1,3},$\\
+$P_{21}=X_{1,1,2},$\\
+$P_{22}=X_{1,1,1}-1$\\
+\\
+\textbf{'Algebras de Lie}\\
+\\
+\textbf{Dimensi'on 3:}\\
+\\
+\textbf{Base de Gr\"obner reducida de $I_{\text{Lie,}3}$ y de su radical:}\\
+\\
+$P_{1}=X_{3,3,3},$\\
+$P_{2}=X_{3,3,2},$\\
+$P_{3}=X_{3,3,1},$\\
+$P_{4}=X_{2,3,3}+X_{3,2,3},$\\
+$P_{5}=X_{2,3,2}+X_{3,2,2},$\\
+$P_{6}=X_{2,3,1}+X_{3,2,1},$\\
+$P_{7}=X_{2,2,3},$\\
+$P_{8}=X_{2,2,2},$\\
+$P_{9}=X_{2,2,1},$\\
+$P_{10}=X_{2,1,3}X_{3,1,1}^2X_{3,2,2}-X_{2,1,3}X_{3,1,1}X_{3,1,2}X_{3,2,1}+X_{2,1,3}X_{3,1,1}X_{3,2,2}^2-\\
+X_{2,1,3}X_{3,1,2}X_{3,2,1}X_{3,2,2}+X_{3,1,1}^2X_{3,1,3}X_{3,2,3}+X_{3,1,1}X_{3,1,2}X_{3,2,3}^2-\\
+X_{3,1,1}X_{3,1,3}^2X_{3,2,1}+X_{3,1,2}X_{3,2,2}X_{3,2,3}^2-X_{3,1,3}^2X_{3,2,1}X_{3,2,2}-X_{3,1,3}X_{3,2,2}^2X_{3,2,3},$\\
+$P_{11}=X_{2,1,2}X_{3,1,3}X_{3,2,1}+X_{2,1,2}X_{3,2,2}X_{3,2,3}-X_{2,1,3}X_{3,1,1}X_{3,2,2}-X_{2,1,3}X_{3,2,2}^2-X_{3,1,1}X_{3,1,3}X_{3,2,3}+X_{3,1,3}^2X_{3,2,1},$\\
+$P_{12}=X_{2,1,2}X_{3,1,1}X_{3,2,2}-X_{2,1,2}X_{3,1,2}X_{3,2,1}+X_{3,1,1}X_{3,1,2}X_{3,2,3}-\\
+X_{3,1,2}X_{3,1,3}X_{3,2,1}+X_{3,1,2}X_{3,2,2}X_{3,2,3}-X_{3,1,3}X_{3,2,2}^2,$\\
+$P_{13}=X_{2,1,2}X_{3,1,1}X_{3,1,3}+X_{2,1,2}X_{3,1,2}X_{3,2,3}-X_{2,1,3}X_{3,1,1}X_{3,1,2}-\\
+X_{2,1,3}X_{3,1,2}X_{3,2,2}+X_{3,1,2}X_{3,1,3}X_{3,2,3}-X_{3,1,3}^2X_{3,2,2},$\\
+$P_{14}=X_{2,1,1}X_{3,2,2}-X_{2,1,2}X_{3,2,1}+X_{3,1,1}X_{3,2,3}-X_{3,1,3}X_{3,2,1},$\\
+$P_{15}=X_{2,1,1}X_{3,1,3}+X_{2,1,2}X_{3,2,3}-X_{2,1,3}X_{3,1,1}-X_{2,1,3}X_{3,2,2},$\\
+$P_{16}=X_{2,1,1}X_{3,1,2}-X_{2,1,2}X_{3,1,1}-X_{3,1,2}X_{3,2,3}+X_{3,1,3}X_{3,2,2},$\\
+$P_{17}=X_{1,3,3}+X_{3,1,3},$\\
+$P_{18}=X_{1,3,2}+X_{3,1,2},$\\
+$P_{19}=X_{1,3,1}+X_{3,1,1},$\\
+$P_{20}=X_{1,2,3}+X_{2,1,3},$\\
+$P_{21}=X_{1,2,2}+X_{2,1,2},$\\
+$P_{22}=X_{1,2,1}+X_{2,1,1},$\\
+$P_{23}=X_{1,1,3},$\\
+$P_{24}=X_{1,1,2},$\\
+$P_{25}=X_{1,1,1}$\\
+\\
+\textbf{Dimensi'on 5:}\\
+\\
+\textbf{Sistema de generadores de $I_{\text{Lie,2pnil,}5}$ y de su radical:}\\
+\\
+Resulta de la uni'on entre $C_{\text{antcon,}5}$, $C_{\text{nil,}5}$ y el conjunto formado por los elementos:\\
+\\
+$P_{1}=X_{3,5,2}X_{4,5,3},$\\
+$P_{2}=X_{3,4,2}X_{4,5,3},$\\
+$P_{3}=X_{2,5,1}X_{4,5,2}+X_{3,5,1}X_{4,5,3},$\\
+$P_{4}=X_{2,5,1}X_{3,5,2},$\\
+$P_{5}=X_{2,5,1}X_{3,4,2},$\\
+$P_{6}=X_{2,4,1}X_{4,5,2}+X_{3,4,1}X_{4,5,3},$\\
+$P_{7}=X_{2,4,1}X_{3,5,2},$\\
+$P_{8}=X_{2,4,1}X_{3,5,1}X_{4,5,3}-X_{2,5,1}X_{3,4,1}X_{4,5,3},$\\
+$P_{9}=X_{2,4,1}X_{3,4,2},$\\
+$P_{10}=X_{2,3,1}X_{4,5,3},$\\
+$P_{11}=X_{2,3,1}X_{4,5,2},$\\
+$P_{12}=X_{2,3,1}X_{3,5,2},$\\
+$P_{13}=X_{2,3,1}X_{3,4,2}$\\
+\\
+\textbf{Sistema de generadores de $I_{\text{Lie,3pnil,}5}$ y de su radical:}\\
+\\
+Resulta de la uni'on entre $C_{\text{antcon,}5}$, $C_{\text{nil,}5}$ y el conjunto formado por los elementos:\\
+\\
+$P_{1}= X_{2,5,1}X_{3,5,2}X_{4,5,3},$\\
+$P_{2}= X_{2,5,1}X_{3,4,2}X_{4,5,3},$\\
+$P_{3}= X_{2,4,1}X_{3,5,2}X_{4,5,3}-X_{2,5,1}X_{3,4,2}X_{4,5,3},$\\
+$P_{4}= X_{2,4,1}X_{3,4,2}X_{4,5,3},$\\
+$P_{5}= X_{2,3,1}X_{4,5,3},$\\
+$P_{6}= X_{2,3,1}X_{4,5,2}-X_{2,4,1}X_{3,5,2}+X_{2,5,1}X_{3,4,2}$\\
+\\
+\textbf{Sistema de generadores de $I_{\text{Lie,nil,}5}$ y de su radical:}\\
+\\
+Resulta de la uni'on entre $C_{\text{antcon,}5}$, $C_{\text{nil,}5}$ y el conjunto formado por los elementos:\\
+\\
+$P_{1}=X_{2,4,1}X_{3,5,2}X_{4,5,3}-X_{2,5,1}X_{3,4,2}X_{4,5,3},$\\
+$P_{2}=X_{2,3,1}X_{4,5,3},$\\
+$P_{3}=X_{2,3,1}X_{4,5,2}-X_{2,4,1}X_{3,5,2}+X_{2,5,1}X_{3,4,2}$\\
+\\
+\textbf{Dimensi'on 6:}\\
+\\
+\textbf{Sistema de generadores de $I_{\text{Lie,2pnil,}6}$ y de su radical:}\\
+\\
+Resulta de la uni'on entre $C_{\text{antcon,}6}$, $C_{\text{nil,}6}$ y el conjunto formado por los elementos:\\
+\\
+$P_{1}=X_{4,6,3}X_{5,6,4},$\\
+$P_{2}=X_{4,5,3}X_{5,6,4},$\\
+$P_{3}=X_{3,6,2}X_{5,6,3}+X_{4,6,2}X_{5,6,4},$\\
+$P_{4}=X_{3,6,2}X_{4,6,3},$\\
+$P_{5}=X_{3,6,2}X_{4,5,3},$\\
+$P_{6}=X_{3,6,1}X_{4,6,2}X_{5,6,4}-X_{3,6,2}X_{4,6,1}X_{5,6,4},$\\
+$P_{7}=X_{3,6,1}X_{4,6,2}X_{5,6,3}-X_{3,6,1}X_{4,6,3}X_{5,6,2}+X_{4,6,1}X_{4,6,2}X_{5,6,4},$\\
+$P_{8}=X_{3,6,1}X_{4,5,2}X_{5,6,3}-X_{3,6,1}X_{4,5,3}X_{5,6,2}+X_{4,5,2}X_{4,6,1}X_{5,6,4},$\\
+$P_{9}=X_{3,6,1}X_{4,5,2}X_{4,6,3}-X_{3,6,1}X_{4,5,3}X_{4,6,2},$\\
+$P_{10}=X_{3,5,2}X_{5,6,3}+X_{4,5,2}X_{5,6,4},$\\
+$P_{11}=X_{3,5,2}X_{4,6,3},$\\
+$P_{12}=X_{3,5,2}X_{4,6,2}X_{5,6,4}-X_{3,6,2}X_{4,5,2}X_{5,6,4},$\\
+$P_{13}=X_{3,5,2}X_{4,6,1}X_{5,6,4}-X_{3,6,1}X_{4,5,2}X_{5,6,4},$\\
+$P_{14}=X_{3,5,2}X_{4,5,3},$\\
+$P_{15}=X_{3,5,1}X_{4,6,2}X_{5,6,4}-X_{3,6,2}X_{4,5,1}X_{5,6,4},$\\
+$P_{16}=X_{3,5,1}X_{4,6,2}X_{5,6,3}-X_{3,5,1}X_{4,6,3}X_{5,6,2}+X_{4,5,1}X_{4,6,2}X_{5,6,4},$\\
+$P_{17}=X_{3,5,1}X_{4,5,2}X_{5,6,4}-X_{3,5,2}X_{4,5,1}X_{5,6,4},$\\
+$P_{18}=X_{3,5,1}X_{4,5,2}X_{5,6,3}-X_{3,5,1}X_{4,5,3}X_{5,6,2}+X_{4,5,1}X_{4,5,2}X_{5,6,4},$\\
+$P_{19}=X_{3,5,1}X_{4,5,2}X_{4,6,3}-X_{3,5,1}X_{4,5,3}X_{4,6,2},$\\
+$P_{20}=X_{3,5,1}X_{3,6,2}X_{4,6,1}X_{5,6,4}-X_{3,6,1}X_{3,6,2}X_{4,5,1}X_{5,6,4},$\\
+$P_{21}=X_{3,4,2}X_{5,6,4},$\\
+$P_{22}=X_{3,4,2}X_{5,6,3},$\\
+$P_{23}=X_{3,4,2}X_{4,6,3},$\\
+$P_{24}=X_{3,4,2}X_{4,5,3},$\\
+$P_{25}=X_{3,4,1}X_{4,6,2}X_{5,6,4},$\\
+$P_{26}=X_{3,4,1}X_{4,6,2}X_{5,6,3}-X_{3,4,1}X_{4,6,3}X_{5,6,2},$\\
+$P_{27}=X_{3,4,1}X_{4,5,2}X_{5,6,4},$\\
+$P_{28}=X_{3,4,1}X_{4,5,2}X_{5,6,3}-X_{3,4,1}X_{4,5,3}X_{5,6,2},$\\
+$P_{29}=X_{3,4,1}X_{4,5,2}X_{4,6,3}-X_{3,4,1}X_{4,5,3}X_{4,6,2},$\\
+$P_{30}=X_{3,4,1}X_{3,6,2}X_{5,6,4},$\\
+$P_{31}=X_{3,4,1}X_{3,5,2}X_{5,6,4},$\\
+$P_{32}=X_{2,6,1}X_{5,6,2}+X_{3,6,1}X_{5,6,3}+X_{4,6,1}X_{5,6,4},$\\
+$P_{33}=X_{2,6,1}X_{4,6,2}+X_{3,6,1}X_{4,6,3},$\\
+$P_{34}=X_{2,6,1}X_{4,5,2}+X_{3,6,1}X_{4,5,3},$\\
+$P_{35}=X_{2,6,1}X_{3,6,2},$\\
+$P_{36}=X_{2,6,1}X_{3,5,2},$\\
+$P_{37}=X_{2,6,1}X_{3,4,2},$\\
+$P_{38}=X_{2,5,1}X_{5,6,2}+X_{3,5,1}X_{5,6,3}+X_{4,5,1}X_{5,6,4},$\\
+$P_{39}=X_{2,5,1}X_{4,6,2}+X_{3,5,1}X_{4,6,3},$\\
+$P_{40}=X_{2,5,1}X_{4,5,2}+X_{3,5,1}X_{4,5,3},$\\
+$P_{41}=X_{2,5,1}X_{3,6,2},$\\
+$P_{42}=X_{2,5,1}X_{3,6,1}X_{5,6,3}+X_{2,5,1}X_{4,6,1}X_{5,6,4}-X_{2,6,1}X_{3,5,1}X_{5,6,3}-$\\
+$X_{2,6,1}X_{4,5,1}X_{5,6,4},$\\
+$P_{43}=X_{2,5,1}X_{3,6,1}X_{4,6,3}-X_{2,6,1}X_{3,5,1}X_{4,6,3},$\\
+$P_{44}=X_{2,5,1}X_{3,6,1}X_{4,5,3}-X_{2,6,1}X_{3,5,1}X_{4,5,3},$\\
+$P_{45}=X_{2,5,1}X_{3,5,2},$\\
+$P_{46}=X_{2,5,1}X_{3,4,2},$\\
+$P_{47}=X_{2,4,1}X_{5,6,2}+X_{3,4,1}X_{5,6,3},$\\
+$P_{48}=X_{2,4,1}X_{4,6,2}+X_{3,4,1}X_{4,6,3},$\\
+$P_{49}=X_{2,4,1}X_{4,5,2}+X_{3,4,1}X_{4,5,3},$\\
+$P_{50}=X_{2,4,1}X_{3,6,2},$\\
+$P_{51}=X_{2,4,1}X_{3,6,1}X_{5,6,3}+X_{2,4,1}X_{4,6,1}X_{5,6,4}-X_{2,6,1}X_{3,4,1}X_{5,6,3},$\\
+$P_{52}=X_{2,4,1}X_{3,6,1}X_{4,6,3}-X_{2,6,1}X_{3,4,1}X_{4,6,3},$\\
+$P_{53}=X_{2,4,1}X_{3,6,1}X_{4,5,3}-X_{2,6,1}X_{3,4,1}X_{4,5,3},$\\
+$P_{54}=X_{2,4,1}X_{3,5,2},$\\
+$P_{55}=X_{2,4,1}X_{3,5,1}X_{5,6,3}+X_{2,4,1}X_{4,5,1}X_{5,6,4}-X_{2,5,1}X_{3,4,1}X_{5,6,3},$\\
+$P_{56}=X_{2,4,1}X_{3,5,1}X_{4,6,3}-X_{2,5,1}X_{3,4,1}X_{4,6,3},$\\
+$P_{57}=X_{2,4,1}X_{3,5,1}X_{4,6,1}X_{5,6,4}-X_{2,4,1}X_{3,6,1}X_{4,5,1}X_{5,6,4}-$\\
+$X_{2,5,1}X_{3,4,1}X_{4,6,1}X_{5,6,4}+X_{2,6,1}X_{3,4,1}X_{4,5,1}X_{5,6,4},$\\
+$P_{58}=X_{2,4,1}X_{3,5,1}X_{4,5,3}-X_{2,5,1}X_{3,4,1}X_{4,5,3},$\\
+$P_{59}=X_{2,4,1}X_{3,4,2},$\\
+$P_{60}=X_{2,3,1}X_{5,6,3}+X_{2,4,1}X_{5,6,4},$\\
+$P_{61}=X_{2,3,1}X_{5,6,2}-X_{3,4,1}X_{5,6,4},$\\
+$P_{62}=X_{2,3,1}X_{4,6,3},$\\
+$P_{63}=X_{2,3,1}X_{4,6,2},$\\
+$P_{64}=X_{2,3,1}X_{4,6,1}X_{5,6,4}-X_{2,4,1}X_{3,6,1}X_{5,6,4}+X_{2,6,1}X_{3,4,1}X_{5,6,4},$\\
+$P_{65}=X_{2,3,1}X_{4,5,3},$\\
+$P_{66}=X_{2,3,1}X_{4,5,2},$\\
+$P_{67}=X_{2,3,1}X_{4,5,1}X_{5,6,4}-X_{2,4,1}X_{3,5,1}X_{5,6,4}+X_{2,5,1}X_{3,4,1}X_{5,6,4},$\\
+$P_{68}=X_{2,3,1}X_{3,6,2},$\\
+$P_{69}=X_{2,3,1}X_{3,5,2},$\\
+$P_{70}=X_{2,3,1}X_{3,4,2}$\\
+\\
+\textbf{Sistema de generadores de $I_{\text{Lie,3pnil,}6}$:}\\
+\\
+Resulta de la uni'on entre $C_{\text{antcon,}6}$, $C_{\text{nil,}6}$ y el conjunto formado por los elementos:\\
+\\
+$P_{1}=X_{3,6,2}X_{4,6,3}X_{5,6,4},$\\
+$P_{2}=X_{3,6,2}X_{4,5,3}X_{5,6,4},$\\
+$P_{3}=X_{3,6,1}X_{4,5,2}X_{4,6,3}X_{5,6,4}^2-X_{3,6,1}X_{4,5,3}X_{4,6,2}X_{5,6,4}^2,$\\
+$P_{4}=X_{3,6,1}X_{4,5,2}X_{4,5,3}X_{4,6,3}X_{5,6,4}-X_{3,6,1}X_{4,5,3^2}X_{4,6,2}X_{5,6,4},$\\
+$P_{5}=X_{3,5,2}X_{4,6,3}X_{5,6,4}-X_{3,6,2}X_{4,5,3}X_{5,6,4},$\\
+$P_{6}=X_{3,5,2}X_{4,5,3}X_{5,6,4},$\\
+$P_{7}=X_{3,5,1}X_{4,5,2}X_{4,6,3}X_{5,6,4}^2-X_{3,5,1}X_{4,5,3}X_{4,6,2}X_{5,6,4}^2,$\\
+$P_{8}=X_{3,5,1}X_{4,5,2}X_{4,6,3}^2X_{5,6,4}-X_{3,5,1}X_{4,5,3}X_{4,6,2}X_{4,6,3}X_{5,6,4},$\\
+$P_{9}=X_{3,5,1}X_{4,5,2}X_{4,5,3}X_{4,6,3}X_{5,6,4}-X_{3,5,1}X_{4,5,3}^2X_{4,6,2}X_{5,6,4},$\\
+$P_{10}=X_{3,4,2}X_{5,6,4},$\\
+$P_{11}=X_{3,4,2}X_{5,6,3}-X_{3,5,2}X_{4,6,3}+X_{3,6,2}X_{4,5,3},$\\
+$P_{12}=X_{3,4,1}X_{4,6,3}X_{5,6,4},$\\
+$P_{13}=X_{3,4,1}X_{4,5,3}X_{5,6,4},$\\
+$P_{14}=X_{3,4,1}X_{3,6,2}X_{5,6,3}X_{5,6,4}+X_{3,4,1}X_{4,6,2}X_{5,6,4}^2-X_{3,5,1}X_{3,6,2}X_{4,6,3}X_{5,6,4}+X_{3,5,2}X_{3,6,1}X_{4,6,3}X_{5,6,4},$\\
+$P_{15}=X_{3,4,1}X_{3,6,2}X_{5,6,3}^2+X_{3,4,1}X_{4,6,2}X_{5,6,3}X_{5,6,4}-X_{3,5,1}X_{3,6,2}X_{4,6,3}X_{5,6,3}+X_{3,6,1}X_{3,6,2}X_{4,5,3}X_{5,6,3}-X_{3,6,1}X_{4,5,2}X_{4,6,3}X_{5,6,4}+X_{3,6,1}X_{4,5,3}X_{4,6,2}X_{5,6,4},$\\
+$P_{16}=X_{3,4,1}X_{3,6,2}X_{4,5,3}X_{5,6,3}+X_{3,4,1}X_{4,5,3}X_{4,6,2}X_{5,6,4}-$\\
+$X_{3,5,1}X_{3,6,2}X_{4,5,3}X_{4,6,3}+X_{3,6,1}X_{3,6,2}X_{4,5,3}^2,$\\
+$P_{17}=X_{3,4,1}X_{3,5,2}X_{5,6,3}X_{5,6,4}+X_{3,4,1}X_{4,5,2}X_{5,6,4}^2-X_{3,5,1}X_{3,6,2}X_{4,5,3}X_{5,6,4}+X_{3,5,2}X_{3,6,1}X_{4,5,3}X_{5,6,4},$\\
+$P_{18}=X_{3,4,1}X_{3,5,2}X_{5,6,3}^2+X_{3,4,1}X_{4,5,2}X_{5,6,3}X_{5,6,4}-X_{3,5,1}X_{3,5,2}X_{4,6,3}X_{5,6,3}-X_{3,5,1}X_{4,5,2}X_{4,6,3}X_{5,6,4}+X_{3,5,1}X_{4,5,3}X_{4,6,2}X_{5,6,4}+X_{3,5,2}X_{3,6,1}X_{4,5,3}X_{5,6,3},$\\
+$P_{19}=X_{3,4,1}X_{3,5,2}X_{4,6,3}X_{5,6,3}+X_{3,4,1}X_{4,5,3}X_{4,6,2}X_{5,6,4}-X_{3,5,1}X_{3,5,2}X_{4,6,3^2}+X_{3,5,2}X_{3,6,1}X_{4,5,3}X_{4,6,3},$\\
+$P_{20}=X_{3,4,1}X_{3,5,2}X_{4,6,2}X_{5,6,4}^2-X_{3,4,1}X_{3,6,2}X_{4,5,2}X_{5,6,4}^2$\\
+$-X_{3,5,1}X_{3,5,2}X_{3,6,2}X_{4,6,3}X_{5,6,4}+X_{3,5,1}X_{3,6,2}^2X_{4,5,3}X_{5,6,4}+$\\
+$X_{3,5,2}^2X_{3,6,1}X_{4,6,3}X_{5,6,4}-X_{3,5,2}X_{3,6,1}X_{3,6,2}X_{4,5,3}X_{5,6,4},$\\
+$P_{21}=X_{3,4,1}X_{3,5,2}X_{4,5,3}X_{5,6,3}-X_{3,5,1}X_{3,5,2}X_{4,5,3}X_{4,6,3}+X_{3,5,2}X_{3,6,1}X_{4,5,3}^2,$\\
+$P_{22}=X_{3,4,1}X_{3,5,2}X_{4,5,3}X_{4,6,3}-X_{3,4,1}X_{3,6,2}X_{4,5,3}^2-X_{3,4,2}X_{3,5,1}X_{4,5,3}X_{4,6,3}+X_{3,4,2}X_{3,6,1}X_{4,5,3}^2,$\\
+$P_{23}=X_{3,4,1}X_{3,5,2}^2X_{4,6,3}^2-X_{3,4,1}X_{3,5,2}X_{3,6,2}X_{4,5,3}X_{4,6,3}-$\\
+$X_{3,4,2}X_{3,5,1}X_{3,5,2}X_{4,6,3}^2+X_{3,4,2}X_{3,5,2}X_{3,6,1}X_{4,5,3}X_{4,6,3},$\\
+$P_{24}=X_{2,6,1}X_{4,6,2}X_{4,6,3}X_{5,6,4}^2+X_{3,6,1}X_{4,6,3}^2X_{5,6,4}^2,$\\
+$P_{25}=X_{2,6,1}X_{4,5,3}X_{4,6,2}X_{5,6,4}+X_{3,6,1}X_{4,5,3}X_{4,6,3}X_{5,6,4},$\\
+$P_{26}=X_{2,6,1}X_{4,5,2}X_{4,6,3}X_{5,6,4}+X_{3,6,1}X_{4,5,3}X_{4,6,3}X_{5,6,4},$\\
+$P_{27}=X_{2,6,1}X_{4,5,2}X_{4,5,3}X_{5,6,4}+X_{3,6,1}X_{4,5,3}^2X_{5,6,4},$\\
+$P_{28}=X_{2,6,1}X_{3,6,2}X_{5,6,3}+X_{2,6,1}X_{4,6,2}X_{5,6,4}+X_{3,6,1}X_{4,6,3}X_{5,6,4},$\\
+$P_{29}=X_{2,6,1}X_{3,6,2}X_{4,5,3},$\\
+$P_{30}=X_{2,6,1}X_{3,5,2}X_{5,6,3}+X_{2,6,1}X_{4,5,2}X_{5,6,4}+X_{3,6,1}X_{4,5,3}X_{5,6,4},$\\
+$P_{31}=X_{2,6,1}X_{3,5,2}X_{4,6,3}-X_{2,6,1}X_{3,6,2}X_{4,5,3},$\\
+$P_{32}=X_{2,6,1}X_{3,5,2}X_{4,6,2}X_{5,6,4}-X_{2,6,1}X_{3,6,2}X_{4,5,2}X_{5,6,4}+$\\
+$X_{3,5,2}X_{3,6,1}X_{4,6,3}X_{5,6,4}-X_{3,6,1}X_{3,6,2}X_{4,5,3}X_{5,6,4},$\\
+$P_{33}=X_{2,6,1}X_{3,5,2}X_{4,5,3},$\\
+$P_{34}=X_{2,6,1}X_{3,5,1}X_{4,6,2}X_{4,6,3}X_{5,6,4}+X_{2,6,1}X_{3,6,1}X_{3,6,2}X_{4,5,3}X_{5,6,3}-$\\
+$X_{2,6,1}X_{3,6,1}X_{4,5,2}X_{4,6,3}X_{5,6,4}+X_{2,6,1}X_{3,6,1}X_{4,5,3}X_{4,6,2}X_{5,6,4}-$\\
+$X_{3,4,1}X_{3,6,1}X_{4,6,3}X_{5,6,3}X_{5,6,4}+X_{3,5,1}X_{3,6,1}X_{4,6,3}^2X_{5,6,4},$\\
+$P_{35}=X_{2,6,1}X_{3,4,2}X_{5,6,2}-X_{2,6,1}X_{3,5,2}X_{4,6,2}+X_{2,6,1}X_{3,6,2}X_{4,5,2}+$\\
+$X_{3,4,1}X_{3,6,2}X_{5,6,3}+X_{3,4,1}X_{4,6,2}X_{5,6,4}-X_{3,5,1}X_{3,6,2}X_{4,6,3}+X_{3,6,1}X_{3,6,2}X_{4,5,3},$\\
+$P_{36}=X_{2,6,1}X_{3,4,2}X_{4,5,3},$\\
+$P_{37}=X_{2,5,1}X_{4,6,2}X_{4,6,3}X_{5,6,4}-X_{2,6,1}X_{4,5,2}X_{4,6,3}X_{5,6,4}-$\\
+$X_{3,4,1}X_{4,6,3}X_{5,6,3}X_{5,6,4}+X_{3,5,1}X_{4,6,3}^2X_{5,6,4}-X_{3,6,1}X_{4,5,3}X_{4,6,3}X_{5,6,4},$\\
+$P_{38}=X_{2,5,1}X_{4,5,3}X_{4,6,2}X_{5,6,4}-X_{2,6,1}X_{4,5,2}X_{4,5,3}X_{5,6,4}-$\\
+$X_{3,4,1}X_{4,5,3}X_{5,6,3}X_{5,6,4}+X_{3,5,1}X_{4,5,3}X_{4,6,3}X_{5,6,4}-X_{3,6,1}X_{4,5,3}^2X_{5,6,4},$\\
+$P_{39}=X_{2,5,1}X_{4,5,2}X_{4,6,3}X_{5,6,4}+X_{2,6,1}X_{3,5,2}X_{4,5,3}X_{5,6,3}-$\\
+$X_{3,4,1}X_{4,5,3}X_{5,6,3}X_{5,6,4}+X_{3,5,1}X_{4,5,3}X_{4,6,3}X_{5,6,4},$\\
+$P_{40}=X_{2,5,1}X_{4,5,2}X_{4,5,3}X_{5,6,4}+X_{3,5,1}X_{4,5,3}^2X_{5,6,4},$\\
+$P_{41}=X_{2,5,1}X_{3,6,2}X_{5,6,3}+X_{2,5,1}X_{4,6,2}X_{5,6,4}-X_{2,6,1}X_{3,5,2}X_{5,6,3}-$\\
+$X_{2,6,1}X_{4,5,2}X_{5,6,4}+X_{3,5,1}X_{4,6,3}X_{5,6,4}-X_{3,6,1}X_{4,5,3}X_{5,6,4},$\\
+$P_{42}=X_{2,5,1}X_{3,6,2}X_{4,6,3}-X_{2,6,1}X_{3,5,2}X_{4,6,3}+X_{3,4,1}X_{4,6,3}X_{5,6,4},$\\
+$P_{43}=X_{2,5,1}X_{3,6,2}X_{4,5,3}-X_{2,6,1}X_{3,5,2}X_{4,5,3}+X_{3,4,1}X_{4,5,3}X_{5,6,4},$\\
+$P_{44}=X_{2,5,1}X_{3,6,1}X_{4,6,3}X_{5,6,4}+X_{2,6,1}^2X_{3,5,2}X_{5,6,3}+X_{2,6,1}^2X_{4,5,2}X_{5,6,4}-$\\
+$X_{2,6,1}X_{3,5,1}X_{4,6,3}X_{5,6,4}+X_{2,6,1}X_{3,6,1}X_{4,5,3}X_{5,6,4},$\\
+$P_{45}=X_{2,5,1}X_{3,6,1}X_{4,5,3}X_{5,6,4}-X_{2,6,1}X_{3,5,1}X_{4,5,3}X_{5,6,4},$\\
+$P_{46}=X_{2,5,1}X_{3,5,2}X_{5,6,3}+X_{2,5,1}X_{4,5,2}X_{5,6,4}+X_{3,5,1}X_{4,5,3}X_{5,6,4},$\\
+$P_{47}=X_{2,5,1}X_{3,5,2}X_{4,6,3}-X_{2,5,1}X_{3,6,2}X_{4,5,3},$\\
+$P_{48}=X_{2,5,1}X_{3,5,2}X_{4,6,2}X_{5,6,4}-X_{2,5,1}X_{3,6,2}X_{4,5,2}X_{5,6,4}-X_{2,6,1}X_{3,5,2}^2X_{5,6,3}-$\\
+$X_{2,6,1}X_{3,5,2}X_{4,5,2}X_{5,6,4}+X_{3,5,1}X_{3,5,2}X_{4,6,3}X_{5,6,4}-X_{3,5,1}X_{3,6,2}X_{4,5,3}X_{5,6,4}-$\\
+$X_{3,5,2}X_{3,6,1}X_{4,5,3}X_{5,6,4},$\\
+$P_{49}=X_{2,5,1}X_{3,5,2}X_{4,5,3},$\\
+$P_{50}=X_{2,5,1}X_{3,4,2}X_{5,6,2}-X_{2,5,1}X_{3,5,2}X_{4,6,2}+X_{2,5,1}X_{3,6,2}X_{4,5,2}+$\\
+$X_{3,4,1}X_{3,5,2}X_{5,6,3}+X_{3,4,1}X_{4,5,2}X_{5,6,4}-X_{3,5,1}X_{3,5,2}X_{4,6,3}+X_{3,5,2}X_{3,6,1}X_{4,5,3},$\\
+$P_{51}=X_{2,5,1}X_{3,4,2}X_{4,6,3}-X_{2,6,1}X_{3,4,2}X_{4,5,3},$\\
+$P_{52}=X_{2,5,1}X_{3,4,2}X_{4,5,3},$\\
+$P_{53}=X_{2,4,1}X_{5,6,2}-X_{2,5,1}X_{4,6,2}+X_{2,6,1}X_{4,5,2}+X_{3,4,1}X_{5,6,3}-X_{3,5,1}X_{4,6,3}+$\\
+$X_{3,6,1}X_{4,5,3},$\\
+$P_{54}=X_{2,4,1}X_{4,6,3}X_{5,6,4},$\\
+$P_{55}=X_{2,4,1}X_{4,5,3}X_{5,6,4},$\\
+$P_{56}=X_{2,4,1}X_{3,6,2}X_{5,6,3}+X_{2,4,1}X_{4,6,2}X_{5,6,4}-X_{2,6,1}X_{3,4,2}X_{5,6,3},$\\
+$P_{57}=X_{2,4,1}X_{3,6,2}X_{4,6,3}-X_{2,6,1}X_{3,4,2}X_{4,6,3},$\\
+$P_{58}=X_{2,4,1}X_{3,6,2}X_{4,5,3}-X_{2,6,1}X_{3,4,2}X_{4,5,3},$\\
+$P_{59}=X_{2,4,1}X_{3,5,2}X_{5,6,3}+X_{2,4,1}X_{4,5,2}X_{5,6,4}-X_{2,5,1}X_{3,4,2}X_{5,6,3},$\\
+$P_{60}=X_{2,4,1}X_{3,5,2}X_{4,6,3}-X_{2,5,1}X_{3,4,2}X_{4,6,3},$\\
+$P_{61}=X_{2,4,1}X_{3,5,2}X_{4,6,2}-X_{2,4,1}X_{3,6,2}X_{4,5,2}-X_{2,5,1}X_{3,4,2}X_{4,6,2}+$\\
+$X_{2,6,1}X_{3,4,2}X_{4,5,2},$\\
+$P_{62}=X_{2,4,1}X_{3,5,2}X_{4,5,3}-X_{2,5,1}X_{3,4,2}X_{4,5,3},$\\
+$P_{63}=X_{2,4,1}X_{3,4,2}X_{4,5,3},$\\
+$P_{64}=X_{2,3,1}X_{5,6,3}+X_{2,4,1}X_{5,6,4},$\\
+$P_{65}=X_{2,3,1}X_{5,6,2}-X_{2,5,1}X_{3,6,2}+X_{2,6,1}X_{3,5,2}-X_{3,4,1}X_{5,6,4},$\\
+$P_{66}=X_{2,3,1}X_{4,6,3},$\\
+$P_{67}=X_{2,3,1}X_{4,6,2}-X_{2,4,1}X_{3,6,2}+X_{2,6,1}X_{3,4,2},$\\
+$P_{68}=X_{2,3,1}X_{4,5,3},$\\
+$P_{69}=X_{2,3,1}X_{4,5,2}-X_{2,4,1}X_{3,5,2}+X_{2,5,1}X_{3,4,2},$\\
+\\
+Sistema de generadores de su radical:\\
+\\
+Resulta de la uni'on entre $C_{\text{antcon,}6}$, $C_{\text{nil,}6}$ y el conjunto formado por los elementos:\\
+\\ 
+$Q_{1}=X_{3,6,2}X_{4,6,3}X_{5,6,4},$\\
+$Q_{2}=X_{3,6,2}X_{4,5,3}X_{5,6,4},$\\
+$Q_{3}=X_{3,6,1}X_{4,5,2}X_{4,6,3}X_{5,6,4}-X_{3,6,1}X_{4,5,3}X_{4,6,2}X_{5,6,4},$\\
+$Q_{4}=X_{3,5,2}X_{4,6,3}X_{5,6,4}-X_{3,6,2}X_{4,5,3}X_{5,6,4},$\\
+$Q_{5}=X_{3,5,2}X_{4,5,3}X_{5,6,4},$\\
+$Q_{6}=X_{3,5,1}X_{4,5,2}X_{4,6,3}X_{5,6,4}-X_{3,5,1}X_{4,5,3}X_{4,6,2}X_{5,6,4},$\\
+$Q_{7}=X_{3,4,2}X_{5,6,4},$\\
+$Q_{8}=X_{3,4,2}X_{5,6,3}-X_{3,5,2}X_{4,6,3}+X_{3,6,2}X_{4,5,3},$\\
+$Q_{9}=X_{3,4,1}X_{4,6,3}X_{5,6,4},$\\
+$Q_{10}=X_{3,4,1}X_{4,5,3}X_{5,6,4},$\\
+$Q_{11}=X_{3,4,1}X_{3,6,2}X_{5,6,3}X_{5,6,4}+X_{3,4,1}X_{4,6,2}X_{5,6,4}^2-$\\
+$X_{3,5,1}X_{3,6,2}X_{4,6,3}X_{5,6,4}+X_{3,5,2}X_{3,6,1}X_{4,6,3}X_{5,6,4},$\\
+$Q_{12}=X_{3,4,1}X_{3,6,2}X_{5,6,3}^2+X_{3,4,1}X_{4,6,2}X_{5,6,3}X_{5,6,4}-$\\
+$X_{3,5,1}X_{3,6,2}X_{4,6,3}X_{5,6,3}+X_{3,6,1}X_{3,6,2}X_{4,5,3}X_{5,6,3}-$\\
+$X_{3,6,1}X_{4,5,2}X_{4,6,3}X_{5,6,4}+X_{3,6,1}X_{4,5,3}X_{4,6,2}X_{5,6,4},$\\
+$Q_{13}=X_{3,4,1}X_{3,6,2}X_{4,5,3}X_{5,6,3}+X_{3,4,1}X_{4,5,2}X_{4,6,3}X_{5,6,4}-$\\
+$X_{3,5,1}X_{3,6,2}X_{4,5,3}X_{4,6,3}+X_{3,6,1}X_{3,6,2}X_{4,5,3}^2,$\\
+$Q_{14}=X_{3,4,1}X_{3,5,2}X_{5,6,3}+X_{3,4,1}X_{4,5,2}X_{5,6,4}-X_{3,5,1}X_{3,5,2}X_{4,6,3}+$\\
+$X_{3,5,2}X_{3,6,1}X_{4,5,3},$\\
+$Q_{15}=X_{3,4,1}X_{3,5,2}X_{4,6,2}X_{5,6,4}-X_{3,4,1}X_{3,6,2}X_{4,5,2}X_{5,6,4},$\\
+$Q_{16}=X_{3,4,1}X_{3,5,2}X_{4,5,3}X_{4,6,3}-X_{3,4,1}X_{3,6,2}X_{4,5,3}^2-$\\
+$X_{3,4,2}X_{3,5,1}X_{4,5,3}X_{4,6,3}+X_{3,4,2}X_{3,6,1}X_{4,5,3}^2,$\\
+$Q_{17}=X_{3,4,1}X_{3,5,2}^2X_{4,6,3}-X_{3,4,1}X_{3,5,2}X_{3,6,2}X_{4,5,3}-$\\
+$X_{3,4,2}X_{3,5,1}X_{3,5,2}X_{4,6,3}+X_{3,4,2}X_{3,5,2}X_{3,6,1}X_{4,5,3},$\\
+$Q_{18}=X_{2,6,1}X_{4,6,2}X_{4,6,3}X_{5,6,4}+X_{3,6,1}X_{4,6,3}^2X_{5,6,4},$\\
+$Q_{19}=X_{2,6,1}X_{4,5,3}X_{4,6,2}X_{5,6,4}+X_{3,4,1}X_{4,6,3}X_{5,6,3}X_{5,6,4}+$\\
+$X_{3,6,1}X_{4,5,3}X_{4,6,3}X_{5,6,4},$\\
+$Q_{20}=X_{2,6,1}X_{4,5,2}X_{4,6,3}X_{5,6,4}+X_{3,4,1}X_{4,6,3}X_{5,6,3}X_{5,6,4}+$\\
+$X_{3,6,1}X_{4,5,3}X_{4,6,3}X_{5,6,4},$\\
+$Q_{21}=X_{2,6,1}X_{4,5,2}X_{4,5,3}X_{5,6,4}+X_{3,4,1}X_{4,5,3}X_{5,6,3}X_{5,6,4}+$\\
+$X_{3,6,1}X_{4,5,3}^2X_{5,6,4},$\\
+$Q_{22}=X_{2,6,1}X_{3,6,2}X_{5,6,3}+X_{2,6,1}X_{4,6,2}X_{5,6,4}+X_{3,6,1}X_{4,6,3}X_{5,6,4},$\\
+$Q_{23}=X_{2,6,1}X_{3,6,2}X_{4,5,3}-X_{3,4,1}X_{4,6,3}X_{5,6,4},$\\
+$Q_{24}=X_{2,6,1}X_{3,5,2}X_{5,6,3}+X_{2,6,1}X_{4,5,2}X_{5,6,4}+X_{3,6,1}X_{4,5,3}X_{5,6,4},$\\
+$Q_{25}=X_{2,6,1}X_{3,5,2}X_{4,6,3}-X_{3,4,1}X_{4,6,3}X_{5,6,4},$\\
+$Q_{26}=X_{2,6,1}X_{3,5,2}X_{4,6,2}X_{5,6,4}-X_{2,6,1}X_{3,6,2}X_{4,5,2}X_{5,6,4}+$\\
+$X_{3,5,2}X_{3,6,1}X_{4,6,3}X_{5,6,4}-X_{3,6,1}X_{3,6,2}X_{4,5,3}X_{5,6,4},$\\
+$Q_{27}=X_{2,6,1}X_{3,5,2}X_{4,5,3}-X_{3,4,1}X_{4,5,3}X_{5,6,4},$\\
+$Q_{28}=X_{2,6,1}X_{3,4,2}X_{5,6,2}-X_{2,6,1}X_{3,5,2}X_{4,6,2}+X_{2,6,1}X_{3,6,2}X_{4,5,2}+$\\
+$X_{3,4,1}X_{3,6,2}X_{5,6,3}+X_{3,4,1}X_{4,6,2}X_{5,6,4}-X_{3,5,1}X_{3,6,2}X_{4,6,3}+$\\
+$X_{3,6,1}X_{3,6,2}X_{4,5,3},$\\
+$Q_{29}=X_{2,6,1}X_{3,4,2}X_{4,5,3},$\\
+$Q_{30}=X_{2,5,1}X_{4,6,2}X_{4,6,3}X_{5,6,4}-X_{2,6,1}X_{4,5,2}X_{4,6,3}X_{5,6,4}-$\\
+$X_{3,4,1}X_{4,6,3}X_{5,6,3}X_{5,6,4}+X_{3,5,1}X_{4,6,3}^2X_{5,6,4}-$\\
+$X_{3,6,1}X_{4,5,3}X_{4,6,3}X_{5,6,4},$\\
+$Q_{31}=X_{2,5,1}X_{4,5,3}X_{4,6,2}X_{5,6,4}-X_{2,6,1}X_{4,5,2}X_{4,5,3}X_{5,6,4}-$\\
+$X_{3,4,1}X_{4,5,3}X_{5,6,3}X_{5,6,4}+X_{3,5,1}X_{4,5,3}X_{4,6,3}X_{5,6,4}-$\\
+$X_{3,6,1}X_{4,5,3}^2X_{5,6,4},$\\
+$Q_{32}=X_{2,5,1}X_{4,5,2}X_{4,6,3}X_{5,6,4}+X_{3,5,1}X_{4,5,3}X_{4,6,3}X_{5,6,4},$\\
+$Q_{33}=X_{2,5,1}X_{4,5,2}X_{4,5,3}X_{5,6,4}+X_{3,5,1}X_{4,5,3}^2X_{5,6,4},$\\
+$Q_{34}=X_{2,5,1}X_{3,6,2}X_{5,6,3}+X_{2,5,1}X_{4,6,2}X_{5,6,4}-X_{2,6,1}X_{3,5,2}X_{5,6,3}-$\\
+$X_{2,6,1}X_{4,5,2}X_{5,6,4}+X_{3,5,1}X_{4,6,3}X_{5,6,4}-X_{3,6,1}X_{4,5,3}X_{5,6,4},$\\
+$Q_{35}=X_{2,5,1}X_{3,6,2}X_{4,6,3}-X_{2,6,1}X_{3,5,2}X_{4,6,3}+X_{3,4,1}X_{4,6,3}X_{5,6,4},$\\
+$Q_{36}=X_{2,5,1}X_{3,6,2}X_{4,5,3}-X_{2,6,1}X_{3,5,2}X_{4,5,3}+X_{3,4,1}X_{4,5,3}X_{5,6,4},$\\
+$Q_{37}=X_{2,5,1}X_{3,6,1}X_{4,6,3}X_{5,6,4}+X_{2,6,1}^2X_{3,5,2}X_{5,6,3}+X_{2,6,1}^2X_{4,5,2}X_{5,6,4}-$\\
+$X_{2,6,1}X_{3,5,1}X_{4,6,3}X_{5,6,4}+X_{2,6,1}X_{3,6,1}X_{4,5,3}X_{5,6,4},$\\
+$Q_{38}=X_{2,5,1}X_{3,6,1}X_{4,5,3}X_{5,6,4}-X_{2,6,1}X_{3,5,1}X_{4,5,3}X_{5,6,4},$\\
+$Q_{39}=X_{2,5,1}X_{3,5,2}X_{5,6,3}+X_{2,5,1}X_{4,5,2}X_{5,6,4}+X_{3,5,1}X_{4,5,3}X_{5,6,4},$\\
+$Q_{40}=X_{2,5,1}X_{3,5,2}X_{4,6,3},$\\
+$Q_{41}=X_{2,5,1}X_{3,5,2}X_{4,6,2}X_{5,6,4}-X_{2,5,1}X_{3,6,2}X_{4,5,2}X_{5,6,4}-X_{2,6,1}X_{3,5,2}^2X_{5,6,3}-X_{2,6,1}X_{3,5,2}X_{4,5,2}X_{5,6,4}+X_{3,5,1}X_{3,5,2}X_{4,6,3}X_{5,6,4}-X_{3,5,1}X_{3,6,2}X_{4,5,3}X_{5,6,4}-X_{3,5,2}X_{3,6,1}X_{4,5,3}X_{5,6,4},$\\
+$Q_{42}=X_{2,5,1}X_{3,5,2}X_{4,5,3},$\\
+$Q_{43}=X_{2,5,1}X_{3,4,2}X_{5,6,2}-X_{2,5,1}X_{3,5,2}X_{4,6,2}+X_{2,5,1}X_{3,6,2}X_{4,5,2}+$\\
+$X_{3,4,1}X_{3,5,2}X_{5,6,3}+X_{3,4,1}X_{4,5,2}X_{5,6,4}-X_{3,5,1}X_{3,5,2}X_{4,6,3}+$\\
+$X_{3,5,2}X_{3,6,1}X_{4,5,3},$\\
+$Q_{44}=X_{2,5,1}X_{3,4,2}X_{4,6,3},$\\
+$Q_{45}=X_{2,5,1}X_{3,4,2}X_{4,5,3},$\\
+$Q_{46}=X_{2,4,1}X_{5,6,2}-X_{2,5,1}X_{4,6,2}+X_{2,6,1}X_{4,5,2}+X_{3,4,1}X_{5,6,3}-$\\
+$X_{3,5,1}X_{4,6,3}+X_{3,6,1}X_{4,5,3},$\\
+$Q_{47}=X_{2,4,1}X_{4,6,3}X_{5,6,4},$\\
+$Q_{48}=X_{2,4,1}X_{4,5,3}X_{5,6,4},$\\
+$Q_{49}=X_{2,4,1}X_{3,6,2}X_{5,6,3}+X_{2,4,1}X_{4,6,2}X_{5,6,4}-X_{2,6,1}X_{3,4,2}X_{5,6,3},$\\
+$Q_{50}=X_{2,4,1}X_{3,6,2}X_{4,6,3}-X_{2,6,1}X_{3,4,2}X_{4,6,3},$\\
+$Q_{51}=X_{2,4,1}X_{3,6,2}X_{4,5,3}-X_{2,6,1}X_{3,4,2}X_{4,5,3},$\\
+$Q_{52}=X_{2,4,1}X_{3,5,2}X_{5,6,3}+X_{2,4,1}X_{4,5,2}X_{5,6,4}-X_{2,5,1}X_{3,4,2}X_{5,6,3},$\\
+$Q_{53}=X_{2,4,1}X_{3,5,2}X_{4,6,3}-X_{2,5,1}X_{3,4,2}X_{4,6,3},$\\
+$Q_{54}=X_{2,4,1}X_{3,5,2}X_{4,6,2}-X_{2,4,1}X_{3,6,2}X_{4,5,2}-X_{2,5,1}X_{3,4,2}X_{4,6,2}+$\\
+$X_{2,6,1}X_{3,4,2}X_{4,5,2},$\\
+$Q_{55}=X_{2,4,1}X_{3,5,2}X_{4,5,3}-X_{2,5,1}X_{3,4,2}X_{4,5,3},$\\
+$Q_{56}=X_{2,4,1}X_{3,4,2}X_{4,5,3},$\\
+$Q_{57}=X_{2,3,1}X_{5,6,3}+X_{2,4,1}X_{5,6,4},$\\
+$Q_{58}=X_{2,3,1}X_{5,6,2}-X_{2,5,1}X_{3,6,2}+X_{2,6,1}X_{3,5,2}-X_{3,4,1}X_{5,6,4},$\\
+$Q_{59}=X_{2,3,1}X_{4,6,3},$\\
+$Q_{60}=X_{2,3,1}X_{4,6,2}-X_{2,4,1}X_{3,6,2}+X_{2,6,1}X_{3,4,2},$\\
+$Q_{61}=X_{2,3,1}X_{4,5,3},$\\
+$Q_{62}=X_{2,3,1}X_{4,5,2}-X_{2,4,1}X_{3,5,2}+X_{2,5,1}X_{3,4,2},$\\
+\\
+\textbf{Sistema de generadores de $I_{\text{Lie,4pnil,}6}$:}\\
+\\
+Resulta de la uni'on entre $C_{\text{antcon,}6}$, $C_{\text{nil,}6}$ y el conjunto formado por los elementos:\\
+\\
+$P_{1}=X_{3,5,2}X_{4,6,3}X_{5,6,4}-X_{3,6,2}X_{4,5,3}X_{5,6,4},$\\
+$P_{2}=X_{3,5,1}X_{3,6,2}X_{4,6,3}^2X_{5,6,4}^2-X_{3,6,1}X_{3,6,2}X_{4,5,3}X_{4,6,3}X_{5,6,4}^2,$\\
+$P_{3}=X_{3,5,1}X_{3,6,2}X_{4,5,3}X_{4,6,3}X_{5,6,4}^2-X_{3,6,1}X_{3,6,2}X_{4,5,3}^2X_{5,6,4}^2,$\\
+$P_{4}=X_{3,5,1}X_{3,6,2}X_{4,5,3}^2X_{5,6,4}^2-X_{3,5,2}X_{3,6,1}X_{4,5,3}^2X_{5,6,4}^2,$\\
+$P_{5}=X_{3,4,2}X_{5,6,4},$\\
+$P_{6}=X_{3,4,2}X_{5,6,3}-X_{3,5,2}X_{4,6,3}+X_{3,6,2}X_{4,5,3},$\\
+$P_{7}=X_{3,4,1}X_{4,6,3}X_{5,6,4}^2,$\\
+$P_{8}=X_{3,4,1}X_{4,5,3}X_{5,6,4}^2,$\\
+$P_{9}=X_{3,4,1}X_{3,6,2}X_{4,6,3}X_{5,6,3}X_{5,6,4}-X_{3,5,1}X_{3,6,2}X_{4,6,3}^2X_{5,6,4}+\\
+X_{3,6,1}X_{3,6,2}X_{4,5,3}X_{4,6,3}X_{5,6,4},$\\
+$P_{10}=X_{3,4,1}X_{3,6,2}X_{4,5,3}X_{5,6,3}X_{5,6,4}+X_{3,4,1}X_{4,5,2}X_{4,6,3}X_{5,6,4}^2-\\
+X_{3,5,1}X_{3,6,2}X_{4,5,3}X_{4,6,3}X_{5,6,4}+X_{3,6,1}X_{3,6,2}X_{4,5,3}^2X_{5,6,4},$\\
+$P_{11}=X_{3,4,1}X_{3,5,2}X_{4,5,3}X_{5,6,3}X_{5,6,4}+X_{3,4,1}X_{4,5,2}X_{4,5,3}X_{5,6,4}^2-\\
+X_{3,5,1}X_{3,5,2}X_{4,5,3}X_{4,6,3}X_{5,6,4}+X_{3,5,2}X_{3,6,1}X_{4,5,3}^2X_{5,6,4},$\\
+$P_{12}=X_{2,6,1}X_{3,6,2}X_{4,6,3}X_{5,6,4},$\\
+$P_{13}=X_{2,6,1}X_{3,6,2}X_{4,5,3}X_{5,6,4}-X_{3,4,1}X_{4,6,3}X_{5,6,4}^2,$\\
+$P_{14}=X_{2,6,1}X_{3,5,2}X_{4,6,2}X_{5,6,4}-X_{2,6,1}X_{3,6,2}X_{4,5,2}X_{5,6,4}-$\\
+$X_{3,4,1}X_{3,6,2}X_{5,6,3}X_{5,6,4}-X_{3,4,1}X_{4,6,2}X_{5,6,4}^2+$\\
+$X_{3,5,1}X_{3,6,2}X_{4,6,3}X_{5,6,4}-X_{3,6,1}X_{3,6,2}X_{4,5,3}X_{5,6,4},$\\
+$P_{15}=X_{2,6,1}X_{3,5,2}X_{4,6,2}X_{5,6,3}-X_{2,6,1}X_{3,5,2}X_{4,6,3}X_{5,6,2}$\\
+$-X_{2,6,1}X_{3,6,2}X_{4,5,2}X_{5,6,3}+$\\
+$X_{2,6,1}X_{3,6,2}X_{4,5,3}X_{5,6,2}-X_{3,4,1}X_{3,6,2}X_{5,6,3}^2-X_{3,4,1}X_{4,6,2}X_{5,6,3}X_{5,6,4}+$\\
+$X_{3,5,1}X_{3,6,2}X_{4,6,3}X_{5,6,3}-X_{3,6,1}X_{3,6,2}X_{4,5,3}X_{5,6,3},$\\
+$P_{16}=X_{2,6,1}X_{3,5,2}X_{4,5,3}X_{5,6,4}-X_{3,4,1}X_{4,5,3}X_{5,6,4}^2,$\\
+$P_{17}=X_{2,6,1}X_{3,4,2}X_{5,6,2}-X_{2,6,1}X_{3,5,2}X_{4,6,2}+X_{2,6,1}X_{3,6,2}X_{4,5,2}+$\\
+$X_{3,4,1}X_{3,6,2}X_{5,6,3}+X_{3,4,1}X_{4,6,2}X_{5,6,4}-X_{3,5,1}X_{3,6,2}X_{4,6,3}+$\\
+$X_{3,6,1}X_{3,6,2}X_{4,5,3},$\\
+$P_{18}=X_{2,5,1}X_{4,6,2}X_{4,6,3}X_{5,6,4}-X_{2,6,1}X_{4,5,2}X_{4,6,3}X_{5,6,4}-$\\
+$X_{3,4,1}X_{4,6,3}X_{5,6,3}X_{5,6,4}+X_{3,5,1}X_{4,6,3}^2X_{5,6,4}-X_{3,6,1}X_{4,5,3}X_{4,6,3}X_{5,6,4},$\\
+$P_{19}=X_{2,5,1}X_{4,5,3}X_{4,6,2}X_{5,6,4}-X_{2,6,1}X_{4,5,2}X_{4,5,3}X_{5,6,4}-$\\
+$X_{3,4,1}X_{4,5,3}X_{5,6,3}X_{5,6,4}+X_{3,5,1}X_{4,5,3}X_{4,6,3}X_{5,6,4}-X_{3,6,1}X_{4,5,3}^2X_{5,6,4},$\\
+$P_{20}=X_{2,5,1}X_{3,6,2}X_{5,6,3}+X_{2,5,1}X_{4,6,2}X_{5,6,4}-X_{2,6,1}X_{3,5,2}X_{5,6,3}-$\\
+$X_{2,6,1}X_{4,5,2}X_{5,6,4}+X_{3,5,1}X_{4,6,3}X_{5,6,4}-X_{3,6,1}X_{4,5,3}X_{5,6,4},$\\
+$P_{21}=X_{2,5,1}X_{3,6,2}X_{4,6,3}-X_{2,6,1}X_{3,5,2}X_{4,6,3}+X_{3,4,1}X_{4,6,3}X_{5,6,4},$\\
+$P_{22}=X_{2,5,1}X_{3,6,2}X_{4,5,3}-X_{2,6,1}X_{3,5,2}X_{4,5,3}+X_{3,4,1}X_{4,5,3}X_{5,6,4},$\\
+$P_{23}=X_{2,5,1}X_{3,5,2}X_{4,6,2}X_{5,6,4}-X_{2,5,1}X_{3,6,2}X_{4,5,2}X_{5,6,4}-$\\
+$X_{3,4,1}X_{3,5,2}X_{5,6,3}X_{5,6,4}-X_{3,4,1}X_{4,5,2}X_{5,6,4}^2+$\\
+$X_{3,5,1}X_{3,5,2}X_{4,6,3}X_{5,6,4}-X_{3,5,2}X_{3,6,1}X_{4,5,3}X_{5,6,4},$\\
+$P_{24}=X_{2,5,1}X_{3,5,2}X_{4,6,2}X_{5,6,3}-X_{2,5,1}X_{3,5,2}X_{4,6,3}X_{5,6,2}$\\
+$-X_{2,5,1}X_{3,6,2}X_{4,5,2}X_{5,6,3}+X_{2,5,1}X_{3,6,2}X_{4,5,3}X_{5,6,2}-$\\
+$X_{3,4,1}X_{3,5,2}X_{5,6,3}^2-X_{3,4,1}X_{4,5,2}X_{5,6,3}X_{5,6,4}+\\
+X_{3,5,1}X_{3,5,2}X_{4,6,3}X_{5,6,3}-X_{3,5,2}X_{3,6,1}X_{4,5,3}X_{5,6,3},$\\
+$P_{25}=X_{2,5,1}X_{3,5,2}X_{4,5,3}X_{5,6,4},$\\
+$P_{26}=X_{2,5,1}X_{3,4,2}X_{5,6,2}-X_{2,5,1}X_{3,5,2}X_{4,6,2}+X_{2,5,1}X_{3,6,2}X_{4,5,2}+$\\
+$X_{3,4,1}X_{3,5,2}X_{5,6,3}+X_{3,4,1}X_{4,5,2}X_{5,6,4}-X_{3,5,1}X_{3,5,2}X_{4,6,3}+$\\
+$X_{3,5,2}X_{3,6,1}X_{4,5,3},$\\
+$P_{27}=X_{2,4,1}X_{5,6,2}-X_{2,5,1}X_{4,6,2}+X_{2,6,1}X_{4,5,2}+X_{3,4,1}X_{5,6,3}-$\\
+$X_{3,5,1}X_{4,6,3}+X_{3,6,1}X_{4,5,3},$\\
+$P_{28}=X_{2,4,1}X_{4,6,3}X_{5,6,4},$\\
+$P_{29}=X_{2,4,1}X_{4,5,3}X_{5,6,4},$\\
+$P_{30}=X_{2,4,1}X_{3,6,2}X_{5,6,3}+X_{2,4,1}X_{4,6,2}X_{5,6,4}-X_{2,6,1}X_{3,4,2}X_{5,6,3},$\\
+$P_{31}=X_{2,4,1}X_{3,6,2}X_{4,6,3}-X_{2,6,1}X_{3,4,2}X_{4,6,3},$\\
+$P_{32}=X_{2,4,1}X_{3,6,2}X_{4,5,3}-X_{2,6,1}X_{3,4,2}X_{4,5,3},$\\
+$P_{33}=X_{2,4,1}X_{3,5,2}X_{5,6,3}+X_{2,4,1}X_{4,5,2}X_{5,6,4}-X_{2,5,1}X_{3,4,2}X_{5,6,3},$\\
+$P_{34}=X_{2,4,1}X_{3,5,2}X_{4,6,3}-X_{2,5,1}X_{3,4,2}X_{4,6,3},$\\
+$P_{35}=X_{2,4,1}X_{3,5,2}X_{4,6,2}-X_{2,4,1}X_{3,6,2}X_{4,5,2}-X_{2,5,1}X_{3,4,2}X_{4,6,2}+$\\
+$X_{2,6,1}X_{3,4,2}X_{4,5,2},$\\
+$P_{36}=X_{2,4,1}X_{3,5,2}X_{4,5,3}-X_{2,5,1}X_{3,4,2}X_{4,5,3},$\\
+$P_{37}=X_{2,3,1}X_{5,6,3}+X_{2,4,1}X_{5,6,4},$\\
+$P_{38}=X_{2,3,1}X_{5,6,2}-X_{2,5,1}X_{3,6,2}+X_{2,6,1}X_{3,5,2}-X_{3,4,1}X_{5,6,4},$\\
+$P_{39}=X_{2,3,1}X_{4,6,3},$\\
+$P_{40}=X_{2,3,1}X_{4,6,2}-X_{2,4,1}X_{3,6,2}+X_{2,6,1}X_{3,4,2},$\\
+$P_{41}=X_{2,3,1}X_{4,5,3},$\\
+$P_{42}=X_{2,3,1}X_{4,5,2}-X_{2,4,1}X_{3,5,2}+X_{2,5,1}X_{3,4,2},$\\
+\\
+Sistema de generadores de su radical:\\
+\\
+Resulta de la uni'on entre $C_{\text{antcon,}6}$, $C_{\text{nil,}6}$ y el conjunto formado por los elementos:\\
+\\ 
+$Q_{1}=X_{3,5,2}X_{4,6,3}X_{5,6,4}-X_{3,6,2}X_{4,5,3}X_{5,6,4},$\\
+$Q_{2}=X_{3,5,1}X_{3,6,2}X_{4,6,3}X_{5,6,4}-X_{3,5,2}X_{3,6,1}X_{4,6,3}X_{5,6,4},$\\
+$Q_{3}=X_{3,5,1}X_{3,6,2}X_{4,5,3}X_{5,6,4}-X_{3,5,2}X_{3,6,1}X_{4,5,3}X_{5,6,4},$\\
+$Q_{4}=X_{3,4,2}X_{5,6,4},$\\
+$Q_{5}=X_{3,4,2}X_{5,6,3}-X_{3,5,2}X_{4,6,3}+X_{3,6,2}X_{4,5,3},$\\
+$Q_{6}=X_{3,4,1}X_{4,6,3}X_{5,6,4},$\\
+$Q_{7}=X_{3,4,1}X_{4,5,3}X_{5,6,4},$\\
+$Q_{8}=X_{2,6,1}X_{3,6,2}X_{4,6,3}X_{5,6,4},$\\
+$Q_{9}=X_{2,6,1}X_{3,6,2}X_{4,5,3}X_{5,6,4}-X_{3,4,1}X_{4,6,3}X_{5,6,4}^2,$\\
+$Q_{10}=X_{2,6,1}X_{3,5,2}X_{4,6,2}X_{5,6,4}-X_{2,6,1}X_{3,6,2}X_{4,5,2}X_{5,6,4}-$\\
+$X_{3,4,1}X_{3,6,2}X_{5,6,3}X_{5,6,4}-X_{3,4,1}X_{4,6,2}X_{5,6,4}^2+X_{3,5,1}X_{3,6,2}X_{4,6,3}X_{5,6,4}-$\\
+$X_{3,6,1}X_{3,6,2}X_{4,5,3}X_{5,6,4},$\\
+$Q_{11}=X_{2,6,1}X_{3,5,2}X_{4,6,2}X_{5,6,3}-X_{2,6,1}X_{3,5,2}X_{4,6,3}X_{5,6,2}-$\\
+$X_{2,6,1}X_{3,6,2}X_{4,5,2}X_{5,6,3}+X_{2,6,1}X_{3,6,2}X_{4,5,3}X_{5,6,2}-X_{3,4,1}X_{3,6,2}X_{5,6,3}^2-$\\
+$X_{3,4,1}X_{4,6,2}X_{5,6,3}X_{5,6,4}+X_{3,5,1}X_{3,6,2}X_{4,6,3}X_{5,6,3}-$\\
+$X_{3,6,1}X_{3,6,2}X_{4,5,3}X_{5,6,3},$\\
+$Q_{12}=X_{2,6,1}X_{3,5,2}X_{4,5,3}X_{5,6,4}-X_{3,4,1}X_{4,5,3}X_{5,6,4}^2,$\\
+$Q_{13}=X_{2,6,1}X_{3,4,2}X_{5,6,2}-X_{2,6,1}X_{3,5,2}X_{4,6,2}+X_{2,6,1}X_{3,6,2}X_{4,5,2}+$\\
+$X_{3,4,1}X_{3,6,2}X_{5,6,3}+X_{3,4,1}X_{4,6,2}X_{5,6,4}-X_{3,5,1}X_{3,6,2}X_{4,6,3}+$\\
+$X_{3,6,1}X_{3,6,2}X_{4,5,3},$\\
+$Q_{14}=X_{2,5,1}X_{4,6,2}X_{4,6,3}X_{5,6,4}-X_{2,6,1}X_{4,5,2}X_{4,6,3}X_{5,6,4}-$\\
+$X_{3,4,1}X_{4,6,3}X_{5,6,3}X_{5,6,4}+X_{3,5,1}X_{4,6,3}^2X_{5,6,4}-X_{3,6,1}X_{4,5,3}X_{4,6,3}X_{5,6,4},$\\
+$Q_{15}=X_{2,5,1}X_{4,5,3}X_{4,6,2}X_{5,6,4}-X_{2,6,1}X_{4,5,2}X_{4,5,3}X_{5,6,4}-$\\
+$X_{3,4,1}X_{4,5,3}X_{5,6,3}X_{5,6,4}+X_{3,5,1}X_{4,5,3}X_{4,6,3}X_{5,6,4}-X_{3,6,1}X_{4,5,3}^2X_{5,6,4},$\\
+$Q_{16}=X_{2,5,1}X_{3,6,2}X_{5,6,3}+X_{2,5,1}X_{4,6,2}X_{5,6,4}-X_{2,6,1}X_{3,5,2}X_{5,6,3}-$\\
+$X_{2,6,1}X_{4,5,2}X_{5,6,4}+X_{3,5,1}X_{4,6,3}X_{5,6,4}-X_{3,6,1}X_{4,5,3}X_{5,6,4},$\\
+$Q_{17}=X_{2,5,1}X_{3,6,2}X_{4,6,3}-X_{2,6,1}X_{3,5,2}X_{4,6,3}+X_{3,4,1}X_{4,6,3}X_{5,6,4},$\\
+$Q_{18}=X_{2,5,1}X_{3,6,2}X_{4,5,3}-X_{2,6,1}X_{3,5,2}X_{4,5,3}+X_{3,4,1}X_{4,5,3}X_{5,6,4},$\\
+$Q_{19}=X_{2,5,1}X_{3,5,2}X_{4,6,2}X_{5,6,4}-X_{2,5,1}X_{3,6,2}X_{4,5,2}X_{5,6,4}-$\\
+$X_{3,4,1}X_{3,5,2}X_{5,6,3}X_{5,6,4}-X_{3,4,1}X_{4,5,2}X_{5,6,4}^2+X_{3,5,1}X_{3,5,2}X_{4,6,3}X_{5,6,4}-$\\
+$X_{3,5,2}X_{3,6,1}X_{4,5,3}X_{5,6,4},$\\
+$Q_{20}=X_{2,5,1}X_{3,5,2}X_{4,6,2}X_{5,6,3}-X_{2,5,1}X_{3,5,2}X_{4,6,3}X_{5,6,2}-$\\
+$X_{2,5,1}X_{3,6,2}X_{4,5,2}X_{5,6,3}+X_{2,5,1}X_{3,6,2}X_{4,5,3}X_{5,6,2}-X_{3,4,1}X_{3,5,2}X_{5,6,3}^2-$\\
+$X_{3,4,1}X_{4,5,2}X_{5,6,3}X_{5,6,4}+X_{3,5,1}X_{3,5,2}X_{4,6,3}X_{5,6,3}-X_{3,5,2}X_{3,6,1}X_{4,5,3}X_{5,6,3},$\\
+$Q_{21}=X_{2,5,1}X_{3,5,2}X_{4,5,3}X_{5,6,4},$\\
+$Q_{22}=X_{2,5,1}X_{3,4,2}X_{5,6,2}-X_{2,5,1}X_{3,5,2}X_{4,6,2}+X_{2,5,1}X_{3,6,2}X_{4,5,2}+$\\
+$X_{3,4,1}X_{3,5,2}X_{5,6,3}+X_{3,4,1}X_{4,5,2}X_{5,6,4}-X_{3,5,1}X_{3,5,2}X_{4,6,3}+$\\
+$X_{3,5,2}X_{3,6,1}X_{4,5,3},$\\
+$Q_{23}=X_{2,4,1}X_{5,6,2}-X_{2,5,1}X_{4,6,2}+X_{2,6,1}X_{4,5,2}+X_{3,4,1}X_{5,6,3}-$\\
+$X_{3,5,1}X_{4,6,3}+X_{3,6,1}X_{4,5,3},$\\
+$Q_{24}=X_{2,4,1}X_{4,6,3}X_{5,6,4},$\\
+$Q_{25}=X_{2,4,1}X_{4,5,3}X_{5,6,4},$\\
+$Q_{26}=X_{2,4,1}X_{3,6,2}X_{5,6,3}+X_{2,4,1}X_{4,6,2}X_{5,6,4}-X_{2,6,1}X_{3,4,2}X_{5,6,3},$\\
+$Q_{27}=X_{2,4,1}X_{3,6,2}X_{4,6,3}-X_{2,6,1}X_{3,4,2}X_{4,6,3},$\\
+$Q_{28}=X_{2,4,1}X_{3,6,2}X_{4,5,3}-X_{2,6,1}X_{3,4,2}X_{4,5,3},$\\
+$Q_{29}=X_{2,4,1}X_{3,5,2}X_{5,6,3}+X_{2,4,1}X_{4,5,2}X_{5,6,4}-X_{2,5,1}X_{3,4,2}X_{5,6,3},$\\
+$Q_{30}=X_{2,4,1}X_{3,5,2}X_{4,6,3}-X_{2,5,1}X_{3,4,2}X_{4,6,3},$\\
+$Q_{31}=X_{2,4,1}X_{3,5,2}X_{4,6,2}-X_{2,4,1}X_{3,6,2}X_{4,5,2}-X_{2,5,1}X_{3,4,2}X_{4,6,2}+$\\
+$X_{2,6,1}X_{3,4,2}X_{4,5,2},$\\
+$Q_{32}=X_{2,4,1}X_{3,5,2}X_{4,5,3}-X_{2,5,1}X_{3,4,2}X_{4,5,3},$\\
+$Q_{33}=X_{2,3,1}X_{5,6,3}+X_{2,4,1}X_{5,6,4},$\\
+$Q_{34}=X_{2,3,1}X_{5,6,2}-X_{2,5,1}X_{3,6,2}+X_{2,6,1}X_{3,5,2}-X_{3,4,1}X_{5,6,4},$\\
+$Q_{35}=X_{2,3,1}X_{4,6,3},$\\
+$Q_{36}=X_{2,3,1}X_{4,6,2}-X_{2,4,1}X_{3,6,2}+X_{2,6,1}X_{3,4,2},$\\
+$Q_{37}=X_{2,3,1}X_{4,5,3},$\\
+$Q_{38}=X_{2,3,1}X_{4,5,2}-X_{2,4,1}X_{3,5,2}+X_{2,5,1}X_{3,4,2}$\\
+\\
+\textbf{Sistema de generadores de $I_{\text{Lie,nil,}6}$ y de su radical:}\\
+\\
+Resulta de la uni'on entre $C_{\text{antcon,}6}$, $C_{\text{nil,}6}$ y el conjunto formado por los elementos:\\
+\\
+$P_{1}=X_{3,5,2}X_{4,6,3}X_{5,6,4}-X_{3,6,2}X_{4,5,3}X_{5,6,4},$\\
+$P_{2}=X_{3,4,2}X_{5,6,4},$\\
+$P_{3}=X_{3,4,2}X_{5,6,3}-X_{3,5,2}X_{4,6,3}+X_{3,6,2}X_{4,5,3},$\\
+$P_{4}=X_{2,6,1}X_{3,6,2}X_{4,5,2}X_{4,6,3}X_{5,6,4}-X_{2,6,1}X_{3,6,2}X_{4,5,3}X_{4,6,2}X_{5,6,4}+$\\
+$X_{3,4,1}X_{3,6,2}X_{4,6,3}X_{5,6,3}X_{5,6,4}+X_{3,4,1}X_{4,6,2}X_{4,6,3}X_{5,6,4}^2-$\\
+$X_{3,5,1}X_{3,6,2}X_{4,6,3}^2X_{5,6,4}+X_{3,6,1}X_{3,6,2}X_{4,5,3}X_{4,6,3}X_{5,6,4},$\\
+$P_{5}=X_{2,6,1}X_{3,5,2}X_{4,6,2}X_{5,6,4}-X_{2,6,1}X_{3,6,2}X_{4,5,2}X_{5,6,4}-$\\
+$X_{3,4,1}X_{3,6,2}X_{5,6,3}X_{5,6,4}-X_{3,4,1}X_{4,6,2}X_{5,6,4}^2+X_{3,5,1}X_{3,6,2}X_{4,6,3}X_{5,6,4}-$\\
+$X_{3,6,1}X_{3,6,2}X_{4,5,3}X_{5,6,4},$\\
+$P_{6}=X_{2,6,1}X_{3,5,2}X_{4,6,2}X_{5,6,3}-X_{2,6,1}X_{3,5,2}X_{4,6,3}X_{5,6,2}-$\\
+$X_{2,6,1}X_{3,6,2}X_{4,5,2}X_{5,6,3}+X_{2,6,1}X_{3,6,2}X_{4,5,3}X_{5,6,2}-X_{3,4,1}X_{3,6,2}X_{5,6,3}^2$\\
+$-X_{3,4,1}X_{4,6,2}X_{5,6,3}X_{5,6,4}+X_{3,5,1}X_{3,6,2}X_{4,6,3}X_{5,6,3}-X_{3,6,1}X_{3,6,2}X_{4,5,3}X_{5,6,3},$\\
+$P_{7}=X_{2,6,1}X_{3,4,2}X_{5,6,2}-X_{2,6,1}X_{3,5,2}X_{4,6,2}+X_{2,6,1}X_{3,6,2}X_{4,5,2}+$\\
+$X_{3,4,1}X_{3,6,2}X_{5,6,3}+X_{3,4,1}X_{4,6,2}X_{5,6,4}-X_{3,5,1}X_{3,6,2}X_{4,6,3}+X_{3,6,1}X_{3,6,2}X_{4,5,3},$\\
+$P_{8}=X_{2,5,1}X_{4,6,2}X_{4,6,3}X_{5,6,4}-X_{2,6,1}X_{4,5,2}X_{4,6,3}X_{5,6,4}-$\\
+$X_{3,4,1}X_{4,6,3}X_{5,6,3}X_{5,6,4}+X_{3,5,1}X_{4,6,3}^2X_{5,6,4}-X_{3,6,1}X_{4,5,3}X_{4,6,3}X_{5,6,4},$\\
+$P_{9}=X_{2,5,1}X_{4,5,3}X_{4,6,2}X_{5,6,4}-X_{2,6,1}X_{4,5,2}X_{4,5,3}X_{5,6,4}-$\\
+$X_{3,4,1}X_{4,5,3}X_{5,6,3}X_{5,6,4}+X_{3,5,1}X_{4,5,3}X_{4,6,3}X_{5,6,4}-X_{3,6,1}X_{4,5,3}^2X_{5,6,4},$\\
+$P_{10}=X_{2,5,1}X_{3,6,2}X_{5,6,3}+X_{2,5,1}X_{4,6,2}X_{5,6,4}-X_{2,6,1}X_{3,5,2}X_{5,6,3}-$\\
+$X_{2,6,1}X_{4,5,2}X_{5,6,4}+X_{3,5,1}X_{4,6,3}X_{5,6,4}-X_{3,6,1}X_{4,5,3}X_{5,6,4},$\\
+$P_{11}=X_{2,5,1}X_{3,6,2}X_{4,6,3}-X_{2,6,1}X_{3,5,2}X_{4,6,3}+X_{3,4,1}X_{4,6,3}X_{5,6,4},$\\
+$P_{12}=X_{2,5,1}X_{3,6,2}X_{4,5,3}-X_{2,6,1}X_{3,5,2}X_{4,5,3}+X_{3,4,1}X_{4,5,3}X_{5,6,4},$\\
+$P_{13}=X_{2,5,1}X_{3,5,2}X_{4,6,2}X_{5,6,4}-X_{2,5,1}X_{3,6,2}X_{4,5,2}X_{5,6,4}-$\\
+$X_{3,4,1}X_{3,5,2}X_{5,6,3}X_{5,6,4}-X_{3,4,1}X_{4,5,2}X_{5,6,4}^2+X_{3,5,1}X_{3,5,2}X_{4,6,3}X_{5,6,4}-$\\
+$X_{3,5,2}X_{3,6,1}X_{4,5,3}X_{5,6,4},$\\
+$P_{14}=X_{2,5,1}X_{3,5,2}X_{4,6,2}X_{5,6,3}-X_{2,5,1}X_{3,5,2}X_{4,6,3}X_{5,6,2}-$\\
+$X_{2,5,1}X_{3,6,2}X_{4,5,2}X_{5,6,3}+X_{2,5,1}X_{3,6,2}X_{4,5,3}X_{5,6,2}-X_{3,4,1}X_{3,5,2}X_{5,6,3}^2-$\\
+$X_{3,4,1}X_{4,5,2}X_{5,6,3}X_{5,6,4}+X_{3,5,1}X_{3,5,2}X_{4,6,3}X_{5,6,3}-X_{3,5,2}X_{3,6,1}X_{4,5,3}X_{5,6,3},$\\
+$P_{15}=X_{2,5,1}X_{3,4,2}X_{5,6,2}-X_{2,5,1}X_{3,5,2}X_{4,6,2}+X_{2,5,1}X_{3,6,2}X_{4,5,2}+$\\
+$X_{3,4,1}X_{3,5,2}X_{5,6,3}+X_{3,4,1}X_{4,5,2}X_{5,6,4}-X_{3,5,1}X_{3,5,2}X_{4,6,3}+X_{3,5,2}X_{3,6,1}X_{4,5,3},$\\
+$P_{16}=X_{2,4,1}X_{5,6,2}-X_{2,5,1}X_{4,6,2}+X_{2,6,1}X_{4,5,2}+X_{3,4,1}X_{5,6,3}-X_{3,5,1}X_{4,6,3}+$\\
+$X_{3,6,1}X_{4,5,3},$\\
+$P_{17}=X_{2,4,1}X_{4,6,3}X_{5,6,4},$\\
+$P_{18}=X_{2,4,1}X_{4,5,3}X_{5,6,4},$\\
+$P_{19}=X_{2,4,1}X_{3,6,2}X_{5,6,3}+X_{2,4,1}X_{4,6,2}X_{5,6,4}-X_{2,6,1}X_{3,4,2}X_{5,6,3},$\\
+$P_{20}=X_{2,4,1}X_{3,6,2}X_{4,6,3}-X_{2,6,1}X_{3,4,2}X_{4,6,3},$\\
+$P_{21}=X_{2,4,1}X_{3,6,2}X_{4,5,3}-X_{2,6,1}X_{3,4,2}X_{4,5,3},$\\
+$P_{22}=X_{2,4,1}X_{3,5,2}X_{5,6,3}+X_{2,4,1}X_{4,5,2}X_{5,6,4}-X_{2,5,1}X_{3,4,2}X_{5,6,3},$\\
+$P_{23}=X_{2,4,1}X_{3,5,2}X_{4,6,3}-X_{2,5,1}X_{3,4,2}X_{4,6,3},$\\
+$P_{24}=X_{2,4,1}X_{3,5,2}X_{4,6,2}-X_{2,4,1}X_{3,6,2}X_{4,5,2}-X_{2,5,1}X_{3,4,2}X_{4,6,2}+$\\
+$X_{2,6,1}X_{3,4,2}X_{4,5,2},$\\
+$P_{25}=X_{2,4,1}X_{3,5,2}X_{4,5,3}-X_{2,5,1}X_{3,4,2}X_{4,5,3},$\\
+$P_{26}=X_{2,3,1}X_{5,6,3}+X_{2,4,1}X_{5,6,4},$\\
+$P_{27}=X_{2,3,1}X_{5,6,2}-X_{2,5,1}X_{3,6,2}+X_{2,6,1}X_{3,5,2}-X_{3,4,1}X_{5,6,4},$\\
+$P_{28}=X_{2,3,1}X_{4,6,3},$\\
+$P_{29}=X_{2,3,1}X_{4,6,2}-X_{2,4,1}X_{3,6,2}+X_{2,6,1}X_{3,4,2},$\\
+$P_{30}=X_{2,3,1}X_{4,5,3},$\\
+$P_{31}=X_{2,3,1}X_{4,5,2}-X_{2,4,1}X_{3,5,2}+X_{2,5,1}X_{3,4,2}$\\
+
+
+
+
+
+
+
+
+
+
+
+
+
+\begin{frame}
+\frametitle{4.8.Resumen de resultados.}
+\begin{center}
+\includegraphics[width=0.7\textwidth]
+{fig3}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\frametitle{4.8.Resumen de resultados.}
+\begin{center}
+\includegraphics[width=1\textwidth]
+{fig4}
+\end{center}
+\end{frame}
+\\
+
+
+
+
+
+\begin{frame}
+\begin{center}
+\includegraphics[width=1\textwidth]
+{preguntas}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+\includegraphics[width=1\textwidth]
+{gracias}
+\end{center}
+\end{frame}
+
+
+\end{document}
+
+
+
+
+
+
+
+

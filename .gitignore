@@ -1,0 +1,72 @@
+# Lista blanca en la raíz: solo entra lo listado con "!".
+/*
+!/.gitignore
+!/README.md
+!/CLAUDE.md
+!/planteo_problema.tex
+!/planteo_problema.pdf
+!/planteo_problema_correciones.pdf
+!/Trayectorias*.pdf
+!/bibliografia.bib
+!/beamer.tex
+!/beamer.pdf
+!/trabajo_final.tex
+!/problemaTC.tex
+!/beamer/
+!/codigos/
+!/graficos/
+!/Imagenes/
+!/Licencia/
+!/v2/
+
+# Ejercicios de cátedra en codigos/ (ajenos al trabajo)
+/codigos/aux_lab*
+/codigos/lab*
+/codigos/fun_lab*
+/codigos/bisec.m
+/codigos/egauss.m
+/codigos/euler.m
+/codigos/facf.m
+/codigos/gseidel*
+/codigos/horn*
+/codigos/ilagrange.m
+/codigos/inewton.m
+/codigos/ipf.m
+/codigos/jacobi*
+/codigos/newton.m
+/codigos/ode1.m
+/codigos/over_*
+/codigos/under.m
+/codigos/soleg.m
+/codigos/soltr*
+/codigos/octave-workspace
+/codigos/asdasd.m
+/codigos/test.m
+/codigos/probando.m
+
+# MATLAB
+*.asv
+/v2/matlab/_cola/
+
+# LaTeX
+*.aux
+*.log
+*.toc
+*.out
+*.bbl
+*.blg
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+
+# Node
+node_modules/
+
+# Papers y libros de terceros: van en local o en Drive, no en git
+/v2/literatura/pdf/
